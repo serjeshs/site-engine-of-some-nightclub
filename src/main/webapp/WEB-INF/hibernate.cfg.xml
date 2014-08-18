@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="org.vurtatoo.afisha.domain.AppUser"/>
+		<mapping class="org.vurtatoo.afisha.domain.Category"/>
+		<mapping class="org.vurtatoo.afisha.domain.Event"/>
+		<mapping class="org.vurtatoo.afisha.domain.FileTable"/>
+		<mapping class="org.vurtatoo.afisha.domain.Place"/>
+		<mapping class="org.vurtatoo.afisha.domain.Region"/>
+	</session-factory>
+</hibernate-configuration>
