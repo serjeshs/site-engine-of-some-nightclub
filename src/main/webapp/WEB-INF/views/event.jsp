@@ -46,7 +46,7 @@ div {
 	<p>
 		<c:if test="${guest}">
 			<p>
-				Привет, Гость.<br> <a href="/store/register">Зарегистрируйся
+				Привет, Гость.<br> <a href="/afisha/register">Зарегистрируйся
 					пожалуйста</a> или <a href="/store/login">войди</a>.
 		</c:if>
 		<c:if test="${user}">

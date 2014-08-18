@@ -28,7 +28,7 @@ public class EventController {
 	@Autowired
 	RegionDAO regionDAO;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String get(Model model) {
 		model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
 	    return "events";
@@ -39,7 +39,7 @@ public class EventController {
 	    return eventDao.getEventsAfter(LocalDateTime.now());
     }
 	
-	@RequestMapping(value = "event/add", method = RequestMethod.POST)
+	@RequestMapping(value = "event/add", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String addEventAction(Model model, String name, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id) {
 		LocalDateTime startEventTime = LocalDateTime.parse(startEvent);
 		LocalDateTime endEventTime = LocalDateTime.parse(endEvent);
@@ -47,14 +47,14 @@ public class EventController {
 		return "event";
 	}
 	
-	@RequestMapping(value = "event/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "event/{id}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String getEvent(Model model , @PathVariable(value = "id") int id) {
 		Event event = eventDao.getEvent(id);
 		model.addAttribute("event", event);
 	    return "event";
     }
 	
-	@RequestMapping(value = "eventadd", method = RequestMethod.GET)
+	@RequestMapping(value = "event/add", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String addEvent(Model model) {
 		model.addAttribute("places",placeDAO.getPlaces());
 		//model.addAttribute("regions",regionDAO.getRegions());

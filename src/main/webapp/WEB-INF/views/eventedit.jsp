@@ -29,7 +29,7 @@ div {
 </style>
 </head>
 <body>
-	<a href="/store/">
+	<a href="/afisha/">
 		<div id="center">
 			<canvas id="myCanvas" width="800" height="100"></canvas>
 		</div> <script>
@@ -46,17 +46,17 @@ div {
 	<p>
 		<c:if test="${guest}">
 			<p>
-				Привет, Гость.<br> <a href="/store/register">Зарегистрируйся
-					пожалуйста</a> или <a href="/store/login">войди</a>.
+				Привет, Гость.<br> <a href="/afisha/register">Зарегистрируйся
+					пожалуйста</a> или <a href="/afisha/login">войди</a>.
 		</c:if>
 		<c:if test="${user}">
 Привет. ${appUserName}.<br>
-			<a href="/store/cabinet">Личный кабинет</a>. <a href="/store/cart">Корзина</a>
-			<a href="/store/logout">Выйти</a>
+			<a href="/afisha/cabinet">Личный кабинет</a>. <a href="/afisha/cart">Корзина</a>
+			<a href="/afisha/logout">Выйти</a>
 		</c:if>
 	</p>
 	
-	<form method="POST" action="event/add">
+	<form method="POST" action="/afisha/event/add">
 					<input type="hidden" name="id" value="<c:out value="${eventid}"/>" /> 
 					<br>Название события<br>
 					<input size="100" type="text" name="name" /> 
