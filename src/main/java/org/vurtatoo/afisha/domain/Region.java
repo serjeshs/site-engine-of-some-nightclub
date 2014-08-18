@@ -27,13 +27,6 @@ public class Region implements Serializable {
 	@OneToMany(mappedBy="region")
 	private List<AppUser> appUsers;
 
-	//bi-directional many-to-one association to Event
-	@OneToMany(mappedBy="region")
-	private List<Event> events;
-
-	//bi-directional many-to-one association to Place
-	@OneToMany(mappedBy="region")
-	private List<Place> places;
 
 	public Region() {
 	}
@@ -42,8 +35,9 @@ public class Region implements Serializable {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public Region setId(int id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getCoordinates() {
@@ -82,50 +76,6 @@ public class Region implements Serializable {
 		appUser.setRegion(null);
 
 		return appUser;
-	}
-
-	public List<Event> getEvents() {
-		return this.events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
-
-	public Event addEvent(Event event) {
-		getEvents().add(event);
-		event.setRegion(this);
-
-		return event;
-	}
-
-	public Event removeEvent(Event event) {
-		getEvents().remove(event);
-		event.setRegion(null);
-
-		return event;
-	}
-
-	public List<Place> getPlaces() {
-		return this.places;
-	}
-
-	public void setPlaces(List<Place> places) {
-		this.places = places;
-	}
-
-	public Place addPlace(Place place) {
-		getPlaces().add(place);
-		place.setRegion(this);
-
-		return place;
-	}
-
-	public Place removePlace(Place place) {
-		getPlaces().remove(place);
-		place.setRegion(null);
-
-		return place;
 	}
 
 }

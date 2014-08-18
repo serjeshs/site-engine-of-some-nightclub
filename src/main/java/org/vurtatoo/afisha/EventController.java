@@ -1,0 +1,64 @@
+package org.vurtatoo.afisha;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.vurtatoo.afisha.dao.EventDAO;
+import org.vurtatoo.afisha.dao.PlaceDAO;
+import org.vurtatoo.afisha.dao.RegionDAO;
+import org.vurtatoo.afisha.domain.Event;
+import org.vurtatoo.afisha.domain.Place;
+
+@Controller
+public class EventController {
+
+	@Autowired
+	EventDAO eventDao;
+	
+	@Autowired
+	PlaceDAO placeDAO;
+	
+	@Autowired
+	RegionDAO regionDAO;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+    public String get(Model model) {
+		model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
+	    return "events";
+    }
+	
+	@RequestMapping(value = "/json", method = RequestMethod.GET)
+    public List<Event> getJson() {
+	    return eventDao.getEventsAfter(LocalDateTime.now());
+    }
+	
+	@RequestMapping(value = "event/add", method = RequestMethod.POST)
+	public String addEventAction(Model model, String name, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id) {
+		LocalDateTime startEventTime = LocalDateTime.parse(startEvent);
+		LocalDateTime endEventTime = LocalDateTime.parse(endEvent);
+		model.addAttribute("event",eventDao.addEvent(id,name, description, startEventTime, endEventTime, cost, costText, Place_id));
+		return "event";
+	}
+	
+	@RequestMapping(value = "event/{id}", method = RequestMethod.GET)
+    public String getEvent(Model model , @PathVariable(value = "id") int id) {
+		Event event = eventDao.getEvent(id);
+		model.addAttribute("event", event);
+	    return "event";
+    }
+	
+	@RequestMapping(value = "eventadd", method = RequestMethod.GET)
+	public String addEvent(Model model) {
+		model.addAttribute("places",placeDAO.getPlaces());
+		//model.addAttribute("regions",regionDAO.getRegions());
+		model.addAttribute("eventid",0);
+		return "eventedit";
+	}
+}

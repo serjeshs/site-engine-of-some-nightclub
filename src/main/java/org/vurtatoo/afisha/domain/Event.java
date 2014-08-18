@@ -1,9 +1,24 @@
 package org.vurtatoo.afisha.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -25,10 +40,12 @@ public class Event implements Serializable {
 	private String costText;
 
 	@Lob
-	private String decription;
+	@Column(name="decription")
+	private String description;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date endEvent;
+	private Timestamp startEvent;
+	
+	private Timestamp endEvent;
 
 	private String name;
 
@@ -38,26 +55,21 @@ public class Event implements Serializable {
 	@Column(name="Region_Name")
 	private String region_Name;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date startEvent;
+	@Column(name="Place_id")
+	private int place;
+
+	@Column(name="Region_id")
+	private int region;
 
 
-	//bi-directional many-to-one association to AppUser
+
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Adder_AppUser_id")
 	private AppUser appUser;
 
-	//bi-directional many-to-one association to Place
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="Place_id")
-	private Place place;
-
-	//bi-directional many-to-one association to Region
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="Region_id")
-	private Region region;
-
-	//bi-directional many-to-many association to Category
+	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 		name="Event_has_Category"
@@ -97,20 +109,20 @@ public class Event implements Serializable {
 		this.costText = costText;
 	}
 
-	public String getDecription() {
-		return this.decription;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setDecription(String decription) {
-		this.decription = decription;
+	public void setDecription(String description) {
+		this.description = description;
 	}
 
-	public Date getEndEvent() {
-		return this.endEvent;
+	public LocalDateTime getEndEvent() {
+		return this.endEvent.toLocalDateTime();
 	}
 
-	public void setEndEvent(Date endEvent) {
-		this.endEvent = endEvent;
+	public void setEndEvent(LocalDateTime endEvent) {
+		this.endEvent = Timestamp.valueOf(endEvent);
 	}
 
 	public String getName() {
@@ -137,12 +149,12 @@ public class Event implements Serializable {
 		this.region_Name = region_Name;
 	}
 
-	public Date getStartEvent() {
-		return this.startEvent;
+	public LocalDateTime getStartEvent() {
+		return this.startEvent.toLocalDateTime();
 	}
 
-	public void setStartEvent(Date startEvent) {
-		this.startEvent = startEvent;
+	public void setStartEvent(LocalDateTime startEvent) {
+		this.startEvent = Timestamp.valueOf(startEvent);
 	}
 
 
@@ -154,19 +166,19 @@ public class Event implements Serializable {
 		this.appUser = appUser;
 	}
 
-	public Place getPlace() {
+	public int getPlace() {
 		return this.place;
 	}
 
-	public void setPlace(Place place) {
+	public void setPlace(int place) {
 		this.place = place;
 	}
 
-	public Region getRegion() {
+	public int getRegion() {
 		return this.region;
 	}
 
-	public void setRegion(Region region) {
+	public void setRegion(int region) {
 		this.region = region;
 	}
 

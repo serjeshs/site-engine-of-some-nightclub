@@ -2,9 +2,7 @@ package org.vurtatoo.afisha.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,8 +16,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -92,8 +88,9 @@ public class AppUser implements Serializable {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public AppUser setId(int id) {
 		this.id = id;
+		return this;
 	}
 
 	public LocalDateTime getBirthday() {

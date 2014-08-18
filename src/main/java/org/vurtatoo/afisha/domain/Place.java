@@ -1,8 +1,14 @@
 package org.vurtatoo.afisha.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -33,15 +39,9 @@ public class Place implements Serializable {
 
 	@Column(name="Region_Name")
 	private String region_Name;
-
-	//bi-directional many-to-one association to Event
-	@OneToMany(mappedBy="place")
-	private List<Event> events;
-
-	//bi-directional many-to-one association to Region
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="Region_id")
-	private Region region;
+	
+	@Column(name="Region_id")
+	private int region;
 
 	public Place() {
 	}
@@ -50,8 +50,9 @@ public class Place implements Serializable {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public Place setId(int id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getAddress() {
@@ -102,34 +103,13 @@ public class Place implements Serializable {
 		this.region_Name = region_Name;
 	}
 
-	public List<Event> getEvents() {
-		return this.events;
+	public int getRegion() {
+		return region;
 	}
 
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
-
-	public Event addEvent(Event event) {
-		getEvents().add(event);
-		event.setPlace(this);
-
-		return event;
-	}
-
-	public Event removeEvent(Event event) {
-		getEvents().remove(event);
-		event.setPlace(null);
-
-		return event;
-	}
-
-	public Region getRegion() {
-		return this.region;
-	}
-
-	public void setRegion(Region region) {
+	public void setRegion(int region) {
 		this.region = region;
 	}
+
 
 }
