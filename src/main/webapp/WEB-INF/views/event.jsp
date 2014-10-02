@@ -29,7 +29,7 @@ div {
 </style>
 </head>
 <body>
-	<a href="/store/">
+	<a href="/afisha/">
 		<div id="center">
 			<canvas id="myCanvas" width="800" height="100"></canvas>
 		</div> <script>

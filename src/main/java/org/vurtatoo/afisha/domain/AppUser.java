@@ -27,7 +27,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @NamedQuery(name="AppUser.findAll", query="SELECT a FROM AppUser a")
 public class AppUser implements Serializable {
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = 32L;
+	
+	public static final int ADMIN = 1;
+	public static final int MANAGER = 2;
+	public static final int USER = 3;	
+	public static final int GUEST = 4;
+	public static final int BAN = 5;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
