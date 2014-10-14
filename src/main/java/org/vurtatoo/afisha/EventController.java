@@ -2,6 +2,7 @@ package org.vurtatoo.afisha;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.vurtatoo.afisha.dao.AppUserDAO;
 import org.vurtatoo.afisha.dao.EventDAO;
 import org.vurtatoo.afisha.dao.PlaceDAO;
@@ -35,13 +37,13 @@ public class EventController {
     public String get(Model model, Principal principal) {
 		model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
 		setUserName(model, principal);
-	    return "events";
+	    return "index";
     }
 	
 	
 	
 	@RequestMapping(value = "/json", method = RequestMethod.GET)
-    public List<Event> getJson() {
+    public @ResponseBody List<Event> getJson() {
 	    return eventDao.getEventsAfter(LocalDateTime.now());
     }
 	
@@ -68,6 +70,14 @@ public class EventController {
 		return "eventedit";
 	}
 	
+	
+	@RequestMapping(value = "/events", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String getevents(Model model, Principal principal) {
+		model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
+		setUserName(model, principal);
+	    return "events";
+    }
+	
 	private void setUserName(Model model, Principal principal) {
 		try {
 			org.vurtatoo.afisha.domain.AppUser appUser = appUserDao.getAppUserFromEmail(principal.getName());
@@ -78,5 +88,16 @@ public class EventController {
 			model.addAttribute("guest", true);
 			model.addAttribute("user", false);
 		}
+		
+		List<MenuItems> menuItems = new LinkedList<MenuItems>();
+		menuItems.add(new MenuItems("events", "Предстоящие события"));
+		
+		menuItems.add(new MenuItems("about.html", "about"));
+		//menuItems.add(new MenuItems("works.html", "works"));
+		//menuItems.add(new MenuItems("clients.html", "clients"));
+		//menuItems.add(new MenuItems("blog.html", "blog"));
+		menuItems.add(new MenuItems("contacts.html", "contacts"));
+		
+		model.addAttribute("menuItems",menuItems);
 	}
 }
