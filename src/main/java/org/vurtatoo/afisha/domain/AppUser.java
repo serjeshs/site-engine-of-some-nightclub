@@ -33,8 +33,8 @@ public class AppUser implements Serializable {
 	public static final int ADMIN = 1;
 	public static final int MANAGER = 2;
 	public static final int USER = 3;	
-	public static final int GUEST = 4;
 	public static final int BAN = 5;
+	public static final int NOCONFIRM = 6;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -246,6 +246,26 @@ public class AppUser implements Serializable {
 		fileTable.setAppUser(null);
 
 		return fileTable;
+	}
+
+	public AppUser(LocalDateTime birthday, String email, String fathername,
+			String firstname, String nick, String password, String photoURI,
+			String region_Name, int role, String surname, int vkId,
+			String vkTocken, Region region) {
+		super();
+		this.birthday = Timestamp.valueOf(birthday);
+		this.email = email;
+		this.fathername = fathername;
+		this.firstname = firstname;
+		this.nick = nick;
+		this.password = password;
+		this.photoURI = photoURI;
+		this.region_Name = region_Name;
+		this.role = role;
+		this.surname = surname;
+		this.vkId = vkId;
+		this.vkTocken = vkTocken;
+		this.region = region;
 	}
 
 
