@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,21 @@ public class BaseDAO {
 	public Query createQuery(String queryString) {
 		return sessionFactory.getCurrentSession().createQuery(queryString);
 	}
+	
+    @SuppressWarnings("unchecked")
+    public <T> List<T> getEntitys(Class<T> entityClass) {
+    	Criteria criteria = getCriteria(entityClass);
+        return (List<T>) criteria.list();
+    }
+    
+    @SuppressWarnings("unchecked")
+    public <T> List<T> getEntitys(Class<T> entityClass,Criterion...criterions) {
+    	Criteria criteria = getCriteria(entityClass);
+    	for (Criterion criterion : criterions) {
+    		criteria.add(criterion);
+        }
+        return (List<T>) criteria.list();
+    }
 
 
 

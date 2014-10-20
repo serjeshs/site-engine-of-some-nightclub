@@ -42,12 +42,14 @@ public class AppUser implements Serializable {
 
 	private Timestamp birthday;
 
+	public static final String COL_EMAIL = "email";
 	private String email;
 
 	private String fathername;
 
 	private String firstname;
 
+	public static final String COL_NICK = "nick";
 	private String nick;
 
 	@JsonIgnore

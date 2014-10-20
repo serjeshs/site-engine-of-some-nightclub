@@ -3,7 +3,6 @@ package org.vurtatoo.afisha.dao;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.vurtatoo.afisha.domain.AppUser;
 import org.vurtatoo.afisha.domain.Region;
+import org.vurtatoo.afisha.exception.RegistrationException;
+
+import by.q64.promo.utils.mail.EmailManager;
 
 @Service
 @Transactional
@@ -34,22 +36,29 @@ public class AppUserDAO {
 		}
 	}
 
-	public AppUser registerUser(String email, String nick, String surname,String password) {
+	public String registerUser(String email, String nick, String password) throws RegistrationException {
+		
+		AppUser appUser = null;
+		if (baseDAO.getEntitys(AppUser.class, Restrictions.eq(AppUser.COL_EMAIL, email)).size() > 0) {
+			throw new RegistrationException("Данный емеил уже имеет аккуант.");
+		}
+		
+		if (baseDAO.getEntitys(AppUser.class, Restrictions.eq(AppUser.COL_NICK, nick)).size() > 0) {
+			throw new RegistrationException("Данный никнейм уже используется.");
+		}
 		
 		LocalDateTime birthday = LocalDateTime.now();
 		String photoURI = "https://pp.vk.me/c11265/u6704769/-6/w_b9000659.jpg";
-		String fathername = "Анонимов";
+		String fathername = "Анонимович";
 		String firstname = "Анонимий";
+		String surname = "Анонимов";
 		String region_Name = "Не определено";
 		int vkId = 0;
 		String vkTocken = "NULL";
 		Region region = new Region().setId(1);
-		AppUser appUser = new AppUser(birthday, email, fathername, firstname, nick, password, photoURI, region_Name, AppUser.NOCONFIRM, surname, vkId, vkTocken, region);
+		appUser = new AppUser(birthday, email, fathername, firstname, nick, password, photoURI, region_Name, AppUser.NOCONFIRM, surname, vkId, vkTocken, region);
 		baseDAO.saveOrUpdate(appUser);
-		
-		
-		
-		
-		return appUser;
+		EmailManager.send(email, "AFISHA |", "Спасибо, что зарегистрировались на нашем сайте, подтвердите емеил перейдя по ссылке.");
+		return "Пользователь зарегистрирован, активируйте ваш аккуант, ссылка пришла Вам в почтовый ящик";
 	}
 }

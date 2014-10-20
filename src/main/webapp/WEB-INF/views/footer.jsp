@@ -7,7 +7,7 @@
 				<div class="wrapper">
 					<div class="grid_8">
 						<c:if test="${guest}">
-								Привет, Гость. <a href="/<c:out value="${appName}" />/register">Зарегистрируйся
+								Привет, Гость. <a href="/<c:out value="${appName}" />/registration">Зарегистрируйся
 									пожалуйста</a> или <a href="/<c:out value="${appName}" />/login">войди</a>.
 						</c:if>
 						<c:if test="${user}">
