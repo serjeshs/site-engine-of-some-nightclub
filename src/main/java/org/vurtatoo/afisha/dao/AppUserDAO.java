@@ -3,6 +3,7 @@ package org.vurtatoo.afisha.dao;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,20 @@ public class AppUserDAO {
 		Region region = new Region().setId(1);
 		appUser = new AppUser(birthday, email, fathername, firstname, nick, password, photoURI, region_Name, AppUser.NOCONFIRM, surname, vkId, vkTocken, region);
 		baseDAO.saveOrUpdate(appUser);
-		EmailManager.send(email, "AFISHA |", "Спасибо, что зарегистрировались на нашем сайте, подтвердите емеил перейдя по ссылке.");
+		String tocken = RandomStringUtils.randomAlphanumeric(25);
+		EmailManager.send(email, "AFISHA |", 
+				"Спасибо, что зарегистрировались на нашем сайте, подтвердите емеил перейдя по ссылке. "
+				+ "http://ladyka.tk/afisha/confirm?userId=" + appUser.getId() + "&tocken=" + tocken);
 		return "Пользователь зарегистрирован, активируйте ваш аккуант, ссылка пришла Вам в почтовый ящик";
 	}
+
+	public String confirmEmail(int userId, String tocken) {
+		AppUser appUser = baseDAO.getEntity(AppUser.class, userId);
+		if ((appUser.getRole() == AppUser.NOCONFIRM) && (tocken.length() == 25)) {
+			appUser.setRole(AppUser.USER);
+			baseDAO.saveOrUpdate(appUser);
+			return "Емеил подтверждён";
+		} 
+	    return "Ссылка устарела";
+    }
 }

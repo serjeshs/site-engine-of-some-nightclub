@@ -18,7 +18,7 @@ public class UserController extends AbstractController {
 	@RequestMapping(value = "registration", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String register(Model model, Principal principal) {
 		setRequiedName(model, principal, "Регистрация нового пользователя");
-		model.addAttribute("Email", "E-mail");
+		model.addAttribute("Email", "Email");
 		model.addAttribute("nick", "Никнейм");
 		return "register";
 	}
@@ -43,7 +43,7 @@ public class UserController extends AbstractController {
 		}
 		model.addAttribute("result", resultMessage);
 		if (allOk) {
-			return "rezult";
+			return "result";
 		} else {
 			model.addAttribute("Email", email);
 			model.addAttribute("nick", nick);
@@ -52,8 +52,11 @@ public class UserController extends AbstractController {
 		
 	}
 	
-	public String nonfirm() {
-		return "";
+	@RequestMapping(value = "confirm", produces = "text/plain;charset=UTF-8")
+	public String confirm(int userId, String tocken, Model model, Principal principal) {
+		setRequiedName(model, principal, "Подтверждение почтового ящика");
+		model.addAttribute("result", appUserDao.confirmEmail(userId,tocken));
+		return "result";
 	}
 	
 	public String resendPassword() {
