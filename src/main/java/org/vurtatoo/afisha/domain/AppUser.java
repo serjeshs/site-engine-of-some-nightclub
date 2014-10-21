@@ -30,11 +30,11 @@ public class AppUser implements Serializable {
 	
 	private static final long serialVersionUID = 32L;
 	
-	public static final int ADMIN = 1;
-	public static final int MANAGER = 2;
-	public static final int USER = 3;	
-	public static final int BAN = 5;
-	public static final int NOCONFIRM = 6;
+	public static final String ADMIN = "ADMIN";
+	public static final String MANAGER = "MANAGER";
+	public static final String USER = "USER";	
+	public static final String BAN = "BAN";
+	public static final String NOCONFIRM = "NOCONFIRM";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -61,7 +61,7 @@ public class AppUser implements Serializable {
 	@Column(name="Region_Name")
 	private String region_Name;
 
-	private int role;
+	private String role;
 
 	private String surname;
 
@@ -166,11 +166,11 @@ public class AppUser implements Serializable {
 		this.region_Name = region_Name;
 	}
 
-	public int getRole() {
+	public String getRole() {
 		return this.role;
 	}
 
-	public void setRole(int role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
@@ -252,7 +252,7 @@ public class AppUser implements Serializable {
 
 	public AppUser(LocalDateTime birthday, String email, String fathername,
 			String firstname, String nick, String password, String photoURI,
-			String region_Name, int role, String surname, int vkId,
+			String region_Name, String role, String surname, int vkId,
 			String vkTocken, Region region) {
 		super();
 		this.birthday = Timestamp.valueOf(birthday);

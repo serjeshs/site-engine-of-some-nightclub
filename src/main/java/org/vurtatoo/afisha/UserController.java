@@ -6,11 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.vurtatoo.afisha.domain.AppUser;
 import org.vurtatoo.afisha.exception.RegistrationException;
-
-import by.q64.promo.utils.mail.EmailManager;
 
 @Controller
 public class UserController extends AbstractController {
@@ -57,6 +53,20 @@ public class UserController extends AbstractController {
 		setRequiedName(model, principal, "Подтверждение почтового ящика");
 		model.addAttribute("result", appUserDao.confirmEmail(userId,tocken));
 		return "result";
+	}
+	
+	@RequestMapping(value = "login", produces = "text/plain;charset=UTF-8")
+	public String login(Model model, Principal principal) {
+		setRequiedName(model, principal, "Авторизация");
+		return "login";
+	}
+	
+	
+	@RequestMapping(value = "loginerror", produces = "text/plain;charset=UTF-8")
+	public String loginerror(Model model, Principal principal) {
+		setRequiedName(model, principal, "Авторизация");
+		model.addAttribute("result", "Логин или пароль не верны");
+		return "login";
 	}
 	
 	public String resendPassword() {

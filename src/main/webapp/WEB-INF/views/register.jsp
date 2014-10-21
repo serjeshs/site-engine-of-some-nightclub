@@ -16,7 +16,7 @@
 			<div class="container_12">
 				<div class="wrapper h-pad">
 					<div class="grid_7">
-						<h2>Регистрация нового пользователя</h2>
+						<h2>${title}</h2>
 						<br>
 						<h3>
 						<font color="red">${result}</font>

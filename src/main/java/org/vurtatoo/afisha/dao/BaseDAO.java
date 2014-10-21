@@ -80,6 +80,25 @@ public class BaseDAO {
         }
         return (List<T>) criteria.list();
     }
+    
+    public <T> T getEntity(Class<T> entityClass,Criterion...criterions) {
+    	List<T> listEntities = getEntitys(entityClass, criterions);
+		switch (listEntities.size()) {
+			case 0:
+				return null;
+			case 1:
+				return listEntities.get(0);
+			default: {
+				for (Criterion c : criterions) {
+					logger.warn(c.toString());
+				}
+				for (T t : listEntities) {
+					logger.warn(t.toString());
+				}
+				return listEntities.get(0);
+			}
+		}
+    }
 
 
 
