@@ -30,10 +30,11 @@ public class EventController extends AbstractController {
     }
 	
 	@RequestMapping(value = "event/add", method = RequestMethod.POST)
-	public String addEventAction(Model model, String name, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id) {
+	public String addEventAction(Model model, String name, Principal principal, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id) {
 		LocalDateTime startEventTime = LocalDateTime.parse(startEvent);
 		LocalDateTime endEventTime = LocalDateTime.parse(endEvent);
 		model.addAttribute("event",eventDao.addEvent(id,name, description, startEventTime, endEventTime, cost, costText, Place_id));
+		setRequiedName(model, principal, name);
 		return "event";
 	}
 	
@@ -54,10 +55,11 @@ public class EventController extends AbstractController {
     }
 	
 	@RequestMapping(value = "event/add", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	public String addEvent(Model model) {
+	public String addEvent(Model model, Principal principal) {
 		model.addAttribute("places",placeDAO.getPlaces());
 		//model.addAttribute("regions",regionDAO.getRegions());
 		model.addAttribute("eventid",0);
+		setRequiedName(model, principal, "Добавление нового события");
 		return "eventedit";
 	}
 	

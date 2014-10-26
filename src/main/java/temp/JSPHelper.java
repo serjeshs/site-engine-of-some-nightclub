@@ -18,5 +18,11 @@ public class JSPHelper {
 	    return ret;    
     }
 	
-
+	public static String getInputlabel(String text, String field) {
+		return "<label><input type=\"text\" value=\"" + text + "\"  name=\"" + field + "\" onFocus=\"if(this.value=='" + text +"'){this.value=''}\" onBlur=\"if(this.value==''){this.value='" + text +"'}\">	</label>";
+	}
+	
+	public static String getTextArea(String text, String field) {
+		return "<textarea name=\"" + field + "\" onFocus=\"if(this.value=='" + text + "'){this.value=''}\" onBlur=\"if(this.value==''){this.value='" + text + "'}\">" + text + "</textarea><br><br>";
+	}
 }
