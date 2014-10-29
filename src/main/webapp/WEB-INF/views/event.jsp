@@ -20,7 +20,7 @@
 							</h2>
 							<div class="wrapper">
 								<figure class="img-indent">
-								<img src="/<c:out value="${appName}" />/images/Imageevent.jpg" alt="">
+								<img src="<c:out value="${event.imageUri}" />" alt="">
 								</figure>
 								<c:out value="${event.description}" />
 							</div>

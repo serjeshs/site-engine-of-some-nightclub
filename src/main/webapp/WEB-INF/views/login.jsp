@@ -23,8 +23,8 @@
 						</h3>
 						<form method="POST" action="j_spring_security_check" id="contact-form">
 							<fieldset>
-								<label><input onblur="if(this.value==''){this.value='Email'}" onfocus="if(this.value=='Email'){this.value=''}" name="j_username" value="Никнейм" type="text">	</label>
-								<label><input onblur="if(this.value==''){this.value='Пароль'}" onfocus="if(this.value=='Пароль'){this.value=''}" name="j_password" value="Пароль" type="text">	</label>
+								<%=JSPHelper.getInputlabel("Email", "j_username") %>
+								<%=JSPHelper.getInputlabel("Пароль", "j_password","password") %>
 								<input value="Войти" class="button1" type="submit">
 							</fieldset>
 						</form>

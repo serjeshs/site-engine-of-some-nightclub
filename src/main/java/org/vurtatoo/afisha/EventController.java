@@ -30,10 +30,10 @@ public class EventController extends AbstractController {
     }
 	
 	@RequestMapping(value = "event/add", method = RequestMethod.POST)
-	public String addEventAction(Model model, String name, Principal principal, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id) {
+	public String addEventAction(Model model, String name, Principal principal, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id,String imageUri) {
 		LocalDateTime startEventTime = LocalDateTime.parse(startEvent);
 		LocalDateTime endEventTime = LocalDateTime.parse(endEvent);
-		model.addAttribute("event",eventDao.addEvent(id,name, description, startEventTime, endEventTime, cost, costText, Place_id));
+		model.addAttribute("event",eventDao.addEvent(id,name, description, startEventTime, endEventTime, cost, costText, Place_id,imageUri));
 		setRequiedName(model, principal, name);
 		return "event";
 	}

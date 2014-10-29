@@ -60,6 +60,9 @@ public class Event implements Serializable {
 
 	@Column(name="Region_id")
 	private int region;
+	
+	@Column(name="IMAGE_EVENT_URI")
+	private String imageUri;
 
 
 
@@ -189,5 +192,13 @@ public class Event implements Serializable {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
+
+	public String getImageUri() {
+	    return imageUri;
+    }
+
+	public void setImageUri(String imageUri) {
+	    this.imageUri = imageUri;
+    }
 
 }
