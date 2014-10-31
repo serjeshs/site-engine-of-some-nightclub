@@ -43,13 +43,16 @@
 								<c:forEach var="event" items="${events}">
 
 									<li class="<%=JSPHelper.getColumnPosition(a)%>">
+									<div align="center" >
 										<figure>
-											<img src="<c:out value="${event.imageUri}" />" width="300" height="200" alt="">
+										<img src="<c:out value="${event.imageUri}" />" height="200" alt="">
+											
 										</figure>
 										<p>
-											<a href="event/<c:out	value="${event.id}" />" class="link"><c:out
-													value="${event.name}" /></a>
-										</p> <br> <c:out value="${event.startEvent}" /> <br> <c:out
+											<a href="event/<c:out	value="${event.id}" />" class="link"><c:out value="${event.name}" /></a>
+											
+										</p>
+										</div> <br> <c:out value="${event.startEvent}" /> <br> <c:out
 											value="${fn:substring(event.description,0,200)}" /> ..... <br>
 										COST : <c:out value="${event.cost}" /> <br> 
 										<p>

@@ -20,10 +20,11 @@
 							</h2>
 							<div class="wrapper">
 								<figure class="img-indent">
-								<img src="<c:out value="${event.imageUri}" />" alt="">
+								<div align="center" ><img src="<c:out value="${event.imageUri}" />" height="400" alt=""></div>
 								</figure>
-								<c:out value="${event.description}" />
+								
 							</div>
+							<c:out value="${event.description}" />
 							Старт : <c:out value="${event.startEvent}" /> <br>
 							Конец : <c:out value="${event.endEvent}" /> <br>   
 							COST : <c:out value="${event.cost}" /> <br> 
