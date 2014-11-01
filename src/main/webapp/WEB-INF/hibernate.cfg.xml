@@ -4,11 +4,11 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<mapping class="org.vurtatoo.afisha.domain.AppUser"/>
-		<mapping class="org.vurtatoo.afisha.domain.Category"/>
-		<mapping class="org.vurtatoo.afisha.domain.Event"/>
-		<mapping class="org.vurtatoo.afisha.domain.FileTable"/>
-		<mapping class="org.vurtatoo.afisha.domain.Place"/>
-		<mapping class="org.vurtatoo.afisha.domain.Region"/>
+		<mapping class="by.havefun.domain.AppUser"/>
+		<mapping class="by.havefun.domain.Category"/>
+		<mapping class="by.havefun.domain.Event"/>
+		<mapping class="by.havefun.domain.FileTable"/>
+		<mapping class="by.havefun.domain.Place"/>
+		<mapping class="by.havefun.domain.Region"/>
 	</session-factory>
 </hibernate-configuration>
