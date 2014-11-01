@@ -19,6 +19,7 @@
 						<form id="contact-form" action="/<c:out value="${appName}" />/event/add" method="POST">
 						<input type="hidden" name="id" value="<c:out value="${eventid}"/>" />
 						<fieldset>
+							<%=JSPHelper.getInputlabel("Ссылка на картинку события", "imageUri") %>
 							<%=JSPHelper.getInputlabel("Название события", "name") %>
 							<%=JSPHelper.getTextArea("Описание события", "description") %>
 							<%=JSPHelper.getInputlabel("Цена чиcлом", "cost") %>

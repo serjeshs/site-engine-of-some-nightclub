@@ -25,7 +25,7 @@
 									<strong class="title">Компания</strong>
 									Мы ещё не компания, у нас нет адреса :-), <br>
 									Но я буду рад, если вы напишите мне, <br>
-									E-mail: <a href="mailto:afisha@ladyka.tk" class="link">afisha@ladyka.tk</a>  
+									E-mail: <a href="mailto:info@havefun.by" class="link">info@havefun.by</a>  
 								</div>		
 							</div>
 						</div>

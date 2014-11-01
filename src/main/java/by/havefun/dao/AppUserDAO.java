@@ -63,7 +63,7 @@ public class AppUserDAO {
 		
 		EmailManager.send(email, "AFISHA |", 
 				"Спасибо, что зарегистрировались на нашем сайте, подтвердите емеил перейдя по ссылке. "
-				+ "http://ladyka.tk/afisha/confirm?userId=" + appUser.getId() + "&tocken=" + vkTocken);
+				+ "http://havefun.by/afisha/confirm?userId=" + appUser.getId() + "&tocken=" + vkTocken);
 		return "Пользователь зарегистрирован, активируйте ваш аккуант, ссылка пришла Вам в почтовый ящик";
 	}
 

@@ -32,7 +32,7 @@ public class EventDAO {
 	    return (List<Event>) criteria.list();
     }
 
-	public Event addEvent(int id, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id) {
+	public Event addEvent(int id, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri) {
 		Event event;
 		if (id == 0 ) {
 			 event = new Event();
@@ -47,6 +47,7 @@ public class EventDAO {
 	    event.setEndEvent(endEvent);
 	    event.setName(name);
 	    event.setPlace(Place_id);
+	    event.setImageUri(imageUri);
 	    Place place = baseDAO.getEntity(Place.class, Place_id);
 	    event.setPlace_Name(place.getName());
 	    int Region_id = place.getRegion();
