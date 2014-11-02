@@ -26,22 +26,23 @@ public class EventDAO extends BaseDAO {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 
+	@SuppressWarnings("unchecked")
 	public List<Event> getEventsAfter(LocalDateTime localDateTime) {
 		java.time.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		Criteria criteria = getCriteria(Event.class);
 		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
 		criteria.addOrder(Order.asc("endEvent"));
-	    return (List<Event>) criteria.list();
+	    return ((List<Event>) criteria.list());
     }
 
-	public Event addEvent(int id, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri) {
+	public Event addEvent(int id, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri,String emailOwner) {
 		Event event;
 		if (id == 0 ) {
 			 event = new Event();
 		} else {
 			event = getEvent(id);
 		}
-	    event.setAppUser(new AppUser().setId(1));
+	    event.setAppUser(appUserDAO.getAppUserFromEmail(emailOwner));
 	    event.setCost(cost);
 	    event.setCostText(costText);
 	    event.setDecription(description);
@@ -65,6 +66,8 @@ public class EventDAO extends BaseDAO {
 	
 	public boolean canEdit(String email, int id) {
 		AppUser appUser = appUserDAO.getAppUserFromEmail(email);
+		if ((appUser != null) && (id == 0)) 
+			return true;
 		Event event = getEntity(Event.class, id);
 		switch (appUser.getRole()) {
 		case AppUser.ADMIN:			
