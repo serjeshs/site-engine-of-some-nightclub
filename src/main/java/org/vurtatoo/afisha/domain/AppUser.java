@@ -83,13 +83,6 @@ public class AppUser implements Serializable {
 	@OneToMany(mappedBy="appUser")
 	private List<FileTable> fileTables;
 
-//	@ManyToMany(cascade = ALL, targetEntity = org.vurtatoo.afisha.domain.Event.class)
-//	@JoinTable(name = "AppUser_has_Event", 
-//			joinColumns = @JoinColumn(name = "AppUser_id", referencedColumnName = "id", nullable = true), 
-//			inverseJoinColumns = @JoinColumn(name = "Event_id", referencedColumnName = "id", nullable = false))
-//	@OrderBy
-//	private List<Event> viewEvents;
-
 	public AppUser() {
 	}
 

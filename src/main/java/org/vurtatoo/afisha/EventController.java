@@ -29,13 +29,22 @@ public class EventController extends AbstractController {
 	    return eventDao.getEventsAfter(LocalDateTime.now());
     }
 	
-	@RequestMapping(value = "event/add", method = RequestMethod.POST)
-	public String addEventAction(Model model, String name, Principal principal, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id,String imageUri) {
-		LocalDateTime startEventTime = LocalDateTime.parse(startEvent);
-		LocalDateTime endEventTime = LocalDateTime.parse(endEvent);
-		model.addAttribute("event",eventDao.addEvent(id,name, description, startEventTime, endEventTime, cost, costText, Place_id,imageUri));
-		setRequiedName(model, principal, name);
-		return "event";
+	@RequestMapping(value = "event/edit", method = RequestMethod.POST)
+	public String editEventAction(Model model, String name, Principal principal, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id,String imageUri) {
+		if (eventDao.canEdit(principal.getName(),id)) {
+			LocalDateTime startEventTime = LocalDateTime.parse(startEvent);
+			LocalDateTime endEventTime = LocalDateTime.parse(endEvent);
+			model.addAttribute("event",eventDao.addEvent(id,name, description, startEventTime, endEventTime, cost, costText, Place_id,imageUri));
+			setRequiedName(model, principal, name);
+			return "event";
+		} else {
+			setRequiedName(model, principal, "Доступ запрещён");
+			model.addAttribute("result", "Вам не разрешено выполнять данное действие");
+			return "result";
+		}
+		
+		
+		
 	}
 	
 	@RequestMapping(value = "event/{id}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
@@ -71,4 +80,11 @@ public class EventController extends AbstractController {
 	    return "events";
     }
 
+	@RequestMapping(value = "event/edit/{id}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String getEditEvent(Model model , Principal principal, @PathVariable(value = "id") int id) {
+		Event event = eventDao.getEvent(id);
+		model.addAttribute("event", event);
+		setRequiedName(model, principal, event.getName());
+	    return "eventedit";
+    }
 }
