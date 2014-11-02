@@ -7,15 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.havefun.domain.Region;
-
 @Service
 @Transactional
-public class RegionDAO {
-
-	@Autowired
-	BaseDAO baseDAO;
+public class RegionDAO extends BaseDAO{
 	
 	public List<Region> getRegions() {
-	    return baseDAO.getListEntity(Region.class);
+	    return getListEntity(Region.class);
     }
 }

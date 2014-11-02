@@ -7,16 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.havefun.domain.Place;
-
 @Service
 @Transactional
-public class PlaceDAO {
+public class PlaceDAO extends BaseDAO{
 
-	@Autowired
-	BaseDAO baseDAO;
 
 	public List<Place> getPlaces() {
-	    return baseDAO.getListEntity(Place.class);
+	    return getListEntity(Place.class);
     }
 
 }

@@ -15,21 +15,18 @@ import by.havefun.domain.AppUser;
 import by.havefun.domain.Region;
 import by.havefun.exception.RegistrationException;
 import by.havefun.utils.email.EmailManager;
-
 @Service
 @Transactional
-public class AppUserDAO {
+public class AppUserDAO extends BaseDAO{
 
-	@Autowired
-	BaseDAO baseDAO;
 	
 	public List<AppUser> getList() {
-	    return baseDAO.getListEntity(AppUser.class);
+	    return getListEntity(AppUser.class);
     }
 
 	public AppUser getAppUserFromEmail(String email) {
 		try {
-			Criteria criteria = baseDAO.getCriteria(AppUser.class);
+			Criteria criteria = getCriteria(AppUser.class);
 			criteria.add(Restrictions.like("email",email));
 			return (AppUser) criteria.uniqueResult();
 		} catch (Exception e) {
@@ -41,11 +38,11 @@ public class AppUserDAO {
 	public String registerUser(String email, String nick, String password) throws RegistrationException {
 		
 		AppUser appUser = null;
-		if (baseDAO.getEntitys(AppUser.class, Restrictions.eq(AppUser.COL_EMAIL, email)).size() > 0) {
+		if (getEntitys(AppUser.class, Restrictions.eq(AppUser.COL_EMAIL, email)).size() > 0) {
 			throw new RegistrationException("Данный емеил уже имеет аккуант.");
 		}
 		
-		if (baseDAO.getEntitys(AppUser.class, Restrictions.eq(AppUser.COL_NICK, nick)).size() > 0) {
+		if (getEntitys(AppUser.class, Restrictions.eq(AppUser.COL_NICK, nick)).size() > 0) {
 			throw new RegistrationException("Данный никнейм уже используется.");
 		}
 		
@@ -59,7 +56,7 @@ public class AppUserDAO {
 		String vkTocken = RandomStringUtils.randomAlphanumeric(new Random().nextInt(15)+10);
 		Region region = new Region().setId(1);
 		appUser = new AppUser(birthday, email, fathername, firstname, nick, password, photoURI, region_Name, AppUser.NOCONFIRM, surname, vkId, vkTocken, region);
-		baseDAO.saveOrUpdate(appUser);
+		saveOrUpdate(appUser);
 		
 		EmailManager.send(email, "AFISHA |", 
 				"Спасибо, что зарегистрировались на нашем сайте, подтвердите емеил перейдя по ссылке. "
@@ -68,10 +65,10 @@ public class AppUserDAO {
 	}
 
 	public String confirmEmail(int userId, String tocken) {
-		AppUser appUser = baseDAO.getEntity(AppUser.class, userId);
+		AppUser appUser = getEntity(AppUser.class, userId);
 		if ((appUser.getRole().contains(AppUser.NOCONFIRM)) && (tocken.contains(appUser.getVkTocken()))) {
 			appUser.setRole(AppUser.USER);
-			baseDAO.saveOrUpdate(appUser);
+			saveOrUpdate(appUser);
 			return "Емеил подтверждён";
 		} 
 	    return "Ссылка устарела";
