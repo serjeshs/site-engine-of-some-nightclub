@@ -35,12 +35,15 @@ public class EventDAO extends BaseDAO {
 	    return ((List<Event>) criteria.list());
     }
 
-	public Event addEvent(int id, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri,String emailOwner) {
+	public Event addEvent(int eventId, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri,String emailOwner) {
+		if (!canEdit(emailOwner, eventId)) {
+			return null;
+		}
 		Event event;
-		if (id == 0 ) {
+		if (eventId == 0 ) {
 			 event = new Event();
 		} else {
-			event = getEvent(id);
+			event = getEvent(eventId);
 		}
 	    event.setAppUser(appUserDAO.getAppUserFromEmail(emailOwner));
 	    event.setCost(cost);
@@ -64,16 +67,22 @@ public class EventDAO extends BaseDAO {
 	    return getEntity(Event.class, id);
     }
 	
-	public boolean canEdit(String email, int id) {
+	public boolean canEdit(String email, int eventId) {
 		AppUser appUser = appUserDAO.getAppUserFromEmail(email);
-		if ((appUser != null) && (id == 0)) 
+		if ((appUser != null) && (eventId == 0)) 
 			return true;
-		Event event = getEntity(Event.class, id);
+		Event event = getEntity(Event.class, eventId);
 		switch (appUser.getRole()) {
 		case AppUser.ADMIN:			
 			return true;
 		case AppUser.MANAGER: {
-			logger.warn("Нет связи пользователь  - место");
+			//TODO Сделать нормальную проверку, а не этот кал
+			List<Place> places = appUser.getPlaces();
+			for (Place place : places) {
+	            if (place.getId() == event.getPlace()) {
+	            	return true;
+	            }
+            }
 		}
 
 		case AppUser.USER: {
