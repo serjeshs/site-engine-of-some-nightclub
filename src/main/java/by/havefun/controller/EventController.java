@@ -4,12 +4,13 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.havefun.domain.Event;
+import by.havefun.entity.Event;
 
 @Controller
 public class EventController extends AbstractController {
@@ -49,7 +50,8 @@ public class EventController extends AbstractController {
 			LocalDateTime startEventTime = LocalDateTime.parse(startEvent);
 			LocalDateTime endEventTime = LocalDateTime.parse(endEvent);
 			model.addAttribute("event",eventDao.addEvent(id,name, description, startEventTime, endEventTime, cost, costText, Place_id,imageUri,principal.getName()));
-			setRequiedName(model, principal, name);
+			setRequiedName(model, principal, name);		
+			model.addAttribute("canEdit", true);	
 			return "event";
 		} else {
 			setRequiedName(model, principal, "Доступ запрещён");
@@ -88,13 +90,21 @@ public class EventController extends AbstractController {
 	 * @param principal
 	 * @return
 	 */
+	@Transactional
 	@RequestMapping(value = "event/add", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String addEvent(Model model, Principal principal) {
-		model.addAttribute("places",placeDAO.getPlaces());
-		//model.addAttribute("regions",regionDAO.getRegions());
-		model.addAttribute("eventid",0);
-		setRequiedName(model, principal, "Добавление нового события");
-		return "eventedit";
+		if (principal != null) {
+			
+			model.addAttribute("places",placeDAO.getPlaces(principal.getName()));
+			//model.addAttribute("regions",regionDAO.getRegions());
+			model.addAttribute("eventid",0);
+			setRequiedName(model, principal, "Добавление нового события");
+			return "eventedit";
+		} else {
+			setRequiedName(model, principal, "Доступ запрещён");
+			model.addAttribute("result", "Вам не разрешено выполнять данное действие");
+			return "result";
+		}
 	}
 	
 	
@@ -118,12 +128,19 @@ public class EventController extends AbstractController {
 	 * @param id
 	 * @return
 	 */
+	@Transactional
 	@RequestMapping(value = "event/edit/{id}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String getEditEvent(Model model , Principal principal, @PathVariable(value = "id") int id) {
-		Event event = eventDao.getEvent(id);
-		model.addAttribute("places",placeDAO.getPlaces());
-		model.addAttribute("event", event);
-		setRequiedName(model, principal, event.getName());
-	    return "eventedit";
+		if ((principal != null) && (eventDao.canEdit(principal.getName(),id))) {
+			Event event = eventDao.getEvent(id);
+			model.addAttribute("places",placeDAO.getPlaces(principal.getName()));
+			model.addAttribute("event", event);
+			setRequiedName(model, principal, event.getName());
+		    return "eventedit";
+		} else {
+			setRequiedName(model, principal, "Доступ запрещён");
+			model.addAttribute("result", "Вам не разрешено выполнять данное действие");
+			return "result";
+		}
     }
 }

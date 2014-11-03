@@ -10,8 +10,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.havefun.domain.AppUser;
-import by.havefun.domain.Region;
+import by.havefun.entity.AppUser;
+import by.havefun.entity.Region;
 import by.havefun.exception.RegistrationException;
 import by.havefun.utils.email.EmailManager;
 

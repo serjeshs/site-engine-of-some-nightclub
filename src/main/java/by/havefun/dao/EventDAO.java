@@ -13,10 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.havefun.domain.AppUser;
-import by.havefun.domain.Event;
-import by.havefun.domain.Place;
-import by.havefun.domain.Region;
+import by.havefun.entity.AppUser;
+import by.havefun.entity.Event;
+import by.havefun.entity.Place;
+import by.havefun.entity.Region;
 @Service
 @Transactional
 public class EventDAO extends BaseDAO {

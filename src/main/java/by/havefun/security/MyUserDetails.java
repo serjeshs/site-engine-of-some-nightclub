@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.havefun.dao.BaseDAO;
-import by.havefun.domain.AppUser;
+import by.havefun.entity.AppUser;
 
 
 @Transactional

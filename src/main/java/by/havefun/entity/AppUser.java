@@ -1,8 +1,9 @@
-package by.havefun.domain;
+package by.havefun.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -82,6 +84,10 @@ public class AppUser implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy="appUser")
 	private List<FileTable> fileTables;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy="appUsers")
+	private List<Place> places;
 
 	public AppUser() {
 	}
@@ -243,6 +249,19 @@ public class AppUser implements Serializable {
 		return fileTable;
 	}
 
+	public List<Place> getPlaces() {
+		if (this.places == null) {
+			return new LinkedList<Place>();
+		} else {
+			return this.places;
+		}
+		
+	}
+
+	public void setPlaces(List<Place> places) {
+		this.places = places;
+	}
+	
 	public AppUser(LocalDateTime birthday, String email, String fathername,
 			String firstname, String nick, String password, String photoURI,
 			String region_Name, String role, String surname, int vkId,
