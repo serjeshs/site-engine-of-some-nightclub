@@ -18,7 +18,7 @@
 						<h2>Contact Info</h2>
 						<div class="wrapper">
 							<div class="grid_4 alpha">
-								<iframe width="300" height="340" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/@53.9036456,27.5560567,21z"></iframe>
+								
 							</div>
 							<div class="grid_3 omega">
 								<div class="contacts">

@@ -31,7 +31,7 @@ public abstract class AbstractController {
 
 	protected void setRequiedName(Model model, Principal principal, String title) {
 		try {
-			by.havefun.domain.AppUser appUser = appUserDao.getAppUserFromEmail(principal.getName());
+			by.havefun.entity.AppUser appUser = appUserDao.getAppUserFromEmail(principal.getName());
 			model.addAttribute("user", true);
 			model.addAttribute("guest", false);
 			model.addAttribute("appUserName", appUser.getNick());

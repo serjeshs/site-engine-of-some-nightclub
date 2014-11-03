@@ -1,14 +1,19 @@
-package by.havefun.domain;
+package by.havefun.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+
 
 
 /**
@@ -43,6 +48,21 @@ public class Place implements Serializable {
 	@Column(name="Region_id")
 	private int region;
 
+
+	//bi-directional many-to-many association to Appuser
+	@ManyToMany
+	@JoinTable(
+		name="appuser_has_place"
+		, joinColumns={
+			@JoinColumn(name="place_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="appuser_id")
+			}
+		)
+	private List<AppUser> appUsers;
+
+	
 	public Place() {
 	}
 
@@ -110,6 +130,14 @@ public class Place implements Serializable {
 	public void setRegion(int region) {
 		this.region = region;
 	}
+
+	public List<AppUser> getAppUsers() {
+	    return appUsers;
+    }
+
+	public void setAppUsers(List<AppUser> appUsers) {
+	    this.appUsers = appUsers;
+    }
 
 
 }

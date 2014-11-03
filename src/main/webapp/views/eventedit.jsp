@@ -16,25 +16,38 @@
 				<div class="wrapper h-pad">
 					<div class="grid_7">
 						<h2>Введите информацию о событии.</h2>
-						<form id="contact-form" action="/<c:out value="${appName}" />/event/add" method="POST">
+						<form id="contact-form" action="/<c:out value="${appName}" />/event/edit" method="POST">
 						<input type="hidden" name="id" value="<c:out value="${eventid}"/>" />
 						<fieldset>
-							<%=JSPHelper.getInputlabel("Ссылка на картинку события", "imageUri") %>
-							<%=JSPHelper.getInputlabel("Название события", "name") %>
-							<%=JSPHelper.getTextArea("Описание события", "description") %>
-							<%=JSPHelper.getInputlabel("Цена чиcлом", "cost") %>
-							<%=JSPHelper.getTextArea("Цена c описанием", "costText") %>
+							<label>
+							Ссылка на картинку события
+							<input type="text" name="imageUri" value="<c:out value="${event.imageUri}"/>">
+							</label>
+							<label>
+							Название события
+							<input type="text" name="name" value="<c:out value="${event.name}"/>">
+							</label>
+							Описание события
+							<textarea name="description"><c:out value="${event.description}"/></textarea><br><br>
+							Минимальная цена входа числом.
+							<label><input type="text" name="cost" value="<c:out value="${event.cost}"/>">	</label>
+							Цена c описанием. С сылками, где можно купить билеты, когда и какие.
+							<textarea name="costText"><c:out value="${event.costText}"/></textarea><br><br>
 
-								<br>Место<br> <select multiple name="Place_id">
+								<br>Место<br> <select multiple name="Place_id" >
 									<c:forEach var="place" items="${places}">
 										<option value="<c:out value="${place.id}"/>"><c:out
 												value="${place.name}" /></option>
 									</c:forEach>
 								</select>
-
-							<%=JSPHelper.getInputlabel("Время начала 2014-01-02T10:15:30", "startEvent") %>
-							<%=JSPHelper.getInputlabel("Время окончания 2014-01-02T10:15:30", "endEvent") %>
-								<input class="button1" type="submit" value="Submit">
+								
+							<label>
+							Время начала 2014-01-02T10:15:30
+							<input type="text" name="startEvent" value="<c:out value="${event.startEvent}"/>">	</label>
+							<label>
+							Время окончания 2014-01-02T10:15:30
+							<input type="text" name="endEvent" value="<c:out value="${event.endEvent}"/>">	</label>
+								<input type="submit" value="Submit" class="button1">
 							</fieldset>
 						</form>
 					</div>

@@ -14,7 +14,7 @@
 			<div class="container_12">
 				<div class="wrapper">
 					<div class="block">
-						<div class="grid-inner">
+						<div class="grid_11">
 							<h2>
 								<c:out value="${event.name}" />
 							</h2>
@@ -32,8 +32,13 @@
 							Где : <c:out value="${event.place_Name}" /> <br>
 							<c:out value="${event.region_Name}" /> <br>
 						</div>
-
+						<c:if test="${canEdit}">
+						<div class="grid_1"> <a href="/<c:out value="${appName}" />/event/edit/<c:out value="${event.id}" />" >
+						<img src="/<c:out value="${appName}" />/images/edit-icon.png" height="50" alt=""></a></div>
+						</c:if>
+						
 					</div>
+					
 				</div>
 				<div class="wrapper">
 					<div class="grid_12">

@@ -1,4 +1,4 @@
-package by.havefun.domain;
+package by.havefun.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;

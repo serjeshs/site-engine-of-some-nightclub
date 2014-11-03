@@ -1,4 +1,4 @@
-package by.havefun.domain;
+package by.havefun.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -200,5 +200,24 @@ public class Event implements Serializable {
 	public void setImageUri(String imageUri) {
 	    this.imageUri = imageUri;
     }
+
+	public Event(int cost, String costText, String description,
+			Timestamp startEvent, Timestamp endEvent, String name,
+			String place_Name, String region_Name, int place, int region,
+			String imageUri, AppUser appUser) {
+		super();
+		this.cost = cost;
+		this.costText = costText;
+		this.description = description;
+		this.startEvent = startEvent;
+		this.endEvent = endEvent;
+		this.name = name;
+		this.place_Name = place_Name;
+		this.region_Name = region_Name;
+		this.place = place;
+		this.region = region;
+		this.imageUri = imageUri;
+		this.appUser = appUser;
+	}
 
 }

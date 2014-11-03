@@ -7,33 +7,42 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.havefun.domain.AppUser;
-import by.havefun.domain.Event;
-import by.havefun.domain.Place;
-import by.havefun.domain.Region;
+import by.havefun.entity.AppUser;
+import by.havefun.entity.Event;
+import by.havefun.entity.Place;
+import by.havefun.entity.Region;
 @Service
 @Transactional
 public class EventDAO extends BaseDAO {
 
+	@Autowired
+	AppUserDAO appUserDAO;
+	
+	Logger logger = LoggerFactory.getLogger(getClass());
+
+	@SuppressWarnings("unchecked")
 	public List<Event> getEventsAfter(LocalDateTime localDateTime) {
 		java.time.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		Criteria criteria = getCriteria(Event.class);
 		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
 		criteria.addOrder(Order.asc("endEvent"));
-	    return (List<Event>) criteria.list();
+	    return ((List<Event>) criteria.list());
     }
 
-	public Event addEvent(int id, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri) {
+	public Event addEvent(int id, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri,String emailOwner) {
 		Event event;
 		if (id == 0 ) {
 			 event = new Event();
 		} else {
 			event = getEvent(id);
 		}
-	    event.setAppUser(new AppUser().setId(1));
+	    event.setAppUser(appUserDAO.getAppUserFromEmail(emailOwner));
 	    event.setCost(cost);
 	    event.setCostText(costText);
 	    event.setDecription(description);
@@ -54,4 +63,30 @@ public class EventDAO extends BaseDAO {
 	public Event getEvent(int id) {
 	    return getEntity(Event.class, id);
     }
+	
+	public boolean canEdit(String email, int id) {
+		AppUser appUser = appUserDAO.getAppUserFromEmail(email);
+		if ((appUser != null) && (id == 0)) 
+			return true;
+		Event event = getEntity(Event.class, id);
+		switch (appUser.getRole()) {
+		case AppUser.ADMIN:			
+			return true;
+		case AppUser.MANAGER: {
+			logger.warn("Нет связи пользователь  - место");
+		}
+
+		case AppUser.USER: {
+			if (appUser.getId() == event.getAppUser().getId()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		default:
+			return false;
+		}
+	}
+
 }
