@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import by.havefun.entity.AppUser;
 import by.havefun.entity.Region;
 import by.havefun.exception.RegistrationException;
+import by.havefun.security.KeccakUtil;
 import by.havefun.utils.email.EmailManager;
 
 @Service
@@ -72,5 +73,53 @@ public class AppUserDAO extends BaseDAO{
 			return "Емеил подтверждён";
 		} 
 	    return "Ссылка устарела";
+    }
+
+	public String sendRestorePasswordLink(String email) {
+		AppUser appUser = getAppUserFromEmail(email);
+		if (appUser != null) {
+					EmailManager.send(email, "AFISHA | Восстановление пароля", 
+							"Перейдите по ссылке для восстановления пароля. "
+							+ "http://havefun.by/afisha/setnewpassword?userId=" + email + "&tocken=" + getTocken(appUser));
+					return "Пароль выслан Вам на емеил";
+		} else {
+			return "Пользователя с данным емеилом не существует.";
+		}
+    }
+
+	public boolean canChangePassword(String tocken, String email) {
+	    AppUser appUser = getAppUserFromEmail(email);
+		if (appUser != null) {
+			return getTocken(appUser).contentEquals(tocken);
+		} 
+		return false;
+    }
+
+	public String updatePasswordAnon(String email, String tocken, String passwordNew) {
+	    AppUser appUser = getAppUserFromEmail(email);
+	    if (appUser != null) {
+			if (getTocken(appUser).contentEquals(tocken)) {
+				appUser.setPassword(passwordNew);
+				saveOrUpdate(appUser);
+				return "Пароль изменён";
+			}
+		}
+	    return "Ссылка устарела, попробуйте ещё раз или обратитесь в форму поддержки.";
+    }
+	
+	private String getTocken(AppUser appUser) {
+	    return KeccakUtil.getHash(appUser.getPassword()).substring(2, 17);
+    }
+
+	public String updatePassword(String email, String passwordOld, String passwordNew) {
+		AppUser appUser = getAppUserFromEmail(email);
+		if (passwordOld.contentEquals(appUser.getPassword())) {
+			appUser.setPassword(passwordNew);
+			saveOrUpdate(appUser);
+			return "Пароль изменён";
+		} else {
+			return "Старый пароль не верен";
+		}
+		
     }
 }

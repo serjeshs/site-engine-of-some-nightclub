@@ -70,19 +70,67 @@ public class UserController extends AbstractController {
 		return "login";
 	}
 	
-	public String resendPassword() {
-		return "";
+	@RequestMapping(value = "sendrestorepassword", produces = "text/plain;charset=UTF-8")
+	public String sendrestorepassword(Model model, Principal principal, String email) {
+		String result = appUserDao.sendRestorePasswordLink(email);
+		setRequiedName(model, principal, result);
+		model.addAttribute("result", result);
+		return "result";
 	}
 	
-	public String changePassword() {
-		return "";
+	
+	@RequestMapping(value = "setnewpassword", produces = "text/plain;charset=UTF-8")
+	public String setnewpassword(Model model, Principal principal, String tocken, String userId) {
+		if (principal != null) {
+			setRequiedName(model, principal, "Изменение пароля");
+			// Задаётся пароль из личного кабинета
+			model.addAttribute("changePassword", true);
+			return "changePassword";
+		} else {
+			if (appUserDao.canChangePassword(tocken, userId)) {
+				setRequiedName(model, principal, "Введите новый пароль");
+
+				// Просто задаётся новый пароль, по токену
+				model.addAttribute("changePassword", false);
+
+				model.addAttribute("tocken", tocken);
+				model.addAttribute("userId", userId);
+
+				return "changePassword";
+			} else {
+				setRequiedName(model, principal, "Ссылка испорчена или устарела!.");
+				model.addAttribute("result", "Ссылка испорчена или устарела!.");
+				return "result";
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "updatepassword", produces = "text/plain;charset=UTF-8")
+	public String updatepassword(Model model, Principal principal, String email,String tocken, String password_new1,String password_new2,String password_old) {
+		String result;
+		if (password_new1.contentEquals(password_new2)) {
+			if (principal != null) {
+				result = appUserDao.updatePassword(principal.getName(),password_old,password_new1);
+			} else {
+				result = appUserDao.updatePasswordAnon(email,tocken,password_new1);
+			}
+			
+		} else {
+			result = "Введённые пароли не совпадают";
+		}
+		
+		setRequiedName(model, principal, result);
+		model.addAttribute("result", result);
+		return "result";
 	}
 	
 	public String sendInvite() {
 		return "";
 	}	
 	
-	public String forgotPassword() {
-		return "";
-	}
 }

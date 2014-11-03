@@ -9,7 +9,7 @@ public class KeccakUtil {
 	 * @param arg any String
 	 * @return hash
 	 */
-	public String getHash(String arg) {
+	public static String getHash(String arg) {
 		byte[] b = getByteArray(arg);
 		String s = getHexStringByByteArray(b);
 		Keccak keccak = new Keccak(1600);
