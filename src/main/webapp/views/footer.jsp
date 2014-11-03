@@ -13,7 +13,7 @@
 						<c:if test="${user}">
 		Привет. ${appUserName}. 
 							<a href="/<c:out value="${appName}" />/event/add">Добавить событие</a>. 
-							<a href="/<c:out value="${appName}" />/setnewpassword">Сменить пароль</a>.
+							<a href="/<c:out value="${appName}" />/profile">Личный кабинет</a>.
 							<a href="/<c:out value="${appName}" />/logout">Выйти</a>
 						</c:if>
 					</div>

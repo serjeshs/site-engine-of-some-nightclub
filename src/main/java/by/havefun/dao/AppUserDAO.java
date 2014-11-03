@@ -122,4 +122,44 @@ public class AppUserDAO extends BaseDAO{
 		}
 		
     }
+
+	public AppUser updateProfile(String oldEmail, String email, String fathername, String firstname, String nick, String photoURI, String surname) throws RegistrationException {
+	    AppUser appUser = getAppUserFromEmail(oldEmail);
+	    AppUser appUser2 = getAppUserFromEmail(email);
+	    if (appUser2 !=null) {
+	    	//Емеил изменён или остался старый
+	    	if (appUser.getId() == appUser2.getId()) {
+	    		//Остался тот же
+	    	} else {
+	    		throw new RegistrationException(email + "  уже используется другим пользователем.");
+	    	}
+	    } else {
+	    	appUser.setEmail(email);
+	    }	
+	    
+	    List<AppUser> appUsers = getEntitys(AppUser.class, Restrictions.eq(AppUser.COL_NICK, nick));
+	    if (appUsers.size() > 0) {
+	    	//найден чувак с таким же ником
+	    	for (AppUser appUser3 : appUsers) {
+	            if (appUser.getNick().contentEquals(nick)) {
+	            	//ники у юзеров совпадают
+	            	if (appUser.getId() == appUser3.getId()) {
+	            		//просто не изменил ник
+	            	} else {
+	            		throw new RegistrationException(nick + " уже используется другим пользователем.");
+	            	}
+	            		
+	            }
+            }
+	    } else {
+	    	//такой ник никем не используется
+	    	appUser.setNick(nick);
+	    }
+	    
+	    appUser.setFathername(fathername);
+	    appUser.setFirstname(firstname);
+	    appUser.setPhotoURI(photoURI);
+	    appUser.setSurname(surname);
+	    return appUser;
+    }
 }

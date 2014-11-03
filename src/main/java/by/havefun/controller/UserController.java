@@ -1,12 +1,29 @@
 package by.havefun.controller;
 
 import java.security.Principal;
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import by.havefun.entity.AppUser;
+import by.havefun.entity.Event;
+import by.havefun.entity.FileTable;
+import by.havefun.entity.Place;
+import by.havefun.entity.Region;
 import by.havefun.exception.RegistrationException;
 
 @Controller
@@ -133,4 +150,32 @@ public class UserController extends AbstractController {
 		return "";
 	}	
 	
+	
+	
+	
+	@RequestMapping(value = "saveprofileupdate", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String saveprofileupdate(Model model, Principal principal, String email, String fathername, String firstname, String nick, String photoURI, String surname) {
+		setRequiedName(model, principal, "Личный кабинет пользователя");
+		String resultMessage;
+		AppUser appUser = null;
+		try {
+			appUser = appUserDao.updateProfile(principal.getName(),email,fathername,firstname,nick,photoURI,surname);
+			resultMessage = "Обновлено";
+		} catch (Exception ex) {
+			resultMessage = ex.getLocalizedMessage();
+			appUser = appUserDao.getAppUserFromEmail(principal.getName());
+		}
+		model.addAttribute("result", resultMessage); 
+		model.addAttribute("appUser",appUser);
+		return "profile";
+		
+	}
+	
+	@RequestMapping(value = "profile", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public String profile(Model model, Principal principal) {
+		setRequiedName(model, principal, "Личный кабинет пользователя");
+		AppUser appUser = appUserDao.getAppUserFromEmail(principal.getName());
+		model.addAttribute("appUser",appUser);
+		return "profile";
+	}
 }
