@@ -77,8 +77,10 @@ public class EventController extends AbstractController {
 		setRequiedName(model, principal, event.getName());
 		if (principal ==null) {
 			model.addAttribute("canEdit", false);
+			model.addAttribute("likeStatus",0);
 		} else {
 			model.addAttribute("canEdit", eventDao.canEdit(principal.getName(), id));
+			model.addAttribute("likeStatus",appUserLikeEventDAO.getStatus(principal.getName(),id));
 		}
 		
 	    return "event";
@@ -135,6 +137,7 @@ public class EventController extends AbstractController {
 			Event event = eventDao.getEvent(id);
 			model.addAttribute("places",placeDAO.getPlaces(principal.getName()));
 			model.addAttribute("event", event);
+			model.addAttribute("eventid",event.getId());
 			setRequiedName(model, principal, event.getName());
 		    return "eventedit";
 		} else {
@@ -142,5 +145,16 @@ public class EventController extends AbstractController {
 			model.addAttribute("result", "Вам не разрешено выполнять данное действие");
 			return "result";
 		}
+    }
+	
+	@RequestMapping(value = "like/{like}/{id}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String like(Model model , Principal principal, @PathVariable(value = "id") int eventId,@PathVariable(value = "like") String like) {
+		int likeID = appUserLikeEventDAO.getStatus(like);
+		if (likeID == 0) {
+			appUserLikeEventDAO.delLike(principal.getName(),eventId);
+		} else {
+			appUserLikeEventDAO.addLike(principal.getName(),eventId,likeID);
+		}
+		return "redirect:/event/" + eventId;
     }
 }

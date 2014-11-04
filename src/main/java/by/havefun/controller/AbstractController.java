@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import by.havefun.dao.AppUserDAO;
+import by.havefun.dao.AppUserLikeEventDAO;
 import by.havefun.dao.EventDAO;
 import by.havefun.dao.PlaceDAO;
 import by.havefun.dao.RegionDAO;
@@ -27,6 +28,9 @@ public abstract class AbstractController {
 	
 	@Autowired
 	AppUserDAO appUserDao;
+	
+	@Autowired
+	AppUserLikeEventDAO appUserLikeEventDAO;
 	
 
 	protected void setRequiedName(Model model, Principal principal, String title) {

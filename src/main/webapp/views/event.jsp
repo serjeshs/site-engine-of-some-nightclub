@@ -9,6 +9,7 @@
 <%@include file='head.jsp'%>
 <body>
 	<%@include file='header.jsp'%>
+	
 	<div id="content">
 		<div class="inner">
 			<div class="container_12">
@@ -31,6 +32,29 @@
 							<c:out value="${event.costText}" /> <br> 
 							Где : <c:out value="${event.place_Name}" /> <br>
 							<c:out value="${event.region_Name}" /> <br>
+							
+							<c:if test="${likeStatus == 0}">
+							<a href="/<c:out value="${appName}" />/like/BETHERE/<c:out value="${event.id}" />">Пойду</a>
+							|
+							<a href="/<c:out value="${appName}" />/like/MAYATTEND/<c:out value="${event.id}" />">Мне интересно</a>
+							|
+							<a href="/<c:out value="${appName}" />/like/DIZLIKE/<c:out value="${event.id}" />">Не интересно</a>
+							</c:if>
+							
+							<c:if test="${likeStatus == 1}">
+							Вы идёте на данное событие
+							 | <a href="/<c:out value="${appName}" />/like/NOTHING/<c:out value="${event.id}" />">Изменить решение</a> 
+							</c:if>
+							
+							<c:if test="${likeStatus == 2}">
+							Вы интересуетесь данным событием 
+							 | <a href="/<c:out value="${appName}" />/like/NOTHING/<c:out value="${event.id}" />">Изменить решение</a>
+							</c:if>
+							
+							<c:if test="${likeStatus == 3}">
+							 | <a href="/<c:out value="${appName}" />/like/NOTHING/<c:out value="${event.id}" />">Изменить решение</a>
+							Вам не интересно данное событие 
+							</c:if>
 						</div>
 						<c:if test="${canEdit}">
 						<div class="grid_1"> <a href="/<c:out value="${appName}" />/event/edit/<c:out value="${event.id}" />" >
