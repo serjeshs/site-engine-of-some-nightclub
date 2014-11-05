@@ -30,22 +30,12 @@
 								%>
 
 
-
-
-								<!-- 						 Example : 
-<li class="grid_4">
-								<figure><img src="images/works2.jpg" alt=""></figure>
-								<p><a href="#" class="link">Project 2</a></p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, seiusmod tempor incididunt ut labore et dolore magna.
-								<p><a href="#" class="button">Read more</a></p>
-							</li>
-							 -->
 								<c:forEach var="event" items="${events}">
 
 									<li class="<%=JSPHelper.getColumnPosition(a)%>">
 									<div align="center" >
 										<figure>
-										<img src="<c:out value="${event.imageUri}" />" height="200" alt="">
+										<img src="/<c:out value="${appName}" /><c:out value="${event.imageUri}" />" height="200" alt="">
 											
 										</figure>
 										<p>

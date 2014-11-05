@@ -13,6 +13,7 @@ import by.havefun.dao.AppUserLikeEventDAO;
 import by.havefun.dao.EventDAO;
 import by.havefun.dao.PlaceDAO;
 import by.havefun.dao.RegionDAO;
+import by.havefun.utils.file.LocalFile;
 import by.havefun.utils.view.MenuItems;
 
 public abstract class AbstractController {
@@ -31,6 +32,9 @@ public abstract class AbstractController {
 	
 	@Autowired
 	AppUserLikeEventDAO appUserLikeEventDAO;
+	
+	@Autowired
+	LocalFile localFile;
 	
 
 	protected void setRequiedName(Model model, Principal principal, String title) {

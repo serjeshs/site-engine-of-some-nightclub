@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="temp.JSPHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -16,22 +17,36 @@
 				<div class="wrapper h-pad">
 					<div class="grid_7">
 						<h2>Введите информацию о событии.</h2>
-						<form id="contact-form" action="/<c:out value="${appName}" />/event/edit" method="POST">
+						<div class="wrapper">
+								<figure class="img-indent">
+								<div align="center" ><img src="<c:out value="${event.imageUri}" />" height="400" alt=""></div>
+								</figure>
+								
+						</div>
+						<br>
+						<form id="contact-form" action="/<c:out value="${appName}" />/event/edit" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="id" value="<c:out value="${eventid}"/>" />
 						<fieldset>
+						
+							<br>
 							<label>
-							Ссылка на картинку события
-							<input type="text" name="imageUri" value="<c:out value="${event.imageUri}"/>">
+							
+							Загрузите новое изображение, если текущего нету или его нужно изменить.
+							<br>
+							<input type="file" name="photo" accept="image/*">
+							<br>
 							</label>
+							<br><br>
+							
 							<label>
-							Название события
+							Название события<br>
 							<input type="text" name="name" value="<c:out value="${event.name}"/>">
 							</label>
-							Описание события
+							Описание события<br>
 							<textarea name="description"><c:out value="${event.description}"/></textarea><br><br>
-							Минимальная цена входа числом.
+							Минимальная цена входа числом.<br>
 							<label><input type="text" name="cost" value="<c:out value="${event.cost}"/>">	</label>
-							Цена c описанием. С сылками, где можно купить билеты, когда и какие.
+							Цена c описанием. С сылками, где можно купить билеты, когда и какие.<br>
 							<textarea name="costText"><c:out value="${event.costText}"/></textarea><br><br>
 
 								<br>Место<br> <select multiple name="Place_id" >
@@ -42,10 +57,10 @@
 								</select>
 								
 							<label>
-							Время начала 2014-01-02T10:15:30
+							Время начала <% LocalDateTime.now(); %><br>
 							<input type="text" name="startEvent" value="<c:out value="${event.startEvent}"/>">	</label>
 							<label>
-							Время окончания 2014-01-02T10:15:30
+							Время окончания <% LocalDateTime.now().plusHours(4); %><br>
 							<input type="text" name="endEvent" value="<c:out value="${event.endEvent}"/>">	</label>
 								<input type="submit" value="Submit" class="button1">
 							</fieldset>

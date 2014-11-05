@@ -1,29 +1,17 @@
 package by.havefun.controller;
 
 import java.security.Principal;
-import java.sql.Timestamp;
-import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import by.havefun.entity.AppUser;
-import by.havefun.entity.Event;
-import by.havefun.entity.FileTable;
-import by.havefun.entity.Place;
-import by.havefun.entity.Region;
 import by.havefun.exception.RegistrationException;
 
 @Controller
@@ -153,13 +141,20 @@ public class UserController extends AbstractController {
 	
 	
 	
-	@RequestMapping(value = "saveprofileupdate", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public String saveprofileupdate(Model model, Principal principal, String email, String fathername, String firstname, String nick, String photoURI, String surname) {
+	@RequestMapping(value = "saveprofileupdate", method = RequestMethod.POST)
+	public String saveprofileupdate(Model model, Principal principal, String email, String fathername, String firstname, String nick, String surname,
+	        HttpServletRequest request, MultipartFile file) {
+	    MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+            MultipartFile multipartFile = multipartRequest.getFile("photo");
+            String imageUri = null;
+            if (!multipartFile.isEmpty()) {
+                imageUri = FileController.getRelativePath(localFile.fileAdd(multipartFile, principal.getName()));;
+            }
 		setRequiedName(model, principal, "Личный кабинет пользователя");
 		String resultMessage;
 		AppUser appUser = null;
 		try {
-			appUser = appUserDao.updateProfile(principal.getName(),email,fathername,firstname,nick,photoURI,surname);
+			appUser = appUserDao.updateProfile(principal.getName(),email,fathername,firstname,nick,imageUri,surname);
 			resultMessage = "Обновлено";
 		} catch (Exception ex) {
 			resultMessage = ex.getLocalizedMessage();

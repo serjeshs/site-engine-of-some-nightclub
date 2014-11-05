@@ -21,12 +21,13 @@
 						<h3>
 						<font color="red">${result}</font>
 						</h3>
-						<img alt="" src="${appUser.photoURI}" height="150">
-						<form method="POST" action="saveprofileupdate" id="contact-form">
+						<img alt="" src="/<c:out value="${appName}" />${appUser.photoURI}" height="150">
+						<form method="POST" action="saveprofileupdate" id="contact-form" enctype="multipart/form-data">
 							<fieldset>
 								<label>
-								Ссылка на фоточку
-								<input id="photoURI" type="text" name="photoURI" value="${appUser.photoURI}">	</label>
+								Фоточка
+								<input type="file" name="photo" accept="image/*">
+								</label>
 								<label>
 								Почта
 								<input id="email" type="text" name="email" value="${appUser.email}">	</label>

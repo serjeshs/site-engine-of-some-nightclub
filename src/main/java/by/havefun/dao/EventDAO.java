@@ -53,7 +53,12 @@ public class EventDAO extends BaseDAO {
 	    event.setEndEvent(endEvent);
 	    event.setName(name);
 	    event.setPlace(Place_id);
-	    event.setImageUri(imageUri);
+	    if (imageUri != null) {
+	        event.setImageUri(imageUri);
+	    } else if (event.getImageUri() == null) {
+	        event.setImageUri("images/Imageevent.jpg");
+	    }
+	    
 	    Place place = getEntity(Place.class, Place_id);
 	    event.setPlace_Name(place.getName());
 	    int Region_id = place.getRegion();
