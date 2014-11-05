@@ -19,10 +19,10 @@
 						<h2>Введите информацию о событии.</h2>
 						<div class="wrapper">
 								<figure class="img-indent">
-								<div align="center" ><img src="<c:out value="${event.imageUri}" />" height="400" alt=""></div>
+								<div align="center" ><img src="/<c:out value="${appName}" /><c:out value="${event.imageUri}" />" height="400" alt=""></div>
 								</figure>
 								
-						</div>
+							</div>
 						<br>
 						<form id="contact-form" action="/<c:out value="${appName}" />/event/edit" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="id" value="<c:out value="${eventid}"/>" />
@@ -57,10 +57,10 @@
 								</select>
 								
 							<label>
-							Время начала <% LocalDateTime.now(); %><br>
+							Время начала <% LocalDateTime.now().toString(); %><br>
 							<input type="text" name="startEvent" value="<c:out value="${event.startEvent}"/>">	</label>
 							<label>
-							Время окончания <% LocalDateTime.now().plusHours(4); %><br>
+							Время окончания <% LocalDateTime.now().plusHours(4).toString(); %><br>
 							<input type="text" name="endEvent" value="<c:out value="${event.endEvent}"/>">	</label>
 								<input type="submit" value="Submit" class="button1">
 							</fieldset>
