@@ -6,6 +6,8 @@
 <head>
 <title>${title}</title>
 <meta charset="utf-8">
+<link rel="stylesheet" href="/<c:out value="${appName}" />/css/jquery.datetimepicker.css" type="text/css"
+	media="screen">
 <link
 	href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic'
 	rel='stylesheet' type='text/css'>
@@ -17,6 +19,8 @@
 	media="screen">
 <script type="text/javascript" src="/<c:out value="${appName}" />/js/jquery.js"></script>
 <script type="text/javascript" src="/<c:out value="${appName}" />/js/jquery-migrate-1.1.1.js"></script>
+<script type="text/javascript" src="/<c:out value="${appName}" />/js/datepicker/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="/<c:out value="${appName}" />/js/datepicker/datepicker.js"></script>
 
 <!-- Put this script tag to the <head> of your page -->
 <script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
