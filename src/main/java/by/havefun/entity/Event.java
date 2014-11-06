@@ -120,13 +120,23 @@ public class Event implements Serializable {
 		this.description = description;
 	}
 
-	public LocalDateTime getEndEvent() {
+	public LocalDateTime getEndEventLDT() {
 		return this.endEvent.toLocalDateTime();
+	}
+
+	public void setEndEvent(Timestamp endEvent) {
+		this.endEvent = endEvent;
+	}
+	
+	public Timestamp getEndEvent() {
+		return this.endEvent;
 	}
 
 	public void setEndEvent(LocalDateTime endEvent) {
 		this.endEvent = Timestamp.valueOf(endEvent);
 	}
+	
+	
 
 	public String getName() {
 		return this.name;
@@ -152,14 +162,21 @@ public class Event implements Serializable {
 		this.region_Name = region_Name;
 	}
 
-	public LocalDateTime getStartEvent() {
+	public LocalDateTime getStartEventLDT() {
 		return this.startEvent.toLocalDateTime();
+	}
+
+	public void setStartEvent(Timestamp startEvent) {
+		this.startEvent = startEvent;
+	}
+	
+	public Timestamp getStartEvent() {
+		return this.startEvent;
 	}
 
 	public void setStartEvent(LocalDateTime startEvent) {
 		this.startEvent = Timestamp.valueOf(startEvent);
 	}
-
 
 	public AppUser getAppUser() {
 		return this.appUser;

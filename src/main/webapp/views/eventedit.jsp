@@ -2,8 +2,9 @@
 <%@page import="temp.JSPHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="by">
@@ -55,13 +56,18 @@
 												value="${place.name}" /></option>
 									</c:forEach>
 								</select>
-								
+							
 							<label>
-							Время начала <% LocalDateTime.now().toString(); %><br>
-							<input type="text" name="startEvent" value="<c:out value="${event.startEvent}"/>">	</label>
+								Время начала <br>
+								<input id="datetimepicker1" type="text" name="startEvent" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${event.startEvent}" />">	
+							</label>
+							
+							
+							
 							<label>
-							Время окончания <% LocalDateTime.now().plusHours(4).toString(); %><br>
-							<input type="text" name="endEvent" value="<c:out value="${event.endEvent}"/>">	</label>
+							Время окончания <br>
+							<input id="datetimepicker2" type="text" name="endEvent" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${event.endEvent}" />">	
+							</label>
 								<input type="submit" value="Submit" class="button1">
 							</fieldset>
 						</form>

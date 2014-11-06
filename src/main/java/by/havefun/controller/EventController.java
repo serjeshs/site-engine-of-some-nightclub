@@ -2,6 +2,7 @@ package by.havefun.controller;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,8 +54,9 @@ public class EventController extends AbstractController {
     public String editEventAction(Model model, String name, Principal principal, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id,
             HttpServletRequest request, MultipartFile file) {
         if ((principal != null) && (eventDao.canEdit(principal.getName(), id))) {
-            LocalDateTime startEventTime = LocalDateTime.parse(startEvent);
-            LocalDateTime endEventTime = LocalDateTime.parse(endEvent);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			LocalDateTime startEventTime = LocalDateTime.parse(startEvent,formatter);
+            LocalDateTime endEventTime = LocalDateTime.parse(endEvent,formatter);
             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             MultipartFile multipartFile = multipartRequest.getFile("photo");
             String imageUri = null;
