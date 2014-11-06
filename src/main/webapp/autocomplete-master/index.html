@@ -62,59 +62,5 @@ $('#open').click(function(){
 });
 /*********************************** remote end *****************************************************/
 
-$('#auto2').autocomplete({
-	source:[{
-		data:states,
-		preparse:function(items,query,sourse){
-			for(i in items)
-				items[i]=items[i].replace('a','b');
-			return items;
-		},
-		filter:function(items,query){
-			var res = [];
-			for(i in items){
-				if( items[i]==query )
-					res.push(items[i]);
-			}
-			return res;
-		}
-	}]
-});
-
-
-$('#combine').autocomplete();
-
-$('#combine')
-	.autocomplete('setSource',[
-		{
-			valueKey:'title',
-			url:"",
-			type:'remote',
-			getValue:function(item){
-				return item.title
-			},
-			ajax:{
-				dataType : 'jsonp'
-			}
-		},
-		[],
-		[]
-	]);
-	
-$('#combine')
-	.autocomplete('setSource',states,1)
-	.autocomplete('setSource',['one','two','three','for','five','six','seven','eight','nine','zero'],2);
-	
-var first = $('#combine')
-	.autocomplete('getSource',0);
-first.url = "http://xdsoft.net/jquery-plugins/?task=demodata&s=%QUERY%";
-/*
-var states1 = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California']
-var states2 = ['Colorado', 'Connecticut']
-$("#select_course").autocomplete({source:[states1], visibleHeight:200});
-$("#select_unit").autocomplete({source:[states1]});
-$('#select_course').on('selected.xdsoft', function(event, item){
-$("#select_unit").autocomplete('setSource',states2,0); 
-});*/
 </script>
 </html>
