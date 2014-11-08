@@ -2,6 +2,9 @@ package by.havefun.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +22,17 @@ public class PlaceDAO extends BaseDAO{
 	AppUserDAO appUserDAO;
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
-	/**
-	 * 
-	 * @param email
-	 * @return
-	 */
-	public List<Place> getPlaces(String email) {
-		AppUser user = appUserDAO.getAppUserFromEmail(email);
-		switch (user.getRole()) {
-		case AppUser.ADMIN:
-			return getListEntity(Place.class);
+	
+	@SuppressWarnings("unchecked")
+	public List<Place> getPlaces(String email, Integer regionId,String query) {
+		String role = AppUser.GUEST;
+		AppUser user = null;
+		if (email != null) {
+			user = appUserDAO.getAppUserFromEmail(email);
+			role =  user.getRole();
+		}
+		
+		switch (role) {
 		case AppUser.MANAGER: {
 			//TODO LAZY Exception fix  please
 			List<Place> returnValue = user.getPlaces();
@@ -37,11 +41,31 @@ public class PlaceDAO extends BaseDAO{
             }
 			return returnValue;
 		}
+		case AppUser.ADMIN:
 		default:
 			logger.warn("DEFAULT GET PLASES. FIX IT !!!!");
-			return getListEntity(Place.class);
+			return getPlaceSearchCriteria(regionId, query).list();
+		} 
+	}
+	
+	private Criteria getPlaceSearchCriteria(Integer regionId, String query) {
+		Criteria criteria = getCriteria(Place.class);
+		if (regionId != null) {
+			criteria.add(Restrictions.eq(Place.COL_REGION_ID, regionId));
 		}
-	    
-    }
+		
+		if (query != null) {
+			Disjunction disjunction = Restrictions.disjunction();
+			query = "%" + query + "%";
+			disjunction.add(Restrictions.like(Place.COL_ADDRESS, query));
+			disjunction.add(Restrictions.like(Place.COL_CONTACT, query));
+			disjunction.add(Restrictions.like(Place.COL_DESCRIPTION, query));
+			disjunction.add(Restrictions.like(Place.COL_NAME, query));
+			disjunction.add(Restrictions.like(Place.COL_REGION_NAME, query));
+			
+			criteria.add(disjunction);
+		}
+		return criteria;
+	}
 
 }

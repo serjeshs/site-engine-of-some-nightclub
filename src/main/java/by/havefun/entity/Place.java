@@ -14,6 +14,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 /**
@@ -29,27 +32,37 @@ public class Place implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
+	public static final String COL_ADDRESS = "address";
 	@Lob
 	private String address;
 
+	public static final String COL_CONTACT  = "contactInfo";
 	@Lob
 	private String contactInfo;
 
 	private String coordinates;
 
+	public static final String COL_DESCRIPTION = "descriotion";
 	@Lob
 	private String descriotion;
 
+	public static final String COL_NAME = "name";
+	
 	private String name;
 
+	public static final String COL_REGION_NAME = "region_Name";
+	
 	@Column(name="Region_Name")
 	private String region_Name;
+
+	
+	public static final String COL_REGION_ID = "region";
 	
 	@Column(name="Region_id")
 	private int region;
 
 
-	//bi-directional many-to-many association to Appuser
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 		name="appuser_has_place"
@@ -138,6 +151,7 @@ public class Place implements Serializable {
 	public void setAppUsers(List<AppUser> appUsers) {
 	    this.appUsers = appUsers;
     }
+	
 
 
 }

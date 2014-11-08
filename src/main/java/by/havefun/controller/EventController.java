@@ -109,10 +109,7 @@ public class EventController extends AbstractController {
     @RequestMapping(value = "event/add", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String addEvent(Model model, Principal principal) {
         if (principal != null) {
-
-            model.addAttribute("places", placeDAO.getPlaces(principal.getName()));
-            // model.addAttribute("regions",regionDAO.getRegions());
-            model.addAttribute("eventid", 0);
+        	model.addAttribute("eventid", 0);
             setRequiedName(model, principal, "Добавление нового события");
             return "eventedit";
         } else {
@@ -149,7 +146,6 @@ public class EventController extends AbstractController {
     public String getEditEvent(Model model, Principal principal, @PathVariable(value = "id") int id) {
         if ((principal != null) && (eventDao.canEdit(principal.getName(), id))) {
             Event event = eventDao.getEvent(id);
-            model.addAttribute("places", placeDAO.getPlaces(principal.getName()));
             model.addAttribute("event", event);
             model.addAttribute("eventid", event.getId());
             setRequiedName(model, principal, event.getName());
