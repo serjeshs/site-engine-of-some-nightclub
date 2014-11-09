@@ -30,7 +30,7 @@ public class EventController extends AbstractController {
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String get(Model model, Principal principal) {
         model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
-        setRequiedName(model, principal, "Main Page");
+        setRequiedName(model, principal, "Главная страница");
         return "events";
     }
 
@@ -129,12 +129,21 @@ public class EventController extends AbstractController {
      * @param principal
      * @return
      */
-    @RequestMapping(value = "/events", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "events", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String getevents(Model model, Principal principal) {
         model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
-        setRequiedName(model, principal, "Events");
+        setRequiedName(model, principal, "Все ближайшие события");
         return "events";
     }
+    
+    
+    @RequestMapping(value = "my/events", method = RequestMethod.GET)
+	public String getMyEvents(Model model, Principal principal) {
+    	model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now(),principal.getName()));
+        setRequiedName(model, principal, "Мои ближайшие события");
+        return "events";
+	}
+    
 
     /**
      * Edit view page

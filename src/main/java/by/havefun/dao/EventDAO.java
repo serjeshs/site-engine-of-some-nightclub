@@ -5,8 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.DisjunctionFragment;
+import org.hibernate.sql.JoinType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.havefun.entity.AppUser;
+import by.havefun.entity.AppuserLikeEvent;
 import by.havefun.entity.Event;
 import by.havefun.entity.Place;
 import by.havefun.entity.Region;
@@ -25,15 +30,6 @@ public class EventDAO extends BaseDAO {
 	AppUserDAO appUserDAO;
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
-
-	@SuppressWarnings("unchecked")
-	public List<Event> getEventsAfter(LocalDateTime localDateTime) {
-		java.time.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		Criteria criteria = getCriteria(Event.class);
-		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
-		criteria.addOrder(Order.asc("endEvent"));
-	    return ((List<Event>) criteria.list());
-    }
 
 	public Event addEvent(int eventId, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri,String emailOwner) {
 		if (!canEdit(emailOwner, eventId)) {
@@ -102,5 +98,38 @@ public class EventDAO extends BaseDAO {
 			return false;
 		}
 	}
+	@SuppressWarnings("unchecked")
+	public List<Event> getEventsAfter(LocalDateTime localDateTime) {
+		java.time.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		Criteria criteria = getCriteria(Event.class);
+		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
+		criteria.addOrder(Order.asc("endEvent"));
+	    return ((List<Event>) criteria.list());
+    }
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Event> getEventsAfter(LocalDateTime localDateTime, String email) {
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Event.class,"event");
+		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
+		criteria.addOrder(Order.asc("endEvent"));
+		criteria.createAlias("event.appuserLikeEvents", "appuserLikeEvents");
+		
+		Disjunction disjunction = Restrictions.disjunction();
+		disjunction.add(Restrictions.eq("appuserLikeEvents.status", AppUserLikeEventDAO.BETHERE));
+		disjunction.add(Restrictions.eq("appuserLikeEvents.status", AppUserLikeEventDAO.MAYATTEND));
+		criteria.add(disjunction);
+		///criteria.createCriteria("id", "appuser_like_event.event_id", joinType , disjunction);
+//		select 
+//	    event.*
+//	from
+//	    event
+//	        join
+//	    appuser_like_event ale ON ale.event_id = event.id
+//	where ale.appuser_id = 2 and ( ale.status = 1 or ale.status = 2)
+//		criteria.createAlias(", alias)
+	    return ((List<Event>) criteria.list());
+    }
 
 }
