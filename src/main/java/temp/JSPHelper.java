@@ -29,4 +29,27 @@ public class JSPHelper {
 	public static String getTextArea(String text, String field) {
 		return "<textarea name=\"" + field + "\" onFocus=\"if(this.value=='" + text + "'){this.value=''}\" onBlur=\"if(this.value==''){this.value='" + text + "'}\">" + text + "</textarea><br><br>";
 	}
+	
+	public static String getOpenP(int a) {
+		if (a==0) {
+			return "<tr><td>";
+		}
+		return "";
+	}
+	
+	public static String getCloseP(int a) {
+		if (a==2) {
+			return "</td></tr>";
+		}
+		return "";
+	}
+	
+	public static String getClosePEND(int a) {
+		if (a!=2) {
+			return "</td></tr>";
+		}
+		return "";
+	}
+
+	
 }

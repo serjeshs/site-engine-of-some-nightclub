@@ -28,9 +28,10 @@
 								<%
 									int a = 0;
 								%>
-
+<table border="0">
 
 								<c:forEach var="event" items="${events}">
+									<%=JSPHelper.getOpenP(a) %>
 
 									<li class="<%=JSPHelper.getColumnPosition(a)%>">
 									<div align="center" >
@@ -50,6 +51,8 @@
 												далее</a>
 										</p>
 									</li>
+									
+									<%=JSPHelper.getCloseP(a) %>
 									<%
 										if (a == 2) {
 												a = 0;
@@ -58,9 +61,10 @@
 											}
 											;
 									%>
+									
 								</c:forEach>
-
-
+								<%=JSPHelper.getClosePEND(a) %>
+</table>
 							</ul>
 						</div>
 					</div>
