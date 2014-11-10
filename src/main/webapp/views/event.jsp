@@ -25,7 +25,7 @@
 								</figure>
 								
 							</div>
-							<c:out value="${event.description}" />
+							<c:out value="${event.description}" escapeXml="false" />
 							Старт : <c:out value="${event.startEvent}" /> <br>
 							Конец : <c:out value="${event.endEvent}" /> <br>   
 							COST : <c:out value="${event.cost}" /> <br> 

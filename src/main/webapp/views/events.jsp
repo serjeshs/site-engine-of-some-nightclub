@@ -34,17 +34,25 @@
 									<%=JSPHelper.getOpenP(a) %>
 
 									<li class="<%=JSPHelper.getColumnPosition(a)%>">
+									<figure>
 									<div align="center" >
-										<figure>
+									<a href="event/<c:out	value="${event.id}" />" class="link">
+										
 										<img src="/<c:out value="${appName}" /><c:out value="${event.imageUri}" />" height="200" alt="">
 											
-										</figure>
-										<p>
-											<a href="event/<c:out	value="${event.id}" />" class="link"><c:out value="${event.name}" /></a>
+										
+										<br><br>
+											<c:out value="${event.name}" />
 											
-										</p>
-										</div> <br> <c:out value="${event.startEvent}" /> <br> <c:out
-											value="${fn:substring(event.description,0,200)}" /> ..... <br>
+										</a>
+										</div>
+										</figure> <br> <c:out value="${event.startEvent}" /> <br>
+										
+										<!--  <c:out
+										
+											value="${fn:substring(event.description,0,200)}" /> ..... <br> -->
+										
+										
 										COST : <c:out value="${event.cost}" /> <br> 
 										<p>
 											<a href="event/<c:out	value="${event.id}" />" class="button">Читать
