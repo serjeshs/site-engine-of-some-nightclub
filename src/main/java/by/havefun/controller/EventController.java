@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import by.havefun.entity.Event;
 
@@ -32,6 +33,12 @@ public class EventController extends AbstractController {
         model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
         setRequiedName(model, principal, "Main Page");
         return "events";
+    }
+    
+    //temp
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ModelAndView getTestPage() {
+		return new ModelAndView("test");
     }
 
     /**

@@ -77,4 +77,10 @@
 		<filter-name>hibernateSessionFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!--  tiles -->
+ 	<listener>
+    	<listener-class>org.apache.tiles.extras.complete.CompleteAutoloadTilesListener</listener-class>
+	</listener>
+	
 </web-app>
