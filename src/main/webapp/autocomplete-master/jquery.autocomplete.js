@@ -423,7 +423,8 @@
 
 	function getValue( $div,dataset ){
 		var item = getItem($div,dataset);
-		
+		console.log(item.id);
+		document.getElementById('id_hidden').value = item.id;
 		if( item ){
 			return __safe.call(this,
 				'getValue',$div.data('source'),

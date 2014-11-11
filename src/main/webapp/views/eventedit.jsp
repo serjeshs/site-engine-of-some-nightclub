@@ -49,15 +49,12 @@
 							Цена c описанием. С сылками, где можно купить билеты, когда и какие.<br>
 							<textarea name="costText"><c:out value="${event.costText}"/></textarea><br><br>
 
-								<br>Место<br> <select multiple name="Place_id" >
-									<c:forEach var="place" items="${places}">
-										<option value="<c:out value="${place.id}"/>"><c:out
-												value="${place.name}" /></option>
-									</c:forEach>
-								</select>
+								<br>Место<br>
 								<div class="input-group" style="margin: 20px 0px;">
 									<input type="text" class="form-control" id="remote_input"
-										placeholder="Enter movie" name="adsd"> <span
+										placeholder="Enter movie" name="adsd" value='<c:out value="${event.place_Name}"></c:out>'>
+									<input id="id_hidden" type="hidden" name="Place_id" value='<c:out value="${event.place}"></c:out>'/>
+										 <span
 										class="input-group-btn">
 										<button id="open" class="btn btn-default" type="button">
 											<span class="caret"></span>
@@ -106,15 +103,15 @@ window.prettyPrint && prettyPrint()
 
 /*********************************** remote start *****************************************************/
 $('#remote_input').autocomplete({
-valueKey:'title',
+valueKey:'name',
 source:[{
-	url:"/<c:out value="${appName}" />/afisha/places?&s=%QUERY%",
+	url:"/<c:out value="${appName}" />/places?&s=%QUERY%",
 	type:'remote',
 	getValueFromItem:function(item){
 		return item.name
 	},
 	ajax:{
-		dataType : 'jsonp'	
+		dataType : 'json'	
 	}
 }]});
 
