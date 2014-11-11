@@ -28,36 +28,70 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Place implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-
+	
+	@JsonProperty("id")
+	public String id() {
+			return String.valueOf(getId());
+	}
+	
+	
+	@JsonProperty("year")
+	public String id2() {
+			return String.valueOf(getId());
+	}
+	@JsonProperty("rating")
+	public String id3() {
+			return String.valueOf(getId());
+	}
+	@JsonProperty("genre")
+	public String id4() {
+			return String.valueOf(getRegion_Name());
+	}
+	@JsonProperty("od")
+	public String id5() {
+			return String.valueOf(getId());
+	}
+	
 	public static final String COL_ADDRESS = "address";
+	
+	@JsonIgnore
 	@Lob
 	private String address;
 
 	public static final String COL_CONTACT  = "contactInfo";
+	
+	@JsonIgnore
 	@Lob
 	private String contactInfo;
 
+	@JsonIgnore
 	private String coordinates;
 
 	public static final String COL_DESCRIPTION = "descriotion";
+	
+	@JsonIgnore
 	@Lob
 	private String descriotion;
 
 	public static final String COL_NAME = "name";
 	
+	@JsonIgnore
 	private String name;
 
 	public static final String COL_REGION_NAME = "region_Name";
 	
+	@JsonIgnore
 	@Column(name="Region_Name")
 	private String region_Name;
 
 	
 	public static final String COL_REGION_ID = "region";
 	
+	@JsonIgnore
 	@Column(name="Region_id")
 	private int region;
 
@@ -120,6 +154,7 @@ public class Place implements Serializable {
 		this.descriotion = descriotion;
 	}
 
+	@JsonProperty("title")
 	public String getName() {
 		return this.name;
 	}
