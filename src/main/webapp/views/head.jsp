@@ -11,12 +11,9 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic'
 	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/<c:out value="${appName}" />/css/reset.css" type="text/css"
-	media="screen">
-<link rel="stylesheet" href="/<c:out value="${appName}" />/css/grid.css" type="text/css"
-	media="screen">
-<link rel="stylesheet" href="/<c:out value="${appName}" />/css/style.css" type="text/css"
-	media="screen">
+<link rel="stylesheet" href="/<c:out value="${appName}" />/css/reset.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/<c:out value="${appName}" />/css/grid.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/<c:out value="${appName}" />/css/style.css" type="text/css" media="screen">
 <script type="text/javascript" src="/<c:out value="${appName}" />/js/jquery.js"></script>
 <script type="text/javascript" src="/<c:out value="${appName}" />/js/jquery-migrate-1.1.1.js"></script>
 <script type="text/javascript" src="/<c:out value="${appName}" />/js/datepicker/jquery.datetimepicker.js"></script>
@@ -49,4 +46,12 @@
 	   	<link href='http://fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
 	   	<link href='http://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
     <![endif]-->
+
+
+
+<link rel="stylesheet" href="/<c:out value="${appName}" />/autocomplete-master/demo/prettify.css">
+<link href='http://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800|Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
 </head>

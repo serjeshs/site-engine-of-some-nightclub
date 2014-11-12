@@ -37,6 +37,7 @@ public class AppUser implements Serializable {
 	public static final String USER = "USER";	
 	public static final String BAN = "BAN";
 	public static final String NOCONFIRM = "NOCONFIRM";
+	public static final String GUEST = "GUEST";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
