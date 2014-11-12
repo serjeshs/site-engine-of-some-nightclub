@@ -6,9 +6,10 @@
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/admin/**" access="hasAnyRole('MANAGER','ADMIN')"/>
-        <intercept-url pattern="/fix/**" access="hasAnyRole('ADMIN')"/>
-        <intercept-url pattern="/event/edit/**" access="hasAnyRole('ADMIN')"/>
+
+        <intercept-url pattern="/event/edit/**" access="hasAnyRole('ADMIN','MANAGER','USER')"/>
+        <intercept-url pattern="/like/**" access="hasAnyRole('ADMIN','MANAGER','USER')" />
+        <intercept-url pattern="/my/**" access="hasAnyRole('ADMIN','MANAGER','USER')" />
 
         <form-login login-page="/login" authentication-failure-url="/loginerror" default-target-url="/"/>
         <logout logout-url="/logout" logout-success-url="/login" invalidate-session="true" delete-cookies="true"/>

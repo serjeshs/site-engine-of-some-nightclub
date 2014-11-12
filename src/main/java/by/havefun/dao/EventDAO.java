@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -25,15 +27,6 @@ public class EventDAO extends BaseDAO {
 	AppUserDAO appUserDAO;
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
-
-	@SuppressWarnings("unchecked")
-	public List<Event> getEventsAfter(LocalDateTime localDateTime) {
-		java.time.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		Criteria criteria = getCriteria(Event.class);
-		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
-		criteria.addOrder(Order.asc("endEvent"));
-	    return ((List<Event>) criteria.list());
-    }
 
 	public Event addEvent(int eventId, String name, String description, LocalDateTime startEvent, LocalDateTime endEvent, int cost, String costText, int Place_id, String imageUri,String emailOwner) {
 		if (!canEdit(emailOwner, eventId)) {
@@ -102,5 +95,52 @@ public class EventDAO extends BaseDAO {
 			return false;
 		}
 	}
+	@SuppressWarnings("unchecked")
+	public List<Event> getEventsAfter(LocalDateTime localDateTime) {
+		java.time.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		Criteria criteria = getCriteria(Event.class);
+		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
+		criteria.addOrder(Order.asc("endEvent"));
+	    return ((List<Event>) criteria.list());
+    }
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Event> getEventsAfter(LocalDateTime localDateTime, String email) {
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Event.class,"event");
+//		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
+//		criteria.addOrder(Order.asc("endEvent"));
+//		criteria.createAlias("event.appuserLikeEvents", "appuserLikeEvents");
+//		
+//		Disjunction disjunction = Restrictions.disjunction();
+//		disjunction.add(Restrictions.eq("appuserLikeEvents.status", AppUserLikeEventDAO.BETHERE));
+//		disjunction.add(Restrictions.eq("appuserLikeEvents.status", AppUserLikeEventDAO.MAYATTEND));
+//		criteria.add(disjunction);
+//		///criteria.createCriteria("id", "appuser_like_event.event_id", joinType , disjunction);
+
+		String queryString = "select "
+		                + "Event.id"
+		                + ",Event.Adder_AppUser_id"
+		+ ",Event.cost"
+		+ ",Event.costText"
+		+ ",Event.decription"
+		+ ",Event.endEvent"
+		+ ",Event.IMAGE_EVENT_URI"
+		+ ",Event.name"
+		+ ",Event.Place_id"
+		+ ",Event.Place_Name"
+		+ ",Event.Region_id"
+		+ ",Event.Region_Name"
+		+ ",Event.startEvent"
+		        + " from Event "
+                + "              join appuser_like_event ale ON ale.event_id = Event.id"
+                + "             join AppUser user on AppUser_id = user.id "
+                + " where user.email = '" + email + "'  and ( ale.status = 1 or ale.status = 2) and endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"
+                + "order by Event.endEvent asc";
+		
+		SQLQuery sqlQuery = createSQLQuery(queryString);
+	    return ((List<Event>) sqlQuery.list());
+    }
 
 }

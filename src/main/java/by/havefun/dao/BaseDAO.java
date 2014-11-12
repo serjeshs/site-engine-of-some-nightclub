@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BaseDAO {
 
 	@Autowired
-    private SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 	
     private Logger logger = LoggerFactory.getLogger(getClass());
 	

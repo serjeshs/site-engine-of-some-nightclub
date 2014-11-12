@@ -50,11 +50,11 @@ public abstract class AbstractController {
 		
 		List<MenuItems> menuItems = new LinkedList<MenuItems>();
 		menuItems.add(new MenuItems("", "Главная"));
-		menuItems.add(new MenuItems("events", "Предстоящие события"));
+		menuItems.add(new MenuItems("events", "Все предстоящие события"));
+		if (principal != null) {
+			menuItems.add(new MenuItems("my/events", "Интересующие меня события"));
+		}
 		menuItems.add(new MenuItems("contacts", "Контакты"));
-		//menuItems.add(new MenuItems("works.html", "works"));
-		//menuItems.add(new MenuItems("clients.html", "clients"));
-		//menuItems.add(new MenuItems("blog.html", "blog"));
 		model.addAttribute("menuItems",menuItems);
 		
 		model.addAttribute("timeNow", LocalDateTime.now().toString());
