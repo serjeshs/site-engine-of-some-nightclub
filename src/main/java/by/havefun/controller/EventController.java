@@ -35,12 +35,6 @@ public class EventController extends AbstractController {
         return "events";
     }
     
-    //temp
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-    public ModelAndView getTestPage() {
-		return new ModelAndView("test");
-    }
-
     /**
      * Add (id = 0) or edit (id !=0) action event.
      * 

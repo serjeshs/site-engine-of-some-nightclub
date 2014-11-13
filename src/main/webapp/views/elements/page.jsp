@@ -21,4 +21,5 @@
 		<tiles:insertAttribute name="footer" />
 	</footer>
 </body>
+<tiles:insertAttribute name="footer2" />
 </html>
