@@ -48,7 +48,7 @@
 								<br>Место<br>
 								<div class="input-group" style="margin: 20px 0px;">
 									<input type="text" class="form-control" id="remote_input"
-										placeholder="Enter movie" name="adsd" value='<c:out value="${event.place_Name}"></c:out>'>
+										placeholder="Пачніце ўводзіць мейсца" name="adsd" value='<c:out value="${event.place_Name}"></c:out>'>
 									<input id="id_hidden" type="hidden" name="Place_id" value='<c:out value="${event.place}"></c:out>'/>
 										 <span
 										class="input-group-btn">
