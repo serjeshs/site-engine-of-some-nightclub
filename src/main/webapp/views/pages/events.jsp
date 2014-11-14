@@ -29,8 +29,9 @@
 									<%=JSPHelper.getOpenP(a) %>
 
 									<li class="<%=JSPHelper.getColumnPosition(a)%>">
-									<figure>
 									<div align="center" >
+									<figure>
+									
 									<a href="event/<c:out	value="${event.id}" />" class="link">
 										
 										<img src="/<c:out value="${appName}" /><c:out value="${event.imageUri}" />" height="200" alt="">
@@ -40,7 +41,7 @@
 											<c:out value="${event.name}" />
 											
 										</a>
-										</div>
+										
 										</figure> <br> <c:out value="${event.startEvent}" /> <br>
 										
 										<!--  <c:out
@@ -53,6 +54,7 @@
 											<a href="event/<c:out	value="${event.id}" />" class="button">Читать
 												далее</a>
 										</p>
+									</div>
 									</li>
 									
 									<%=JSPHelper.getCloseP(a) %>
