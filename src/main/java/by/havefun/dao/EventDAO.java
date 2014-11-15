@@ -9,6 +9,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,9 +109,11 @@ public class EventDAO extends BaseDAO {
 	@SuppressWarnings("unchecked")
 	public List<Event> getEventsAfter(LocalDateTime localDateTime, String email) {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Event.class,"event");
-//		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
-//		criteria.addOrder(Order.asc("endEvent"));
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Event.class,"event");
+		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
+		criteria.addOrder(Order.asc("endEvent"));
+		
+		Criteria a = criteria.createCriteria("event.id", "appuser_like_event.event_id", JoinType.INNER_JOIN, withClause);
 //		criteria.createAlias("event.appuserLikeEvents", "appuserLikeEvents");
 //		
 //		Disjunction disjunction = Restrictions.disjunction();
@@ -119,28 +122,29 @@ public class EventDAO extends BaseDAO {
 //		criteria.add(disjunction);
 //		///criteria.createCriteria("id", "appuser_like_event.event_id", joinType , disjunction);
 
-		String queryString = "select "
-		                + "Event.id"
-		                + ",Event.Adder_AppUser_id"
-		+ ",Event.cost"
-		+ ",Event.costText"
-		+ ",Event.decription"
-		+ ",Event.endEvent"
-		+ ",Event.IMAGE_EVENT_URI"
-		+ ",Event.name"
-		+ ",Event.Place_id"
-		+ ",Event.Place_Name"
-		+ ",Event.Region_id"
-		+ ",Event.Region_Name"
-		+ ",Event.startEvent"
-		        + " from Event "
-                + "              join appuser_like_event ale ON ale.event_id = Event.id"
-                + "             join AppUser user on AppUser_id = user.id "
-                + " where user.email = '" + email + "'  and ( ale.status = 1 or ale.status = 2) and endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"
-                + "order by Event.endEvent asc";
-		
-		SQLQuery sqlQuery = createSQLQuery(queryString);
-	    return ((List<Event>) sqlQuery.list());
+//		String queryString = "select "
+//		                + "Event.id"
+//		                + ",Event.Adder_AppUser_id"
+//		+ ",Event.cost"
+//		+ ",Event.costText"
+//		+ ",Event.decription"
+//		+ ",Event.endEvent"
+//		+ ",Event.IMAGE_EVENT_URI"
+//		+ ",Event.name"
+//		+ ",Event.Place_id"
+//		+ ",Event.Place_Name"
+//		+ ",Event.Region_id"
+//		+ ",Event.Region_Name"
+//		+ ",Event.startEvent"
+//		        + " from Event "
+//                + "              join appuser_like_event ale ON ale.event_id = Event.id"
+//                + "             join AppUser user on AppUser_id = user.id "
+//                + " where user.email = '" + email + "'  and ( ale.status = 1 or ale.status = 2) and endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"
+//                + "order by Event.endEvent asc";
+//		
+//		SQLQuery sqlQuery = createSQLQuery(queryString);
+//	    return ((List<Event>) sqlQuery.list());
+		return ((List<Event>) criteria.list());
     }
 
 }
