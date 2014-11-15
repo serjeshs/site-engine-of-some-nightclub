@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -89,6 +90,9 @@ public class AppUser implements Serializable {
 	@JsonIgnore
 	@ManyToMany(mappedBy="appUsers")
 	private List<Place> places;
+	
+	@OneToMany(mappedBy="appuser")
+        private List<AppUserLikeEvent> appuserLikeEvents;
 
 	public AppUser() {
 	}
@@ -262,6 +266,29 @@ public class AppUser implements Serializable {
 	public void setPlaces(List<Place> places) {
 		this.places = places;
 	}
+	
+
+        public List<AppUserLikeEvent> getAppuserLikeEvents() {
+                return this.appuserLikeEvents;
+        }
+
+        public void setAppuserLikeEvents(List<AppUserLikeEvent> appuserLikeEvents) {
+                this.appuserLikeEvents = appuserLikeEvents;
+        }
+
+        public AppUserLikeEvent addAppuserLikeEvent(AppUserLikeEvent appuserLikeEvent) {
+                getAppuserLikeEvents().add(appuserLikeEvent);
+                appuserLikeEvent.setAppuser(this);
+
+                return appuserLikeEvent;
+        }
+
+        public AppUserLikeEvent removeAppuserLikeEvent(AppUserLikeEvent appuserLikeEvent) {
+                getAppuserLikeEvents().remove(appuserLikeEvent);
+                appuserLikeEvent.setAppuser(null);
+
+                return appuserLikeEvent;
+        }
 	
 	public AppUser(LocalDateTime birthday, String email, String fathername,
 			String firstname, String nick, String password, String photoURI,

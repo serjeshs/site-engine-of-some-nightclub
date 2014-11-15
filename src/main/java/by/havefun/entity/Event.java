@@ -17,6 +17,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -84,6 +85,10 @@ public class Event implements Serializable {
 			}
 		)
 	private List<Category> categories;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="event")
+        private List<AppUserLikeEvent> appuserLikeEvents;
 
 	public Event() {
 	}
@@ -218,6 +223,27 @@ public class Event implements Serializable {
 	    this.imageUri = imageUri;
     }
 
+        public List<AppUserLikeEvent> getAppuserLikeEvents() {
+                return this.appuserLikeEvents;
+        }
+
+        public void setAppuserLikeEvents(List<AppUserLikeEvent> appuserLikeEvents) {
+                this.appuserLikeEvents = appuserLikeEvents;
+        }
+
+        public AppUserLikeEvent addAppuserLikeEvent(AppUserLikeEvent appuserLikeEvent) {
+                getAppuserLikeEvents().add(appuserLikeEvent);
+                appuserLikeEvent.setEvent(this);
+
+                return appuserLikeEvent;
+        }
+
+        public AppUserLikeEvent removeAppuserLikeEvent(AppUserLikeEvent appuserLikeEvent) {
+                getAppuserLikeEvents().remove(appuserLikeEvent);
+                appuserLikeEvent.setEvent(null);
+
+                return appuserLikeEvent;
+        }
 	public Event(int cost, String costText, String description,
 			Timestamp startEvent, Timestamp endEvent, String name,
 			String place_Name, String region_Name, int place, int region,

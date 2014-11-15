@@ -10,5 +10,6 @@
 		<mapping class="by.havefun.entity.FileTable"/>
 		<mapping class="by.havefun.entity.Place"/>
 		<mapping class="by.havefun.entity.Region"/>
+		<mapping class="by.havefun.entity.AppUserLikeEvent"/>
 	</session-factory>
 </hibernate-configuration>

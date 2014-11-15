@@ -3,6 +3,7 @@ package by.havefun.controller;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -134,14 +135,17 @@ public class EventController extends AbstractController {
         return "events";
     }
     
-    
+    @Transactional
     @RequestMapping(value = "my/events", method = RequestMethod.GET)
-	public String getMyEvents(Model model, Principal principal) {
-    	model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now(),principal.getName()));
+    public String getMyEvents(Model model, Principal principal) {
+        List<Event> events = eventDao.getEventsAfter(LocalDateTime.now(), principal.getName());
+        for (Event event : events) {
+            logger.info(event.toString());
+        }
+        model.addAttribute("events", events);
         setRequiedName(model, principal, "Мои ближайшие события");
         return "events";
-	}
-    
+    }
 
     /**
      * Edit view page

@@ -2,14 +2,13 @@ package by.havefun.dao;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
-import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.sql.JoinType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.havefun.entity.AppUser;
+import by.havefun.entity.AppUserLikeEvent;
 import by.havefun.entity.Event;
 import by.havefun.entity.Place;
 import by.havefun.entity.Region;
@@ -106,14 +106,22 @@ public class EventDAO extends BaseDAO {
     }
 	
 	
-	@SuppressWarnings("unchecked")
 	public List<Event> getEventsAfter(LocalDateTime localDateTime, String email) {
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Event.class,"event");
-		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
-		criteria.addOrder(Order.asc("endEvent"));
+//		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Event.class,"event");
+//		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
+//		criteria.addOrder(Order.asc("endEvent"));
+//		return ((List<Event>) criteria.list());
+		AppUser appUser = appUserDAO.getAppUserFromEmail(email);
+		List<AppUserLikeEvent> eventsLike = appUser.getAppuserLikeEvents();
+		List<Event> events = new ArrayList<Event>(eventsLike.size());
+		for ( AppUserLikeEvent iterable_element : eventsLike) {
+		    iterable_element.toString();
+                    events.add(iterable_element.getEvent());
+                }
+		return events;
 		
-		Criteria a = criteria.createCriteria("event.id", "appuser_like_event.event_id", JoinType.INNER_JOIN, withClause);
+		//Criteria a = criteria.createCriteria("event.id", "appuser_like_event.event_id", JoinType.INNER_JOIN, withClause);
 //		criteria.createAlias("event.appuserLikeEvents", "appuserLikeEvents");
 //		
 //		Disjunction disjunction = Restrictions.disjunction();
@@ -144,7 +152,7 @@ public class EventDAO extends BaseDAO {
 //		
 //		SQLQuery sqlQuery = createSQLQuery(queryString);
 //	    return ((List<Event>) sqlQuery.list());
-		return ((List<Event>) criteria.list());
+		
     }
 
 }
