@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.havefun.entity.AppUser;
+import by.havefun.entity.AppUserLikeEvent;
 
 
 @Service
@@ -17,17 +18,12 @@ public class AppUserLikeEventDAO extends BaseDAO{
 	@Autowired
 	AppUserDAO appUserDAO;
 	
-	public static final int NOTHING = 0;
-	public static final int BETHERE = 1;
-	public static final int MAYATTEND = 2;
-	public static final int DIZLIKE = 3;
-	
 	@SuppressWarnings("unchecked")
     public int getStatus(int appUserId, int EventId) {
 		SQLQuery query = createSQLQuery("select STATUS from appuser_like_event where appuser_id = " + appUserId + " and event_id = " + EventId);
 		List<Object> l = query.list();
 		if (l.size() == 0) {
-			return NOTHING;
+			return AppUserLikeEvent.NOTHING;
 		}
 		
 		return (int) l.get(0);
@@ -41,13 +37,13 @@ public class AppUserLikeEventDAO extends BaseDAO{
 	public int getStatus(String like) {
 	    switch (like) {
 		case "NOTHING":
-			return NOTHING;
+			return AppUserLikeEvent.NOTHING;
 		case "BETHERE":
-			return BETHERE;
+			return AppUserLikeEvent.BETHERE;
 		case "MAYATTEND":
-			return MAYATTEND;
+			return AppUserLikeEvent.MAYATTEND;
 		case "DIZLIKE":
-			return DIZLIKE;
+			return AppUserLikeEvent.DIZLIKE;
 		}
 	    return -1;
     }

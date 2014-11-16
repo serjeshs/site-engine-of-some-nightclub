@@ -14,7 +14,15 @@ import javax.persistence.*;
 public class AppUserLikeEvent implements Serializable {
     
     private static final long serialVersionUID = 338L;
+    public static final String COL_APPUSER_ID = "appuserId";
+    public static final String COL_EVENT_ID = "eventId";
+    public static final String COL_STATUS = "status";
 
+	public static final int NOTHING = 0;
+	public static final int BETHERE = 1;
+	public static final int MAYATTEND = 2;
+	public static final int DIZLIKE = 3;
+    
     @Id
     @Column(name = "appuser_id", insertable = false, updatable = false)
     private int appuserId;
