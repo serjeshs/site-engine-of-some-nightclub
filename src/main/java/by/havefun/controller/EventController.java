@@ -65,10 +65,11 @@ public class EventController extends AbstractController {
             if (!multipartFile.isEmpty()) {
                 imageUri = FileController.getRelativePath(localFile.fileAdd(multipartFile, principal.getName()));;
             }
-            model.addAttribute("event", eventDao.addEvent(id, name, description, startEventTime, endEventTime, cost, costText, Place_id, imageUri, principal.getName()));
+            Event event = eventDao.addEvent(id, name, description, startEventTime, endEventTime, cost, costText, Place_id, imageUri, principal.getName());
+			model.addAttribute("event", event );
             setRequiedName(model, principal, name);
             model.addAttribute("canEdit", true);
-            return "event";
+            return "redirect:/event/" + event.getId();
         } else {
             setRequiedName(model, principal, "Доступ запрещён");
             model.addAttribute("result", "Вам не разрешено выполнять данное действие");

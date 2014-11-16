@@ -3,6 +3,7 @@ package by.havefun.dao;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,8 +59,13 @@ public class AppUserLikeEventDAO extends BaseDAO{
 
 	public void addLike(String email, int eventId, int likeID) {
 		AppUser aU = appUserDAO.getAppUserFromEmail(email);
-		SQLQuery query = createSQLQuery("INSERT INTO `appuser_like_event` (`appuser_id`, `event_id`, `STATUS`) VALUES ('" + aU.getId() + "', '" + eventId + "', '" + likeID + "')");
-		System.out.println(query.executeUpdate());
+		try {
+			SQLQuery query = createSQLQuery("INSERT INTO `appuser_like_event` (`appuser_id`, `event_id`, `STATUS`) VALUES ('" + aU.getId() + "', '" + eventId + "', '" + likeID + "')");
+			System.out.println(query.executeUpdate());
+		} catch (ConstraintViolationException ex) {
+			delLike(email, eventId);
+			addLike(email, eventId, likeID);
+		}
     }
 
 }
