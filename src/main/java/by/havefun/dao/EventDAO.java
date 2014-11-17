@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -106,20 +107,30 @@ public class EventDAO extends BaseDAO {
     }
 	
 	
-	public List<Event> getEventsAfter(LocalDateTime localDateTime, String email) {
-//		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Event.class,"event");
-//		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
-//		criteria.addOrder(Order.asc("endEvent"));
-//		return ((List<Event>) criteria.list());
-		AppUser appUser = appUserDAO.getAppUserFromEmail(email);
-		List<AppUserLikeEvent> eventsLike = appUser.getAppuserLikeEvents();
-		List<Event> events = new ArrayList<Event>(eventsLike.size());
-		for ( AppUserLikeEvent iterable_element : eventsLike) {
-		    iterable_element.toString();
-                    events.add(iterable_element.getEvent());
-                }
-		return events;
+    public List<Event> getEventsAfter(LocalDateTime localDateTime, String email) {
+        // DateTimeFormatter dateTimeFormatter =
+        // DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        // Criteria criteria =
+        // sessionFactory.getCurrentSession().createCriteria(Event.class,"event");
+        // criteria.add(Restrictions.sqlRestriction(" endEvent > '" +
+        // dateTimeFormatter.format(localDateTime) + "'"));
+        // criteria.addOrder(Order.asc("endEvent"));
+        // return ((List<Event>) criteria.list());
+        AppUser appUser = appUserDAO.getAppUserFromEmail(email);
+        // List<AppUserLikeEvent> eventsLike = appUser.getAppuserLikeEvents();
+
+        Disjunction statusVariants = Restrictions.disjunction();
+        statusVariants.add(Restrictions.eq(AppUserLikeEvent.COL_STATUS, AppUserLikeEvent.BETHERE));
+        statusVariants.add(Restrictions.eq(AppUserLikeEvent.COL_STATUS, AppUserLikeEvent.MAYATTEND));
+        List<AppUserLikeEvent> eventsLike = getListEntity(AppUserLikeEvent.class, Restrictions.eq(AppUserLikeEvent.COL_APPUSER_ID, appUser.getId()),
+                statusVariants);
+
+        List<Event> events = new ArrayList<Event>(eventsLike.size());
+        for (AppUserLikeEvent iterable_element : eventsLike) {
+            iterable_element.toString();
+            events.add(iterable_element.getEvent());
+        }
+        return events;
 		
 		//Criteria a = criteria.createCriteria("event.id", "appuser_like_event.event_id", JoinType.INNER_JOIN, withClause);
 //		criteria.createAlias("event.appuserLikeEvents", "appuserLikeEvents");
