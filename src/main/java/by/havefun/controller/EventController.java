@@ -13,10 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.havefun.GlobalSettings;
 import by.havefun.entity.Event;
 
 @Controller
@@ -56,9 +58,8 @@ public class EventController extends AbstractController {
     public String editEventAction(Model model, String name, Principal principal, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id,
             HttpServletRequest request, MultipartFile file) {
         if ((principal != null) && (eventDao.canEdit(principal.getName(), id))) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-			LocalDateTime startEventTime = LocalDateTime.parse(startEvent,formatter);
-            LocalDateTime endEventTime = LocalDateTime.parse(endEvent,formatter);
+			LocalDateTime startEventTime = LocalDateTime.parse(startEvent,GlobalSettings.formatter);
+            LocalDateTime endEventTime = LocalDateTime.parse(endEvent,GlobalSettings.formatter);
             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             MultipartFile multipartFile = multipartRequest.getFile("photo");
             String imageUri = null;
@@ -181,5 +182,19 @@ public class EventController extends AbstractController {
             appUserLikeEventDAO.addLike(principal.getName(), eventId, likeID);
         }
         return "redirect:/event/" + eventId;
+    }
+    
+    
+    @RequestMapping(value = "event/list", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String geteventList(Model model, Principal principal) {
+        model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
+        setRequiedName(model, principal, "Все ближайшие события");
+        return "eventList";
+    }
+    
+    @RequestMapping(value = "event/list/json")
+    public @ResponseBody List<Event> geteventListJSON(Principal principal, String date, Integer regionId, Integer placeId) {
+        LocalDateTime dateTime = LocalDateTime.parse(date, GlobalSettings.formatter);
+           return eventDao.getEventsAfter(dateTime,regionId,placeId);
     }
 }

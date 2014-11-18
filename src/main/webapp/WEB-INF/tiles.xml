@@ -50,4 +50,9 @@
     <put-attribute name="body" value="/views/pages/result.jsp" />
   </definition>
   
+  <definition name="eventList" extends="defaultPageTemplate">
+    <put-attribute name="body" value="/views/pages/eventList.jsp" />
+  </definition>
+  
+  
 </tiles-definitions>
