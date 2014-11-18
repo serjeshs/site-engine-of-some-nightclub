@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import by.havefun.GlobalSettings;
 import by.havefun.entity.AppUser;
 import by.havefun.entity.Event;
 import by.havefun.entity.Place;
@@ -95,13 +96,9 @@ public class EventDAO extends BaseDAO {
 			return false;
 		}
 	}
-	@SuppressWarnings("unchecked")
+	
 	public List<Event> getEventsAfter(LocalDateTime localDateTime) {
-		java.time.format.DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		Criteria criteria = getCriteria(Event.class);
-		criteria.add(Restrictions.sqlRestriction(" endEvent > '" + dateTimeFormatter.format(localDateTime) + "'"));
-		criteria.addOrder(Order.asc("endEvent"));
-	    return ((List<Event>) criteria.list());
+	    return getEventsAfter(localDateTime, null, null);
     }
 	
 	
@@ -141,6 +138,22 @@ public class EventDAO extends BaseDAO {
 		
 		SQLQuery sqlQuery = createSQLQuery(queryString);
 	    return ((List<Event>) sqlQuery.list());
+    }
+
+    public List<Event> getEventsAfter(LocalDateTime dateTime, Integer regionId, Integer placeId) {
+        Criteria criteria = getCriteria(Event.class);
+        if (dateTime != null) {
+            criteria.add(Restrictions.sqlRestriction(Event.COL_END_EVENT + " > '" + GlobalSettings.formatter.format(dateTime) + "'"));
+        }
+        if (regionId != null) {
+            criteria.add(Restrictions.eq(Event.COL_REGION_ID, regionId));
+        }
+        if (placeId != null) {
+            criteria.add(Restrictions.eq(Event.COL_PLACE_ID, placeId));
+        }
+        criteria.addOrder(Order.asc(Event.COL_START_EVENT));
+        criteria.setMaxResults(100);
+        return ((List<Event>) criteria.list());
     }
 
 }

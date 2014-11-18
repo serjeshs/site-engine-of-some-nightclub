@@ -43,9 +43,12 @@ public class Event implements Serializable {
 	@Column(name="decription")
 	private String description;
 
-	private Timestamp startEvent;
 	
+	private Timestamp startEvent;
+	public static final String COL_START_EVENT = "startEvent";
+
 	private Timestamp endEvent;
+	public static final String COL_END_EVENT = "endEvent";
 
 	private String name;
 
@@ -57,9 +60,11 @@ public class Event implements Serializable {
 
 	@Column(name="Place_id")
 	private int place;
+	public static final String COL_PLACE_ID = "place";
 
 	@Column(name="Region_id")
 	private int region;
+	public static final String COL_REGION_ID = "region";
 	
 	@Column(name="IMAGE_EVENT_URI")
 	private String imageUri;
