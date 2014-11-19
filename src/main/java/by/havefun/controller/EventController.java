@@ -58,8 +58,17 @@ public class EventController extends AbstractController {
     public String editEventAction(Model model, String name, Principal principal, String description, String startEvent, String endEvent, int cost, String costText, int Place_id, int id,
             HttpServletRequest request, MultipartFile file) {
         if ((principal != null) && (eventDao.canEdit(principal.getName(), id))) {
-			LocalDateTime startEventTime = LocalDateTime.parse(startEvent,GlobalSettings.formatter);
-            LocalDateTime endEventTime = LocalDateTime.parse(endEvent,GlobalSettings.formatter);
+            LocalDateTime startEventTime = null;
+            LocalDateTime endEventTime = null;
+            try {
+                startEventTime = LocalDateTime.parse(startEvent,GlobalSettings.formatter);
+                endEventTime = LocalDateTime.parse(endEvent,GlobalSettings.formatter);
+            } catch (Exception ex) {
+                setRequiedName(model, principal, "Ошибка введённого время.");
+                model.addAttribute("result", "Ошибка введённого времени начала или конца мероприятия. Вернитесь назад и проверьте параметры.");
+                return "result";
+            }
+            
             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             MultipartFile multipartFile = multipartRequest.getFile("photo");
             String imageUri = null;
