@@ -22,10 +22,12 @@
 								<label><input onblur="if(this.value==''){this.value='Email'}" onfocus="if(this.value=='Email'){this.value=''}" name="email" value="${Email}" type="text">	</label>
 								
 								<label>
-									<input id="strex" type="text" value="Пароль" name="password2" onfocus="if(this.value=='Пароль'){this.value=''}" onblur="if(this.value==''){this.value='Пароль'}">
+									<input id="strex" type="password" value="Пароль" onfocus="if(this.value=='Пароль'){this.value=''}" onblur="if(this.value==''){this.value='Пароль'}">
+									<input id="strexHid" type="hidden" name="password2">
 								</label>
 								<label>
-									<input id="strexAgain" type="text" value="Введите пароль ещё раз" name="password1" onfocus="if(this.value=='Введите пароль ещё раз'){this.value=''}" onblur="if(this.value==''){this.value='Введите пароль ещё раз'}">
+									<input id="strexAgain" type="password" value="Введите пароль ещё раз" name="password1" onfocus="if(this.value=='Введите пароль ещё раз'){this.value=''}" onblur="if(this.value==''){this.value='Введите пароль ещё раз'}">
+									<input id="strexAgainHid" type="hidden" name="password1">
 								</label>
                 				<button id="cryptstr" class="button1">Зарегистрироваться</button>
 							</fieldset>
@@ -42,9 +44,9 @@ document.getElementById('cryptstr').onclick = function() {
 	var txt_string_Again = document.getElementById('strexAgain').value;
 
 	// encrypts data and adds it in #strcrypt element
-	document.getElementById('strex').value = SHA512(txt_string);
+	document.getElementById('strexHid').value = SHA512(txt_string);
 	
-	document.getElementById('strexAgain').value = SHA512(txt_string_Again);
+	document.getElementById('strexAgainHid').value = SHA512(txt_string_Again);
 	
 return true;
 }
