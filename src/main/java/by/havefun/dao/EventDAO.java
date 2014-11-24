@@ -102,6 +102,16 @@ public class EventDAO extends BaseDAO {
 	    return getEventsAfter(localDateTime, null, null);
     }
 	
+	public List<Event> getEventsAfter(String dateTime, Integer regionId, Integer placeId) {
+        LocalDateTime eventTime = null;
+        try {
+        	eventTime = LocalDateTime.parse(dateTime,GlobalSettings.formatter);
+        } catch (Exception ex) {
+        	eventTime = LocalDateTime.now();
+        }
+    	return getEventsAfter(eventTime, regionId, placeId);
+	}
+	
     public List<Event> getEventsAfter(LocalDateTime dateTime, String email) {
         
         

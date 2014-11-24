@@ -29,14 +29,23 @@ public class EventController extends AbstractController {
      * 
      * @param model
      * @param principal
+     * @param regionId 
+     * @param placeId 
      * @return Main page
      */
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-    public String get(Model model, Principal principal) {
-        model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
+    public String get(Model model, Principal principal, String dateTime, Integer regionId, Integer placeId) {
+    	List<Event> events = eventDao.getEventsAfter(dateTime, regionId, placeId);
+        model.addAttribute("events", events);
         setRequiedName(model, principal, "Главная страница");
         return "events";
     }
+    
+    @RequestMapping(value = "/json")
+    public @ResponseBody List<Event>  getEventsJson(Model model, Principal principal, String dateTime, Integer regionId, Integer placeId) {
+        return eventDao.getEventsAfter(dateTime, regionId, placeId);
+    }
+    
     
     /**
      * Add (id = 0) or edit (id !=0) action event.

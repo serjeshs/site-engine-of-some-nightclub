@@ -13,13 +13,20 @@
 
         <form-login login-page="/login" authentication-failure-url="/loginerror" default-target-url="/"/>
         <logout logout-url="/logout" logout-success-url="/login" invalidate-session="true" delete-cookies="true"/>
-        <remember-me key="eiasKey" token-validity-seconds="8640000" user-service-ref="userDetails"/>
+        <remember-me key="eiasKey" token-validity-seconds="8640000" user-service-ref="userDetails" />
     </http>
 
     <beans:bean id="userDetails" class="by.havefun.security.MyUserDetails"/>
+    <beans:bean id="customAuthenticationProvider" class="by.havefun.security.CustomAuthenticationProviderImpl" />
+
+<!--     <authentication-manager> -->
+<!--         <authentication-provider user-service-ref="userDetails" ref="customAuthenticationProvider" /> -->
+<!--     </authentication-manager> -->
+
 
     <authentication-manager>
-        <authentication-provider user-service-ref="userDetails"/>
+        <authentication-provider ref="customAuthenticationProvider" />
     </authentication-manager>
-
+    
+  
 </beans:beans>

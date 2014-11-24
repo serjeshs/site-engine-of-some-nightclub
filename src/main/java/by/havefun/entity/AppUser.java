@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import by.havefun.security.KeccakUtil;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -151,7 +152,7 @@ public class AppUser implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = KeccakUtil.getHash(password);
 	}
 
 	public String getPhotoURI() {
@@ -300,7 +301,8 @@ public class AppUser implements Serializable {
 		this.fathername = fathername;
 		this.firstname = firstname;
 		this.nick = nick;
-		this.password = password;
+		//this.password = password;
+		setPassword(password);
 		this.photoURI = photoURI;
 		this.region_Name = region_Name;
 		this.role = role;

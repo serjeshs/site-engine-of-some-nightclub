@@ -18,7 +18,8 @@
 							<fieldset>
 								<c:if test="${changePassword}">
 								Старый пароль
-								<input id="strex_old" type="text" name="password_old">
+								<input id="strex_old" type="password">
+								<input id="strex_old_HID" type="hidden" name="password_old">
 								</c:if>
 								Новый пароль
 								<input id="password_new1" type="password">
@@ -49,7 +50,7 @@ document.getElementById('cryptstr').onclick = function() {
 	document.getElementById('strexHid').value = SHA512(txt_string_new2);
 	
 	var txt_string_old = document.getElementById('strex_old').value;
-	document.getElementById('strex_old').value = SHA512(txt_string_old);
+	document.getElementById('strex_old_HID').value = SHA512(txt_string_old);
 	
 return true;
 }
