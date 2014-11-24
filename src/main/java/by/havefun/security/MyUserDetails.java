@@ -40,8 +40,6 @@ public class MyUserDetails implements UserDetailsService {
         boolean accountNonExpired = true;
         boolean accountNonLocked = true;
 
-        logger.info(email);
-
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
         authorities.add(new SimpleGrantedAuthority(appUser.getRole()));

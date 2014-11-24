@@ -18,12 +18,15 @@
 							<fieldset>
 								<c:if test="${changePassword}">
 								Старый пароль
-								<input id="strex_old" type="text" name="password_old">
+								<input id="strex_old" type="password">
+								<input id="strex_old_HID" type="hidden" name="password_old">
 								</c:if>
 								Новый пароль
-								<input id="password_new1" type="text" name="password_new1">
+								<input id="password_new1" type="password">
+								<input id="strexHid" type="hidden" name="password_new1">
 								Повторите ввод нового пароля
-								<input id="password_new2" type="text" name="password_new2">
+								<input id="password_new2" type="password">
+								<input id="strexAgainHid" type="hidden" name="password_new2">
 								<input type="hidden" name="tocken" id="tocken" value="${tocken}" />
 								<input type="hidden" name="email" id="email" value="${userId}"/>
 								
@@ -43,11 +46,11 @@ document.getElementById('cryptstr').onclick = function() {
 	var txt_string_new2 = document.getElementById('password_new2').value;
 
 	// encrypts data and adds it in #strcrypt element
-	document.getElementById('password_new1').value = SHA512(txt_string_new1);
-	document.getElementById('password_new2').value = SHA512(txt_string_new2);
+	document.getElementById('strexAgainHid').value = SHA512(txt_string_new1);
+	document.getElementById('strexHid').value = SHA512(txt_string_new2);
 	
 	var txt_string_old = document.getElementById('strex_old').value;
-	document.getElementById('strex_old').value = SHA512(txt_string_old);
+	document.getElementById('strex_old_HID').value = SHA512(txt_string_old);
 	
 return true;
 }
