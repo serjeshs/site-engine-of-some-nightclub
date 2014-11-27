@@ -27,9 +27,8 @@ public class CustomAuthenticationProviderImpl  extends AbstractUserDetailsAuthen
             logger.debug("Authentication failed: no credentials provided");
 
             throw new BadCredentialsException(messages.getMessage(
-                    "AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"), userDetails);
+                    "AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
         }
-
         String presentedPassword = authentication.getCredentials().toString();
         presentedPassword = KeccakUtil.getHash(presentedPassword); 
         if (!presentedPassword.equals(userDetails.getPassword())) {
@@ -37,7 +36,7 @@ public class CustomAuthenticationProviderImpl  extends AbstractUserDetailsAuthen
             logger.debug("Authentication failed: password does not match stored value");
 
             throw new BadCredentialsException(messages.getMessage(
-                    "AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"), userDetails);
+                    "AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
         }
     }
 

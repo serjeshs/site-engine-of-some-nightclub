@@ -83,6 +83,11 @@ public class EventDAO extends BaseDAO {
 	            	return true;
 	            }
             }
+			if (appUser.getId() == event.getAppUser().getId()) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		case AppUser.USER: {
@@ -112,7 +117,8 @@ public class EventDAO extends BaseDAO {
     	return getEventsAfter(eventTime, regionId, placeId);
 	}
 	
-    public List<Event> getEventsAfter(LocalDateTime dateTime, String email) {
+    @SuppressWarnings("unchecked")
+	public List<Event> getEventsAfter(LocalDateTime dateTime, String email) {
         
         
         Disjunction statusVariants = Restrictions.disjunction();
@@ -136,7 +142,8 @@ public class EventDAO extends BaseDAO {
     }
 
 
-    public List<Event> getEventsAfter(LocalDateTime dateTime, Integer regionId, Integer placeId) {
+    @SuppressWarnings("unchecked")
+	public List<Event> getEventsAfter(LocalDateTime dateTime, Integer regionId, Integer placeId) {
         Criteria criteria = getCriteria(Event.class);
         if (dateTime != null) {
             criteria.add(Restrictions.sqlRestriction(Event.COL_END_EVENT + " > '" + GlobalSettings.formatter.format(dateTime) + "'"));
@@ -149,7 +156,7 @@ public class EventDAO extends BaseDAO {
         }
         criteria.addOrder(Order.asc(Event.COL_START_EVENT));
         criteria.setMaxResults(100);
-        return ((List<Event>) criteria.list());
+        return criteria.list();
     }
 
 }
