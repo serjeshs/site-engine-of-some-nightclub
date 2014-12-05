@@ -17,11 +17,11 @@
 						<form method="POST" action="/<c:out value="${appName}" />/updatepassword" id="contact-form">
 							<fieldset>
 								<c:if test="${changePassword}">
-								Старый пароль
+								<spring:message code="hello" text="default text" />Старый пароль
 								<input id="strex_old" type="password">
 								<input id="strex_old_HID" type="hidden" name="password_old">
 								</c:if>
-								Новый пароль
+								<spring:message code="hello" text="default text" />Новый пароль
 								<input id="password_new1" type="password">
 								<input id="strexHid" type="hidden" name="password_new1">
 								Повторите ввод нового пароля
