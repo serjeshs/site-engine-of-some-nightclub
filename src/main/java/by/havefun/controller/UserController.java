@@ -142,7 +142,7 @@ public class UserController extends AbstractController {
 	
 	
 	@RequestMapping(value = "saveprofileupdate", method = RequestMethod.POST)
-	public String saveprofileupdate(Model model, Principal principal, String email, String fathername, String firstname, String nick, String surname,
+	public String saveprofileupdate(Model model, Principal principal, String email, String fathername, String firstname, String nick, String surname, Integer lang,
 	        HttpServletRequest request, MultipartFile file) {
 	    MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             MultipartFile multipartFile = multipartRequest.getFile("photo");
@@ -154,7 +154,7 @@ public class UserController extends AbstractController {
 		String resultMessage;
 		AppUser appUser = null;
 		try {
-			appUser = appUserDao.updateProfile(principal.getName(),email,fathername,firstname,nick,imageUri,surname);
+			appUser = appUserDao.updateProfile(principal.getName(),email,fathername,firstname,nick,imageUri,surname,lang);
 			resultMessage = "Обновлено";
 		} catch (Exception ex) {
 			resultMessage = ex.getLocalizedMessage();
