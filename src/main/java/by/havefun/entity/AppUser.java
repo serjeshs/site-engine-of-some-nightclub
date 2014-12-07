@@ -73,6 +73,8 @@ public class AppUser implements Serializable {
 	private int vkId;
 
 	private String vkTocken;
+	
+	private int lang;
 
 
 	@JsonIgnore
@@ -311,6 +313,14 @@ public class AppUser implements Serializable {
 		this.vkTocken = vkTocken;
 		this.region = region;
 	}
+
+    public int getLang() {
+        return lang;
+    }
+
+    public void setLang(int lang) {
+        this.lang = lang;
+    }
 
 
 

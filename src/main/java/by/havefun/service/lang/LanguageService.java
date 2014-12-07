@@ -5,6 +5,11 @@ import java.util.HashMap;
 import org.slf4j.LoggerFactory;
 
 public class LanguageService {
+    
+    public static final int LANG_BEL = 1;
+    public static final int LANG_ENG = 2;
+    public static final int LANG_RUS = 3;
+    
 
     public static java.util.Map<String, String> bel = new HashMap<String, String>();
     public static java.util.Map<String, String> eng = new HashMap<String, String>();
@@ -52,7 +57,19 @@ public class LanguageService {
                 rus.put(key, russan);
             }
         }
-
+    }
+    
+    public static java.util.Map<String, String> getLangMap(int lang) {
+        switch (lang) {
+        case LanguageService.LANG_BEL:
+            return bel;
+        case LanguageService.LANG_ENG:
+            return eng;
+        case LanguageService.LANG_RUS:
+            return rus;
+        default:
+            return bel;
+        }
     }
 
 }

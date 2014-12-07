@@ -9,12 +9,12 @@
 		<div class="grid_7">
 			<c:if test="${guest}">
 				<springtags:message code="hello_guest" text="Привет, Гость." />
-				<a href="/${appName}registration"> 
+				<a href="/${appName}/registration"> 
 				<springtags:message code="register_please" text="Зарегистрируйся пожалуйста" />
 				</a>
 				<springtags:message code="or" text=" или " />
 				<a href="/<c:out value="${appName}" />/login"><springtags:message
-						code="sing_in" text=" войди " />войди</a>.
+						code="sing_in" text=" войди " /></a>.
 						</c:if>
 			<c:if test="${user}">
 		Привет. ${appUserName}. 
