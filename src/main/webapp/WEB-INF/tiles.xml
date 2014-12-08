@@ -54,5 +54,14 @@
     <put-attribute name="body" value="/views/pages/eventList.jsp" />
   </definition>
   
+  <definition name="WelcomePage" template="/WelcomePage.jsp">
+    <put-attribute name="headScripts" value="/views/elements/head.jsp" />
+    <put-attribute name="header" value="/views/elements/header.jsp" />
+    <put-attribute name="menu" value="/views/elements/header.jsp" />
+    <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/views/elements/footer.jsp" />
+    <put-attribute name="footer2" value="" />
+  </definition>
+  
   
 </tiles-definitions>
