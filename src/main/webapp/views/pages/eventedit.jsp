@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="springtags" %>
 <%@ page session="false"%>
 
 
@@ -12,10 +13,10 @@
 			<div class="container_12">
 				<div class="wrapper h-pad">
 					<div class="grid_7">
-						<h2>Введите информацию о событии.</h2>
+						<h2>${lang_template.please_enter_event_info}.</h2>
 						<div class="wrapper">
 								<figure class="img-indent">
-								<div align="center" ><img src="/<c:out value="${appName}" /><c:out value="${event.imageUri}" />" height="400" alt=""></div>
+								<div align="center" ><img src="<c:out value="${event.imageUri}" />" height="400" alt=""></div>
 								</figure>
 								
 							</div>
@@ -27,7 +28,7 @@
 							<br>
 							<label>
 							
-							Загрузите новое изображение, если текущего нету или его нужно изменить.
+							${lang_template.upload_new_image}
 							<br>
 							<input type="file" name="photo" accept="image/*">
 							<br>
@@ -35,17 +36,17 @@
 							<br><br>
 							
 							<label>
-							Название события<br>
+							${lang_template.name_event}<br>
 							<input type="text" name="name" value="<c:out value="${event.name}"/>">
 							</label>
-							Описание события<br>
+							${lang_template.description_event}<br>
 							<textarea name="description"><c:out value="${event.description}"/></textarea><br><br>
-							Минимальная цена входа числом.<br>
+							${lang_template.cost_min_int} .<br>
 							<label><input type="text" name="cost" value="<c:out value="${event.cost}"/>">	</label>
-							Цена c описанием. С сылками, где можно купить билеты, когда и какие.<br>
+							${lang_template.cost_min_string} .<br>
 							<textarea name="costText"><c:out value="${event.costText}"/></textarea><br><br>
 
-								<br>Место<br>
+								<br>${lang_template.place}<br>
 								<div class="input-group" style="margin: 20px 0px;">
 									<input type="text" class="form-control" id="remote_input"
 										placeholder="Пачніце ўводзіць мейсца" name="adsd" value='<c:out value="${event.place_Name}"></c:out>'>
@@ -58,14 +59,14 @@
 									</span>
 								</div>
 								<label>
-								Время начала <br>
+								${lang_template.start_time}<br>
 								<input id="datetimepicker1" type="text" name="startEvent" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${event.startEvent}" />">	
 							</label>
 							
 							
 							
 							<label>
-							Время окончания <br>
+							${lang_template.end_time}<br>
 							<input id="datetimepicker2" type="text" name="endEvent" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${event.endEvent}" />">	
 							</label>
 								<input type="submit" value="Submit" class="button1">

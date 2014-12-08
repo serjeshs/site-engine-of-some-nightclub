@@ -2,7 +2,6 @@ package by.havefun.controller;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import by.havefun.GlobalSettings;
 import by.havefun.entity.Event;
@@ -82,7 +80,7 @@ public class EventController extends AbstractController {
             MultipartFile multipartFile = multipartRequest.getFile("photo");
             String imageUri = null;
             if (!multipartFile.isEmpty()) {
-                imageUri = FileController.getRelativePath(localFile.fileAdd(multipartFile, principal.getName()));;
+                imageUri = localFile.fileAdd(multipartFile, principal.getName());
             }
             Event event = eventDao.addEvent(id, name, description, startEventTime, endEventTime, cost, costText, Place_id, imageUri, principal.getName());
 			model.addAttribute("event", event );

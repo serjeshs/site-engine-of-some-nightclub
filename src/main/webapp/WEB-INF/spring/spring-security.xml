@@ -9,6 +9,7 @@
 
         <intercept-url pattern="/like/**" access="hasAnyRole('ADMIN','MANAGER','USER')" />
         <intercept-url pattern="/my/**" access="hasAnyRole('ADMIN','MANAGER','USER')" />
+        <intercept-url pattern="/profile" access="hasAnyRole('ADMIN','MANAGER','USER')" />
 
         <form-login login-page="/login" authentication-failure-url="/loginerror" default-target-url="/"/>
         <logout logout-url="/logout" logout-success-url="/login" invalidate-session="true" delete-cookies="true"/>

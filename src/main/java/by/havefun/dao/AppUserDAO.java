@@ -14,6 +14,7 @@ import by.havefun.entity.AppUser;
 import by.havefun.entity.Region;
 import by.havefun.exception.RegistrationException;
 import by.havefun.security.KeccakUtil;
+import by.havefun.service.lang.LanguageService;
 import by.havefun.utils.email.EmailManager;
 
 @Service
@@ -122,7 +123,7 @@ public class AppUserDAO extends BaseDAO {
 
     }
 
-    public AppUser updateProfile(String oldEmail, String email, String fathername, String firstname, String nick, String photoURI, String surname) throws RegistrationException {
+    public AppUser updateProfile(String oldEmail, String email, String fathername, String firstname, String nick, String photoURI, String surname, Integer lang) throws RegistrationException {
         AppUser appUser = getAppUserFromEmail(oldEmail);
         AppUser appUser2 = getAppUserFromEmail(email);
         if (appUser2 != null) {
@@ -164,6 +165,14 @@ public class AppUserDAO extends BaseDAO {
         } else
             if (appUser.getPhotoURI() == null) {
                 appUser.setPhotoURI("images/Imageevent.jpg");
+            }
+
+        
+        if (lang != null) {
+            appUser.setLang(lang);
+        } else
+            if (appUser.getLang() < 1) {
+                appUser.setLang(LanguageService.LANG_BEL);
             }
 
         appUser.setSurname(surname);

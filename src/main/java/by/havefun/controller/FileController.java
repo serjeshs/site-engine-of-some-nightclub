@@ -27,7 +27,7 @@ public class FileController extends AbstractController {
     @RequestMapping(value = "api/file/add")
     public @ResponseBody String fileAdd(MultipartFile file, HttpServletRequest request, Principal principal) throws IOException,
             URISyntaxException {
-        return getRelativePath(localFile.fileAdd(file, principal.getName()));
+        return  "api/file/get/" + localFile.fileAdd(file, principal.getName(),true);
     }
 
     @RequestMapping(value = "api/file/get/*", method = {
@@ -73,8 +73,4 @@ public class FileController extends AbstractController {
 
     }
     
-    public static String getRelativePath(String filehash) {
-        return "/api/file/get/" + filehash;
-    }
-
 }

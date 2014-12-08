@@ -15,6 +15,7 @@ import by.havefun.dao.AppUserLikeEventDAO;
 import by.havefun.dao.EventDAO;
 import by.havefun.dao.PlaceDAO;
 import by.havefun.dao.RegionDAO;
+import by.havefun.service.lang.LanguageService;
 import by.havefun.utils.file.LocalFile;
 import by.havefun.utils.view.MenuItems;
 
@@ -42,15 +43,17 @@ public abstract class AbstractController {
 	
 
 	protected void setRequiedName(Model model, Principal principal, String title) {
-		try {
-			by.havefun.entity.AppUser appUser = appUserDao.getAppUserFromEmail(principal.getName());
-			model.addAttribute("user", true);
-			model.addAttribute("guest", false);
-			model.addAttribute("appUserName", appUser.getNick());
-		} catch (NullPointerException exception) {
-			model.addAttribute("guest", true);
-			model.addAttribute("user", false);
-		}
+	    if (principal != null) {
+	        by.havefun.entity.AppUser appUser = appUserDao.getAppUserFromEmail(principal.getName());
+            model.addAttribute("user", true);
+            model.addAttribute("guest", false);
+            model.addAttribute("appUserName", appUser.getNick());
+            model.addAttribute("lang_template", LanguageService.getLangMap(appUser.getLang()));
+	    }  else {
+	        model.addAttribute("guest", true);
+            model.addAttribute("user", false);
+            model.addAttribute("lang_template", LanguageService.getLangMap(LanguageService.LANG_BEL));
+	    }
 		
 		List<MenuItems> menuItems = new LinkedList<MenuItems>();
 		menuItems.add(new MenuItems("", "Главная"));

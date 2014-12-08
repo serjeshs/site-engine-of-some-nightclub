@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="springtags" %>
 <%@ page session="false"%>
 	<div id="content">
 		<div class="inner">
@@ -34,7 +35,7 @@
 									
 									<a href="event/<c:out	value="${event.id}" />" class="link">
 										
-										<img src="/<c:out value="${appName}" /><c:out value="${event.imageUri}" />" height="200" alt="">
+										<img src="<c:out value="${event.imageUri}" />" height="200" alt="">
 											
 										
 										<br><br>

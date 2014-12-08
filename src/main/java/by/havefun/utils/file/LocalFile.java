@@ -29,11 +29,21 @@ public class LocalFile {
     BaseDAO baseDAO;
 
     public String fileAdd(MultipartFile file, String email) {
+        return fileAdd(file, email, false);
+    }
+    
+    public String fileAdd(MultipartFile file, String email,boolean hash) {
         
 
         long fileDiskName = new GregorianCalendar().getTimeInMillis();
         String fileOriginName = file.getOriginalFilename();
+        
+        int fileOriginNameLength = fileOriginName.length();
+        if (fileOriginNameLength  > 40) {
+            fileOriginName = fileOriginName.substring(fileOriginNameLength - 39, fileOriginNameLength);
+        }
 
+        
         LocalDateTime a = LocalDateTime.now();
         String folderFiles = GlobalSettings.folderFiles
                 + GlobalSettings.fileSeparator
@@ -43,8 +53,14 @@ public class LocalFile {
                 + GlobalSettings.fileSeparator
                 + a.getDayOfMonth()
                 + GlobalSettings.fileSeparator;
-
+        
         String fileDiskPath = folderFiles + fileDiskName;
+        
+        if (fileOriginNameLength > 3) {
+                fileDiskPath += fileOriginName;
+        }
+
+        
 
         if (!file.isEmpty()) {
             try {
@@ -74,7 +90,9 @@ public class LocalFile {
         hashcode += fileOriginName.substring(fileOriginName.length() - 4, fileOriginName.length()).toLowerCase();
         fileTable.setHashcode(hashcode);
         baseDAO.saveOrUpdate(fileTable);
-        return hashcode;
+        //return hashcode;
+        String returnValue = fileDiskPath.substring(GlobalSettings.folderFiles.length()-7);
+        return returnValue;
     }
 
     public FileTable getFile(String filehash) {
