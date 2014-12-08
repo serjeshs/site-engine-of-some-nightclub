@@ -166,7 +166,6 @@ public class AppUserDAO extends BaseDAO {
             if (appUser.getPhotoURI() == null) {
                 appUser.setPhotoURI("images/Imageevent.jpg");
             }
-
         
         if (lang != null) {
             appUser.setLang(lang);
