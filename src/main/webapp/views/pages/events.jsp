@@ -35,7 +35,7 @@
 									
 									<a href="event/<c:out	value="${event.id}" />" class="link">
 										
-										<img src="/<c:out value="${appName}" /><c:out value="${event.imageUri}" />" height="200" alt="">
+										<img src="<c:out value="${event.imageUri}" />" height="200" alt="">
 											
 										
 										<br><br>

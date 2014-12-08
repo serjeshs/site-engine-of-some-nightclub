@@ -17,7 +17,7 @@
 							</h2>
 							<div class="wrapper">
 								<figure class="img-indent">
-								<div align="center" ><img src="/<c:out value="${appName}" /><c:out value="${event.imageUri}" />" height="400" alt=""></div>
+								<div align="center" ><img src="<c:out value="${event.imageUri}" />" height="400" alt=""></div>
 								</figure>
 								
 							</div>

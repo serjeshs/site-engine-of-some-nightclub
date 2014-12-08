@@ -148,7 +148,7 @@ public class UserController extends AbstractController {
             MultipartFile multipartFile = multipartRequest.getFile("photo");
             String imageUri = null;
             if (!multipartFile.isEmpty()) {
-                imageUri = FileController.getRelativePath(localFile.fileAdd(multipartFile, principal.getName()));;
+                imageUri = localFile.fileAdd(multipartFile, principal.getName());
             }
 		setRequiedName(model, principal, "Личный кабинет пользователя");
 		String resultMessage;

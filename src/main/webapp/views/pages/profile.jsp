@@ -16,7 +16,7 @@
 					<h3>
 						<font color="red">${result}</font>
 					</h3>
-					<img alt="" src="/<c:out value="${appName}" />${appUser.photoURI}"
+					<img alt="" src="${appUser.photoURI}"
 						height="150">
 					<form method="POST" action="saveprofileupdate" id="contact-form"
 						enctype="multipart/form-data">
