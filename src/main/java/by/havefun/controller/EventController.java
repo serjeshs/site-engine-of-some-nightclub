@@ -21,29 +21,26 @@ import by.havefun.entity.Event;
 
 @Controller
 public class EventController extends AbstractController {
-
-    /**
-     * Main Page. List events.
+	
+	/***************************GETTERS***************************************/
+	
+	/**
+     * List of upcoming events
      * 
      * @param model
      * @param principal
-     * @param regionId 
-     * @param placeId 
-     * @return Main page
+     * @return
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-    public String get(Model model, Principal principal, String dateTime, Integer regionId, Integer placeId) {
-    	List<Event> events = eventDao.getEventsAfter(dateTime, regionId, placeId);
+    @RequestMapping(value = "events", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public String getevents(Model model, Principal principal, String dateTime, Integer regionId, Integer placeId) {
+        List<Event> events = eventDao.getEventsAfter(dateTime, regionId, placeId);
         model.addAttribute("events", events);
-        setRequiedName(model, principal, "Главная страница");
+        setRequiedName(model, principal, "Все ближайшие события");
         return "events";
     }
     
-    @RequestMapping(value = "/json")
-    public @ResponseBody List<Event>  getEventsJson(Model model, Principal principal, String dateTime, Integer regionId, Integer placeId) {
-        return eventDao.getEventsAfter(dateTime, regionId, placeId);
-    }
-    
+	/***********************END*GETTERS***************************************/
+        
     
     /**
      * Add (id = 0) or edit (id !=0) action event.
@@ -138,20 +135,6 @@ public class EventController extends AbstractController {
             return "result";
         }
     }
-
-    /**
-     * List of upcoming events
-     * 
-     * @param model
-     * @param principal
-     * @return
-     */
-    @RequestMapping(value = "events", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-    public String getevents(Model model, Principal principal) {
-        model.addAttribute("events", eventDao.getEventsAfter(LocalDateTime.now()));
-        setRequiedName(model, principal, "Все ближайшие события");
-        return "events";
-    }
     
     @Transactional
     @RequestMapping(value = "my/events", method = RequestMethod.GET)
@@ -208,9 +191,22 @@ public class EventController extends AbstractController {
         return "eventList";
     }
     
+    
+    /**********************************
+     * JSON API
+     **********************************/
+    
+
+    @RequestMapping(value = "/json")
+    public @ResponseBody List<Event>  getEventsJson(Model model, Principal principal, String dateTime, Integer regionId, Integer placeId) {
+        return eventDao.getEventsAfter(dateTime, regionId, placeId);
+    }
+    
     @RequestMapping(value = "event/list/json")
     public @ResponseBody List<Event> geteventListJSON(Principal principal, String date, Integer regionId, Integer placeId) {
         LocalDateTime dateTime = LocalDateTime.parse(date, GlobalSettings.formatter);
            return eventDao.getEventsAfter(dateTime,regionId,placeId);
     }
+    
+    
 }
