@@ -11,20 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import by.havefun.entity.Event;
 
 @Controller
+@RequestMapping(value = "p")
 public class PagesController extends AbstractController {
 
-	/**
-     * Main Page. List events.
-     * 
-     * @param model
-     * @param principal
-     * @param regionId 
-     * @param placeId 
-     * @return Main page
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "main", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String get(Model model, Principal principal, String dateTime, Integer regionId, Integer placeId) {
-    	List<Event> events = eventDao.getEventsAfter(dateTime, regionId, placeId);
+        List<Event> events = eventDao.getEventsAfter(dateTime, regionId, placeId);
         model.addAttribute("events", events);
         setRequiedName(model, principal, "Главная страница");
         return "events";

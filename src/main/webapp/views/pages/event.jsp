@@ -25,7 +25,7 @@
 							Старт : <c:out value="${event.startEvent}" /> <br>
 							Конец : <c:out value="${event.endEvent}" /> <br>   
 							COST : <c:out value="${event.cost}" /> <br> 
-							<c:out value="${event.costText}" /> <br> 
+							<c:out value="${event.costText}" escapeXml="false"/> <br> 
 							Где : <c:out value="${event.place_Name}" /> <br>
 							<c:out value="${event.region_Name}" /> <br>
 							
