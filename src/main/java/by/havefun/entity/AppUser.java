@@ -23,296 +23,299 @@ import by.havefun.security.KeccakUtil;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 /**
  * The persistent class for the AppUser database table.
  * 
  */
 @Entity
-@NamedQuery(name="AppUser.findAll", query="SELECT a FROM AppUser a")
+@NamedQuery(name = "AppUser.findAll", query = "SELECT a FROM AppUser a")
 public class AppUser implements Serializable {
-	
-	private static final long serialVersionUID = 32L;
-	
-	public static final String ADMIN = "ADMIN";
-	public static final String MANAGER = "MANAGER";
-	public static final String USER = "USER";	
-	public static final String BAN = "BAN";
-	public static final String NOCONFIRM = "NOCONFIRM";
-	public static final String GUEST = "GUEST";
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+    private static final long serialVersionUID = 32L;
 
-	private Timestamp birthday;
+    public static final String ADMIN = "ADMIN";
+    public static final String MANAGER = "MANAGER";
+    public static final String USER = "USER";
+    public static final String BAN = "BAN";
+    public static final String NOCONFIRM = "NOCONFIRM";
+    public static final String GUEST = "GUEST";
 
-	public static final String COL_EMAIL = "email";
-	private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	private String fathername;
+    private Timestamp birthday;
 
-	private String firstname;
+    public static final String COL_EMAIL = "email";
+    private String email;
 
-	public static final String COL_NICK = "nick";
-	private String nick;
+    private String fathername;
 
-	@JsonIgnore
-	private String password;
+    private String firstname;
 
-	@Lob
-	private String photoURI;
+    public static final String COL_NICK = "nick";
+    private String nick;
 
-	@Column(name="Region_Name")
-	private String region_Name;
+    @JsonIgnore
+    private String password;
 
-	private String role;
+    @Lob
+    private String photoURI;
 
-	private String surname;
+    @Column(name = "Region_Name")
+    private String region_Name;
 
-	private int vkId;
+    private String role;
 
-	private String vkTocken;
-	
-	private int lang;
+    private String surname;
 
+    private int vkId;
 
-	@JsonIgnore
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="Default_Region_id")
-	private Region region;
+    private String vkTocken;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="appUser")
-	private List<Event> events;
+    private int lang;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="appUser")
-	private List<FileTable> fileTables;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Default_Region_id")
+    private Region region;
 
-	@JsonIgnore
-	@ManyToMany(mappedBy="appUsers")
-	private List<Place> places;
-	
-	@OneToMany(mappedBy="appuser")
-        private List<AppUserLikeEvent> appuserLikeEvents;
+    @JsonIgnore
+    @OneToMany(mappedBy = "appUser")
+    private List<Event> events;
 
-	public AppUser() {
-	}
+    @JsonIgnore
+    @OneToMany(mappedBy = "appUser")
+    private List<FileTable> fileTables;
 
-	public int getId() {
-		return this.id;
-	}
+    @JsonIgnore
+    @ManyToMany(mappedBy = "appUsers")
+    private List<Place> places;
 
-	public AppUser setId(int id) {
-		this.id = id;
-		return this;
-	}
+    @OneToMany(mappedBy = "appuser")
+    private List<AppUserLikeEvent> appuserLikeEvents;
 
-	public LocalDateTime getBirthday() {
-		return this.birthday.toLocalDateTime();
-	}
+    // bi-directional many-to-one association to Blog
+    @OneToMany(mappedBy = "appUser")
+    private List<Blog> blogs;
 
-	public void setBirthday(LocalDateTime birthday) {
-		this.birthday = Timestamp.valueOf(birthday);
-	}
+    // bi-directional many-to-one association to Page
+    @OneToMany(mappedBy = "appUser")
+    private List<Page> pages;
 
-	public String getEmail() {
-		return this.email;
-	}
+    public AppUser() {
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public String getFathername() {
-		return this.fathername;
-	}
+    public AppUser setId(int id) {
+        this.id = id;
+        return this;
+    }
 
-	public void setFathername(String fathername) {
-		this.fathername = fathername;
-	}
+    public LocalDateTime getBirthday() {
+        return this.birthday.toLocalDateTime();
+    }
 
-	public String getFirstname() {
-		return this.firstname;
-	}
+    public void setBirthday(LocalDateTime birthday) {
+        this.birthday = Timestamp.valueOf(birthday);
+    }
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+    public String getEmail() {
+        return this.email;
+    }
 
-	public String getNick() {
-		return this.nick;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
+    public String getFathername() {
+        return this.fathername;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public void setFathername(String fathername) {
+        this.fathername = fathername;
+    }
 
-	public void setPassword(String password) {
-		this.password = KeccakUtil.getHash(password);
-	}
+    public String getFirstname() {
+        return this.firstname;
+    }
 
-	public String getPhotoURI() {
-		return this.photoURI;
-	}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-	public void setPhotoURI(String photoURI) {
-		this.photoURI = photoURI;
-	}
+    public String getNick() {
+        return this.nick;
+    }
 
-	public String getRegion_Name() {
-		return this.region_Name;
-	}
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
 
-	public void setRegion_Name(String region_Name) {
-		this.region_Name = region_Name;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public String getRole() {
-		return this.role;
-	}
+    public void setPassword(String password) {
+        this.password = KeccakUtil.getHash(password);
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public String getPhotoURI() {
+        return this.photoURI;
+    }
 
-	public String getSurname() {
-		return this.surname;
-	}
+    public void setPhotoURI(String photoURI) {
+        this.photoURI = photoURI;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public String getRegion_Name() {
+        return this.region_Name;
+    }
 
-	public int getVkId() {
-		return this.vkId;
-	}
+    public void setRegion_Name(String region_Name) {
+        this.region_Name = region_Name;
+    }
 
-	public void setVkId(int vkId) {
-		this.vkId = vkId;
-	}
+    public String getRole() {
+        return this.role;
+    }
 
-	public String getVkTocken() {
-		return this.vkTocken;
-	}
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-	public void setVkTocken(String vkTocken) {
-		this.vkTocken = vkTocken;
-	}
+    public String getSurname() {
+        return this.surname;
+    }
 
-	public Region getRegion() {
-		return this.region;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public void setRegion(Region region) {
-		this.region = region;
-	}
+    public int getVkId() {
+        return this.vkId;
+    }
 
-	public List<Event> getEvents() {
-		return this.events;
-	}
+    public void setVkId(int vkId) {
+        this.vkId = vkId;
+    }
 
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
+    public String getVkTocken() {
+        return this.vkTocken;
+    }
 
-	public Event addEvent(Event event) {
-		getEvents().add(event);
-		event.setAppUser(this);
+    public void setVkTocken(String vkTocken) {
+        this.vkTocken = vkTocken;
+    }
 
-		return event;
-	}
+    public Region getRegion() {
+        return this.region;
+    }
 
-	public Event removeEvent(Event event) {
-		getEvents().remove(event);
-		event.setAppUser(null);
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 
-		return event;
-	}
+    public List<Event> getEvents() {
+        return this.events;
+    }
 
-	public List<FileTable> getFileTables() {
-		return this.fileTables;
-	}
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
 
-	public void setFileTables(List<FileTable> fileTables) {
-		this.fileTables = fileTables;
-	}
+    public Event addEvent(Event event) {
+        getEvents().add(event);
+        event.setAppUser(this);
 
-	public FileTable addFileTable(FileTable fileTable) {
-		getFileTables().add(fileTable);
-		fileTable.setAppUser(this);
+        return event;
+    }
 
-		return fileTable;
-	}
+    public Event removeEvent(Event event) {
+        getEvents().remove(event);
+        event.setAppUser(null);
 
-	public FileTable removeFileTable(FileTable fileTable) {
-		getFileTables().remove(fileTable);
-		fileTable.setAppUser(null);
+        return event;
+    }
 
-		return fileTable;
-	}
+    public List<FileTable> getFileTables() {
+        return this.fileTables;
+    }
 
-	public List<Place> getPlaces() {
-		if (this.places == null) {
-			return new LinkedList<Place>();
-		} else {
-			return this.places;
-		}
-		
-	}
+    public void setFileTables(List<FileTable> fileTables) {
+        this.fileTables = fileTables;
+    }
 
-	public void setPlaces(List<Place> places) {
-		this.places = places;
-	}
-	
+    public FileTable addFileTable(FileTable fileTable) {
+        getFileTables().add(fileTable);
+        fileTable.setAppUser(this);
 
-        public List<AppUserLikeEvent> getAppuserLikeEvents() {
-                return this.appuserLikeEvents;
+        return fileTable;
+    }
+
+    public FileTable removeFileTable(FileTable fileTable) {
+        getFileTables().remove(fileTable);
+        fileTable.setAppUser(null);
+
+        return fileTable;
+    }
+
+    public List<Place> getPlaces() {
+        if (this.places == null) {
+            return new LinkedList<Place>();
+        } else {
+            return this.places;
         }
 
-        public void setAppuserLikeEvents(List<AppUserLikeEvent> appuserLikeEvents) {
-                this.appuserLikeEvents = appuserLikeEvents;
-        }
+    }
 
-        public AppUserLikeEvent addAppuserLikeEvent(AppUserLikeEvent appuserLikeEvent) {
-                getAppuserLikeEvents().add(appuserLikeEvent);
-                appuserLikeEvent.setAppuser(this);
+    public void setPlaces(List<Place> places) {
+        this.places = places;
+    }
 
-                return appuserLikeEvent;
-        }
+    public List<AppUserLikeEvent> getAppuserLikeEvents() {
+        return this.appuserLikeEvents;
+    }
 
-        public AppUserLikeEvent removeAppuserLikeEvent(AppUserLikeEvent appuserLikeEvent) {
-                getAppuserLikeEvents().remove(appuserLikeEvent);
-                appuserLikeEvent.setAppuser(null);
+    public void setAppuserLikeEvents(List<AppUserLikeEvent> appuserLikeEvents) {
+        this.appuserLikeEvents = appuserLikeEvents;
+    }
 
-                return appuserLikeEvent;
-        }
-	
-	public AppUser(LocalDateTime birthday, String email, String fathername,
-			String firstname, String nick, String password, String photoURI,
-			String region_Name, String role, String surname, int vkId,
-			String vkTocken, Region region) {
-		super();
-		this.birthday = Timestamp.valueOf(birthday);
-		this.email = email;
-		this.fathername = fathername;
-		this.firstname = firstname;
-		this.nick = nick;
-		//this.password = password;
-		setPassword(password);
-		this.photoURI = photoURI;
-		this.region_Name = region_Name;
-		this.role = role;
-		this.surname = surname;
-		this.vkId = vkId;
-		this.vkTocken = vkTocken;
-		this.region = region;
-	}
+    public AppUserLikeEvent addAppuserLikeEvent(AppUserLikeEvent appuserLikeEvent) {
+        getAppuserLikeEvents().add(appuserLikeEvent);
+        appuserLikeEvent.setAppuser(this);
+
+        return appuserLikeEvent;
+    }
+
+    public AppUserLikeEvent removeAppuserLikeEvent(AppUserLikeEvent appuserLikeEvent) {
+        getAppuserLikeEvents().remove(appuserLikeEvent);
+        appuserLikeEvent.setAppuser(null);
+
+        return appuserLikeEvent;
+    }
+
+    public AppUser(LocalDateTime birthday, String email, String fathername, String firstname, String nick, String password, String photoURI,
+            String region_Name, String role, String surname, int vkId, String vkTocken, Region region) {
+        super();
+        this.birthday = Timestamp.valueOf(birthday);
+        this.email = email;
+        this.fathername = fathername;
+        this.firstname = firstname;
+        this.nick = nick;
+        // this.password = password;
+        setPassword(password);
+        this.photoURI = photoURI;
+        this.region_Name = region_Name;
+        this.role = role;
+        this.surname = surname;
+        this.vkId = vkId;
+        this.vkTocken = vkTocken;
+        this.region = region;
+    }
 
     public int getLang() {
         return lang;
@@ -322,6 +325,48 @@ public class AppUser implements Serializable {
         this.lang = lang;
     }
 
+    public List<Blog> getBlogs() {
+        return this.blogs;
+    }
 
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
+    }
+
+    public Blog addBlog(Blog blog) {
+        getBlogs().add(blog);
+        blog.setAppUser(this);
+
+        return blog;
+    }
+
+    public Blog removeBlog(Blog blog) {
+        getBlogs().remove(blog);
+        blog.setAppUser(null);
+
+        return blog;
+    }
+
+    public List<Page> getPages() {
+        return this.pages;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
+
+    public Page addPage(Page page) {
+        getPages().add(page);
+        page.setAppUser(this);
+
+        return page;
+    }
+
+    public Page removePage(Page page) {
+        getPages().remove(page);
+        page.setAppUser(null);
+
+        return page;
+    }
 
 }
