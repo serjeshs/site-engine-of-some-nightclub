@@ -109,11 +109,16 @@ public class EventDAO extends BaseDAO {
 	
 	public List<Event> getEventsAfter(String dateTime, Integer regionId, Integer placeId) {
         LocalDateTime eventTime = null;
-        try {
-        	eventTime = LocalDateTime.parse(dateTime,GlobalSettings.formatter);
-        } catch (Exception ex) {
-        	eventTime = LocalDateTime.now();
+        if (dateTime != null) {
+            try {
+                eventTime = LocalDateTime.parse(dateTime,GlobalSettings.formatter);
+            } catch (Exception ex) {
+                eventTime = LocalDateTime.now();
+            }
+        } else {
+            eventTime = LocalDateTime.now();
         }
+        
     	return getEventsAfter(eventTime, regionId, placeId);
 	}
 	

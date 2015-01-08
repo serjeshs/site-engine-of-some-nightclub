@@ -54,6 +54,18 @@
     <put-attribute name="body" value="/views/pages/eventList.jsp" />
   </definition>
   
+  <definition name="page" extends="defaultPageTemplate">
+    <put-attribute name="body" value="/views/pages/page.jsp" />
+  </definition>
+  
+  <definition name="pageEdit" extends="defaultPageTemplate">
+    <put-attribute name="body" value="/views/pages/pageEdit.jsp" />
+  </definition>
+  
+  
+  
+  
+  
   <definition name="WelcomePage" template="/WelcomePage.jsp">
     <put-attribute name="headScripts" value="/views/elements/head.jsp" />
     <put-attribute name="header" value="/views/elements/header.jsp" />

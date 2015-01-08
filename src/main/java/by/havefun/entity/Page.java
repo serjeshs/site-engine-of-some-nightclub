@@ -1,8 +1,11 @@
 package by.havefun.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 /**
@@ -13,8 +16,10 @@ import java.sql.Timestamp;
 @Table(name="page")
 @NamedQuery(name="Page.findAll", query="SELECT p FROM Page p")
 public class Page implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+    
+	private static final long serialVersionUID = 439L;
+	public static final String COL_URI = "uriName";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -28,6 +33,7 @@ public class Page implements Serializable {
 
 	private String title;
 
+	
 	private String uriName;
 
 	//bi-directional many-to-one association to AppUser
@@ -46,20 +52,20 @@ public class Page implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getCreated() {
-		return this.created;
+	public LocalDateTime getCreated() {
+		return this.created.toLocalDateTime();
 	}
 
-	public void setCreated(Timestamp created) {
-		this.created = created;
+	public void setCreated(LocalDateTime created) {
+		this.created = Timestamp.valueOf(created);
 	}
 
-	public Timestamp getModifed() {
-		return this.modifed;
+	public LocalDateTime getModifed() {
+		return this.modifed.toLocalDateTime();
 	}
 
-	public void setModifed(Timestamp modifed) {
-		this.modifed = modifed;
+	public void setModifed(LocalDateTime modifed) {
+		this.modifed = Timestamp.valueOf(modifed);
 	}
 
 	public String getText() {

@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RedirectController extends AbstractController {
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String mainPage() {
-        return "redirect:/p/main";
+    public String mainPage1() {
+        return "redirect:/p/";
+    }
+    
+    @RequestMapping(value = "/p", method = RequestMethod.GET)
+    public String mainPage2() {
+        return "redirect:/p/";
     }
     
     @RequestMapping(value = "blog", method = RequestMethod.GET)
