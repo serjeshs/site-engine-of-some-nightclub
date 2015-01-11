@@ -69,4 +69,9 @@ public abstract class AbstractController {
 		model.addAttribute("title", title);
 		model.addAttribute("appName", "afisha");
 	}
+	
+	protected String get404(Model model,Principal principal) {
+        setRequiedName(model, principal, "404");
+        return "404";
+    }
 }

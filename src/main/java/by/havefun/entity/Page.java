@@ -48,8 +48,9 @@ public class Page implements Serializable {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public Page setId(int id) {
 		this.id = id;
+		return this;
 	}
 
 	public LocalDateTime getCreated() {

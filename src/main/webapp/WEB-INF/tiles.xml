@@ -63,6 +63,10 @@
   </definition>
   
   
+  <definition name="404" extends="defaultPageTemplate">
+    <put-attribute name="body" value="/views/pages/404.jsp" />
+  </definition>
+  
   
   
   

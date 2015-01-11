@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import by.havefun.dao.PageDAO;
+import by.havefun.entity.AppUser;
 import by.havefun.entity.Event;
 import by.havefun.entity.Page;
 
@@ -42,7 +43,7 @@ public class PagesController extends AbstractController {
         Page page = pageDAO.get(pageURL);
 
         if (page == null) {
-            return "404";
+            return get404(model, principal);
         }
         setRequiedName(model, principal, page.getTitle());
         model.addAttribute("page", page);
@@ -54,7 +55,16 @@ public class PagesController extends AbstractController {
         Page page = pageDAO.get(pageURL);
 
         if (page == null) {
-            return "404";
+            switch (appUserDao.getAppUserFromEmail(principal.getName()).getRole()) {
+            case AppUser.ADMIN:
+            case AppUser.MANAGER:
+                page = new Page();
+                page.setId(0);
+                page.setUriName(pageURL);
+                break;
+            default:
+                return get404(model, principal);
+            }
         }
         setRequiedName(model, principal, page.getTitle());
         model.addAttribute("page", page);
@@ -68,12 +78,12 @@ public class PagesController extends AbstractController {
             String title,
             String uriName) {
         if (principal == null) {
-            return "login";
-        }
+            return get404(model, principal);
+        } 
         Page page = pageDAO.update(id,title,text,uriName,principal.getName());
 
         if (page == null) {
-            return "404";
+            return get404(model, principal);
         }
         setRequiedName(model, principal, page.getTitle());
         model.addAttribute("page", page);

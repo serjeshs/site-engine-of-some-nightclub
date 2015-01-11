@@ -23,7 +23,12 @@ public class PageDAO extends BaseDAO {
 
     public Page update(int id, String title, String text, String uriName, String userEmail) {
         AppUser user = appUserDAO.getAppUserFromEmail(userEmail);
-        Page page = getEntity(Page.class, id);
+        Page page;
+        if (id < 1) {
+            page = new Page();
+        } else {
+            page = getEntity(Page.class, id);
+        }
         page.setAppUser(user);
         page.setModifed(LocalDateTime.now());
         page.setTitle(title);
