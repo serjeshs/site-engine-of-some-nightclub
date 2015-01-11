@@ -44,7 +44,7 @@
 										
 										COST : <c:out value="${event.cost}" /> <br> 
 										<p>
-											<a href="event/<c:out	value="${event.id}" />" class="button">Читать
+											<a href="/<c:out value="${appName}" />/event/<c:out	value="${event.id}" />" class="button">Читать
 												далее</a>
 										</p>
 									</div>
