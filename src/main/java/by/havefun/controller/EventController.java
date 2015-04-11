@@ -83,7 +83,7 @@ public class EventController extends AbstractController {
 			model.addAttribute("event", event );
             setRequiedName(model, principal, name);
             model.addAttribute("canEdit", true);
-            return "redirect:/event/" + event.getId();
+            return simpleRedirect("event/" + event.getId(),model);
         } else {
             setRequiedName(model, principal, "Доступ запрещён");
             model.addAttribute("result", "Вам не разрешено выполнять данное действие");
@@ -180,7 +180,7 @@ public class EventController extends AbstractController {
         } else {
             appUserLikeEventDAO.addLike(principal.getName(), eventId, likeID);
         }
-        return "redirect:/event/" + eventId;
+        return simpleRedirect("event/" + eventId,model);
     }
     
     

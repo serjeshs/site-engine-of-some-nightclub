@@ -78,6 +78,9 @@
     <put-attribute name="footer" value="/views/elements/footer.jsp" />
     <put-attribute name="footer2" value="" />
   </definition>
+
+  <definition name="simpleredirect" template="/simpleredirect.jsp">
+  </definition>
   
   
 </tiles-definitions>

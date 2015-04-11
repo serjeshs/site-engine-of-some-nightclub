@@ -20,6 +20,8 @@ import by.havefun.utils.file.LocalFile;
 import by.havefun.utils.view.MenuItems;
 
 public abstract class AbstractController {
+
+	private String APP_NAME = "afisha";
 	
 	@Autowired
 	EventDAO eventDao;
@@ -67,11 +69,31 @@ public abstract class AbstractController {
 		
 		model.addAttribute("timeNow", LocalDateTime.now().toString());
 		model.addAttribute("title", title);
-		model.addAttribute("appName", "afisha");
+		model.addAttribute("appName", APP_NAME);
 	}
 	
 	protected String get404(Model model,Principal principal) {
         setRequiedName(model, principal, "404");
         return "404";
     }
+
+//
+//	protected String simpleRedirect(String url ) {
+//		return "<!DOCTYPE HTML>"
+//				+ "<html>"
+//				+ "<head>"
+//				+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>"
+//				+ "<META HTTP-EQUIV=\"REFRESH\" CONTENT=\"0;URL=/" + APP_NAME + "/" + url +"\">"
+//				+ "<title></title>"
+//				+ "</head>"
+//				+ "<body></body></html>";
+//	}
+
+	protected String simpleRedirect(String url, Model model ) {
+		model.addAttribute("regirect",url);
+		return "simpleredirect";
+	}
+
+
+
 }
