@@ -31,11 +31,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Event implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private int cost;
+	public static final String COL_COST = "cost";
 
 	@Lob
 	private String costText;

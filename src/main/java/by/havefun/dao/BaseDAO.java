@@ -1,9 +1,6 @@
 package by.havefun.dao;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import by.havefun.GlobalSettings;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -15,6 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @Transactional
@@ -188,6 +190,20 @@ public class BaseDAO {
                 logger.warn("SIZE > 1" + Arrays.toString(listEntity.toArray()));
                 return listEntity.get(0);
         }
+    }
+
+    protected LocalDateTime convert(String dateTime) {
+        LocalDateTime eventTime = null;
+        if (dateTime != null) {
+            try {
+                eventTime = LocalDateTime.parse(dateTime, GlobalSettings.formatter);
+            } catch (Exception ex) {
+                eventTime = LocalDateTime.now();
+            }
+        } else {
+            eventTime = LocalDateTime.now();
+        }
+        return eventTime;
     }
 
 

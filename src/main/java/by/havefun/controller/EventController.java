@@ -1,11 +1,8 @@
 package by.havefun.controller;
 
-import java.security.Principal;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import by.havefun.GlobalSettings;
+import by.havefun.entity.AppUser;
+import by.havefun.entity.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -16,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import by.havefun.GlobalSettings;
-import by.havefun.entity.Event;
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 public class EventController extends AbstractController {
@@ -31,11 +30,26 @@ public class EventController extends AbstractController {
      * @param principal
      * @return
      */
-    @RequestMapping(value = "events", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-    public String getevents(Model model, Principal principal, String dateTime, Integer regionId, Integer placeId) {
-        List<Event> events = eventDao.getEventsAfter(dateTime, regionId, placeId);
+    @Transactional
+    @RequestMapping(value = "events", produces = "text/plain;charset=UTF-8")
+    public String getEvents(Model model, Principal principal, String startSearchEvent,String endSearchEvent, boolean free, Integer regionId, Integer placeId) {
+        List<Event> events = eventDao.getEventsBetween(startSearchEvent, endSearchEvent, free, regionId, placeId);
         model.addAttribute("events", events);
-        setRequiedName(model, principal, "Все ближайшие события");
+        AppUser u = setRequiedName(model, principal, "Все ближайшие события");
+        if (startSearchEvent == null) {
+            startSearchEvent = GlobalSettings.formatter.format(LocalDateTime.now());
+        }
+        if (endSearchEvent == null) {
+            endSearchEvent = GlobalSettings.formatter.format(LocalDateTime.now().plusMonths(1L));
+        }
+        model.addAttribute("startSearchEvent",startSearchEvent);
+        model.addAttribute("endSearchEvent",endSearchEvent);
+        model.addAttribute("free",free);
+        if ((regionId == null) && (u!=null))  {
+            regionId = u.getRegion().getId();
+        }
+        model.addAttribute("regionId",regionId);
+        model.addAttribute("placeId",placeId);
         return "events";
     }
     

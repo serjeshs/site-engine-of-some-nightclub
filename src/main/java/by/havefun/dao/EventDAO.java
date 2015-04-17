@@ -1,8 +1,7 @@
 package by.havefun.dao;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
+import by.havefun.GlobalSettings;
+import by.havefun.entity.*;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.Disjunction;
@@ -15,12 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.havefun.GlobalSettings;
-import by.havefun.entity.AppUser;
-import by.havefun.entity.AppUserLikeEvent;
-import by.havefun.entity.Event;
-import by.havefun.entity.Place;
-import by.havefun.entity.Region;
+import java.time.LocalDateTime;
+import java.util.List;
 @Service
 @Transactional
 public class EventDAO extends BaseDAO {
@@ -108,21 +103,13 @@ public class EventDAO extends BaseDAO {
     }
 	
 	public List<Event> getEventsAfter(String dateTime, Integer regionId, Integer placeId) {
-        LocalDateTime eventTime = null;
-        if (dateTime != null) {
-            try {
-                eventTime = LocalDateTime.parse(dateTime,GlobalSettings.formatter);
-            } catch (Exception ex) {
-                eventTime = LocalDateTime.now();
-            }
-        } else {
-            eventTime = LocalDateTime.now();
-        }
-        
-    	return getEventsAfter(eventTime, regionId, placeId);
+		LocalDateTime eventTime = convert(dateTime);
+        return getEventsAfter(eventTime, regionId, placeId);
 	}
-	
-    @SuppressWarnings("unchecked")
+
+
+
+	@SuppressWarnings("unchecked")
 	public List<Event> getEventsAfter(LocalDateTime dateTime, String email) {
         
         
@@ -164,4 +151,31 @@ public class EventDAO extends BaseDAO {
         return criteria.list();
     }
 
+	public List<Event> getEventsBetween(String startSearchEventString, String endSearchEventString, Boolean free, Integer regionId, Integer placeId) {
+		LocalDateTime startSearchEvent = convert(startSearchEventString);
+		LocalDateTime endSearchEvent = convert(endSearchEventString);
+
+		Criteria criteria = getCriteria(Event.class);
+		if (startSearchEvent != null) {
+			criteria.add(Restrictions.sqlRestriction(Event.COL_START_EVENT + " > '" + GlobalSettings.formatter.format(startSearchEvent) + "'"));
+		}
+
+		if (endSearchEvent != null) {
+			criteria.add(Restrictions.sqlRestriction(Event.COL_END_EVENT + " < '" + GlobalSettings.formatter.format(endSearchEvent) + "'"));
+		}
+
+		if (free) {
+			criteria.add(Restrictions.eq(Event.COL_COST, 0));
+		}
+
+		if (regionId != null) {
+			criteria.add(Restrictions.eq(Event.COL_REGION_ID, regionId));
+		}
+		if (placeId != null) {
+			criteria.add(Restrictions.eq(Event.COL_PLACE_ID, placeId));
+		}
+		criteria.addOrder(Order.asc(Event.COL_START_EVENT));
+		criteria.setMaxResults(100);
+		return criteria.list();
+	}
 }
