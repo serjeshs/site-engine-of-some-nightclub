@@ -33,8 +33,7 @@ public class EventController extends AbstractController {
     @Transactional
     @RequestMapping(value = "events", produces = "text/plain;charset=UTF-8")
     public String getEvents(Model model, Principal principal, String startSearchEvent,String endSearchEvent, boolean free, Integer regionId, Integer placeId) {
-        List<Event> events = eventDao.getEventsBetween(startSearchEvent, endSearchEvent, free, regionId, placeId);
-        model.addAttribute("events", events);
+
         AppUser u = setRequiedName(model, principal, "Все ближайшие события");
         if (startSearchEvent == null) {
             startSearchEvent = GlobalSettings.formatter.format(LocalDateTime.now());
@@ -42,6 +41,8 @@ public class EventController extends AbstractController {
         if (endSearchEvent == null) {
             endSearchEvent = GlobalSettings.formatter.format(LocalDateTime.now().plusMonths(1L));
         }
+        List<Event> events = eventDao.getEventsBetween(startSearchEvent, endSearchEvent, free, regionId, placeId);
+        model.addAttribute("events", events);
         model.addAttribute("startSearchEvent",startSearchEvent);
         model.addAttribute("endSearchEvent",endSearchEvent);
         model.addAttribute("free",free);

@@ -1,8 +1,9 @@
 package by.havefun.controller;
 
-import java.security.Principal;
-import java.util.List;
-
+import by.havefun.dao.PageDAO;
+import by.havefun.entity.AppUser;
+import by.havefun.entity.Event;
+import by.havefun.entity.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.havefun.dao.PageDAO;
-import by.havefun.entity.AppUser;
-import by.havefun.entity.Event;
-import by.havefun.entity.Page;
+import java.security.Principal;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "p")
@@ -32,7 +32,7 @@ public class PagesController extends AbstractController {
         setRequiedName(model, principal, page.getTitle());
         model.addAttribute("page", page);
         
-        List<Event> events = eventDao.getEventsAfter("", null, null);
+        List<Event> events = eventDao.getEventsAfter(LocalDateTime.now(), null, null);
         model.addAttribute("events", events);
         model.addAttribute("haveEvents", true);
         return "page";

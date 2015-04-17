@@ -198,10 +198,8 @@ public class BaseDAO {
             try {
                 eventTime = LocalDateTime.parse(dateTime, GlobalSettings.formatter);
             } catch (Exception ex) {
-                eventTime = LocalDateTime.now();
+                logger.error(ex.getLocalizedMessage());
             }
-        } else {
-            eventTime = LocalDateTime.now();
         }
         return eventTime;
     }
