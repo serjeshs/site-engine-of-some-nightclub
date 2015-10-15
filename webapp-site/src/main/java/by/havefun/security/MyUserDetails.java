@@ -1,8 +1,7 @@
 package by.havefun.security;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
+import by.havefun.dao.BaseDAO;
+import by.havefun.entity.AppUser;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.havefun.dao.BaseDAO;
-import by.havefun.entity.AppUser;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 @Transactional

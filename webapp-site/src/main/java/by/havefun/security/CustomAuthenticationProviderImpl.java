@@ -19,7 +19,7 @@ public class CustomAuthenticationProviderImpl  extends AbstractUserDetailsAuthen
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Autowired
+    @Autowired
     UserDetailsService userDetailsService;
 
     //~ Methods ========================================================================================================

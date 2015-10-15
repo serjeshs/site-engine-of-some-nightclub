@@ -1,21 +1,20 @@
 package by.havefun.dao;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Random;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import by.havefun.entity.AppUser;
 import by.havefun.entity.Region;
 import by.havefun.exception.RegistrationException;
 import by.havefun.security.KeccakUtil;
 import by.havefun.service.lang.LanguageService;
 import by.havefun.utils.email.EmailManager;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Random;
 
 @Service
 @Transactional

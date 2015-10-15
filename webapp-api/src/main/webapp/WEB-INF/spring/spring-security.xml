@@ -1,35 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true" use-expressions="true">
+    <beans:bean id="restAuthenticationEntryPoint" class="by.havefun.api.security.RestAuthenticationEntryPoint"/>
 
-        <!--<intercept-url pattern="/event/edit/**" access="hasAnyRole('ADMIN','MANAGER','USER')"/>-->
-        <!--<intercept-url pattern="/like/**" access="hasAnyRole('ADMIN','MANAGER','USER')" />-->
-        <intercept-url pattern="/my/**" access="hasAnyRole('ADMIN','MANAGER','USER')" />
-        <!--<intercept-url pattern="/profile" access="hasAnyRole('ADMIN','MANAGER','USER')" />-->
-		<!--<intercept-url pattern="/p/*/edit" access="hasAnyRole('ADMIN','MANAGER')" />-->
-		
-		
-        <form-login login-page="/login" authentication-failure-url="/loginerror" default-target-url="/"/>
-        <logout logout-url="/logout" logout-success-url="/login" invalidate-session="true" delete-cookies="true"/>
-        <remember-me key="eiasKey" token-validity-seconds="8640000" user-service-ref="userDetails" />
+    <http  pattern="/rest/**" entry-point-ref="restAuthenticationEntryPoint" use-expressions="true" auto-config="false" create-session="stateless" >
+        <custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER"   />
+        <intercept-url pattern="/rest/**" access="isAuthenticated()" />
+        <logout />
     </http>
 
-    <beans:bean id="userDetails" class="by.havefun.security.MyUserDetails"/>
-    <beans:bean id="customAuthenticationProvider" class="by.havefun.security.CustomAuthenticationProviderImpl" />
+    <beans:bean class="by.havefun.api.security.CustomTokenAuthenticationFilter" id="authenticationTokenProcessingFilter">
+        <beans:constructor-arg type="java.lang.String" value="/rest/**"/>
+        <beans:constructor-arg
+                type="org.springframework.security.authentication.AuthenticationManager" ref="authManager">
+        </beans:constructor-arg>
+    </beans:bean>
 
-<!--     <authentication-manager> -->
-<!--         <authentication-provider user-service-ref="userDetails" ref="customAuthenticationProvider" /> -->
-<!--     </authentication-manager> -->
+    <http auto-config="true">
+        <intercept-url pattern="/token/**" access="ROLE_USER" />
+    </http>
 
-
-    <authentication-manager>
-        <authentication-provider ref="customAuthenticationProvider" />
+    <authentication-manager alias="authManager" erase-credentials="false">
+        <authentication-provider>
+            <user-service >
+                <user name="user" password="pass" authorities="ROLE_USER" />
+            </user-service>
+        </authentication-provider>
     </authentication-manager>
-    
-  
+
 </beans:beans>

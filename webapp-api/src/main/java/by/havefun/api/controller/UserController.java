@@ -1,4 +1,4 @@
-package by.havefun.afisha.controller;
+package by.havefun.api.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-    @RequestMapping(value = "api", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "rest/api", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public @ResponseBody String profile(Model model, Principal principal) {
         return "hello from web-api";
     }
