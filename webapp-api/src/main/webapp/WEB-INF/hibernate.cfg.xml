@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="by.havefun.entity.AppUser"/>
+		<mapping class="by.havefun.entity.Category"/>
+		<mapping class="by.havefun.entity.Event"/>
+		<mapping class="by.havefun.entity.FileTable"/>
+		<mapping class="by.havefun.entity.Place"/>
+		<mapping class="by.havefun.entity.Region"/>
+		<mapping class="by.havefun.entity.AppUserLikeEvent"/>
+		<mapping class="by.havefun.entity.Page"/>
+		<mapping class="by.havefun.entity.Blog"/>
+	</session-factory>
+</hibernate-configuration>
