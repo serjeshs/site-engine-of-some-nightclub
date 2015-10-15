@@ -13,6 +13,7 @@
     <groupId>org.vurtatoo</groupId>
     <artifactId>webapp-api</artifactId>
     <version>0.1</version>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
