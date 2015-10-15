@@ -18,4 +18,9 @@ public class UserController {
     public @ResponseBody String profile(Model model, Principal principal) {
         return "hello from web-api";
     }
+
+    @RequestMapping(value = "tocken/api", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+    public @ResponseBody String tocken(Model model, Principal principal) {
+        return "hello from web-api";
+    }
 }
