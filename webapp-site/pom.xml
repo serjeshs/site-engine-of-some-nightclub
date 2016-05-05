@@ -62,7 +62,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>afisha</finalName>
     </build>
 
     <profiles>
