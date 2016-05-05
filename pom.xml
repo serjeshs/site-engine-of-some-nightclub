@@ -28,8 +28,8 @@
 
 	<modules>
 		<module>core</module>
-		<!--<module>webapp-site</module>-->
-		<module>webapp-api</module>
+		<module>webapp-site</module>
+		<!--<module>webapp-api</module>-->
 	</modules>
 
 

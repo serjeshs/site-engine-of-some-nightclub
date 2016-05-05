@@ -1,7 +1,3 @@
+**.iml
 target
-.*
-/target/
-/target/
-/target/
-/target/
-afisha.iml
+.idea

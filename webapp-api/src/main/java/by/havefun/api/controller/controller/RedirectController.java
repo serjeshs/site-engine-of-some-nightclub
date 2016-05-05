@@ -9,7 +9,7 @@ public class RedirectController extends AbstractController {
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mainPage1() {
-        return "redirect:/p/";
+        return "redirect:/index.html";
     }
     
     @RequestMapping(value = "/p", method = RequestMethod.GET)
