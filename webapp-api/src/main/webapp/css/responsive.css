@@ -1,0 +1,82 @@
+.slicknav_menu {
+	display: none;
+}
+
+/* lg */ 
+@media (min-width: 1200px) {
+
+}
+
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+}
+
+/* xs */
+@media (max-width: 767px) {
+
+	.slicknav_menu {
+	  display: block;
+	}
+
+	#navigation-wrapper{
+		display:none;
+	}
+
+	#post-carousel .item img{
+		width: 100%;
+	}
+
+	.user-profile .profile-heading h3{
+		float: none;
+	}
+
+	.about-widget img, .single-related-posts img{
+		width: 100%;
+	}
+
+	.widget-area{
+		margin-top: 50px;
+	}
+
+	.list article .thumbnails{
+		width: auto;
+	}
+
+	.list article.format-audio .thumbnails{
+		width: 100%;
+		padding-right: 29px;
+	}
+
+	.list article .entry-header {
+	    text-align: center;
+	}
+
+	.entry-meta .posted-on, .entry-meta .post-comment{
+		display: block;
+		margin: 10px 0;
+	}
+
+	.list .entry-meta .posted-on, .list .entry-meta .post-comment{
+		display: inline-block;
+		margin: 10px 0;
+	}
+	
+	.list .post-content-area .entry-meta{
+		text-align: center;
+	}
+
+}
+
+/* XS Portrait */
+@media (max-width: 479px) {
+
+
+
+}
