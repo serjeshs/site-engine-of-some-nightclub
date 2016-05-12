@@ -14,7 +14,7 @@
 						<h3>
 						<font color="red">${result}</font>
 						</h3>
-						<form method="POST" action="/<c:out value="${appName}" />/updatepassword" id="contact-form">
+						<form method="POST" action="<c:out value="${appName}" />/updatepassword" id="contact-form">
 							<fieldset>
 								<c:if test="${changePassword}">
 								<spring:message code="hello" text="default text" />Старый пароль

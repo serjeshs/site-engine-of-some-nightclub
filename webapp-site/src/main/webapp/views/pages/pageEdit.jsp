@@ -13,7 +13,7 @@
 			<div class="container_12">
 				<div class="wrapper h-pad">
 					<div class="grid_7">
-						<form id="contact-form" action="/<c:out value="${appName}" />/p/${page.uriName}/edit" method="POST">
+						<form id="contact-form" action="<c:out value="${appName}" />/p/${page.uriName}/edit" method="POST">
 						<input type="hidden" name="id" value="<c:out value="${page.id}"/>" />
 						<fieldset>
 							<br>

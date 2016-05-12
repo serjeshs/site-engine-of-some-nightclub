@@ -11,7 +11,7 @@
 		<div class="container_12">
 			<div class="wrapper">
 				<div class="grid_12" align="center">
-							<form action="/${appName}/events" method="post" >
+							<form action="${appName}/events" method="post" >
 								<table>
 									<tr><td>&#8194;</td></tr>
 									<tr>
@@ -38,7 +38,7 @@
                                 <li class="<%=JSPHelper.getColumnPosition(a)%>">
 								<div align="center" >
 								<figure>
-                                    <a href="/<c:out value="${appName}" />/event/<c:out	value="${event.id}" />" class="link">
+                                    <a href="<c:out value="${appName}" />/event/<c:out	value="${event.id}" />" class="link">
                                         <img src="<c:out value="${event.imageUri}" />" height="200" alt="">
 										<br>
                                         <br>
@@ -55,7 +55,7 @@
 
 										COST : <c:out value="${event.cost}" /> <br>
 										<p>
-											<a href="/<c:out value="${appName}" />/event/<c:out	value="${event.id}" />" class="button">Читать
+											<a href="<c:out value="${appName}" />/event/<c:out	value="${event.id}" />" class="button">Читать
 												далее</a>
 										</p>
 									</div>

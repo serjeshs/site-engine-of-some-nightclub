@@ -18,7 +18,7 @@
 								
 							</div>
 						<br>
-						<form id="contact-form" action="/<c:out value="${appName}" />/event/edit" method="POST" enctype="multipart/form-data">
+						<form id="contact-form" action="<c:out value="${appName}" />/event/edit" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="id" value="<c:out value="${eventid}"/>" />
 						<fieldset>
 						

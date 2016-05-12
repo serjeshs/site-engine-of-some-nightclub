@@ -44,7 +44,7 @@
 							<button id="cryptstr" class="button1">Обновить данные</button>
 						</fieldset>
 					</form>
-					<a href="/<c:out value="${appName}" />/setnewpassword">Сменить
+					<a href="<c:out value="${appName}" />/setnewpassword">Сменить
 						пароль</a>.
 				</div>
 

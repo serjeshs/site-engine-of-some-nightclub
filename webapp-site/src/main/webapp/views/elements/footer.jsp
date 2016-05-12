@@ -9,30 +9,30 @@
 		<div class="grid_7">
 			<c:if test="${guest}">
 				<springtags:message code="hello_guest" text="Привет, Гость." />
-				<a href="/${appName}/registration"> 
+				<a href="${appName}/registration">
 				<springtags:message code="register_please" text="Зарегистрируйся пожалуйста" />
 				</a>
 				<springtags:message code="or" text=" или " />
-				<a href="/<c:out value="${appName}" />/login"><springtags:message
+				<a href="<c:out value="${appName}" />/login"><springtags:message
 						code="sing_in" text=" войди " /></a>.
 						</c:if>
 			<c:if test="${user}">
 		Привет. ${appUserName}. 
-							<a href="/<c:out value="${appName}" />/event/add">Добавить
+							<a href="<c:out value="${appName}" />/event/add">Добавить
 					событие</a>. 
-							<a href="/<c:out value="${appName}" />/profile">Личный
+							<a href="<c:out value="${appName}" />/profile">Личный
 					кабинет</a>.
-							<a href="/<c:out value="${appName}" />/logout">Выйти</a>
+							<a href="<c:out value="${appName}" />/logout">Выйти</a>
 			</c:if>
 		</div>
 		<div class="grid_5">
 			<div class="social">
 				<a href="https://www.facebook.com/havefunby"><img
-					src="/<c:out value="${appName}" />/images/facebook-icon.png"
+					src="<c:out value="${appName}" />/images/facebook-icon.png"
 					alt="Facebook"></a> <a href="https://vk.com/havefunby"><img
-					src="/<c:out value="${appName}" />/images/vk.png" alt="Vkontakte"></a>
+					src="<c:out value="${appName}" />/images/vk.png" alt="Vkontakte"></a>
 				<a href="https://twitter.com/havefunby"><img
-					src="/<c:out value="${appName}" />/images/twitter-icon.png"
+					src="<c:out value="${appName}" />/images/twitter-icon.png"
 					alt="Twitter"></a>
 
 

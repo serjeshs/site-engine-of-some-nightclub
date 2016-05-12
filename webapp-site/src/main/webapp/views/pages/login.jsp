@@ -26,7 +26,7 @@
 								<button id="cryptstr" class="button1">Войти</button>
 							</fieldset>
 						</form>
-						<form method="POST" action="/<c:out value="${appName}" />/sendrestorepassword">
+						<form method="POST" action="<c:out value="${appName}" />/sendrestorepassword">
 						<input type="hidden" name="email" id="email_hidden" />
 						<button id="sendEmail" class="button1">Восстановить пароль</button>
 						</form>

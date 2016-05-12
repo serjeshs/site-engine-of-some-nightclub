@@ -5,14 +5,14 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="/<c:out value="${appName}" />/autocomplete-master/demo/demo.css">
-<script src="/<c:out value="${appName}" />/autocomplete-master/demo/prettify.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<c:out value="${appName}" />/autocomplete-master/demo/demo.css">
+<script src="<c:out value="${appName}" />/autocomplete-master/demo/prettify.js" type="text/javascript"></script>
 <script type="text/javascript">
 window.prettyPrint && prettyPrint()
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/<c:out value="${appName}" />/autocomplete-master/jquery.autocomplete.css">
-<script src="/<c:out value="${appName}" />/autocomplete-master/jquery.autocomplete.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<c:out value="${appName}" />/autocomplete-master/jquery.autocomplete.css">
+<script src="<c:out value="${appName}" />/autocomplete-master/jquery.autocomplete.js" type="text/javascript"></script>
 <script>
 
 
@@ -21,7 +21,7 @@ window.prettyPrint && prettyPrint()
 $('#remote_input').autocomplete({
 valueKey:'name',
 source:[{
-	url:"/<c:out value="${appName}" />/places?&s=%QUERY%",
+	url:"<c:out value="${appName}" />/places?&s=%QUERY%",
 	type:'remote',
 	getValueFromItem:function(item){
 		return item.name
