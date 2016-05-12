@@ -17,7 +17,7 @@ import java.util.List;
 
 public abstract class AbstractController {
 
-	private String APP_NAME = "afisha";
+	public static String APP_NAME = "";
 	
 	@Autowired
 	EventDAO eventDao;
