@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 
-/**
- * Created by user on 15.10.15.
- */
 @Controller
 public class UserController {
 

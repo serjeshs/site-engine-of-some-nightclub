@@ -26,13 +26,15 @@
 		<javax.servlet.jsp.jstl.version>1.2</javax.servlet.jsp.jstl.version>
 		<javax.servlet.version>2.0</javax.servlet.version>
 		<javax.mail.version>1.5.2</javax.mail.version>
+		<lombok-maven-version>1.16.18.1</lombok-maven-version>
 	</properties>
 
 
 	<modules>
 		<module>core</module>
-		<module>webapp-site</module>
+		<!--<module>webapp-site</module>-->
 		<!--<module>webapp-api</module>-->
+		<module>republic</module>
 	</modules>
 
 
@@ -260,12 +262,20 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-		
-		<!-- layout lib for page tempate -->		
+
+		<!-- Remove !!! -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-extras</artifactId>
 			<version>2.2.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-maven</artifactId>
+			<version>${lombok-maven-version}</version>
+			<type>pom</type>
 		</dependency>
 
 	</dependencies>

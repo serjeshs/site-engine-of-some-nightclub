@@ -89,9 +89,9 @@ public class LocalFile {
         hashcode += fileOriginName.substring(fileOriginName.length() - 4, fileOriginName.length()).toLowerCase();
         fileTable.setHashcode(hashcode);
         baseDAO.saveOrUpdate(fileTable);
-        //return hashcode;
-        String returnValue = fileDiskPath.substring(GlobalSettings.folderFiles.length()-7);
-        return returnValue;
+        return "/api/file/get/" + hashcode;
+//        String returnValue = fileDiskPath.substring(GlobalSettings.folderFiles.length()-7);
+//        return returnValue;
     }
 
     public FileTable getFile(String filehash) {

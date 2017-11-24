@@ -1,0 +1,3518 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/app-060317.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <link type="text/css" href="css/style-220317.css" rel="stylesheet" media="all">
+    <link type="text/css" href="css/custom-event.css" rel="stylesheet" media="all">
+
+    <title>Клуб «RE:PUBLIC»&nbsp;/ RE:PUBLIC Club Minsk</title>
+
+    <meta name="description" content="Клуб «RE:PUBLIC» в Минске — афиша концертов и заказ билетов">
+    <meta class="meta" property="facebook:site" content="@RePub">
+    <meta class="meta" property="instagram:site" content="@republic.clubminsk">
+    <meta class="meta" property="vk:site" content="@republic_club">
+    <meta class="meta" property="og:locale" content="ru_RU">
+    <meta class="meta" property="og:site_name" content="Клуб «RE:PUBLIC»">
+
+    <script type="text/javascript">
+        <!--
+        if (screen.width <= 740) {
+            console.warn('document.location = "http://m.republic-club.by";');
+        }
+        //-->
+    </script>
+
+    <style>.top-banner-main-container {
+        width: 880px;
+        height: 90px;
+        margin: 0 auto 20px;
+        position: relative
+    }
+
+    .top-banner-main-container .bx-viewport {
+        -moz-border-radius-topright: 0;
+        -moz-border-radius-bottomright: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-topleft: 0;
+        -moz-background-clip: padding-box;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        -webkit-border-radius: 0 0 5px 5px;
+        border-radius: 0 0 5px 5px
+    }
+
+    .top-banner-main-container .banners-slider {
+        position: relative
+    }
+
+    .top-banner-main-container .banners-slider li {
+        display: block
+    }
+
+    .top-banner-main-container .banners-slider li .banner-img {
+        display: block;
+        overflow: hidden;
+        width: 880px;
+        height: 90px
+    }
+
+    .top-banner-main-container .banners-slider li .banner-img img {
+        width: 880px;
+        height: 90px;
+        -moz-border-radius-topright: 0;
+        -moz-border-radius-bottomright: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-topleft: 0;
+        -moz-background-clip: padding-box;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        -webkit-border-radius: 0 0 5px 5px;
+        border-radius: 0 0 5px 5px
+    }
+
+    .top-banner-main-container .banners-slider li .banner-text {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        max-width: 250px
+    }
+
+    .top-banner-main-container .banners-slider li .banner-text h3 {
+        width: 450px;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        padding-bottom: 0;
+        line-height: 22px;
+        color: #db3727
+    }
+
+    .top-banner-main-container .banners-slider li .banner-text h3 a {
+        color: #db3727
+    }
+
+    .top-banner-main-container .banners-slider li .banner-text h3 a:hover {
+        color: #cf7a19
+    }
+
+    .top-banner-main-container .banners-slider li .banner-text span.date {
+        font-family: Humanist;
+        display: block;
+        padding-bottom: 10px;
+        color: #666;
+        font-size: 15px
+    }
+
+    .top-banner-main-container .banners-slider li .tons-w {
+        position: absolute;
+        top: 17px;
+        right: 15px;
+        width: 40px;
+        height: 54px;
+        background: url('images/tons-weight.svg') 50% 50% no-repeat
+    }
+
+    .top-banner-main-container .bx-controls {
+        position: absolute;
+        left: 15px;
+        bottom: 15px
+    }
+
+    .top-banner-main-container .bx-controls .bx-pager .bx-pager-item {
+        float: left;
+        margin-right: 3px
+    }
+
+    .top-banner-main-container .bx-controls .bx-pager .bx-pager-item a {
+        display: block;
+        width: 10px;
+        height: 10px;
+        background: #e5e4e5;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        font-size: 0
+    }
+
+    .top-banner-main-container .bx-controls .bx-pager .bx-pager-item a:hover {
+        background: #ababab
+    }
+
+    .top-banner-main-container .bx-controls .bx-pager .bx-pager-item a.active, .top-banner-main-container .bx-controls .bx-pager .bx-pager-item a.active:hover {
+        background: #db3727
+    }
+
+    .header {
+        padding: 0 0 10px;
+        background: url('images/header-bg.png') 50% 0 no-repeat #221302;
+        background-size: auto 290px
+    }
+
+    .header .container {
+        text-align: center
+    }
+
+    .header .logo {
+        width: 36%;
+        float: left;
+        position: relative
+    }
+
+    .header .logo a {
+        margin: 0 auto;
+        display: block;
+        width: 400px;
+        height: 140px;
+        background: url('images/logo.svg') 50% 50% no-repeat;
+        background-size: 400px auto;
+        white-space: nowrap;
+        text-indent: 2000px;
+        overflow: hidden
+    }
+
+    .header .header-phone {
+        width: 30%;
+        float: left;
+        font-size: 10px;
+        line-height: 25px;
+        color: #b0b0b0;
+        font-family: Humanist;
+        text-align: center;
+        padding-left: 0;
+        padding-right: 2%;
+        padding-top: 38px
+    }
+
+    .header .header-phone span.title, .header .main-menu-panel ul li a {
+        font-family: Humanist-bold;
+        text-transform: uppercase;
+        letter-spacing: 1.7px
+    }
+
+    .header .header-phone:first-child {
+        padding-left: 2%;
+        padding-right: 0
+    }
+
+    .header .header-phone span.title {
+        display: block;
+        line-height: 20px;
+        color: #f5f5f5
+    }
+
+    .header .header-phone a.phone {
+        font-size: 20px;
+        color: #cf7a19
+    }
+
+    .header .header-phone a.phone:hover {
+        color: #b0b0b0
+    }
+
+    .header .main-menu-panel {
+        margin-top: -7px;
+        padding: 15px 30px 5px;
+        height: 30px;
+        border-top: 1px solid #545454;
+        display: inline-block
+    }
+
+    .header .main-menu-panel ul {
+        height: 30px
+    }
+
+    .header .main-menu-panel ul li {
+        display: inline-block
+    }
+
+    .header .main-menu-panel ul li a {
+        display: block;
+        padding: 0 12px;
+        font-size: 15px;
+        line-height: 30px;
+        color: #b0b0b0
+    }
+
+    .header .main-menu-panel ul li a:hover, .header .main-menu-panel ul li.active a {
+        color: #fff
+    }</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!--header-->
+    <div class="header">
+
+        <!--banner-->
+        <div class="top-banner top-banner-main-container">
+            <div class="bx-wrapper" style="max-width: 100%;">
+                <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 90px;">
+                    <ul class="banners-slider"
+                        style="width: 615%; position: relative; transition-duration: 0s; transform: translate3d(-1760px, 0px, 0px);">
+                        <li style="float: left; list-style: none; position: relative; width: 880px;" class="bx-clone">
+                            <a class="banner-img" href="https://republic-club.by/concert/2017-chaif-19dec/">
+                                <img src="images/19.jpg">
+                            </a>
+                            <div class="banner-text">
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-chaif-19dec/" style="color: #fff">Чайф -
+                                        внеплановый концерт!</a>
+                                </h3>
+                                <span class="date" style="color: #fff">19 декабря, вторник</span>
+                            </div>
+                            <div class="tons-w"></div>
+                        </li>
+
+
+                        <li style="float: left; list-style: none; position: relative; width: 880px;">
+                            <a class="banner-img" href="http://http//republic-club.by/concert/2017-ns-22nov/">
+                                <img src="images/22.jpg">
+                            </a>
+                            <div class="banner-text">
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-ns-22nov/" style="color: #fff">Несчастный
+                                        Случай</a>
+                                </h3>
+                                <span class="date" style="color: #fff">22 ноября, среда</span>
+                            </div>
+                            <div class="tons-w"></div>
+                        </li>
+                        <li style="float: left; list-style: none; position: relative; width: 880px;">
+                            <a class="banner-img" href="https://republic-club.by/concert/2017-noize-mc-25nov/">
+                                <img src="images/25.jpg">
+                            </a>
+                            <div class="banner-text">
+                                <h3>
+                                    <a href="http://http//republic-club.by/concert/2017-noize-mc-25nov/" style="color: #fff">Noize
+                                        MC - Квартирник</a>
+                                </h3>
+                                <span class="date" style="color: #fff">25 ноября, суббота</span>
+                            </div>
+                            <div class="tons-w"></div>
+                        </li>
+
+
+                        <li style="float: left; list-style: none; position: relative; width: 880px;">
+                            <a class="banner-img" href="https://republic-club.by/concert/2017-recordorchestra-26nov/">
+                                <img src="images/26.jpg">
+                            </a>
+                            <div class="banner-text">
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-recordorchestra-26nov/" style="color: #fff">Рекорд
+                                        Оркестр - Презентация альбома</a>
+                                </h3>
+                                <span class="date" style="color: #fff">26 ноября, воскресенье</span>
+                            </div>
+                            <div class="tons-w"></div>
+                        </li>
+
+
+                        <li style="float: left; list-style: none; position: relative; width: 880px;">
+                            <a class="banner-img" href="https://republic-club.by/concert/2017-chaif-19dec/">
+                                <img src="images/19.jpg">
+                            </a>
+                            <div class="banner-text">
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-chaif-19dec/" style="color: #fff">Чайф -
+                                        внеплановый концерт!</a>
+                                </h3>
+                                <span class="date" style="color: #fff">19 декабря, вторник</span>
+                            </div>
+                            <div class="tons-w"></div>
+                        </li>
+
+
+                        <li style="float: left; list-style: none; position: relative; width: 880px;" class="bx-clone">
+                            <a class="banner-img" href="http://http//republic-club.by/concert/2017-ns-22nov/">
+                                <img src="images/22.jpg">
+                            </a>
+                            <div class="banner-text">
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-ns-22nov/" style="color: #fff">Несчастный
+                                        Случай</a>
+                                </h3>
+                                <span class="date" style="color: #fff">22 ноября, среда</span>
+                            </div>
+                            <div class="tons-w"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bx-controls bx-has-pager">
+                    <div class="bx-pager bx-default-pager">
+                        <div class="bx-pager-item"><a href="https://republic-club.by/" data-slide-index="0"
+                                                      class="bx-pager-link">1</a></div>
+                        <div class="bx-pager-item"><a href="https://republic-club.by/" data-slide-index="1"
+                                                      class="bx-pager-link active">2</a></div>
+                        <div class="bx-pager-item"><a href="https://republic-club.by/" data-slide-index="2"
+                                                      class="bx-pager-link">3</a></div>
+                        <div class="bx-pager-item"><a href="https://republic-club.by/" data-slide-index="3"
+                                                      class="bx-pager-link">4</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end banner-->
+
+        <div class="container">
+            <div class="header-phone">
+                <span class="title">Заказ билетов</span>
+                <a href="tel: +7 (499) 253-15-50" class="phone">+7 (499) 253-15-50</a>
+            </div>
+            <div class="logo">
+                <a href="https://republic-club.by/#">Шестнадцать Тонн. Клуб. Паб. Ресторан.</a>
+            </div>
+            <div class="header-phone">
+                <span class="title">Резерв столиков</span>
+                <a href="tel: +7 (499) 253-53-00" class="phone">+7 (499) 253-53-00</a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="main-menu-panel">
+
+
+                <!--main-menu-->
+                <ul>
+                    <li class="active">
+
+                        <a href="https://republic-club.by/">Афиша</a>
+                    </li>
+                    <li>
+
+                        <a href="https://republic-club.by/about/">О клубе</a>
+                    </li>
+                    <li>
+
+                        <a href="https://republic-club.by/beer/">Пивоварня</a>
+                    </li>
+                    <li>
+
+                        <a href="https://republic-club.by/photo/">Галерея</a>
+                    </li>
+                    <li>
+
+                        <a href="https://republic-club.by/menu/">Меню</a>
+                    </li>
+                    <li>
+
+                        <a href="https://republic-club.by/partners/">Партнёры</a>
+                    </li>
+                    <li>
+
+                        <a href="https://republic-club.by/contacts/">Контакты</a>
+                    </li>
+                </ul>
+                <!--end main-menu-->
+
+
+            </div>
+        </div>
+    </div>
+    <!--end header-->
+
+    <!--content-->
+    <div class="content container">
+        <div class="content-wrapper">
+
+            <!--main content-->
+            <div class="main-content">
+
+
+                <!--block bill-day-->
+                <div class="block bill-day">
+                    <h1>
+                        Сегодня, 17 ноября
+                        <i class="h-line"></i>
+                    </h1>
+                    <div class="row">
+
+                        <!--1-->
+                        <div class="event">
+                            <div class="img">
+                                <a href="https://republic-club.by/concert/2017-supcharcho-17nov/">
+                                    <img src="images/171010-309х217-17nov-supharcho.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="time">20:00</span>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-supcharcho-17nov/">Суп Харчо</a>
+                                </h3>
+                                <span class="tickets">
+                                            Концерт уже<br>начался
+                                        </span>
+                            </div>
+                        </div>
+                        <!--4-->
+                        <div class="event">
+                            <div class="img">
+                                <a href="https://republic-club.by/concert/2017-eshenikak-17nov/">
+                                    <img src="images/171011-eshenikak309.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="time">23:00</span>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-eshenikak-17nov/">Ещё Никак</a>
+                                </h3>
+                                <span class="tickets">
+                                            Sold out
+                                        </span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end block bill-day-->
+
+
+                <!--block bill-day-->
+                <div class="block bill-day">
+                    <h1>
+                        Завтра, 18 ноября
+                        <i class="h-line"></i>
+                    </h1>
+                    <div class="row">
+
+                        <!--4-->
+                        <div class="event">
+                            <div class="img">
+                                <a href="https://republic-club.by/concert/2017-sakura-18nov/">
+                                    <img src="images/171114-sak_sm.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="time">20:00</span>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-sakura-18nov/">Sakura</a>
+                                </h3>
+                                <span class="tickets">
+                                            Sold out
+                                        </span>
+                            </div>
+                        </div>
+                        <!--1-->
+                        <div class="event">
+                            <div class="img">
+                                <a href="https://republic-club.by/concert/2017-humantetris-18nov/">
+                                    <img src="images/171006-HM309.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="time">23:00</span>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-humantetris-18nov/">Human Tetris</a>
+                                </h3>
+                                <span class="tickets">
+                                            Билеты от 400&nbsp;₶ <nobr>в продаже</nobr>
+                                        </span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end block bill-day-->
+
+                <!--block bill-farther-->
+                <div class="block bill-farther">
+                    <h1>
+                        Далее в программе
+                        <i class="h-line"></i>
+                    </h1>
+
+
+                    <div class="event" data-words="Аигел ">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-aigel-19nov">
+                                <img src="images/171016-309x217-aigel.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Воскресенье, 19 ноября, 20:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-aigel-19nov/">
+                                    Аигел
+                                    <span class="type"></span>
+                                </a>
+                            </h2>
+                            <p>
+                                АИГЕЛ — дуэт питерского электронщика Ильи Барамия (Ёлочные Игрушки, СБПЧ, 2H Company) и&nbsp;поэтессы
+                                Айгель Гайсиной из Набережных Челнов. Вместе они записывают, как сказали бы раньше,
+                                экспериментальный хип-хоп: электронная подложка, нервный и&nbsp;сбивающийся женский
+                                речитатив. Этой осенью АИГЕЛ уже выступают в&nbsp;«Вечернем Урганте», а&nbsp;их клип
+                                «Татарин» штурмует YouTube собирая миллионы просмотров. «Спешите увидеть их, пока они не
+                                стали мейнстримом», — можно сказать и&nbsp;так. <br>
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-aigel-19nov/" class="btn order-btn-face">Купить
+                                    билет</a>
+                                <div class="tickets-list">
+                                            <span>Предпродажа:&nbsp;<nobr>600 ₶,</nobr> В&nbsp;день&nbsp;концерта:&nbsp;<nobr>800 ₶,</nobr> С&nbsp;местом&nbsp;I:&nbsp;<nobr>1 000 ₶,</nobr> С&nbsp;местом&nbsp;II:&nbsp;<nobr>1 200 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Аигел",
+								  "startDate": "2017-11-19T00:00:00+03:00",
+								  "description": "АИГЕЛ — дуэт питерского электронщика Ильи Барамия (Ёлочные Игрушки, СБПЧ, 2H Company) и&nbsp;поэтессы Айгель Гайсиной из Набережных Челнов. Вместе они записывают, как сказали бы раньше, экспериментальный хип-хоп: электронная подложка, нервный и&nbsp;сбивающийся женский речитатив. Этой осенью АИГЕЛ уже выступают в&nbsp;«Вечернем Урганте», а&nbsp;их клип «Татарин» штурмует YouTube собирая миллионы просмотров. «Спешите увидеть их, пока они не стали мейнстримом», — можно сказать и&nbsp;так. ",
+								  "image": "https://republic-club.by/events/pressimages/171009-800x700-aigel.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "600",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-aigel-19nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                    <div class="event" data-words="OXZANA ">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-oxzana-21nov">
+                                <img src="images/170921-309x220-oxzana.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Вторник, 21 ноября, 20:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-oxzana-21nov/">
+                                    OXZANA
+                                    <span class="type"></span>
+                                </a>
+                            </h2>
+                            <p>
+                                Участница американского проекта «Голос» с&nbsp;презентацией англоязычного альбома
+                                OXZANA: RUNNING THE ASYLUM
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-oxzana-21nov/" class="btn order-btn-face">Купить
+                                    билет</a>
+                                <div class="tickets-list">
+                                            <span>Предпродажа:&nbsp;<nobr>500 ₶,</nobr> В&nbsp;день&nbsp;концерта:&nbsp;<nobr>800 ₶,</nobr> С&nbsp;местом&nbsp;I:&nbsp;<nobr>1 000 ₶,</nobr> С&nbsp;местом&nbsp;II:&nbsp;<nobr>1 200 ₶,</nobr> VIP&nbsp;(4&nbsp;места):&nbsp;<nobr>15 000 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "OXZANA",
+								  "startDate": "2017-11-21T00:00:00+03:00",
+								  "description": "Участница американского проекта «Голос» с&nbsp;презентацией англоязычного альбома OXZANA: RUNNING THE ASYLUM",
+								  "image": "https://republic-club.by/events/pressimages/170906-800x700-oxzana.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-oxzana-21nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                    <div class="event" data-words="Несчастный Случай ">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-ns-22nov">
+                                <img src="images/171102-600-22nov-neschastnySlychay.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Среда, 22 ноября, 20:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-ns-22nov/">
+                                    Несчастный Случай
+                                    <span class="type"></span>
+                                </a>
+                            </h2>
+                            <p>
+                                Первые 50 билетов только в&nbsp;кассе клуба по 1800 руб., далее дороже<br><br><br>На
+                                свой юбилей группа сделала себе подарок — вернула в&nbsp;строй своего «блудного»
+                                участника Валдиса Пельша. «Это одно из главных наших достижений, я&nbsp;считаю, &nbsp;—
+                                уверен Алексей Кортнев. — Он прекрасно поет и&nbsp;пляшет, мы восстановили все наши
+                                старые танцы и&nbsp;актерские этюды. Я&nbsp;очень рад, что он с&nbsp;восторгом принял
+                                наше предложение и&nbsp;находится в&nbsp;прекрасной сценической форме».
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-ns-22nov/" class="btn order-btn-face">Купить
+                                    билет</a>
+                                <div class="tickets-list">
+                                            <span>Предпродажа:&nbsp;<nobr>1 800 ₶,</nobr> С&nbsp;местом&nbsp;I:&nbsp;<nobr>3 500 ₶,</nobr> С&nbsp;местом&nbsp;II:&nbsp;<nobr>5 000 ₶,</nobr> VIP&nbsp;(4&nbsp;места):&nbsp;<nobr>40 000 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Несчастный Случай",
+								  "startDate": "2017-11-22T00:00:00+03:00",
+								  "description": "Первые 50 билетов только в&nbsp;кассе клуба по 1800 руб., далее дорожеНа свой юбилей группа сделала себе подарок — вернула в&nbsp;строй своего «блудного» участника Валдиса Пельша. «Это одно из главных наших достижений, я&nbsp;считаю,  — уверен Алексей Кортнев. — Он прекрасно поет и&nbsp;пляшет, мы восстановили все наши старые танцы и&nbsp;актерские этюды. Я очень рад, что он с&nbsp;восторгом принял наше предложение и&nbsp;находится в&nbsp;прекрасной сценической форме». ",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1800",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-ns-22nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                    <div class="event" data-words="Detsl a.k.a. Le Truk ">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-detsl-23nov">
+                                <img src="images/171114-309-detsl.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Четверг, 23 ноября, 20:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-detsl-23nov/">
+                                    Detsl a.k.a. Le Truk
+                                    <span class="type"></span>
+                                </a>
+                            </h2>
+                            <p>
+                                Децл в&nbsp;последнее время попадал в&nbsp;новостные сводки с&nbsp;довольно скандальными
+                                поводами (судебный процесс против Басты или дисс на него же), и&nbsp;этот концерт
+                                напомнит о&nbsp;том, что в&nbsp;первую очередь он — музыкант. За последние пару лет
+                                рэпер выпустил две части своей запланированной трилогии «Дециллион» и&nbsp;вдохновленный
+                                поездкой в&nbsp;Бразилию EP «Favela Funk», а в&nbsp;этом году из-под его пера вышел
+                                инструментальный альбом-саундтрек к&nbsp;неизданному фильму.
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-detsl-23nov/" class="btn order-btn-face">Купить
+                                    билет</a>
+                                <div class="tickets-list">
+                                            <span>Предпродажа:&nbsp;<nobr>600 ₶,</nobr> В&nbsp;день&nbsp;концерта:&nbsp;<nobr>800 ₶,</nobr> С&nbsp;местом&nbsp;I:&nbsp;<nobr>1 200 ₶,</nobr> С&nbsp;местом&nbsp;II:&nbsp;<nobr>1 500 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Detsl a.k.a. Le Truk",
+								  "startDate": "2017-11-23T00:00:00+03:00",
+								  "description": "Децл в&nbsp;последнее время попадал в&nbsp;новостные сводки с&nbsp;довольно скандальными поводами (судебный процесс против Басты или дисс на него же), и&nbsp;этот концерт напомнит о&nbsp;том, что в&nbsp;первую очередь он — музыкант. За последние пару лет рэпер выпустил две части своей запланированной трилогии «Дециллион» и&nbsp;вдохновленный поездкой в&nbsp;Бразилию EP «Favela Funk», а в&nbsp;этом году из-под его пера вышел инструментальный альбом-саундтрек к&nbsp;неизданному фильму. ",
+								  "image": "https://republic-club.by/events/pressimages/171114-800x700-detsl.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "600",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-detsl-23nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                    <div class="event" data-words="Крематорий День Рождения Армена Григоряна">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-krematory-24nov">
+                                <img src="images/171108-309-krematory.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Пятница, 24 ноября, 20:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-krematory-24nov/">
+                                    Крематорий
+                                    <span class="type">День Рождения Армена Григоряна</span>
+                                </a>
+                            </h2>
+                            <p>
+                                «Крематорий» в&nbsp;2017 году уже отпраздновал в&nbsp;стенах «16 Тонн» 30-летний юбилей
+                                своей пластинки «Кома», «чуть ли не единственного в&nbsp;истории советской рок-музыки
+                                80-х идеального поп-альбома». На этот раз лидер группы Армен Григорян празднует в&nbsp;стенах
+                                клуба свое 57-летие. И&nbsp;его «самый веселый на этой планете ансамбль» снова соберется
+                                в&nbsp;«Тоннах», чтобы вспомнить все программные песни своей жизни — и&nbsp;соответственно
+                                жизни своего автора.
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-krematory-24nov/" class="btn order-btn-face">Купить
+                                    билет</a>
+                                <div class="tickets-list">
+                                            <span>Предпродажа:&nbsp;<nobr>1 500 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Крематорий",
+								  "startDate": "2017-11-24T00:00:00+03:00",
+								  "description": "«Крематорий» в&nbsp;2017 году уже отпраздновал в&nbsp;стенах «16 Тонн» 30-летний юбилей своей пластинки «Кома», «чуть ли не единственного в&nbsp;истории советской рок-музыки 80-х идеального поп-альбома». На этот раз лидер группы Армен Григорян празднует в&nbsp;стенах клуба свое 57-летие. И&nbsp;его «самый веселый на этой планете ансамбль» снова соберется в&nbsp;«Тоннах», чтобы вспомнить все программные песни своей жизни — и&nbsp;соответственно жизни своего автора. ",
+								  "image": "https://republic-club.by/events/pressimages/171030-800x700-krematory.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-krematory-24nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                    <div class="event" data-words="Kedr Livanskiy ">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-kedrlivanskiy-24nov">
+                                <img src="images/171024-Kedr309.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Пятница, 24 ноября, 23:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-kedrlivanskiy-24nov/">
+                                    Kedr Livanskiy
+                                    <span class="type"></span>
+                                </a>
+                            </h2>
+                            <p>
+                                Kedr Livanskiy — электронный проект Яны Кедриной, которую Pitchfork сравнил с&nbsp;ранними
+                                Граймс и&nbsp;Лорел Хейло — передающий неуловимую атмосферу родом из детских снов.<br>Совсем
+                                недавно она выпустила свой второй альбом «Ariadna» — «это нежная и&nbsp;проникнутая
+                                любовью к&nbsp;перестроечной эстраде электронная поп-музыка» («Афиша»). «Ariadna» стала
+                                одним из самых интересных релизов-2017, самое время послушать ее вживую и&nbsp;насладиться
+                                теми видениями прошлого, которые Кедрина успешно материализует на своих концертах.
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-kedrlivanskiy-24nov/" class="btn order-btn-face">Купить
+                                    билет</a>
+                                <div class="tickets-list">
+                                            <span>Предпродажа:&nbsp;<nobr>400 ₶,</nobr> В&nbsp;день&nbsp;концерта:&nbsp;<nobr>500 ₶,</nobr> С&nbsp;местом&nbsp;I:&nbsp;<nobr>600 ₶,</nobr> С&nbsp;местом&nbsp;II:&nbsp;<nobr>700 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Kedr Livanskiy",
+								  "startDate": "2017-11-24T00:00:00+03:00",
+								  "description": "Kedr Livanskiy — электронный проект Яны Кедриной, которую Pitchfork сравнил с&nbsp;ранними Граймс и&nbsp;Лорел Хейло — передающий неуловимую атмосферу родом из детских снов.Совсем недавно она выпустила свой второй альбом «Ariadna» — «это нежная и проникнутая любовью к перестроечной эстраде электронная поп-музыка» («Афиша»). «Ariadna» стала одним из самых интересных релизов-2017, самое время послушать ее вживую и&nbsp;насладиться теми видениями прошлого, которые Кедрина успешно материализует на своих концертах. ",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "400",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-kedrlivanskiy-24nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                    <div class="event" data-words="Noize MC Квартирник">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-noize-mc-25nov">
+                                <img src="images/171011-309x217-25nov-noizenc_1.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Суббота, 25 ноября, 20:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-noize-mc-25nov/">
+                                    Noize MC
+                                    <span class="type">Квартирник</span>
+                                </a>
+                            </h2>
+                            <p>
+                                Квартирный концерт Noize МС — то, что случается не особо-то и&nbsp;часто, ведь в&nbsp;последнее
+                                время его можно поймать на больших площадках, которые без особого сопротивления ему
+                                сдаются. Но тем интереснее увидеть музыканта на расстоянии вытянутой руки — ведь и&nbsp;песен
+                                для такого случая у&nbsp;Ивана Алексеева есть достаточно.
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-noize-mc-25nov/" class="btn order-btn-face">Купить
+                                    билет</a>
+                                <div class="tickets-list">
+                                            <span>VIP&nbsp;(4&nbsp;места):&nbsp;<nobr>30 000 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Noize MC",
+								  "startDate": "2017-11-25T00:00:00+03:00",
+								  "description": "Квартирный концерт Noize МС — то, что случается не особо-то и&nbsp;часто, ведь в&nbsp;последнее время его можно поймать на больших площадках, которые без особого сопротивления ему сдаются. Но тем интереснее увидеть музыканта на расстоянии вытянутой руки — ведь и&nbsp;песен для такого случая у&nbsp;Ивана Алексеева есть достаточно. ",
+								  "image": "https://republic-club.by/events/pressimages/171011-800x700-noizemc.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "30000",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-noize-mc-25nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                    <div class="event" data-words="Super Fly ">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-superfly-25nov">
+                                <img src="https://republic-club.by/" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Суббота, 25 ноября, 23:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-superfly-25nov/">
+                                    Super Fly
+                                    <span class="type"></span>
+                                </a>
+                            </h2>
+                            <p>
+
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-superfly-25nov/" class="btn order-btn-face">Купить
+                                    билет</a>
+                                <div class="tickets-list">
+                                            <span>Предпродажа:&nbsp;<nobr>350 ₶,</nobr> В&nbsp;день&nbsp;концерта:&nbsp;<nobr>500 ₶,</nobr> С&nbsp;местом&nbsp;I:&nbsp;<nobr>600 ₶,</nobr> С&nbsp;местом&nbsp;II:&nbsp;<nobr>700 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Super Fly",
+								  "startDate": "2017-11-25T00:00:00+03:00",
+								  "description": "",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "350",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-superfly-25nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                    <div class="event" data-words="Рекорд Оркестр ">
+                        <div class="img">
+                            <a href="https://republic-club.by/concert/2017-recordorchestra-26nov">
+                                <img src="images/171114-309х217-26nov-record.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span class="date">Воскресенье, 26 ноября, 20:00</span>
+                            <h2>
+                                <a href="https://republic-club.by/concert/2017-recordorchestra-26nov/">
+                                    Рекорд Оркестр
+                                    <span class="type"></span>
+                                </a>
+                            </h2>
+                            <p>
+                                Рекорд Оркестр — рок-группа из города Владимир. Первая известность пришла к&nbsp;группе
+                                сразу после выхода дебютного альбома «Гастарбайтер-буги». С&nbsp;заглавной песней этой
+                                пластинки Рекорд Оркестр триумфально победил в&nbsp;шоу-проекте «Народный продюсер» на
+                                радио «Маяк».
+                            </p>
+                            <div class="tickets">
+                                <h4>БИЛЕТЫ</h4>
+                                <a href="https://republic-club.by/concert/2017-recordorchestra-26nov/"
+                                   class="btn order-btn-face">Купить билет</a>
+                                <div class="tickets-list">
+                                            <span>Предпродажа:&nbsp;<nobr>800 ₶,</nobr> С&nbsp;местом&nbsp;I:&nbsp;<nobr>1 500 ₶</nobr>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Рекорд Оркестр",
+								  "startDate": "2017-11-26T00:00:00+03:00",
+								  "description": "Рекорд Оркестр — рок-группа из города Владимир. Первая известность пришла к&nbsp;группе сразу после выхода дебютного альбома «Гастарбайтер-буги». С&nbsp;заглавной песней этой пластинки Рекорд Оркестр триумфально победил в&nbsp;шоу-проекте «Народный продюсер» на радио «Маяк». ",
+								  "image": "https://republic-club.by/events/pressimages/171009-800x700-ROrchestr.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "800",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-recordorchestra-26nov/"
+								  }]
+								}]
+
+                        </script>
+
+                    </div>
+
+                </div>
+                <!--end block bill-farther-->
+
+
+                <!--block bill-month-->
+                <div class="block bill-month">
+                    <h1>
+                        Далее в Ноябре
+                        <i class="h-line"></i>
+                    </h1>
+                    <ul class="event-list">
+
+
+                        <li data-words=" Radio Kamerger ">
+                            <a href="https://republic-club.by/concert/2017-radio-kamerger-27nov/"
+                               class="btn order-btn-face fix-w-m">Билеты от 500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">27 ноября</span><br>
+                                    <span class="day">Понедельник</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-radio-kamerger-27nov/"> Radio Kamerger</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": " Radio Kamerger",
+								  "startDate": "2017-11-27T00:00:00+03:00",
+								  "description": "Этой осенью Radio Kamerger едет в&nbsp;поддержку своего первого альбома Молодость! После полугода затишья и&nbsp;работы в&nbsp;студии, 9&nbsp;композиций вышли в&nbsp;мае 2017 года и&nbsp;сразу попали в&nbsp;10 альбомов июня по версии Коммерсанта и&nbsp;плейлист горячих новинок в&nbsp;iTunes.",
+								  "image": "https://republic-club.by/events/pressimages/171024-800x700-radiokamerger.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-radio-kamerger-27nov"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Дайте Два ">
+                            <a href="https://republic-club.by/concert/2017-dayte2-28nov/" class="btn order-btn-face fix-w-m">Билеты
+                                от 500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">28 ноября</span><br>
+                                    <span class="day">Вторник</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-dayte2-28nov/">Дайте Два</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Дайте Два",
+								  "startDate": "2017-11-28T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/170924-800x700-daitedva.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-dayte2-28nov"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Teona Kontridze &amp; Band ">
+                            <a href="https://republic-club.by/concert/2017-teona-29nov/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1000 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">29 ноября</span><br>
+                                    <span class="day">Среда</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-teona-29nov/">Teona Kontridze &amp; Band</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Teona Kontridze & Band",
+								  "startDate": "2017-11-29T00:00:00+03:00",
+								  "description": "Почти 2&nbsp;миллиона просмотров, 21 тысяча репостов видео поющей и&nbsp;танцующей дамы в&nbsp;зеленом платье с&nbsp;пайетакми и&nbsp;репост Шнура с&nbsp;комментарием «Нам тут солистку предлагают» взорвали Фейсбук этой весной.",
+								  "image": "https://republic-club.by/events/pressimages/170904-800x700-teona.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1000",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-teona-29nov"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Бомж Трио Презентация альбома">
+                            <a href="https://republic-club.by/concert/2017-bomzh-trio-30nov/"
+                               class="btn order-btn-face fix-w-m">Билеты от 500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">30 ноября</span><br>
+                                    <span class="day">Четверг</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-bomzh-trio-30nov/">Бомж Трио</a>
+
+                                    <span class="desc">Презентация альбома</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Бомж Трио",
+								  "startDate": "2017-11-30T00:00:00+03:00",
+								  "description": "Музыканты трех московских групп, принципиально не поющих по-русски, — Сергей Воронов (Crossroadz), Николай Сарабьянов (Therr Maitz) и&nbsp;Нэш (Blast/Nash Albert) — в&nbsp;2016 г. создали абсолютно народный русскоязычный проект \"Бомж-трио\". Стандартный концертный сет \"Бомж Трио\" — собственный материал плюс полные акустического обаяния кавер-версии на Pink Floyd, Боба Дилана и&nbsp;Эрика Клэптона. Первый концерт \"Бомж трио\" в&nbsp;16 тоннах приурочен к&nbsp;выпуску дебютного альбома группы. ",
+								  "image": "https://republic-club.by/events/pressimages/170803-16-30nov-bomzh-trio-800.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-bomzh-trio-30nov"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                    </ul>
+                </div>
+                <!--end block bill-month-->
+
+                <!--block bill-month-->
+                <div class="block bill-month">
+                    <h1>
+                        В Декабре
+                        <i class="h-line"></i>
+                    </h1>
+                    <ul class="event-list">
+
+                        <li data-words="Billy&#39;s Band — День 1 День первый!">
+                            <a href="https://republic-club.by/concert/2017-billys-band-1day-1dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 1500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">1 декабря</span><br>
+                                    <span class="day">Пятница</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-billys-band-1day-1dec/">Billy's Band — День
+                                        1</a>
+
+                                    <span class="desc">День первый!</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Billy's Band — День 1",
+								  "startDate": "2017-12-01T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171109-800x700-billys.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-billys-band-1day-1dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Alina Os ">
+                            <a href="https://republic-club.by/concert/2017-alinaos-01dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 600 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">1 декабря</span><br>
+                                    <span class="day">Пятница</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-alinaos-01dec/">Alina Os</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Alina Os",
+								  "startDate": "2017-12-01T00:00:00+03:00",
+								  "description": "Alina Os — уникальный проект на современной российской сцене, представляющий собой симбиоз стильного западного звучания и&nbsp;качественных содержательных текстов на русском языке. ",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "600",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-alinaos-01dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Billy&#39;s Band — День 2 День второй!">
+                            <a href="https://republic-club.by/concert/2017-billys-band-2day-2dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 1500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">2 декабря</span><br>
+                                    <span class="day">Суббота</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-billys-band-2day-2dec/">Billy's Band — День
+                                        2</a>
+
+                                    <span class="desc">День второй!</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Billy's Band — День 2",
+								  "startDate": "2017-12-02T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171109-800x700-billys.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-billys-band-2day-2dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Soom T (UK) Steppa Style Birthday ">
+                            <a href="https://republic-club.by/concert/2017-steppasoomt-02dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 600 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">2 декабря</span><br>
+                                    <span class="day">Суббота</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-steppasoomt-02dec/">Soom T (UK) Steppa Style
+                                        Birthday</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Soom T (UK) Steppa Style Birthday",
+								  "startDate": "2017-12-02T00:00:00+03:00",
+								  "description": "02 декабря в&nbsp;клубе 16 Тонн состоится масштабная семейная Регги/ Денсхолл/ Рагга-Джангл вечеринка и&nbsp;празднование дня рождения Степы плюс привоз замечательной вокалистки из Шотландии — Soom T!",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "600",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-steppasoomt-02dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Мария Чайковская С программой «Поговори со мной»">
+                            <a href="https://republic-club.by/concert/2017-chaykovskaya-3dek/"
+                               class="btn order-btn-face fix-w-m">Билеты от 1500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">3 декабря</span><br>
+                                    <span class="day">Воскресенье</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-chaykovskaya-3dek/">Мария Чайковская</a>
+
+                                    <span class="desc">С программой «Поговори со мной»</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Мария Чайковская",
+								  "startDate": "2017-12-03T00:00:00+03:00",
+								  "description": "Мария Чайковская возвращается в&nbsp;Москву с&nbsp;новой программой.",
+								  "image": "https://republic-club.by/events/pressimages/171005-800x700-chaikovskaia.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-chaykovskaya-3dek"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Фестиваль Rocksmena ">
+                            <a href="https://republic-club.by/concert/2017-rocksmena-4dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 300 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">4 декабря</span><br>
+                                    <span class="day">Понедельник</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-rocksmena-4dec/">Фестиваль Rocksmena</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Фестиваль Rocksmena",
+								  "startDate": "2017-12-04T00:00:00+03:00",
+								  "description": "4 декабря в&nbsp;клубе «16 тонн» пройдет фестиваль ROCK SMENA — финал одноименного контеста, который ежегодно проводит группа LUMEN при поддержке и&nbsp;участии компании Sennheiser.",
+								  "image": "https://republic-club.by/events/pressimages/171117-800x700-rocksmena.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "300",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-rocksmena-4dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Татьяна Зыкина ">
+                            <a href="https://republic-club.by/concert/2017-zykina-6dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1000 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">6 декабря</span><br>
+                                    <span class="day">Среда</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-zykina-6dec/">Татьяна Зыкина</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Татьяна Зыкина",
+								  "startDate": "2017-12-06T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171109-800x700-zikina.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1000",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-zykina-6dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Vanyn ">
+                            <a href="https://republic-club.by/concert/2017-vanyn-7dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 800 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">7 декабря</span><br>
+                                    <span class="day">Четверг</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-vanyn-7dec/">Vanyn</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Vanyn",
+								  "startDate": "2017-12-07T00:00:00+03:00",
+								  "description": "Первые билеты по 600 руб., далее дороже...",
+								  "image": "https://republic-club.by/events/pressimages/171031-800x700-vanin.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "800",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-vanyn-7dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Пётр Налич ">
+                            <a href="https://republic-club.by/concert/2017-peter-nalich-8dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 1600 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">8 декабря</span><br>
+                                    <span class="day">Пятница</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-peter-nalich-8dec/">Пётр Налич</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Пётр Налич",
+								  "startDate": "2017-12-08T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171108-800x700-nalich.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1600",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-peter-nalich-8dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Трио «Мандили» ">
+                            <a href="https://republic-club.by/concert/2017-mandili-9dek/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">9 декабря</span><br>
+                                    <span class="day">Суббота</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-mandili-9dek/">Трио «Мандили»</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Трио «Мандили»",
+								  "startDate": "2017-12-09T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171109-800x700-mandili.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-mandili-9dek"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Антон Лаврентьев День Рождения">
+                            <a href="https://republic-club.by/concert/2017-lavrentiev-10dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 800 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">10 декабря</span><br>
+                                    <span class="day">Воскресенье</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-lavrentiev-10dec/">Антон Лаврентьев</a>
+
+                                    <span class="desc">День Рождения</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Антон Лаврентьев",
+								  "startDate": "2017-12-10T00:00:00+03:00",
+								  "description": "Антон Лаврентьев отпразднует день рождения на сцене.Первые 30 билетов по 600 руб, далее дороже.",
+								  "image": "https://republic-club.by/events/pressimages/171017-800x700-lavrentiev.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "800",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-lavrentiev-10dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Jack Action ">
+                            <a href="https://republic-club.by/concert/2017-jackaction-12dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">12 декабря</span><br>
+                                    <span class="day">Вторник</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-jackaction-12dec/">Jack Action</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Jack Action",
+								  "startDate": "2017-12-12T00:00:00+03:00",
+								  "description": "Гранж, рок, альтернатива — группа Jack Action, одна из немногих, уже не раз доказала состоятельность в&nbsp;разных музыкальных направлениях, при этом сохранив индивидуальный почерк.",
+								  "image": "https://republic-club.by/events/pressimages/171117-800x700-jackaktion.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-jackaction-12dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Хоронько Оркестр ">
+                            <a href="https://republic-club.by/concert/2017-khoronko-13dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 700 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">13 декабря</span><br>
+                                    <span class="day">Среда</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-khoronko-13dec/">Хоронько Оркестр</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Хоронько Оркестр",
+								  "startDate": "2017-12-13T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171109-800x700-horonko.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "700",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-khoronko-13dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Саша Алмазова и Non Cadenza ">
+                            <a href="https://republic-club.by/concert/2017-noncadenza-14dek/"
+                               class="btn order-btn-face fix-w-m">Билеты от 900 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">14 декабря</span><br>
+                                    <span class="day">Четверг</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-noncadenza-14dek/">Саша Алмазова и Non
+                                        Cadenza</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Саша Алмазова и Non Cadenza",
+								  "startDate": "2017-12-14T00:00:00+03:00",
+								  "description": "Первые 30 билетов 700 руб, далее дороже.В начале года Саша Алмазова и&nbsp;ее музыканты выпустили третий альбом «Новый День». Те , кто хотел его услышать, услышали. Слушали и&nbsp;расслушали, пока группа находилась в&nbsp;концертном отпуске. 2&nbsp;декабря, в&nbsp;любимом клубе «16 тонн», петербургские романтики начнут свой сезон выступлений и&nbsp;гастролей, исполнят все песни с&nbsp;нового альбома и&nbsp;проверенные временем хтиты.  ",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "900",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-noncadenza-14dek"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Дельфин ">
+                            <a href="https://republic-club.by/concert/2017-dolphin-15dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1600 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">15 декабря</span><br>
+                                    <span class="day">Пятница</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-dolphin-15dec/">Дельфин</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Дельфин",
+								  "startDate": "2017-12-15T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171114-800x700-dolphin.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1600",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-dolphin-15dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Танцы Минус ">
+                            <a href="https://republic-club.by/concert/2017-tanzy-minus-16dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 1500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">16 декабря</span><br>
+                                    <span class="day">Суббота</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-tanzy-minus-16dec/">Танцы Минус</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Танцы Минус",
+								  "startDate": "2017-12-16T00:00:00+03:00",
+								  "description": "Первые 50 билетов только в&nbsp;кассе клуба по 1500руб., далее дороже...«Танцы Минус» — частые гости «16 тонн». И&nbsp;на их концертах зал никогда не пустует, потому что песни группы уже много лет пользуются народной любовью, даже несмотря на отсутствие радиохитов и&nbsp;клипов. Хотя в&nbsp;последние несколько лет группа повысила активность: в&nbsp;2014 году вышел ее альбом «Холодно», а в&nbsp;марте 2017-го свет увидел трехтрековый EP «Три». Это по-прежнему стильная и&nbsp;взрослая гитарная музыка, которой многим не хватает. ",
+								  "image": "https://republic-club.by/events/pressimages/171117-800x700-tancy.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-tanzy-minus-16dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Казускома ">
+                            <a href="https://republic-club.by/concert/2017-kazuskoma-16dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 400 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">16 декабря</span><br>
+                                    <span class="day">Суббота</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-kazuskoma-16dec/">Казускома</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Казускома",
+								  "startDate": "2017-12-16T00:00:00+03:00",
+								  "description": "Главная ретросексуальная группа страны дает ночной концерт в&nbsp;клубе 16 тонн во имя любви.",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "400",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-kazuskoma-16dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Нигатив ">
+                            <a href="https://republic-club.by/concert/2017-nigativ-17dek/" class="btn order-btn-face fix-w-m">Билеты
+                                от 800 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">17 декабря</span><br>
+                                    <span class="day">Воскресенье</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-nigativ-17dek/">Нигатив</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Нигатив",
+								  "startDate": "2017-12-17T00:00:00+03:00",
+								  "description": "17 декабря в&nbsp;московском клубе «16 тонн» состоится уже традиционный сольныйконцерт Нигатива, легендарного участника Триады.",
+								  "image": "https://republic-club.by/events/pressimages/171012-800x700-nigativ.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "800",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-nigativ-17dek"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Чайф Внеплановый концерт">
+                            <a href="https://republic-club.by/concert/2017-chaif-19dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 3500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">19 декабря</span><br>
+                                    <span class="day">Вторник</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-chaif-19dec/">Чайф</a>
+
+                                    <span class="desc">Внеплановый концерт</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Чайф",
+								  "startDate": "2017-12-19T00:00:00+03:00",
+								  "description": "Первые билеты по 3500 руб., далее дороже...",
+								  "image": "https://republic-club.by/events/pressimages/171108-800x700-chaif.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "3500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-chaif-19dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Игорь Растеряев ">
+                            <a href="https://republic-club.by/concert/2017-rasteryaev-20dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 1500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">20 декабря</span><br>
+                                    <span class="day">Среда</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-rasteryaev-20dec/">Игорь Растеряев</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Игорь Растеряев",
+								  "startDate": "2017-12-20T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171109-800x700-rasteraiev.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-rasteryaev-20dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Вася Обломов ">
+                            <a href="https://republic-club.by/concert/2017-oblomov-21dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1000 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">21 декабря</span><br>
+                                    <span class="day">Четверг</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-oblomov-21dec/">Вася Обломов</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Вася Обломов",
+								  "startDate": "2017-12-21T00:00:00+03:00",
+								  "description": "Первые билеты по 1000 руб., далее дороже",
+								  "image": "https://republic-club.by/events/pressimages/171017-800x700-oblomov.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1000",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-oblomov-21dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Lucidvox &amp; USSSY  ">
+                            <a href="https://republic-club.by/concert/2017-lucidvoxusssy-22dec/"
+                               class="btn order-btn-face fix-w-m">Билеты от 400 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">22 декабря</span><br>
+                                    <span class="day">Пятница</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-lucidvoxusssy-22dec/">Lucidvox &amp;
+                                        USSSY </a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Lucidvox & USSSY ",
+								  "startDate": "2017-12-22T00:00:00+03:00",
+								  "description": "Музыкальный шаманизм объединяет — зимний концерт коллективов Lucidvox и&nbsp;USSSY в&nbsp;полной мере удовлетворит ценителей экспериментальной гитарной музыки, для которых важны сильный ритуальный элемент, нойз-рокерский драйв и&nbsp;темные эмоции. От The Doors до Jane’s Addiction, и&nbsp;от The xx до Goat — стилистическая система координат, в&nbsp;которой действуют обе группы предполагает экстаз, погружение слушателя в&nbsp;сложные ритмические структуры и&nbsp;бурю эмоций. ",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "400",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-lucidvoxusssy-22dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Sakura Для тех, кто проспал">
+                            <a href="https://republic-club.by/concert/2017-sakura-23dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1200 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">23 декабря</span><br>
+                                    <span class="day">Суббота</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-sakura-23dec/">Sakura</a>
+
+                                    <span class="desc">Для тех, кто проспал</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Sakura",
+								  "startDate": "2017-12-23T00:00:00+03:00",
+								  "description": "Первые билеты по 1200 руб., далее дороже...",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1200",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-sakura-23dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Moa Pillar Презентация EP «No Expectations»">
+                            <a href="https://republic-club.by/concert/2017-moapillar-08dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 350 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">23 декабря</span><br>
+                                    <span class="day">Суббота</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-moapillar-08dec/">Moa Pillar</a>
+
+                                    <span class="desc">Презентация EP «No Expectations»</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Moa Pillar",
+								  "startDate": "2017-12-23T00:00:00+03:00",
+								  "description": "",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "350",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-moapillar-08dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Loc-Dog Live Band. Все хиты!">
+                            <a href="https://republic-club.by/concert/2017-loc-dog-28dec/" class="btn order-btn-face fix-w-m">Билеты
+                                от 900 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">28 декабря</span><br>
+                                    <span class="day">Четверг</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2017-loc-dog-28dec/">Loc-Dog</a>
+
+                                    <span class="desc">Live Band. Все хиты!</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Loc-Dog",
+								  "startDate": "2017-12-28T00:00:00+03:00",
+								  "description": "В продаже строго ограниченное количество билетов. Первые билеты по 900 руб., далее дороже...",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "900",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2017-loc-dog-28dec"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                    </ul>
+                </div>
+                <!--end block bill-month-->
+
+                <!--block bill-month-->
+                <div class="block bill-month">
+                    <h1>
+                        В Январе
+                        <i class="h-line"></i>
+                    </h1>
+                    <ul class="event-list">
+
+                        <li data-words="Джанго Праздничный концерт и премьера песни">
+                            <a href="https://republic-club.by/concert/2018-django-3jan/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1500 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">3 января</span><br>
+                                    <span class="day">Среда</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2018-django-3jan/">Джанго</a>
+
+                                    <span class="desc">Праздничный концерт и премьера песни</span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Джанго",
+								  "startDate": "2018-01-03T00:00:00+03:00",
+								  "description": "Новый сезон группа «Джанго» и&nbsp;ее лидер Алексей Поддубный откроет большим праздничным концертом в&nbsp;клубе «16 тонн»! В&nbsp;2018-м году Алексей Поддубный планирует выпустить новую, долгожданную пластинку, над которой сейчас усердно работает. Накануне своего дня рождения, в&nbsp;любимом клубе он представит слушателям новую песню из этого альбома!",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1500",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2018-django-3jan"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Курара ">
+                            <a href="https://republic-club.by/concert/2018-kurara-4jnv/" class="btn order-btn-face fix-w-m">Билеты
+                                от 600 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">4 января</span><br>
+                                    <span class="day">Четверг</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2018-kurara-4jnv/">Курара</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Курара",
+								  "startDate": "2018-01-04T00:00:00+03:00",
+								  "description": "",
+								  "image": "https://republic-club.by/events/pressimages/171024-800x700-kurara.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "600",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2018-kurara-4jnv"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Red Elvises (USA) ">
+                            <a href="https://republic-club.by/concert/2018-red-elvises-5jan/"
+                               class="btn order-btn-face fix-w-m">Билеты от 600 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">5 января</span><br>
+                                    <span class="day">Пятница</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2018-red-elvises-5jan/">Red Elvises (USA)</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Red Elvises (USA)",
+								  "startDate": "2018-01-05T00:00:00+03:00",
+								  "description": "",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "600",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2018-red-elvises-5jan"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Бригадный Подряд  ">
+                            <a href="https://republic-club.by/concert/2018-bpodryad-6jan/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1000 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">6 января</span><br>
+                                    <span class="day">Суббота</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2018-bpodryad-6jan/">Бригадный Подряд </a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Бригадный Подряд ",
+								  "startDate": "2018-01-06T00:00:00+03:00",
+								  "description": "",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1000",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2018-bpodryad-6jan"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Zero People ">
+                            <a href="https://republic-club.by/concert/2018-zeropeople-8jan/" class="btn order-btn-face fix-w-m">Билеты
+                                от 1000 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">8 января</span><br>
+                                    <span class="day">Понедельник</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2018-zeropeople-8jan/">Zero People</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Zero People",
+								  "startDate": "2018-01-08T00:00:00+03:00",
+								  "description": "Первые 50 билетов по 1000 руб., далее дороже...",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "1000",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2018-zeropeople-8jan"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="Таймсквер ">
+                            <a href="https://republic-club.by/concert/2018-timesquare-9jan/" class="btn order-btn-face fix-w-m">Билеты
+                                от 400 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">9 января</span><br>
+                                    <span class="day">Вторник</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2018-timesquare-9jan/">Таймсквер</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "Таймсквер",
+								  "startDate": "2018-01-09T00:00:00+03:00",
+								  "description": "Первые 50 билетов по 400 руб., далее дороже9 января в&nbsp;группа «Таймсквер» представит свой дебютный альбом.",
+								  "image": "https://republic-club.by/events/pressimages/171108-800x700-ts.jpg",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "400",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2018-timesquare-9jan"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                        <li data-words="The Hook ">
+                            <a href="https://republic-club.by/concert/2018-thehoock-10jan/" class="btn order-btn-face fix-w-m">Билеты
+                                от 300 ₶</a>
+
+                            <div class="info">
+                                <div class="date">
+                                    <span class="time">10 января</span><br>
+                                    <span class="day">Среда</span>
+                                </div>
+                                <h3>
+                                    <a href="https://republic-club.by/concert/2018-thehoock-10jan/">The Hook</a>
+
+                                    <span class="desc"></span>
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <script type="application/ld+json">
+								[{
+								  "@context": "http://schema.org",
+								  "@type": "MusicEvent",
+								  "name": "The Hook",
+								  "startDate": "2018-01-10T00:00:00+03:00",
+								  "description": "",
+								  "image": "",
+								  "location": {
+								    "@type": "Place",
+								    "name": "Клуб 16 Тонн",
+								    "address": {
+								      "@type": "PostalAddress",
+								      "streetAddress": "Пресненский Вал, 6, стр. 1",
+								      "addressLocality": "Москва",
+								      "addressRegion": "Россия",
+								      "addressCountry": "Ru"
+								    }
+								  },"offers": [{
+								    "@type": "Offer",
+								    "name": "Входной билет",
+								    "category": "primary",
+								    "price": "300",
+								    "priceCurrency": "RUB",
+								    "url": "https://republic-club.by/concert/2018-thehoock-10jan"
+								  }]
+								}]
+
+                            </script>
+
+                        </li>
+
+                    </ul>
+                </div>
+                <!--end block bill-month-->
+
+            </div>
+            <!--end main content-->
+
+            <!--sidebar-->
+            <div class="right-sidebar" style="height: 7716px;">
+
+                <!--block find-event-->
+                <!--
+                <div class="block find-event side-info">
+                    <h4>НАйТИ КОНЦЕРТ</h4>
+                    <p>Начните вводить название группы</p>
+                    <input type="text" class="input-medium" placeholder="Найти"/>
+                </div>
+                -->
+                <!--end block find-event-->
+                <!--<div class="block last-gallery">
+                                <h4><a href="https://republic-club.by/photo">ТРАНСЛЯЦИЯ ПРЕМИИ ЗОЛОТАЯ ГОРГУЛИЯ</a></h4>
+                    <iframe width="100%" src="https://www.youtube.com/embed/Hh1n_JEmzNQ?rel=0" frameborder="0" allowfullscreen></iframe>
+                </div>-->
+
+                <!--block last gallery-->
+                <div class="block last-gallery">
+                    <h4><a href="https://republic-club.by/photo">ПОСЛЕДНИЕ ГАЛЕРЕИ</a></h4>
+                    <ul class="list">
+                        <li>
+                            <div class="img">
+                                <a href="https://republic-club.by/photo/2017-constantine-4nov">
+                                    <img src="images/2017-constantine-4nov-cover.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="date">4 ноября</span>
+                                <h3>
+                                    <a href="https://republic-club.by/photo/2017-constantine-4nov">Constantine</a>
+                                </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <a href="https://republic-club.by/photo/2017-babyfather-04nov">
+                                    <img src="images/2017-babyfather-04nov-cover.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="date">4 ноября</span>
+                                <h3>
+                                    <a href="https://republic-club.by/photo/2017-babyfather-04nov">Babyfather (Dean Blunt)</a>
+                                </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <a href="https://republic-club.by/photo/2017-knyaz-03nov">
+                                    <img src="images/2017-knyaz-03nov-cover.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="date">3 ноября</span>
+                                <h3>
+                                    <a href="https://republic-club.by/photo/2017-knyaz-03nov">КняZz</a>
+                                </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <a href="https://republic-club.by/photo/2017-zg2017-2nov">
+                                    <img src="images/2017-zg2017-2nov-cover.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="date">2 ноября</span>
+                                <h3>
+                                    <a href="https://republic-club.by/photo/2017-zg2017-2nov">XVIII Золотая Горгулья -
+                                        церемония</a>
+                                </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="img">
+                                <a href="https://republic-club.by/photo/2017-gg-2nov">
+                                    <img src="images/2017-gg-2nov-cover.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="date">2 ноября</span>
+                                <h3>
+                                    <a href="https://republic-club.by/photo/2017-gg-2nov">XVIII Золотая Горгулья -
+                                        пресс-волл</a>
+                                </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+                <!--end block last gallery-->
+
+                <!--block interesting-->
+                <div class="block interesting">
+                    <h4>ВОЗМОЖНО, ВАС ТАКЖЕ ЗАИНТЕРЕСУЕТ</h4>
+                    <ul class="list">
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">25</span>
+                                <span class="day">Суббота</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171011-260х130oizemc.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-noize-mc-25nov/?utm_source=sidebanner">Noize
+                                        MC</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">29</span>
+                                <span class="day">Среда</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/170904-260x130_teona.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-teona-29nov/?utm_source=sidebanner">Teona
+                                        Kontridze &amp; Band</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">28</span>
+                                <span class="day">Вторник</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/170924-260х130daitedva.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-dayte2-28nov/?utm_source=sidebanner">Дайте
+                                        Два</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">19</span>
+                                <span class="day">Воскресенье</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171009-260х130-aigel.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-aigel-19nov/?utm_source=sidebanner">Аигел</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">30</span>
+                                <span class="day">Четверг</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/170803-16-30nov-bomzh-trio-130.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-bomzh-trio-30nov/?utm_source=sidebanner">Бомж
+                                        Трио</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">3</span>
+                                <span class="day">Воскресенье</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171005-260х130chaikovskaia.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-chaykovskaya-3dek/?utm_source=sidebanner">Мария
+                                        Чайковская</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">21</span>
+                                <span class="day">Четверг</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171017-260х130baner-site.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-oblomov-21dec/?utm_source=sidebanner">Вася
+                                        Обломов</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">21</span>
+                                <span class="day">Вторник</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/170906-130x260-oxzana.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-oxzana-21nov/?utm_source=sidebanner">OXZANA</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">17</span>
+                                <span class="day">Пятница</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171010-260х130syphacho.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-supcharcho-17nov/?utm_source=sidebanner">Суп
+                                        Харчо</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">10</span>
+                                <span class="day">Воскресенье</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171017-260х130-lavrentiev.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-lavrentiev-10dec/?utm_source=sidebanner">Антон
+                                        Лаврентьев</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">24</span>
+                                <span class="day">Пятница</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171030-260х130krematory.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-krematory-24nov/?utm_source=sidebanner">Крематорий</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">26</span>
+                                <span class="day">Воскресенье</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171009-260х130ROrchestr.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-recordorchestra-26nov/?utm_source=sidebanner">Рекорд
+                                        Оркестр</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">19</span>
+                                <span class="day">Вторник</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171108-260х130-chaif.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-chaif-19dec/?utm_source=sidebanner">Чайф</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">17</span>
+                                <span class="day">Воскресенье</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171012-260х130nigativ.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-nigativ-17dek/?utm_source=sidebanner">Нигатив</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">27</span>
+                                <span class="day">Понедельник</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171024-260х130-radiokamerger.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-radio-kamerger-27nov/?utm_source=sidebanner">
+                                        Radio Kamerger</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">8</span>
+                                <span class="day">Пятница</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171108-260х130-nalich.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-peter-nalich-8dec/?utm_source=sidebanner">Пётр
+                                        Налич</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Январь</span>
+                                <span class="date">4</span>
+                                <span class="day">Четверг</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171024-260х130kurara.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2018-kurara-4jnv/?utm_source=sidebanner">Курара</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">1</span>
+                                <span class="day">Пятница</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171109-260х130billys.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-billys-band-1day-1dec/?utm_source=sidebanner">Billy's
+                                        Band — День 1</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">9</span>
+                                <span class="day">Суббота</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171109-260х130-mandili.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-mandili-9dek/?utm_source=sidebanner">Трио
+                                        «Мандили»</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">6</span>
+                                <span class="day">Среда</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171109-260х130zikina.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-zykina-6dec/?utm_source=sidebanner">Татьяна
+                                        Зыкина</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">15</span>
+                                <span class="day">Пятница</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171114-260х130-dolphin.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-dolphin-15dec/?utm_source=sidebanner">Дельфин</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">20</span>
+                                <span class="day">Среда</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171109-260х130rasteraiev.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-rasteryaev-20dec/?utm_source=sidebanner">Игорь
+                                        Растеряев</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">7</span>
+                                <span class="day">Четверг</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171031-260х130-vanin.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-vanyn-7dec/?utm_source=sidebanner">Vanyn</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">2</span>
+                                <span class="day">Суббота</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171109-260х130billys.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-billys-band-2day-2dec/?utm_source=sidebanner">Billy's
+                                        Band — День 2</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">16</span>
+                                <span class="day">Суббота</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171117-260х130tancy.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-tanzy-minus-16dec/?utm_source=sidebanner">Танцы
+                                        Минус</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Ноябрь</span>
+                                <span class="date">23</span>
+                                <span class="day">Четверг</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171114-260х130_detsl.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-detsl-23nov/?utm_source=sidebanner">Detsl
+                                        a.k.a. Le Truk</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">13</span>
+                                <span class="day">Среда</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171109-260х130horonko.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-khoronko-13dec/?utm_source=sidebanner">Хоронько
+                                        Оркестр</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="info">
+                                <span class="month">Декабрь</span>
+                                <span class="date">12</span>
+                                <span class="day">Вторник</span>
+                                <span class="time">20:00</span>
+                            </div>
+                            <div class="title">
+                                <div class="img">
+                                    <img height="130px" src="images/171117-260х130-jackaktion.jpg" alt="">
+                                    <a href="https://republic-club.by/concert/2017-jackaction-12dec/?utm_source=sidebanner">Jack
+                                        Action</a>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--end block interesting-->
+
+                <!--
+                        <div class="block social-links">
+                            <h4>ОФИЦИАЛЬНЫЕ СТРАНИЦЫ КЛУБА</h4>
+                            <center><ul>
+                                <li>
+                                    <a href="#" class="facebook"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="vk"></a>
+                                </li>
+                            </ul></center>
+                        </div>
+                -->
+                <!-- VK Widget -->
+            </div>
+            <!--end sidebar-->
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--end content-->
+
+
+    <!--footer-->
+    <div class="footer">
+        <div class="container">
+            <p class="desc">
+                КЛУБ ОСТАВЛЯЕТ ЗА СОБОЙ ПРАВО ИЗМЕНЯТЬ И ДОПОЛНЯТЬ ТЕКУЩУЮ ПРОГРАММУ МЕРОПРИЯТИЙ
+            </p>
+            <p>
+                Минскб ул. Притыцкого 62. ст. м. Кунцевщина. Телефон +375 29 110 35 35.<br>
+                Мы работаем круглосуточно.
+                <br>
+                Юридическая информация:<br>
+                Индивидуальный предприниматель Старцев Андрей Валентинович<br>
+                Свидетельство №190462465 выдано Минским горисполкомом 30 января 2015<br>
+                Адрес:220131 РБ г. г. Минск, ул. Мирошниченко, 3б, кв.44<br>
+                УНП 190462465<br>
+
+                Р/с 3013239400013 ЗАО «МТБанк», код 117<br>
+                220033, г. Минск, пр. Партизанский, д. 6А<br>
+
+                тел/факс +375 17 290 86 90<br>
+                <br>
+                Все материалы © RE:PUBLIC. При цитировании ссылка на сайт обязательна.<br>
+                © www.republic-club.by 2012–2017 г.
+                <br>
+            </p>
+        </div>
+    </div>
+    <!--end footer-->
+</div>
+
+</body>
+</html>

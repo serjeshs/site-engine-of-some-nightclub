@@ -160,7 +160,6 @@ public class EventDAO extends BaseDAO {
             criteria.add(Restrictions.eq(Event.COL_PLACE_ID, placeId));
         }
         criteria.addOrder(Order.asc(Event.COL_START_EVENT));
-        criteria.setMaxResults(20);
         return criteria.list();
     }
 }
