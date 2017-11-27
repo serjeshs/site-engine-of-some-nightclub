@@ -13,7 +13,7 @@ public class MainPageDTO {
     List<EventDTO> currentAndNextWeek = new ArrayList<>();
     List<EventDTO> currentMonth = new ArrayList<>();
     List<EventDTO> nextMonth = new ArrayList<>();
-    List<EventDTO> nextNexMonth = new ArrayList<>();
+    List<EventDTO> nextNextMonth = new ArrayList<>();
     List<EventRelevantDTO> relevant = new ArrayList<>();
     List<EventGaleryDTO> galery = new ArrayList<>();
 
@@ -57,12 +57,12 @@ public class MainPageDTO {
         this.nextMonth = nextMonth;
     }
 
-    public List<EventDTO> getNextNexMonth() {
-        return nextNexMonth;
+    public List<EventDTO> getNextNextMonth() {
+        return nextNextMonth;
     }
 
-    public void setNextNexMonth(List<EventDTO> nextNexMonth) {
-        this.nextNexMonth = nextNexMonth;
+    public void setNextNextMonth(List<EventDTO> nextNextMonth) {
+        this.nextNextMonth = nextNextMonth;
     }
 
     public List<EventRelevantDTO> getRelevant() {

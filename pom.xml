@@ -27,6 +27,7 @@
 		<javax.servlet.version>2.0</javax.servlet.version>
 		<javax.mail.version>1.5.2</javax.mail.version>
 		<lombok-maven-version>1.16.18.1</lombok-maven-version>
+		<jackson-datatype-jsr310-version>2.6.5</jackson-datatype-jsr310-version>
 	</properties>
 
 
@@ -276,6 +277,12 @@
 			<artifactId>lombok-maven</artifactId>
 			<version>${lombok-maven-version}</version>
 			<type>pom</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson-datatype-jsr310-version}</version>
 		</dependency>
 
 	</dependencies>

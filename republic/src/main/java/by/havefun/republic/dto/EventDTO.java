@@ -1,5 +1,12 @@
 package by.havefun.republic.dto;
 
+import by.havefun.republic.config.Config;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import java.time.LocalDateTime;
 
 public class EventDTO {
@@ -7,8 +14,17 @@ public class EventDTO {
     private int cost;
     private String costText;
     private String description;
+
+    @JsonFormat(pattern = Config.DATE_TIME_PATTERN)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime startEvent;
+
+    @JsonFormat(pattern = Config.DATE_TIME_PATTERN)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime endEvent;
+
     private String name;
     private String imageUri;
 

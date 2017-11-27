@@ -59,14 +59,14 @@ public class EventsController {
             } else if (startEvent.getMonthValue() == LocalDateTime.now().plusMonths(1L).getMonthValue()) {
                 mainPageDTO.nextMonth.add(Converter.toEventDTO(event));
             } else if (startEvent.getMonthValue() == LocalDateTime.now().plusMonths(2L).getMonthValue()) {
-                mainPageDTO.nextNexMonth.add(Converter.toEventDTO(event));
+                mainPageDTO.nextNextMonth.add(Converter.toEventDTO(event));
             }
 
         }
         return mainPageDTO;
     }
 
-    @RequestMapping(value = "api/generate/events")
+//    @RequestMapping(value = "api/generate/events")
     public ResponseEntity generateEvents() {
         List<Event> events = new ArrayList<>();
         final AppUser user = new AppUser().setId(1);
