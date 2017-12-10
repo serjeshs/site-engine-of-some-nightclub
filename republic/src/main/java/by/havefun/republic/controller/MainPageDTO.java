@@ -1,7 +1,7 @@
 package by.havefun.republic.controller;
 
 import by.havefun.republic.dto.EventDTO;
-import by.havefun.republic.dto.EventGaleryDTO;
+import by.havefun.republic.dto.EventGalleryDTO;
 import by.havefun.republic.dto.EventRelevantDTO;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class MainPageDTO {
     List<EventDTO> nextMonth = new ArrayList<>();
     List<EventDTO> nextNextMonth = new ArrayList<>();
     List<EventRelevantDTO> relevant = new ArrayList<>();
-    List<EventGaleryDTO> galery = new ArrayList<>();
+    List<EventGalleryDTO> gallery = new ArrayList<>();
 
     public List<EventDTO> getToday() {
         return today;
@@ -73,11 +73,11 @@ public class MainPageDTO {
         this.relevant = relevant;
     }
 
-    public List<EventGaleryDTO> getGalery() {
-        return galery;
+    public List<EventGalleryDTO> getGallery() {
+        return gallery;
     }
 
-    public void setGalery(List<EventGaleryDTO> galery) {
-        this.galery = galery;
+    public void setGallery(List<EventGalleryDTO> gallery) {
+        this.gallery = gallery;
     }
 }

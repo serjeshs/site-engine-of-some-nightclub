@@ -1,6 +1,6 @@
 **.iml
 target
 .idea
-/republic/src/main/webapp/angular/node_modules/
-/republic/src/main/webapp/angular/src/images/
-/republic/src/main/webapp/images/
+/republic/src/main/angular/node_modules/
+/republic/src/main/angular/src/assets/images/
+/republic/src/main/angular/dist

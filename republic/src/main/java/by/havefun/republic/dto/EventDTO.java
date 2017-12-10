@@ -27,6 +27,7 @@ public class EventDTO {
 
     private String name;
     private String imageUri;
+    private String status;
 
     public int getId() {
         return id;
@@ -90,5 +91,13 @@ public class EventDTO {
 
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

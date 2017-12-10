@@ -1,0 +1,184 @@
+<!--block bill-day-->
+<div class="block bill-day">
+  <h1>
+    Сегодня, {{currentDate}}
+    <i class="h-line"></i>
+  </h1>
+  <div class="row">
+    <ul>
+      <li *ngFor="let event of today">
+        <div class="event">
+          <div class="img">
+            <a routerLink="/event/{{event.id}}">
+              <img src="{{event.imageUri}}" alt="">
+            </a>
+          </div>
+          <div class="info">
+            <span class="time">{{event.startEvent}}20:00</span>
+            <h3>
+              <a routerLink="/event/{{event.id}}">
+                {{event.name}}
+              </a>
+            </h3>
+            <span class="tickets">
+              {{event.status}}
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!--end block bill-day-->
+
+
+<!--block bill-day-->
+<div class="block bill-day">
+  <h1>
+    Завтра, {{tomorrowDate}}
+    <i class="h-line"></i>
+  </h1>
+  <div class="row">
+    <li *ngFor="let event of tomorrow">
+      <div class="event">
+        <div class="img">
+          <a routerLink="/event/{{event.id}}">
+            <img src="{{event.imageUri}}" alt="">
+          </a>
+        </div>
+        <div class="info">
+          <span class="time">{{event.startEvent}}20:00</span>
+          <h3>
+            <a routerLink="/event/{{event.id}}">
+              {{event.name}}
+            </a>
+          </h3>
+          <span class="tickets">
+              {{event.status}}
+            </span>
+        </div>
+      </div>
+    </li>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!--end block bill-day-->
+
+
+<h1>
+  Далее в программе
+  <i class="h-line"></i>
+</h1>
+<ul class="block bill-farther">
+  <li *ngFor="let event of currentAndNextWeek">
+    <div class="event">
+      <!--data-words="{{event.name}}"-->
+      <div class="img">
+        <a routerLink="/event/{{event.id}}">
+          <img src="{{event.imageUri}}" alt="">
+        </a>
+      </div>
+      <div class="info">
+        <span class="date">{{event.startEvent}}</span>
+        <h2>
+          <a routerLink="/event/{{event.id}}">
+            {{event.name}}
+            <span class="type"></span>
+          </a>
+        </h2>
+        <p>
+          {{event.description}}<br>
+        </p>
+        <div class="tickets">
+          <h4>БИЛЕТЫ</h4>
+          <a routerLink="/event/{{event.id}}" class="btn order-btn-face">
+            Купитьбилет
+          </a>
+          <div class="tickets-list">
+            <span>{{event.costText}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+<!--block bill-month-->
+<div class="block bill-month">
+  <h1>
+    Далее в {{currentMonthName}}
+    <i class="h-line"></i>
+  </h1>
+  <ul class="event-list">
+    <li *ngFor="let event of currentMonth"><!--   data-words="{{event.name}}"-->
+      <a routerLink="/event/{{event.id}}"
+         class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+      <div class="info">
+        <div class="date">
+          <span class="time">{{event.startEvent}}27 ноября</span><br>
+          <span class="day">{{event.startEvent}}Понедельник</span>
+        </div>
+        <h3>
+          <a routerLink="/event/{{event.id}}">{{event.name}}</a>
+          <span class="desc"></span>
+        </h3>
+        <div class="clearfix"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<!--end block bill-month-->
+
+<!--block bill-month-->
+<div class="block bill-month">
+  <h1>
+    В {{nextMonthName}}
+    <i class="h-line"></i>
+  </h1>
+  <ul class="event-list">
+    <li *ngFor="let event of nextMonth"><!--   data-words="{{event.name}}"-->
+      <a routerLink="/event/{{event.id}}"
+         class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+      <div class="info">
+        <div class="date">
+          <span class="time">{{event.startEvent}}27 ноября</span><br>
+          <span class="day">{{event.startEvent}}Понедельник</span>
+        </div>
+        <h3>
+          <a routerLink="/event/{{event.id}}">{{event.name}}</a>
+          <span class="desc"></span>
+        </h3>
+        <div class="clearfix"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<!--end block bill-month-->
+
+<!--block bill-month-->
+<div class="block bill-month">
+  <h1>
+    В {{nextNextMonthName}}
+    <i class="h-line"></i>
+  </h1>
+  <ul class="event-list">
+    <li *ngFor="let event of nextNextMonth"><!--   data-words="{{event.name}}"-->
+      <a routerLink="/event/{{event.id}}"
+         class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+      <div class="info">
+        <div class="date">
+          <span class="time">{{event.startEvent}}27 ноября</span><br>
+          <span class="day">{{event.startEvent}}Понедельник</span>
+        </div>
+        <h3>
+          <a routerLink="/event/{{event.id}}">{{event.name}}</a>
+          <span class="desc"></span>
+        </h3>
+        <div class="clearfix"></div>
+      </div>
+    </li>
+  </ul>
+</div>
+<!--end block bill-month-->
