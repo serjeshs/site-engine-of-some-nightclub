@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Event} from '../dto/event';
 import {EventGallery} from "../dto/eventGallery";
 import {EventRelevant} from "../dto/eventRelevant";
+import {EventsService} from "../events.service";
 
 @Component({
   selector: 'app-events',
@@ -19,36 +20,52 @@ export class EventsComponent implements OnInit {
   gallery: EventGallery[];
   currentDate: string;
   tomorrowDate: string;
+  currentMonthName: string;
+  nextNextMonthName: string;
+  nextMonthName: string;
 
-  constructor() {
+  constructor(private eventsService: EventsService) {
   }
 
   ngOnInit() {
     this.getEvents();
-    this.currentDate = new Date() + '';
-    this.tomorrowDate = new Date() + '';
-      // .format('m-d-Y h:i:s');
+    this.getMonthNames();
+  }
+
+  private getMonthNames() {
+    let dateFormatOptions = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    let todayDate = new Date();
+    this.currentDate = todayDate.toLocaleString("ru", dateFormatOptions);
+    let tomorrowDate = todayDate;
+    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+    this.tomorrowDate = tomorrowDate.toLocaleString("ru", dateFormatOptions);
+    this.currentMonthName = todayDate.toLocaleDateString("ru", {month: 'long'});
+    let nextMonthDate = new Date();
+    nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+    this.nextMonthName = nextMonthDate.toLocaleDateString("ru", {month: 'long'});
+    let nextNextMonthDate = new Date();
+    nextNextMonthDate.setMonth(nextNextMonthDate.getMonth() + 2);
+    this.nextNextMonthName = nextNextMonthDate.toLocaleDateString("ru", {month: 'long'});
   }
 
   private getEvents() {
-    let mainPage = {
-      today: [],
-      tomorrow: [],
-      currentAndNextWeek: [],
-      currentMonth: [],
-      nextMonth: [],
-      nextNexMonth: [],
-      relevant: [],
-      galery: []
-    };
+    this.eventsService.getEvents()
+      .subscribe(mainPage => {
+        console.log(mainPage);
+        this.today = mainPage.today;
+        this.tomorrow = mainPage.tomorrow;
+        this.currentAndNextWeek = mainPage.currentAndNextWeek;
+        this.currentMonth = mainPage.currentMonth;
+        this.nextMonth = mainPage.nextMonth;
+        this.nextNextMonth = mainPage.nextNextMonth;
+        this.relevant = mainPage.relevant;
+        this.gallery = mainPage.gallery;
+      });
 
-    this.today = mainPage.today;
-    this.tomorrow = mainPage.tomorrow;
-    this.currentAndNextWeek = mainPage.currentAndNextWeek;
-    this.currentMonth = mainPage.currentMonth;
-    this.nextMonth = mainPage.nextMonth;
-    this.nextNextMonth = mainPage.nextNexMonth;
-    this.relevant = mainPage.relevant;
-    this.gallery = mainPage.galery;
+
   }
 }

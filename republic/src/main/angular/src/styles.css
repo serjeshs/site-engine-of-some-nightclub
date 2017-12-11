@@ -655,7 +655,7 @@ body {
 
 .header {
   padding: 0 0 10px;
-  background: url('http://16tons.ru/images/header-bg.png') 50% 0 no-repeat #221302;
+  background: url('/assets/img/logo2.jpg') 50% 0 no-repeat #221302;
   background-size: auto 290px
 }
 
