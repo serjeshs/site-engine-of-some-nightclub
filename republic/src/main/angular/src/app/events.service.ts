@@ -12,14 +12,14 @@ const httpOptions = {
 
 @Injectable()
 export class EventsService {
-  // private eventsMainPageUrl = '/api/page/main';
-  private eventsMainPageUrl = 'http://localhost:8080/api/page/main';
+  private eventsMainPageUrl = '/api/page/main';
+  // private eventsMainPageUrl = 'http://localhost:8080/api/page/main';
 
   constructor(private http: HttpClient) {
   }
 
   /** GET heroes from the server */
-  getEvents(): Observable<MainEventPage> {
+  getEvents(): Observable<MainEventPage | {}> {
     return this.http.get<MainEventPage>(this.eventsMainPageUrl)
       .pipe(
         tap(mainEventsPage => this.log(`fetched heroes`)),
