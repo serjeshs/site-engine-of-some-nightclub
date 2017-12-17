@@ -3,6 +3,7 @@ import {Event} from '../dto/event';
 import {EventGallery} from "../dto/eventGallery";
 import {EventRelevant} from "../dto/eventRelevant";
 import {EventsService} from "../events.service";
+import {MainEventPage} from "../dto/mainEventPage";
 
 @Component({
   selector: 'app-events',
@@ -56,14 +57,16 @@ export class EventsComponent implements OnInit {
     this.eventsService.getEvents()
       .subscribe(mainPage => {
         console.log(mainPage);
-        this.today = mainPage.today;
-        this.tomorrow = mainPage.tomorrow;
-        this.currentAndNextWeek = mainPage.currentAndNextWeek;
-        this.currentMonth = mainPage.currentMonth;
-        this.nextMonth = mainPage.nextMonth;
-        this.nextNextMonth = mainPage.nextNextMonth;
-        this.relevant = mainPage.relevant;
-        this.gallery = mainPage.gallery;
+        if (mainPage instanceof MainEventPage) {
+          this.today = mainPage.today;
+          this.tomorrow = mainPage.tomorrow;
+          this.currentAndNextWeek = mainPage.currentAndNextWeek;
+          this.currentMonth = mainPage.currentMonth;
+          this.nextMonth = mainPage.nextMonth;
+          this.nextNextMonth = mainPage.nextNextMonth;
+          this.relevant = mainPage.relevant;
+          this.gallery = mainPage.gallery;
+        }
       });
 
 
