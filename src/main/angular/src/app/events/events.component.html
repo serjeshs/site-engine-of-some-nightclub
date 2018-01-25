@@ -1,0 +1,274 @@
+<!--main content-->
+<div class="main-content">
+
+
+  <!--block bill-day-->
+  <div class="block bill-day">
+    <h1>
+      Сегодня, {{currentDate}}
+      <i class="h-line"></i>
+    </h1>
+    <div class="row">
+      <ul>
+        <li *ngFor="let event of today">
+          <div class="event">
+            <div class="img">
+              <a routerLink="/event/{{event.id}}">
+                <img src="{{event.coverUri}}" alt="">
+              </a>
+            </div>
+            <div class="info">
+              <span class="time">{{event.startEvent}}20:00</span>
+              <h3>
+                <a routerLink="/event/{{event.id}}">
+                  {{event.name}}
+                </a>
+              </h3>
+              <span class="tickets">
+              {{event.status}}
+            </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <!--end block bill-day-->
+
+
+  <!--block bill-day-->
+  <div class="block bill-day">
+    <h1>
+      Завтра, {{tomorrowDate}}
+      <i class="h-line"></i>
+    </h1>
+    <div class="row">
+      <li *ngFor="let event of tomorrow">
+        <div class="event">
+          <div class="img">
+            <a routerLink="/event/{{event.id}}">
+              <img src="{{event.coverUri}}" alt="">
+            </a>
+          </div>
+          <div class="info">
+            <span class="time">{{event.startEvent}}20:00</span>
+            <h3>
+              <a routerLink="/event/{{event.id}}">
+                {{event.name}}
+              </a>
+            </h3>
+            <span class="tickets">
+              {{event.status}}
+            </span>
+          </div>
+        </div>
+      </li>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <!--end block bill-day-->
+
+
+  <h1>
+    Далее в программе
+    <i class="h-line"></i>
+  </h1>
+  <ul class="block bill-farther">
+    <li *ngFor="let event of currentAndNextWeek">
+      <div class="event">
+        <!--data-words="{{event.name}}"-->
+        <div class="img">
+          <a routerLink="/event/{{event.id}}">
+            <img src="{{event.coverUri}}" alt="">
+          </a>
+        </div>
+        <div class="info">
+          <span class="date">{{event.startEvent}}</span>
+          <h2>
+            <a routerLink="/event/{{event.id}}">
+              {{event.name}}
+              <span class="type"></span>
+            </a>
+          </h2>
+          <p class="e2e-inner-html-bound" [innerHTML]="event.description">
+          </p>
+          <div class="tickets">
+            <h4>БИЛЕТЫ</h4>
+            <a routerLink="/event/{{event.id}}" class="btn order-btn-face">
+              Купитьбилет
+            </a>
+            <div class="tickets-list">
+              <span class="e2e-inner-html-bound" [innerHTML]="event.costText"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+
+  <!--block bill-month-->
+  <div class="block bill-month">
+    <h1>
+      Далее в {{currentMonthName}}
+      <i class="h-line"></i>
+    </h1>
+    <ul class="event-list">
+      <li *ngFor="let event of currentMonth"><!--   data-words="{{event.name}}"-->
+        <a routerLink="/event/{{event.id}}"
+           class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+        <div class="info">
+          <div class="date">
+            <span class="time">{{event.startEvent}}27 ноября</span><br>
+            <span class="day">{{event.startEvent}}Понедельник</span>
+          </div>
+          <h3>
+            <a routerLink="/event/{{event.id}}">{{event.name}}</a>
+            <span class="desc"></span>
+          </h3>
+          <div class="clearfix"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!--end block bill-month-->
+
+  <!--block bill-month-->
+  <div class="block bill-month">
+    <h1>
+      В {{nextMonthName}}
+      <i class="h-line"></i>
+    </h1>
+    <ul class="event-list">
+      <li *ngFor="let event of nextMonth"><!--   data-words="{{event.name}}"-->
+        <a routerLink="/event/{{event.id}}"
+           class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+        <div class="info">
+          <div class="date">
+            <span class="time">{{event.startEvent}}27 ноября</span><br>
+            <span class="day">{{event.startEvent}}Понедельник</span>
+          </div>
+          <h3>
+            <a routerLink="/event/{{event.id}}">{{event.name}}</a>
+            <span class="desc"></span>
+          </h3>
+          <div class="clearfix"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!--end block bill-month-->
+
+  <!--block bill-month-->
+  <div class="block bill-month">
+    <h1>
+      В {{nextNextMonthName}}
+      <i class="h-line"></i>
+    </h1>
+    <ul class="event-list">
+      <li *ngFor="let event of nextNextMonth"><!--   data-words="{{event.name}}"-->
+        <a routerLink="/event/{{event.id}}"
+           class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+        <div class="info">
+          <div class="date">
+            <span class="time">{{event.startEvent}}27 ноября</span><br>
+            <span class="day">{{event.startEvent}}Понедельник</span>
+          </div>
+          <h3>
+            <a routerLink="/event/{{event.id}}">{{event.name}}</a>
+            <span class="desc"></span>
+          </h3>
+          <div class="clearfix"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!--end block bill-month-->
+
+</div>
+<!--end main content-->
+
+<!--sidebar-->
+<div class="right-sidebar" style="height: 7716px;">
+
+  <!--block find-event-->
+  <!--
+  <div class="block find-event side-info">
+      <h4>НАйТИ КОНЦЕРТ</h4>
+      <p>Начните вводить название группы</p>
+      <input type="text" class="input-medium" placeholder="Найти"/>
+  </div>
+  -->
+  <!--end block find-event-->
+  <!--<div class="block last-gallery">
+                  <h4><a href="https://republic-club.by/photo">ТРАНСЛЯЦИЯ ПРЕМИИ ЗОЛОТАЯ ГОРГУЛИЯ</a></h4>
+      <iframe width="100%" src="https://www.youtube.com/embed/Hh1n_JEmzNQ?rel=0" frameborder="0" allowfullscreen></iframe>
+  </div>-->
+
+  <!--block last gallery-->
+  <div class="block last-gallery">
+    <h4><a href="https://republic-club.by/photo">ПОСЛЕДНИЕ ГАЛЕРЕИ</a></h4>
+
+    <ul class="list">
+      <li *ngFor="let galleryEvent of gallery">
+        <div class="img">
+          <a routerLink="/event/{{galleryEvent.id}}">
+            <img src="{{galleryEvent.coverUri}}" alt="">
+          </a>
+        </div>
+        <div class="info">
+          <span class="date">{{galleryEvent.dateWithMonth}}</span>
+          <h3>
+            <a routerLink="/event/{{galleryEvent.id}}">{{galleryEvent.name}}</a>
+          </h3>
+        </div>
+        <div class="clearfix"></div>
+      </li>
+    </ul>
+
+  </div>
+  <!--end block last gallery-->
+
+  <!--block interesting-->
+  <div class="block interesting">
+    <h4>ВОЗМОЖНО, ВАС ТАКЖЕ ЗАИНТЕРЕСУЕТ</h4>
+
+    <ul class="list">
+      <li *ngFor="let relevantEvent of relevant">
+        <div class="info">
+          <span class="month">{{relevantEvent.month}}</span>
+          <span class="date">{{relevantEvent.date}}</span>
+          <span class="day">{{relevantEvent.day}}</span>
+          <span class="time">{{relevantEvent.time}}</span>
+        </div>
+        <div class="title">
+          <div class="img">
+            <img height="130px" src="{{relevantEvent.coverUri}}" alt="">
+            <a routerLink="/event/{{relevantEvent.id}}">{{relevantEvent.name}}</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!--end block interesting-->
+
+  <!--
+          <div class="block social-links">
+              <h4>ОФИЦИАЛЬНЫЕ СТРАНИЦЫ КЛУБА</h4>
+              <center><ul>
+                  <li>
+                      <a href="#" class="facebook"></a>
+                  </li>
+                  <li>
+                      <a href="#" class="twitter"></a>
+                  </li>
+                  <li>
+                      <a href="#" class="vk"></a>
+                  </li>
+              </ul></center>
+          </div>
+  -->
+  <!-- VK Widget -->
+</div>
+<!--end sidebar-->
