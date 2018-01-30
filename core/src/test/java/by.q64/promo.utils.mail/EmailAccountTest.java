@@ -1,4 +1,0 @@
-/*
-Test for EmailAccount container
- */
-
