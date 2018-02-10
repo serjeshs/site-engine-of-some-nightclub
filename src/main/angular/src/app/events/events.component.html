@@ -1,9 +1,8 @@
 <!--main content-->
 <div class="main-content">
 
-
   <!--block bill-day-->
-  <div class="block bill-day">
+  <div class="block bill-day" *ngIf="today?.length > 0">
     <h1>
       Сегодня, {{currentDate}}
       <i class="h-line"></i>
@@ -18,7 +17,7 @@
               </a>
             </div>
             <div class="info">
-              <span class="time">{{event.startEvent}}20:00</span>
+              <span class="time">{{event.startEvent}}</span>
               <h3>
                 <a routerLink="/event/{{event.id}}">
                   {{event.name}}
@@ -34,11 +33,14 @@
       <div class="clearfix"></div>
     </div>
   </div>
+  <div class="block bill-day" *ngIf="today?.length == 0">
+    <h1 style="color: red">Сегодня мероприятий нет</h1>
+  </div>
   <!--end block bill-day-->
 
 
   <!--block bill-day-->
-  <div class="block bill-day">
+  <div class="block bill-day" *ngIf="tomorrow?.length > 0">
     <h1>
       Завтра, {{tomorrowDate}}
       <i class="h-line"></i>
@@ -52,7 +54,7 @@
             </a>
           </div>
           <div class="info">
-            <span class="time">{{event.startEvent}}20:00</span>
+            <span class="time">{{event.startEvent}}</span>
             <h3>
               <a routerLink="/event/{{event.id}}">
                 {{event.name}}
@@ -96,7 +98,7 @@
           <div class="tickets">
             <h4>БИЛЕТЫ</h4>
             <a routerLink="/event/{{event.id}}" class="btn order-btn-face">
-              Купитьбилет
+              Купить билет
             </a>
             <div class="tickets-list">
               <span class="e2e-inner-html-bound" [innerHTML]="event.costText"></span>
@@ -111,7 +113,7 @@
   <!--block bill-month-->
   <div class="block bill-month">
     <h1>
-      Далее в {{currentMonthName}}
+      {{currentMonthName}}
       <i class="h-line"></i>
     </h1>
     <ul class="event-list">
@@ -120,8 +122,8 @@
            class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
         <div class="info">
           <div class="date">
-            <span class="time">{{event.startEvent}}27 ноября</span><br>
-            <span class="day">{{event.startEvent}}Понедельник</span>
+            <span class="time">{{event.startEvent}}</span><br>
+            <span class="day">{{event.endEvent}}</span>
           </div>
           <h3>
             <a routerLink="/event/{{event.id}}">{{event.name}}</a>
@@ -137,7 +139,7 @@
   <!--block bill-month-->
   <div class="block bill-month">
     <h1>
-      В {{nextMonthName}}
+      {{nextMonthName}}
       <i class="h-line"></i>
     </h1>
     <ul class="event-list">
@@ -146,8 +148,8 @@
            class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
         <div class="info">
           <div class="date">
-            <span class="time">{{event.startEvent}}27 ноября</span><br>
-            <span class="day">{{event.startEvent}}Понедельник</span>
+            <span class="time">{{event.startEvent}}</span><br>
+            <span class="day">{{event.endEvent}}</span>
           </div>
           <h3>
             <a routerLink="/event/{{event.id}}">{{event.name}}</a>
@@ -163,7 +165,7 @@
   <!--block bill-month-->
   <div class="block bill-month">
     <h1>
-      В {{nextNextMonthName}}
+      {{nextNextMonthName}}
       <i class="h-line"></i>
     </h1>
     <ul class="event-list">
@@ -172,8 +174,8 @@
            class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
         <div class="info">
           <div class="date">
-            <span class="time">{{event.startEvent}}27 ноября</span><br>
-            <span class="day">{{event.startEvent}}Понедельник</span>
+            <span class="time">{{event.startEvent}}</span><br>
+            <span class="day">{{event.endEvent}}</span>
           </div>
           <h3>
             <a routerLink="/event/{{event.id}}">{{event.name}}</a>
@@ -244,7 +246,7 @@
         </div>
         <div class="title">
           <div class="img">
-            <img height="130px" src="{{relevantEvent.coverUri}}" alt="">
+            <img src="{{relevantEvent.coverUri}}" alt="" style="background-size: 100%">
             <a routerLink="/event/{{relevantEvent.id}}">{{relevantEvent.name}}</a>
           </div>
         </div>
