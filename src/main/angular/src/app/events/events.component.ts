@@ -1,4 +1,4 @@
-Improvementponent, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Event} from '../dto/event';
 import {EventGallery} from "../dto/eventGallery";
 import {EventRelevant} from "../dto/eventRelevant";

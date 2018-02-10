@@ -26,4 +26,10 @@ public class MenuController {
     ResponseEntity summary(Principal principal, HttpServletRequest httpServletRequest) {
         return new ResponseEntity<>(menuService.mainPage(), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "init", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    ResponseEntity init(Principal principal, HttpServletRequest httpServletRequest) {
+        return new ResponseEntity<>(menuService.init(), HttpStatus.OK);
+    }
 }

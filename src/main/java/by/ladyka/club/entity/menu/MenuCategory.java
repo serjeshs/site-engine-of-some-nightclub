@@ -1,7 +1,9 @@
 package by.ladyka.club.entity.menu;
 
 import by.ladyka.club.entity.AbstractEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -13,6 +15,8 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = APP_TABLE_PREFIX + "menu_category")
 @EntityListeners(AuditingEntityListener.class)
 public class MenuCategory extends AbstractEntity {
@@ -26,7 +30,8 @@ public class MenuCategory extends AbstractEntity {
 
     @OneToMany(mappedBy = "parent")
     private List<MenuCategory> children;
-//
-//    @OneToMany(mappedBy = "category")
-//    private List<MenuItem> items;
+
+    @OneToMany(mappedBy = "category")
+    private List<MenuItem> items;
+
 }
