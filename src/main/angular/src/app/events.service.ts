@@ -12,8 +12,8 @@ const httpOptions = {
 
 @Injectable()
 export class EventsService {
-  // private eventsMainPageUrl = '/api/page/main';
-  private eventsMainPageUrl = 'http://localhost:28010/api/page/main';
+  private eventsMainPageUrl = '/api/page/main';
+  // private eventsMainPageUrl = 'http://localhost:28010/api/page/main';
 
   constructor(private http: HttpClient) {
   }
