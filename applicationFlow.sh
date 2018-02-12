@@ -17,7 +17,7 @@ function buildAndStartApplication {
     ng build -op ../resources/static;
     cd ../../../ ;
 
-    ./gradlew bootRepackage;
+    ./gradlew build;
     ls build/libs;
     java -jar  build/libs/${APPLICATION_NAME}*.jar;
 }
