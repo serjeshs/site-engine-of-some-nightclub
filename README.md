@@ -6,12 +6,12 @@ Fron part
     npm install 
     
     
-Problems :
+# Problems 
 
-  Problem : 
+  **Problem** : 
   
     Error: Cannot find module '@angular-devkit/core'
     
-  Solution
+  *Solution*
   
     npm i -D @angular-devkit/core
