@@ -9,7 +9,7 @@ import {MenuCategoryDto} from "../dto/menuCategoryDto";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  private menuCategories: Observable<MenuCategoryDto[]>;
+  private menuCategories: MenuCategoryDto[];
 
   constructor(private menuService: MenuService) {
   }

@@ -23,7 +23,7 @@ export class MenuService {
     return this.http.get<MenuCategoryDto[]>(this.menuSummaryUrl)
       .pipe(
         tap(menuItems => this.log(`fetched events to Main Page`)),
-        catchError(this.handleError('getMenuItems', {}))
+        catchError(this.handleError('getMenuItems', []))
       );
   }
 
