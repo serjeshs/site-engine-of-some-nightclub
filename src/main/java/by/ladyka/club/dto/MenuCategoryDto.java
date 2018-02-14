@@ -9,5 +9,7 @@ import java.util.List;
 @Setter
 public class MenuCategoryDto {
     private String name;
-    private List<MenuItemPriceDto> menuItemDtos;
+    private String description;
+    private List<MenuCategoryDto> categories;
+    private List<MenuItemPriceDto> menuItems;
 }

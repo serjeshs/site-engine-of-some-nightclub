@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MenuService} from "../menu.service";
+import {Observable} from "rxjs/Observable";
+import {MenuCategoryDto} from "../dto/menuCategoryDto";
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  private menuCategories: Observable<MenuCategoryDto[]>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private menuService: MenuService) {
   }
 
+  ngOnInit() {
+    this.buildMenuPage();
+  }
+
+  private buildMenuPage() {
+    this.menuService.getMenuItems().subscribe(category => {
+      this.menuCategories = category;
+    });
+  }
 }
