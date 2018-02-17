@@ -14,6 +14,8 @@ import by.ladyka.club.repository.EventRepository;
 import by.ladyka.club.repository.ModxSiteContentRepository;
 import by.ladyka.club.repository.NewsEntityRepository;
 import by.ladyka.club.repository.UserEntityRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,7 @@ public class ConverterServiceImpl implements ConverterService {
     private final UserEntityRepository userEntityRepository;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     private final DateTimeFormatter dateTimeFormatterShort = DateTimeFormatter.ofPattern("dd-MM-yyyy H:mm:ss");
+    private final static Logger logger = LoggerFactory.getLogger(ConverterServiceImpl.class);
 
     @Autowired
     public ConverterServiceImpl(ModxSiteContentRepository modxSiteContentRepository, EventRepository eventRepository, NewsEntityRepository newsEntityRepository, UserEntityRepository userEntityRepository) {
@@ -92,8 +95,10 @@ public class ConverterServiceImpl implements ConverterService {
                     userEntityRepository.save(five);
                 }
             } else {
-                final int events = eventRepository.findAll().size();
-                final int news = newsEntityRepository.findAll().size();
+                final int events = (int) eventRepository.count();
+                logger.info("Events in database : " + events);
+                final int news = (int) newsEntityRepository.count();
+                logger.info("News in database : " + news);
                 modxSiteContentRepository.findAll().forEach(modxSiteContent -> {
                     long template = modxSiteContent.getTemplate();
                     switch ((int) template) {
