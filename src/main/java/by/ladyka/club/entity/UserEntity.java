@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
@@ -18,10 +19,9 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @EntityListeners(AuditingEntityListener.class)
 public class UserEntity extends AbstractEntity implements UserDetails {
 
-    @Column(name = "email")
     @Getter
     @Setter
-    private String username;
+    private String email;
 
     @Getter
     @Setter
@@ -68,6 +68,27 @@ public class UserEntity extends AbstractEntity implements UserDetails {
     @ManyToMany
     private List<RoleEntity> authorities;
 
+    public static UserEntity unconfirmUser() {
+        UserEntity userEntity = new UserEntity();
+        userEntity.email = "email" + System.currentTimeMillis() + "@republic-club.by";
+        userEntity.password = "password" + System.currentTimeMillis();
+        userEntity.name = "name";
+        userEntity.surname = "surname";
+        userEntity.fatherName = "fatherName";
+        userEntity.birthday = OffsetDateTime.now();
+        userEntity.accountNonExpired = true;
+        userEntity.accountNonLocked = true;
+        userEntity.credentialsNonExpired = false;
+        userEntity.enabled = true;
+        userEntity.authorities = Collections.emptyList();
+        return userEntity;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return accountNonExpired;
@@ -87,4 +108,9 @@ public class UserEntity extends AbstractEntity implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+
+    public String getPublishName() {
+        return String.format("%s %s", getSurname(), getName());
+    }
+
 }

@@ -17,6 +17,7 @@ import {NewsComponent} from './news/news.component';
 import {NewsPageComponent} from './news-page/news-page.component';
 import {EventPageComponent} from './event-page/event-page.component';
 import {EventReportComponent} from './event-report/event-report.component';
+import {NewsService} from "./news.service";
 
 @NgModule({
   imports: [
@@ -37,7 +38,7 @@ import {EventReportComponent} from './event-report/event-report.component';
     EventPageComponent,
     EventReportComponent,
   ],
-  providers: [EventsService, MenuService],
+  providers: [EventsService, MenuService, NewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

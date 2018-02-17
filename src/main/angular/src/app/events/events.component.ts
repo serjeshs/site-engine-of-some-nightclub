@@ -12,19 +12,19 @@ import 'moment/locale/ru';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  today: Event[];
-  tomorrow: Event[];
-  currentAndNextWeek: Event[];
-  currentMonth: Event[];
-  nextMonth: Event[];
-  nextNextMonth: Event[];
-  relevant: EventRelevant[];
-  gallery: EventGallery[];
-  currentDate: string;
-  tomorrowDate: string;
-  currentMonthName: string;
-  nextNextMonthName: string;
-  nextMonthName: string;
+  private today: Event[];
+  private tomorrow: Event[];
+  private currentAndNextWeek: Event[];
+  private currentMonth: Event[];
+  private nextMonth: Event[];
+  private nextNextMonth: Event[];
+  private relevant: EventRelevant[];
+  private gallery: EventGallery[];
+  private currentDate: string;
+  private tomorrowDate: string;
+  private currentMonthName: string;
+  private nextNextMonthName: string;
+  private nextMonthName: string;
 
   constructor(private eventsService: EventsService) {
   }

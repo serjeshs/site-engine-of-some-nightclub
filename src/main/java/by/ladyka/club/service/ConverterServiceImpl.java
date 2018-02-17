@@ -5,24 +5,28 @@ import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.dto.EventGalleryDTO;
 import by.ladyka.club.dto.EventRelevantDTO;
 import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.NewsEntity;
+import by.ladyka.club.entity.UserEntity;
 import by.ladyka.club.entity.old.ModxSiteContent;
 import by.ladyka.club.entity.old.ModxSiteTmplVarContentValues;
 import by.ladyka.club.entity.old.ModxSiteTmplVars;
 import by.ladyka.club.repository.EventRepository;
 import by.ladyka.club.repository.ModxSiteContentRepository;
+import by.ladyka.club.repository.NewsEntityRepository;
+import by.ladyka.club.repository.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Objects;
 
-import static by.ladyka.club.EventStatus.DONE;
-import static by.ladyka.club.EventStatus.DRAFT;
-import static by.ladyka.club.EventStatus.PENDING;
+import static by.ladyka.club.EventStatus.*;
 import static by.ladyka.club.entity.old.ModxSiteTmplVars.*;
 
 @Service
@@ -30,13 +34,17 @@ public class ConverterServiceImpl implements ConverterService {
 
     private final ModxSiteContentRepository modxSiteContentRepository;
     private final EventRepository eventRepository;
+    private final NewsEntityRepository newsEntityRepository;
+    private final UserEntityRepository userEntityRepository;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     private final DateTimeFormatter dateTimeFormatterShort = DateTimeFormatter.ofPattern("dd-MM-yyyy H:mm:ss");
 
     @Autowired
-    public ConverterServiceImpl(ModxSiteContentRepository modxSiteContentRepository, EventRepository eventRepository) {
+    public ConverterServiceImpl(ModxSiteContentRepository modxSiteContentRepository, EventRepository eventRepository, NewsEntityRepository newsEntityRepository, UserEntityRepository userEntityRepository) {
         this.modxSiteContentRepository = modxSiteContentRepository;
         this.eventRepository = eventRepository;
+        this.newsEntityRepository = newsEntityRepository;
+        this.userEntityRepository = userEntityRepository;
     }
 
     @Override
@@ -77,17 +85,33 @@ public class ConverterServiceImpl implements ConverterService {
     @Override
     public Boolean convertDataBase() {
         try {
-            modxSiteContentRepository.findAll()
-                    .stream()
-                    .map(this::convert)
-                    .filter(Objects::nonNull)
-                    .forEach(event -> {
-                        try {
-                            eventRepository.save(event);
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
+            if (userEntityRepository.findAll().size() < 1) {
+                for (long i = 1L; i < 20L; i++) {
+                    UserEntity five = UserEntity.unconfirmUser();
+                    five.setId(i);
+                    userEntityRepository.save(five);
+                }
+            } else {
+                final int events = eventRepository.findAll().size();
+                final int news = newsEntityRepository.findAll().size();
+                modxSiteContentRepository.findAll().forEach(modxSiteContent -> {
+                    long template = modxSiteContent.getTemplate();
+                    switch ((int) template) {
+                        case 7: {
+                            if (events == 0) {
+                                convertAndSaveEvent(modxSiteContent);
+                            }
                         }
-                    });
+                        break;
+                        case 10: {
+                            if (news == 0) {
+                                convertAndSaveNews(modxSiteContent);
+                            }
+                            break;
+                        }
+                    }
+                });
+            }
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -95,24 +119,48 @@ public class ConverterServiceImpl implements ConverterService {
         }
     }
 
-    private Event convert(ModxSiteContent modxSiteContent) {
-        if (modxSiteContent.getTemplate() == 7) {
-            final List<ModxSiteTmplVarContentValues> contentValues = modxSiteContent.getContentValues();
-            Event event = new Event();
-            event.setId(modxSiteContent.getId());
-            event.setCostMinimum(new BigDecimal(0));
-            event.setCostText(get(contentValues, price));
-            event.setCoverUri("http://republic-club.by/" + get(contentValues, img_));
-            event.setName(modxSiteContent.getPagetitle());
-            event.setDescription(modxSiteContent.getContent());
-            event.setStartEvent(toLDT(get(contentValues, event_date)));
-            event.setEndEvent(toLDT(get(contentValues, event_end_date)));
-            event.setStatus(getStatus(event.getStartEvent()).getCode());
-            return event;
-        } else {
-            return null;
+    private void convertAndSaveNews(ModxSiteContent modxSiteContent) {
+        final List<ModxSiteTmplVarContentValues> contentValues = modxSiteContent.getContentValues();
+        NewsEntity entity = new NewsEntity();
+        entity.setId(modxSiteContent.getId());
+        entity.setTitle(modxSiteContent.getPagetitle());
+        entity.setDescriptionPreview(modxSiteContent.getIntrotext());
+        entity.setDescription(modxSiteContent.getContent());
+        entity.setAlias(modxSiteContent.getAlias());
+        UserEntity owner = userEntityRepository.getOne(modxSiteContent.getCreatedby());
+        entity.setOwner(owner);
+        entity.setImage("http://republic-club.by/" + get(contentValues, news_img));
+        entity.setVisible(Boolean.TRUE);
+        try {
+            newsEntityRepository.save(entity);
+            Long createdon = modxSiteContent.getCreatedon();
+            createdon *= 1000;
+            final Timestamp timestamp = new Timestamp(createdon);
+            entity.setCreatedDate(timestamp.toLocalDateTime());
+            newsEntityRepository.save(entity);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
+    }
 
+    private void convertAndSaveEvent(ModxSiteContent modxSiteContent) {
+        final List<ModxSiteTmplVarContentValues> contentValues = modxSiteContent.getContentValues();
+        Event event = new Event();
+        event.setId(modxSiteContent.getId());
+        event.setCostMinimum(new BigDecimal(0));
+        event.setCostText(get(contentValues, price));
+        event.setCoverUri("http://republic-club.by/" + get(contentValues, img_));
+        event.setName(modxSiteContent.getPagetitle());
+        event.setDescription(modxSiteContent.getContent());
+        event.setStartEvent(toLDT(get(contentValues, event_date)));
+        event.setEndEvent(toLDT(get(contentValues, event_end_date)));
+        event.setStatus(getStatus(event.getStartEvent()).getCode());
+        event.setAlias(modxSiteContent.getAlias());
+        try {
+            eventRepository.save(event);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private EventStatus getStatus(LocalDateTime startEvent) {

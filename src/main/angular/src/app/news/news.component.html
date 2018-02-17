@@ -1,3 +1,20 @@
-<p>
-  news works!
-</p>
+<div class="block about-page info-page">
+  <ul class="img-list">
+    <li *ngFor="let newsItem of news; index as i" class="{{i%2 === 0 ? 'r-list' : ''}}">
+
+      <div class="img">
+        <img src="{{newsItem.image}}" height="200" alt="">
+      </div>
+      <div class="info">
+        <h3>{{newsItem.title}}</h3>
+        <p>
+          {{newsItem.descriptionPreview}}
+        </p>
+        <p>
+          {{newsItem.createDate}}
+        </p>
+      </div>
+      <div class="clearfix"></div>
+    </li>
+  </ul>
+</div>

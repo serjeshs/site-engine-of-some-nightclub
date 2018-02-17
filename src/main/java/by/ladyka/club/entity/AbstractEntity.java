@@ -24,4 +24,6 @@ public class AbstractEntity {
 
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
+
+    private Boolean visible;
 }
