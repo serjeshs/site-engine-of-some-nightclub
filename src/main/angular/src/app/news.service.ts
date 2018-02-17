@@ -32,9 +32,9 @@ export class NewsService {
       );
   }
 
-  getNewsItem(id: number): Observable<NewsItemDto> {
+  getNewsItem(id: string): Observable<NewsItemDto> {
     const options = id ?
-      {params: new HttpParams().set('id', <string>id)} : {};
+      {params: new HttpParams().set('id', id)} : {};
 
     return this.http.get<NewsItemDto>(this.newsByIdUrl, options)
       .pipe(

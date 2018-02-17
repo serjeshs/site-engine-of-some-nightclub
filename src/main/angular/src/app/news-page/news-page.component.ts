@@ -11,7 +11,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 })
 export class NewsPageComponent implements OnInit {
   private newsItem: NewsItemDto;
-  private id: number;
+  private id: string;
 
   constructor(private newsService: NewsService, private activatedRoute: ActivatedRoute) { }
 
