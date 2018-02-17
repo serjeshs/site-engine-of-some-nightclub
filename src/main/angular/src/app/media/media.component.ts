@@ -23,7 +23,8 @@ export class MediaComponent implements OnInit {
     this.eventService.getReportEvents().subscribe(eventsReport => {
       this.galleryEvents = eventsReport;
       this.galleryEvents.forEach(eventsReport=> {
-        eventsReport.startEvent = moment(eventsReport.startEvent).format('D MMMM YYYY')
+        eventsReport.startEvent = moment(eventsReport.startEvent).format('D MMM YYYY');
+        eventsReport.name = eventsReport.name.substring(0, 12);
       })
     });
   }

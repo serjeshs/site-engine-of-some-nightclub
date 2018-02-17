@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NewsService} from "../news.service";
 import {NewsItemDto} from "../dto/newsItemDto";
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import * as moment from "moment";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class NewsPageComponent implements OnInit {
   private buildNewsItemPage() {
     this.newsService.getNewsItem(this.id).subscribe(newsItem => {
       this.newsItem = newsItem;
+      this.newsItem.createDate = moment(newsItem.createDate).format('D MMMM YYYY');
     });
   }
 }

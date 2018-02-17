@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NewsService} from "../news.service";
 import {NewsItemDto} from "../dto/newsItemDto";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-news',
@@ -19,6 +20,9 @@ export class NewsComponent implements OnInit {
   private buildNewsPage() {
     this.newsService.getNewsItems().subscribe(news => {
       this.news = news;
+      this.news.forEach(newsItem => {
+        newsItem.createDate = moment(newsItem.createDate).format('D MMMM YYYY');
+      })
     });
   }
 }

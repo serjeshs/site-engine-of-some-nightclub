@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit {
   private buildMenuPage() {
     this.menuService.getMenuItems().subscribe(categories => {
       this.menuCategories = categories;
+
     });
   }
 }
