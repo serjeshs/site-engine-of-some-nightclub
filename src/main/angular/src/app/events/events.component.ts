@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Event} from '../dto/event';
-import {EventGallery} from "../dto/eventGallery";
+import {EventReport} from "../dto/eventGallery";
 import {EventRelevant} from "../dto/eventRelevant";
 import {EventsService} from "../events.service";
 import * as moment from "moment";
@@ -19,7 +19,7 @@ export class EventsComponent implements OnInit {
   private nextMonth: Event[];
   private nextNextMonth: Event[];
   private relevant: EventRelevant[];
-  private gallery: EventGallery[];
+  private gallery: EventReport[];
   private currentDate: string;
   private tomorrowDate: string;
   private currentMonthName: string;
@@ -89,7 +89,7 @@ export class EventsComponent implements OnInit {
 
         this.gallery = mainPage['gallery'];
         this.gallery.forEach(eventGalery => {
-          eventGalery.dateWithMonth = moment(eventGalery.startEvent).format('LL')
+          eventGalery.startEvent = moment(eventGalery.startEvent).format('LL')
         });
 
         this.relevant = mainPage['relevant'];

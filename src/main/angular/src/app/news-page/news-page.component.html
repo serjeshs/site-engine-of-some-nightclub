@@ -1,22 +1,24 @@
-<div class="block about-page info-page">
-  <ul class="img-list">
-    <li class="r-list">
-    <div class="img">
-  <img src="{{newsItem.image}}" height="200" alt="">
+<div class="content-wrapper">
+  <div class="block about-page info-page">
+    <ul class="img-list">
+      <li class="r-list">
+        <div class="img">
+          <img src="{{newsItem.image}}" height="200" alt="">
+        </div>
+        <div class="info">
+          <h3><b>{{newsItem.title}}</b></h3>
+          <p class="e2e-inner-html-bound" [innerHTML]="newsItem.description">
+          <p align="right">
+            {{newsItem.createDate}}
+          </p>
+          <p align="right"><i>
+            {{newsItem.owner}}
+          </i>
+          </p>
+        </div>
+        <div class="clearfix"></div>
+      </li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
 </div>
-<div class="info">
-  <h3><b>{{newsItem.title}}</b></h3>
-  <p class="e2e-inner-html-bound" [innerHTML]="newsItem.description">
-  <p align="right">
-    {{newsItem.createDate}}
-  </p>
-  <p align="right"><i>
-    {{newsItem.owner}}
-  </i>
-  </p>
-</div>
-<div class="clearfix"></div>
-    </li>
-  </ul>
-</div>
-

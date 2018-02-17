@@ -9,15 +9,11 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import static by.ladyka.club.ClubApplication.PACKAGES_TO_SCAN;
@@ -31,14 +27,16 @@ import static by.ladyka.club.ClubApplication.PACKAGES_TO_SCAN;
 @EntityScan(
         basePackageClasses = {ClubApplication.class, Jsr310JpaConverters.class}
 )
-public class Config{
+public class Config {
 
+    public static final String DATE_TIME_PATTERN = "yyyy.MM.dd HH:mm:ss";
     private final DataSource dataSource;
 
     @Autowired
     public Config(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

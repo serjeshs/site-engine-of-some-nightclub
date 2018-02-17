@@ -17,7 +17,7 @@ export class NewsPageComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.id = params['path'];
+      this.id = params['id'];
       console.log(this.id);
     });
     this.buildNewsItemPage();

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EventReport} from "../dto/eventGallery";
+import {EventsService} from "../events.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-media',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MediaComponent implements OnInit {
 
-  constructor() { }
+  private galleryEvents: EventReport[];
 
-  ngOnInit() {
+  constructor(private eventService: EventsService) {
   }
 
+  ngOnInit() {
+    this.buildMediaPage();
+  }
+
+  private buildMediaPage() {
+    this.eventService.getReportEvents().subscribe(eventsReport => {
+      this.galleryEvents = eventsReport;
+      this.galleryEvents.forEach(eventsReport=> {
+        eventsReport.startEvent = moment(eventsReport.startEvent).format('D MMMM YYYY')
+      })
+    });
+  }
 }

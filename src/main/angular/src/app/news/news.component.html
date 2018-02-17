@@ -1,24 +1,27 @@
-<div class="block about-page info-page">
-  <ul class="img-list">
-    <li *ngFor="let newsItem of news; index as i" class="{{i%2 === 0 ? 'r-list' : ''}}">
+<div class="content-wrapper">
+  <div class="block about-page info-page">
+    <ul class="img-list">
+      <li *ngFor="let newsItem of news; index as i" class="{{i%2 === 0 ? 'r-list' : ''}}">
 
-      <div class="img">
-        <a  routerLink="{{newsItem.id}}">
-          <img src="{{newsItem.image}}" height="200" alt="">
-        </a>
-      </div>
-      <div class="info">
-        <a  routerLink="/news/{{newsItem.id}}">
-          <h3>{{newsItem.title}}</h3>
-        </a>
-        <p>
-          {{newsItem.descriptionPreview}}
-        </p>
-        <p>
-          {{newsItem.createDate}}
-        </p>
-      </div>
-      <div class="clearfix"></div>
-    </li>
-  </ul>
+        <div class="img">
+          <a routerLink="{{newsItem.id}}">
+            <img src="{{newsItem.image}}" height="200" alt="">
+          </a>
+        </div>
+        <div class="info">
+          <a routerLink="/news/{{newsItem.id}}">
+            <h3>{{newsItem.title}}</h3>
+          </a>
+          <p>
+            {{newsItem.descriptionPreview}}
+          </p>
+          <p>
+            {{newsItem.createDate}}
+          </p>
+        </div>
+        <div class="clearfix"></div>
+      </li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
 </div>

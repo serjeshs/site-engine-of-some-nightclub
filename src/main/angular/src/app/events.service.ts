@@ -3,8 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 import {MainEventPage} from "./dto/mainEventPage";
+import {EventReport} from "./dto/eventGallery";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -12,18 +13,28 @@ const httpOptions = {
 
 @Injectable()
 export class EventsService {
-  private eventsMainPageUrl = '/api/page/main';
-  // private eventsMainPageUrl = 'http://localhost:28010/api/page/main';
+  private host = '';
+  // private host = 'http://localhost:28010';
+  private eventsMainPageUrl = this.host + '/api/page/main';
+  private eventReportsUrl = this.host + '/api/media/summary';
 
   constructor(private http: HttpClient) {
   }
 
   /** GET heroes from the server */
-  getEvents(): Observable<MainEventPage | {}> {
+  getEvents(): Observable<MainEventPage> {
     return this.http.get<MainEventPage>(this.eventsMainPageUrl)
       .pipe(
         tap(mainEventsPage => this.log(`fetched events to Main Page`)),
-        catchError(this.handleError('geEvents', {}))
+        catchError(this.handleError('geEvents', new MainEventPage()))
+      );
+  }
+
+  getReportEvents(): Observable<EventReport[]> {
+    return this.http.get<EventReport[]>(this.eventReportsUrl)
+      .pipe(
+        tap(eventsReport => this.log(`fetched eventsReport to Media Page`)),
+        catchError(this.handleError('getReportEvents', []))
       );
   }
 

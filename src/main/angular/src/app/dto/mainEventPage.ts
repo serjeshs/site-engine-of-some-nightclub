@@ -1,5 +1,5 @@
 import {EventRelevant} from "./eventRelevant";
-import {EventGallery} from "./eventGallery";
+import {EventReport} from "./eventGallery";
 import {Event} from "./event";
 
 export class MainEventPage {
@@ -10,7 +10,7 @@ export class MainEventPage {
   nextMonth: Event[];
   nextNextMonth: Event[];
   relevant: EventRelevant[];
-  gallery: EventGallery[];
+  gallery: EventReport[];
 }
 
 

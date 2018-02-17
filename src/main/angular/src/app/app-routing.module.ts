@@ -19,8 +19,8 @@ const routes: Routes = [
   {path: 'news', component: NewsComponent},
   {path: 'club', component: ClubComponent},
   {path: 'events/:year/:prefix/:path', component: EventPageComponent},
-  {path: 'event-reports/:path', component: EventReportComponent},
-  {path: 'news/:path', component: NewsPageComponent},
+  {path: 'event-reports/:id', component: EventReportComponent},
+  {path: 'news/:id', component: NewsPageComponent},
 ];
 
 @NgModule({
