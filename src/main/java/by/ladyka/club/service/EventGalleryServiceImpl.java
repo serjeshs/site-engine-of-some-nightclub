@@ -31,6 +31,6 @@ public class EventGalleryServiceImpl implements EventGalleryService {
                 .findAllByStartEventBetweenAndStatusGreaterThanEqual(now().plusMonths(1L), now().plusMonths(2L), PENDING.getCode())
                 .stream()
                 .map(converterService::toEventGalleryDto)
-                .collect(Collectors.toList()).subList(0,5);
+                .collect(Collectors.toList());
     }
 }

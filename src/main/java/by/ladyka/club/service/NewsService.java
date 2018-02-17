@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface NewsService {
     List<NewsDto> summary();
+
+    NewsDto byId(Long id);
 }

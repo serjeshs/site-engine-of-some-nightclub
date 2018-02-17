@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {NewsService} from "../news.service";
+import {NewsItemDto} from "../dto/newsItemDto";
+import {Router, ActivatedRoute, Params} from '@angular/router';
+
 
 @Component({
   selector: 'app-news-page',
@@ -6,10 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news-page.component.css']
 })
 export class NewsPageComponent implements OnInit {
+  private newsItem: NewsItemDto;
+  private id: number;
 
-  constructor() { }
+  constructor(private newsService: NewsService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.id = params['path'];
+      console.log(this.id);
+    });
+    this.buildNewsItemPage();
   }
 
+  private buildNewsItemPage() {
+    this.newsService.getNewsItem(this.id).subscribe(newsItem => {
+      this.newsItem = newsItem;
+    });
+  }
 }

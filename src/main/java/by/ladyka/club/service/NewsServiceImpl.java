@@ -21,7 +21,15 @@ public class NewsServiceImpl implements NewsService {
         return newsEntities.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
+    @Override
+    public NewsDto byId(Long id) {
+        return convertToDto(newsEntityRepository.getOne(id));
+    }
+
     private NewsDto convertToDto(NewsEntity entity) {
+        if (entity == null) {
+            return new NewsDto();
+        }
         NewsDto dto = new NewsDto();
         dto.setId(entity.getId());
         dto.setDescription(entity.getDescription());

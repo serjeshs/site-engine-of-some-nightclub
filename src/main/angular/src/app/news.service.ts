@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
@@ -14,17 +14,32 @@ const httpOptions = {
 @Injectable()
 export class NewsService {
   private newsSummaryUrl: string;
+  private newsByIdUrl: string;
+  private host: string;
 
   constructor(private http: HttpClient) {
-    // this.newsSummaryUrl = 'http://localhost:28010/api/news/summary'
-    this.newsSummaryUrl = '/api/news/summary'
+    this.host = '';
+    // this.host = 'http://localhost:28010/';
+    this.newsSummaryUrl = this.host  + '/api/news/summary'
+    this.newsByIdUrl = this.host  + '/api/news/';
   }
 
   getNewsItems(): Observable<NewsItemDto[]> {
     return this.http.get<NewsItemDto[]>(this.newsSummaryUrl)
       .pipe(
-        tap(newsItems => this.log(`fetched events to Main Page`)),
+        tap(newsItems => this.log(`fetched news to News Page`)),
         catchError(this.handleError('getNewsItems', []))
+      );
+  }
+
+  getNewsItem(id: number): Observable<NewsItemDto> {
+    const options = id ?
+      {params: new HttpParams().set('id', <string>id)} : {};
+
+    return this.http.get<NewsItemDto>(this.newsByIdUrl, options)
+      .pipe(
+        tap(newsItems => this.log(`fetched newsItem`)),
+        catchError(this.handleError('getNewsItem', new NewsItemDto()))
       );
   }
 
