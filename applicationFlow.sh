@@ -19,7 +19,7 @@ function buildAndStartApplication {
 
     ./gradlew build;
     ls build/libs;
-    java -jar  build/libs/${APPLICATION_NAME}*.jar;
+    java -jar  build/libs/${APPLICATION_NAME}*.jar -DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector;
 }
 
 if [ "$COMMIT" == "$COMMIT_NEW" ]; then

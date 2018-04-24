@@ -40,7 +40,14 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security') {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
+	compile('org.springframework.boot:spring-boot-starter-mail') {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
 	compile('org.springframework.boot:spring-boot-starter-log4j2')
+
+	// https://mvnrepository.com/artifact/com.lmax/disruptor
+	compile group: 'com.lmax', name: 'disruptor', version: '3.4.2'
+
 	runtime('mysql:mysql-connector-java')
 
 	compileOnly('org.projectlombok:lombok')

@@ -21,11 +21,31 @@
 			</Policies>
 			<DefaultRolloverStrategy max="10"/>
 		</RollingFile>
+
+		<!-- SMTP Appender -->
+		<SMTP name="MailAppender"
+			  subject=""
+			  to=""
+			  from=""
+			  smtpHost=""
+			  smtpPort=""
+			  smtpUsername=""
+			  smtpPassword=""
+			  bufferSize="1">
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+		</SMTP>
 	</Appenders>
 	<Loggers>
-		<Logger name="by.ladyka.club" level="info" additivity="false">
+		<Logger name="by.ladyka.club" level="info" additivity="true">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="FileAppender"/>
+		</Logger>
+
+		<Logger name="by.ladyka.club" level="error" additivity="true">
+			<AppenderRef ref="MailAppender"/>
 		</Logger>
 
 		<Root level="info">
