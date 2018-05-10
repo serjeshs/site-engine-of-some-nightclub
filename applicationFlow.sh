@@ -17,8 +17,8 @@ function buildAndStartApplication {
 #    ng build -op ../resources/static -prod --aot=false;
 
     cd src/main/angular;
-    mkdir /home/appuser/frontbuld;
     rm -rf /home/appuser/frontbuld;
+    mkdir /home/appuser/frontbuld;
     ng build -op /home/appuser/frontbuld --aot=false;
     cd ../../../ ;
 
