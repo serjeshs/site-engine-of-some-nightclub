@@ -12,21 +12,26 @@ PID=$(ps -ef | grep "build/libs/${APPLICATION_NAME}"  | grep -v grep | awk '{ pr
 function buildAndStartApplication {
     rm -rf build;
 
+#    rm -rf ../resources/static;
+#    mkdir ../resources/static;
+#    ng build -op ../resources/static -prod --aot=false;
+
     cd src/main/angular;
-    rm -rf ../resources/static;
-    ng build -op ../resources/static;
+    mkdir /home/appuser/frontbuld;
+    rm -rf /home/appuser/frontbuld;
+    ng build -op /home/appuser/frontbuld --aot=false;
     cd ../../../ ;
 
     ./gradlew build;
     ls build/libs;
-    java -jar  build/libs/${APPLICATION_NAME}*.jar;
+    java -jar  build/libs/*.jar;
 }
 
 if [ "$COMMIT" == "$COMMIT_NEW" ]; then
    echo "Have not updates! :("
        if [ -z "$PID" ]
        then
-       		echo "Application start";
+       		echo "Application is not running, start!";
        		buildAndStartApplication;
        else
        		echo "Application already ruining!"

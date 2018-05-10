@@ -9,8 +9,6 @@ import {NewsPageComponent} from "./news-page/news-page.component";
 import {EventPageComponent} from "./event-page/event-page.component";
 import {EventReportComponent} from "./event-report/event-report.component";
 
-// import {HeroDetailComponent} from './hero-detail/hero-detail.component';
-
 const routes: Routes = [
   {path: '', redirectTo: '/afisha', pathMatch: 'full'},
   {path: 'afisha', component: EventsComponent},

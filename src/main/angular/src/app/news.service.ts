@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
@@ -15,13 +15,10 @@ const httpOptions = {
 export class NewsService {
   private newsSummaryUrl: string;
   private newsByIdUrl: string;
-  private host: string;
 
   constructor(private http: HttpClient) {
-    this.host = '';
-    // this.host = 'http://localhost:28010/';
-    this.newsSummaryUrl = this.host  + '/api/news/summary'
-    this.newsByIdUrl = this.host  + '/api/news/';
+    this.newsSummaryUrl = '/api/news/summary';
+    this.newsByIdUrl = '/api/news/';
   }
 
   getNewsItems(): Observable<NewsItemDto[]> {

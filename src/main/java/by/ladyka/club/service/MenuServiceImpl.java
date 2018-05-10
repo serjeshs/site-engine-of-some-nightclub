@@ -1,38 +1,51 @@
 package by.ladyka.club.service;
 
-import by.ladyka.club.dto.MenuCategoryDto;
-import by.ladyka.club.dto.MenuItemPriceDto;
+import by.ladyka.club.dto.menu.MenuCategoryDto;
+import by.ladyka.club.dto.menu.MenuItemPriceDto;
+import by.ladyka.club.dto.menu.MenuOrderDto;
+import by.ladyka.club.dto.menu.MenuPageDto;
+import by.ladyka.club.entity.MenuOrderEntity;
 import by.ladyka.club.entity.menu.MenuCategory;
 import by.ladyka.club.entity.menu.MenuItem;
 import by.ladyka.club.entity.menu.MenuItemPrice;
 import by.ladyka.club.repository.menu.MenuCategoryRepository;
 import by.ladyka.club.repository.menu.MenuItemPriceRepository;
 import by.ladyka.club.repository.menu.MenuItemRepository;
+import by.ladyka.club.repository.menu.MenuOrderRepository;
+import by.ladyka.club.utils.converters.MenuOrderConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class MenuServiceImpl implements MenuService {
-    private final MenuCategoryRepository menuCategoryRepository;
-
+    @Autowired
+    private MenuCategoryRepository menuCategoryRepository;
     @Autowired
     private MenuItemRepository menuItemRepository;
     @Autowired
     private MenuItemPriceRepository menuItemPriceRepository;
-
     @Autowired
-    public MenuServiceImpl(MenuCategoryRepository menuCategoryRepository) {
-        this.menuCategoryRepository = menuCategoryRepository;
-    }
+    private EventsService eventsService;
+    @Autowired
+    private MenuOrderRepository menuOrderRepository;
+    @Autowired
+    private MenuOrderConverter menuOrderConverter;
+
 
     @Override
-    public List<MenuCategoryDto> mainPage() {
-        return menuCategoryRepository.findAllByParentIsNull().stream().map(this::convertToMenuCategoryDto).collect(Collectors.toList());
+    public MenuPageDto mainPage() {
+        return new MenuPageDto(
+                menuCategoryRepository.findAllByParentIsNull().stream().map(this::convertToMenuCategoryDto).collect(Collectors.toList()),
+                eventsService.getEventsBetween(LocalDateTime.now(), LocalDateTime.now().plusMonths(2L))
+                );
     }
 
     @Override
@@ -141,5 +154,12 @@ public class MenuServiceImpl implements MenuService {
 
     private boolean active(MenuItemPrice menuItemPrice) {
         return menuItemPrice.getEndTime() == null;
+    }
+
+    @Override
+    public MenuOrderDto order(MenuOrderDto order) {
+        MenuOrderEntity entity = menuOrderConverter.toEntity(order);
+        menuOrderRepository.save(entity);
+        return menuOrderConverter.toDto(entity);
     }
 }

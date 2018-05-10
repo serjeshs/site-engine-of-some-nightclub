@@ -4,4 +4,6 @@ export class MenuItemPriceDto {
   description;
   descriptionProportions: string;
   price: number;
+
+  count: number;
 }

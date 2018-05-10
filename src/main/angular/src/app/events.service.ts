@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
@@ -13,12 +13,13 @@ const httpOptions = {
 
 @Injectable()
 export class EventsService {
-  private host = '';
-  // private host = 'http://localhost:28010';
-  private eventsMainPageUrl = this.host + '/api/page/main';
-  private eventReportsUrl = this.host + '/api/media/summary';
+  private eventsMainPageUrl = '';
+  private eventReportsUrl = '';
 
   constructor(private http: HttpClient) {
+    this.eventsMainPageUrl = '/api/page/main';
+    this.eventReportsUrl = '/api/media/summary';
+
   }
 
   /** GET heroes from the server */

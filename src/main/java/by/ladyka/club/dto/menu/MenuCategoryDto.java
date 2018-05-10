@@ -1,4 +1,4 @@
-package by.ladyka.club.dto;
+package by.ladyka.club.dto.menu;
 
 import lombok.Getter;
 import lombok.Setter;

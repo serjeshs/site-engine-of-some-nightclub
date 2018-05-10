@@ -1,11 +1,15 @@
 package by.ladyka.club.service;
 
-import by.ladyka.club.dto.MenuCategoryDto;
+import by.ladyka.club.dto.menu.MenuOrderDto;
+import by.ladyka.club.dto.menu.MenuPageDto;
+import org.springframework.http.ResponseEntity;
 
-import java.util.List;
+import java.util.Map;
 
 public interface MenuService {
-    List<MenuCategoryDto> mainPage();
+    MenuPageDto mainPage();
 
     boolean init();
+
+    MenuOrderDto order(MenuOrderDto order);
 }
