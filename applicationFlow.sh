@@ -1,4 +1,6 @@
 #!/bin/bash
+CURRENT_TIME=$(date +%s);
+LOG_FILE="/var/log/site-engine/ci-"CURRENT_TIME".log";
 COMPANY_PACKAGE="by.ladyka";
 APPLICATION_NAME="club";
 APPLICATION_PACKAGE=${COMPANY_PACKAGE}"."${APPLICATION_NAME};
@@ -18,12 +20,12 @@ function buildAndStartApplication {
 
     cd src/main/angular;
     rm -rf /home/appuser/frontbuld;
-    echo "ls /home/appuser/frontbuld/";
-    ls /home/appuser/frontbuld/;
+    echo "ls /home/appuser/frontbuld/" >> $LOG_FILE;
+    ls /home/appuser/frontbuld/  >> $LOG_FILE;
     mkdir /home/appuser/frontbuld;
     ng build -op /home/appuser/frontbuld --aot=false;
-    echo "ls /home/appuser/frontbuld/";
-    ls /home/appuser/frontbuld/;
+    echo "ls /home/appuser/frontbuld/"  >> $LOG_FILE;
+    ls /home/appuser/frontbuld/  >> $LOG_FILE;
     cd ../../../ ;
 
     ./gradlew build;
