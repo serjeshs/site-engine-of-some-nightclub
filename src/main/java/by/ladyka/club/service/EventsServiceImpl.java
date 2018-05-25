@@ -3,13 +3,14 @@ package by.ladyka.club.service;
 import by.ladyka.club.dto.AppUser;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.dto.EventRelevantDTO;
+import by.ladyka.club.entity.Event;
 import by.ladyka.club.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static by.ladyka.club.EventStatus.PENDING;
@@ -22,14 +23,14 @@ public class EventsServiceImpl implements EventsService {
     private EventRepository eventRepository;
 
     @Autowired
-    private ConverterService converterService;
+    private ConverterEventService converterEventService;
 
     @Override
     public List<EventDTO> getEventsBetween(LocalDateTime after, LocalDateTime before) {
         return eventRepository
                 .findAllByStartEventBetweenAndStatusGreaterThanEqual(after, before, PENDING.getCode())
                 .stream()
-                .map(converterService::toEventDto)
+                .map(converterEventService::toEventDto)
                 .collect(Collectors.toList());
     }
 
@@ -38,7 +39,12 @@ public class EventsServiceImpl implements EventsService {
         return eventRepository
                 .findAllByStartEventBetweenAndStatusGreaterThanEqual(now().plusMonths(1L), now().plusMonths(2L), PENDING.getCode())
                 .stream()
-                .map(converterService::toEventRelevantDto)
+                .map(converterEventService::toEventRelevantDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Event> getEventById(Long event) {
+        return eventRepository.findById(event);
     }
 }

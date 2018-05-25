@@ -18,8 +18,12 @@ function buildAndStartApplication {
 
     cd src/main/angular;
     rm -rf /home/appuser/frontbuld;
+    echo "ls /home/appuser/frontbuld/";
+    ls /home/appuser/frontbuld/;
     mkdir /home/appuser/frontbuld;
     ng build -op /home/appuser/frontbuld --aot=false;
+    echo "ls /home/appuser/frontbuld/";
+    ls /home/appuser/frontbuld/;
     cd ../../../ ;
 
     ./gradlew build;

@@ -7,5 +7,8 @@ export class MenuOrder {
   people : number;
   food: any;
   rulesCheck: boolean;
+  event: number;
+  tableNumber: number;
+  eventName: string;
 }
 

@@ -1,6 +1,8 @@
 package by.ladyka.club.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -13,6 +15,8 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = APP_TABLE_PREFIX + "event")
 @EntityListeners(AuditingEntityListener.class)
 public class Event extends AbstractEntity{
@@ -27,4 +31,8 @@ public class Event extends AbstractEntity{
     private String coverUri;
     private int status;
     private String alias;
+
+    public Event(Long eventId) {
+        setId(eventId);
+    }
 }

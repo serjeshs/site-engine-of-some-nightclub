@@ -28,6 +28,11 @@
 			<AppenderRef ref="FileAppender"/>
 		</Logger>
 
+		<Logger name="org.hibernate" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="FileAppender"/>
+		</Logger>
+
 		<Root level="info">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="FileAppender"/>

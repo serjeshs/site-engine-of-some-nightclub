@@ -1,4 +1,4 @@
-import {Injectable, isDevMode} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
@@ -15,10 +15,12 @@ const httpOptions = {
 export class MenuService {
   private menuSummaryUrl: string;
   private menuOrderUrl: string;
+  private availableTablesUrl: string;
 
   constructor(private http: HttpClient) {
     this.menuSummaryUrl = '/api/menu/summary';
-    this.menuOrderUrl = '/api/menu/order'
+    this.menuOrderUrl = '/api/menu/order';
+    this.availableTablesUrl = '/api/menu/availibletables';
   }
 
   storeOrder(order: MenuOrder): Observable<MenuOrder> {
@@ -59,5 +61,14 @@ export class MenuService {
 
   private log(message: string) {
     console.log(message);
+  }
+
+  getAvailableTables(event: number) {
+    let url = this.availableTablesUrl + "?eventId=" + event;
+    return this.http.get<Number>(url)
+      .pipe(
+        tap(menuItems => this.log(`fetched avail tables by eventId` + JSON.stringify(menuItems))),
+        catchError(this.handleError('getAvailableTables', []))
+      );
   }
 }

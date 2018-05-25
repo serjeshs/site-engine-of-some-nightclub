@@ -1,10 +1,16 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuService} from "../menu.service";
 import {MenuCategoryDto} from "../dto/menuCategoryDto";
 import {MenuItemPriceDto} from "../dto/menuItemPriceDto";
 import {Event} from "../dto/event";
 import * as moment from "moment";
 import {MenuOrder} from "../dto/menuOrder";
+import {Table} from "../dto/table";
+
+export class MenuWrapper {
+  edited: boolean;
+}
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -13,7 +19,9 @@ import {MenuOrder} from "../dto/menuOrder";
 export class MenuComponent implements OnInit {
   private menuCategories: MenuCategoryDto[];
   private events: Event[];
+  private tableNumbers: Table[];
   model = new MenuOrder();
+  private wrapper: MenuWrapper;
 
   constructor(private menuService: MenuService) {
   }
@@ -21,6 +29,9 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.buildMenuPage();
     this.model.food = {};
+    this.wrapper = new MenuWrapper();
+    this.wrapper.edited = true;
+    this.tableNumbers = Array<Table>();
   }
 
   private buildMenuPage() {
@@ -62,14 +73,35 @@ export class MenuComponent implements OnInit {
       this.menuService.storeOrder(this.model)
         .subscribe(response => {
           console.log(response);
+          this.model = <MenuOrder>response;
+          this.wrapper.edited = false;
         });
     } else {
       // this.toasterService.pop('error', 'Правила', 'Для посещения клуба вы должны принять его правила');
     }
-
   }
 
   get diagnostic() {
     return JSON.stringify(this.model);
+  }
+
+  changeEvent() {
+    console.log("changeEvent");
+    this.menuService.getAvailableTables(this.model.event).subscribe(responseArray => {
+      console.log(responseArray);
+      let tableNumberForm = Array<Table>();
+      if (Array.isArray(responseArray)) {
+        responseArray.forEach(i => {
+          let table = new Table();
+          table.id = i;
+          table.name = "Стол №" + i;
+          tableNumberForm.push(table)
+        });
+      }
+      console.log("Current", this.tableNumbers);
+      console.log("New", tableNumberForm);
+      this.tableNumbers = tableNumberForm;
+    });
+
   }
 }

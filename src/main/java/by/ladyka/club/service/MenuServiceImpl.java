@@ -4,24 +4,16 @@ import by.ladyka.club.dto.menu.MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuItemPriceDto;
 import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
-import by.ladyka.club.entity.MenuOrderEntity;
-import by.ladyka.club.entity.menu.MenuCategory;
-import by.ladyka.club.entity.menu.MenuItem;
-import by.ladyka.club.entity.menu.MenuItemPrice;
-import by.ladyka.club.repository.menu.MenuCategoryRepository;
-import by.ladyka.club.repository.menu.MenuItemPriceRepository;
-import by.ladyka.club.repository.menu.MenuItemRepository;
-import by.ladyka.club.repository.menu.MenuOrderRepository;
+import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.menu.*;
+import by.ladyka.club.repository.menu.*;
 import by.ladyka.club.utils.converters.MenuOrderConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +30,8 @@ public class MenuServiceImpl implements MenuService {
     private MenuOrderRepository menuOrderRepository;
     @Autowired
     private MenuOrderConverter menuOrderConverter;
+    @Autowired
+    private MenuItemPriceHasOrdersRepository menuItemPriceHasOrdersRepository;
 
 
     @Override
@@ -45,13 +39,17 @@ public class MenuServiceImpl implements MenuService {
         return new MenuPageDto(
                 menuCategoryRepository.findAllByParentIsNull().stream().map(this::convertToMenuCategoryDto).collect(Collectors.toList()),
                 eventsService.getEventsBetween(LocalDateTime.now(), LocalDateTime.now().plusMonths(2L))
-                );
+        );
     }
 
     @Override
     public boolean init() {
+        MenuCategory categoryGeneral = new MenuCategory();
+        categoryGeneral.setName("General");
+        categoryGeneral = menuCategoryRepository.saveAndFlush(categoryGeneral);
         MenuCategory hotEat = new MenuCategory();
         hotEat.setName("ГОРЯЧИЕ БЛЮДА");
+        hotEat.setParent(categoryGeneral);
         menuCategoryRepository.saveAndFlush(hotEat);
         MenuItem chicken = new MenuItem();
         chicken.setActive(Boolean.TRUE);
@@ -68,14 +66,15 @@ public class MenuServiceImpl implements MenuService {
 
         MenuCategory slicing = new MenuCategory();
         slicing.setName("НАРЕЗКИ");
-        slicing =  menuCategoryRepository.saveAndFlush(slicing);
+        slicing.setParent(categoryGeneral);
+        slicing = menuCategoryRepository.saveAndFlush(slicing);
         MenuItem meal = new MenuItem();
         meal.setName("Ассорти мясное");
         meal.setActive(Boolean.TRUE);
         meal.setDescription("(Балык с/к, ветчина в/к, колбаса с/к, грудинка к/в, огурец свежий, томат, горчица, маслины, зелень)");
         meal.setDescriptionProportions("200/80/20/20");
         meal.setCategory(slicing);
-        meal =  menuItemRepository.saveAndFlush(meal);
+        meal = menuItemRepository.saveAndFlush(meal);
         MenuItemPrice mealPrice = new MenuItemPrice(true, LocalDateTime.now(), null, new BigDecimal(15), meal);
         mealPrice = menuItemPriceRepository.saveAndFlush(mealPrice);
         meal.setPrices(Collections.singletonList(mealPrice));
@@ -119,7 +118,7 @@ public class MenuServiceImpl implements MenuService {
 
 
 //        slicing.setItems(Arrays.asList(meal, vegetables, cheese, fruts));
-  //      menuCategoryRepository.saveAndFlush(slicing);
+        //      menuCategoryRepository.saveAndFlush(slicing);
         return true;
     }
 
@@ -158,8 +157,44 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public MenuOrderDto order(MenuOrderDto order) {
-        MenuOrderEntity entity = menuOrderConverter.toEntity(order);
-        menuOrderRepository.save(entity);
-        return menuOrderConverter.toDto(entity);
+        MenuOrder orderEntity = menuOrderConverter.toEntity(order);
+        final Optional<Event> eventById = eventsService.getEventById(order.getEvent());
+        if (eventById.isPresent()) {
+            orderEntity.setEvent(eventById.get());
+        }
+        orderEntity = menuOrderRepository.saveAndFlush(orderEntity);
+        List<Long> pricesId = new ArrayList<>(order.getFood().keySet());
+        final List<MenuItemPrice> pricesById = menuItemPriceRepository.findAllById(pricesId);
+        final MenuOrder finalOrderEntity = orderEntity;
+        final List<MenuItemPricesHasOrders> itemPricesHasOrders = pricesById.stream().map(price -> {
+            MenuItemPricesHasOrders orderFoodItem = new MenuItemPricesHasOrders();
+            orderFoodItem.setCount(order.getFood().get(price.getId()));
+            orderFoodItem.setItemPrice(price);
+            orderFoodItem.setOrder(finalOrderEntity);
+            return orderFoodItem;
+        }).collect(Collectors.toList());
+        orderEntity.setItemPricesHasOrders(itemPricesHasOrders);
+        menuItemPriceHasOrdersRepository.saveAll(itemPricesHasOrders);
+        orderEntity = menuOrderRepository.saveAndFlush(orderEntity);
+        return menuOrderConverter.toDto(orderEntity, true);
+    }
+
+    @Override
+    public List<MenuOrderDto> orders(Long eventId) {
+        final List<MenuOrder> byEvent = menuOrderRepository.findByEvent_Id(eventId);
+        return menuOrderConverter.toDto(byEvent);
+    }
+
+    @Override
+    public List<Integer> getAvailableTables(Long eventId) {
+        List<Integer> integers = new ArrayList<>();
+        final List<MenuOrderDto> orders = orders(eventId);
+        final List<Integer> busyTables = orders.stream().map(MenuOrderDto::getTableNumber).collect(Collectors.toList());
+        for (int i = 1; i < 20; i++) {
+            if (!busyTables.contains(i)) {
+                integers.add(i);
+            }
+        }
+        return integers;
     }
 }

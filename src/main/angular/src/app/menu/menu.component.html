@@ -1,12 +1,14 @@
 <div class="content-wrapper">
   <div class="block menu-page info-page">
 
-    <form (ngSubmit)="order()"  #heroForm="ngForm">
+    <form [hidden]="!wrapper.edited" #heroForm="ngForm">
       <div class="form-group">
         <label for="name">Имя</label>
-        <input type="text" class="form-control" id="name"
+        <input type="text" class="form-control"
+               id="name"
                required
-               [(ngModel)]="model.name" name="name"
+               [(ngModel)]="model.name"
+               name="name"
                #name="ngModel"
                placeholder="Как к Вам обращаться?"
         >
@@ -30,7 +32,9 @@
                name="phone"
                #phone="ngModel"
                placeholder="Enter phone">
-        <small id="phoneHelp" class="form-text text-muted">Мы сважемся с вами в ближайшее время, после оформления заказа.</small>
+        <small id="phoneHelp" class="form-text text-muted">Мы сважемся с вами в ближайшее время, после оформления
+          заказа.
+        </small>
       </div>
 
 
@@ -42,12 +46,13 @@
                 [(ngModel)]="model.event"
                 name="event"
                 #event="ngModel"
-
+                (change)="changeEvent()"
                 class="form-control">
-          <option selected>Выберите...</option>
+          <option selected="selected" value="0">Выберите...</option>
           <option *ngFor="let event of events" [value]="event.id">{{event.name}} - {{event.startEvent}}</option>
         </select>
       </div>
+
       <div class="form-group">
         <label for="arrivalTime">Время вашего прибытия в клуб</label>
         <input type="text" class="form-control" id="arrivalTime"
@@ -80,26 +85,25 @@
           <h3>{{category.name}}</h3>
           <ul class="info-list menu-list">
             <li *ngFor="let item of category.menuItems">
-            <span class="title">
-              <b>{{item.name}}</b><br>
-              <i>{{item.description}}</i><br>
-              {{item.descriptionProportions}}
-            </span>
+      <span class="title">
+      <b>{{item.name}}</b><br>
+      <i>{{item.description}}</i><br>
+      {{item.descriptionProportions}}
+      </span>
               <span class="price"><b>
-              {{item.price}} BYN</b>
-              <button class="" title="Увеличить кол-во элементов"
-                      (click)="increment(item)">+</button>
-              {{item.count}}
-              <button class="" title="Уменьшить кол-во элементов"
-                      (click)="decrement(item)">-</button>
-            </span>
+      {{item.price}} BYN</b>
+      <div class="btn" title="Увеличить кол-во элементов"
+              (click)="increment(item)">+</div>
+      {{item.count}}
+      <div class="btn" title="Уменьшить кол-во элементов"
+              (click)="decrement(item)">-</div>
+      </span>
             </li>
           </ul>
         </div>
       </div>
       <a target="_blank" href="https://bezkassira.by/buy/654/"
-         class="btn btn-primary btn-lg active btn-block"
-      >Оплатить депозит</a>
+         class="btn btn-primary btn-lg active btn-block">Оплатить депозит</a>
 
       <div class="form-group">
         <label for="bcCode">Код депозита</label>
@@ -112,6 +116,23 @@
 
                placeholder="Введите код полученный на сайте BezKassira.by">
         <small id="depositRecomend" class="form-text text-muted">Сумма для депозита {{model.depositPrice}}</small>
+      </div>
+
+      <div class="form-group">
+        <label for="tableNumber">Выберите номер столика</label>
+        <select id="tableNumber"
+
+                required
+                [(ngModel)]="model.tableNumber"
+                name="tableNumber"
+                #tableNumber="ngModel"
+
+                class="form-control">
+          <option selected="selected">Выберите...</option>
+          <option *ngFor="let tableNumber of tableNumbers" [value]="tableNumber.id">
+            {{tableNumber.name}}
+          </option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -133,9 +154,38 @@
         <label class="form-check-label" for="rulesCheck">Я обязуюсь не нарушать правила клуба RE:PUBLIC</label>
       </div>
       <br>
-      <button type="submit" class="btn btn-primary">Заказать</button>
-      {{diagnostic}}
+      <button type="submit" (click)="order()" class="btn btn-primary">Заказать</button>
     </form>
+
+
+    <div [hidden]="wrapper.edited" id="orderView">
+      <div class="container">
+        <h1>ЗАКАЗ ОТПРАВЛЕН</h1>
+        <div class="mt-1"><h3>Номер заказа </h3></div>
+        <p class="lead"> {{model.id}}</p>
+        <div class="mt-1"><h3>Имя </h3></div>
+        <p class="lead"> {{model.name}}</p>
+        <div class="mt-1"><h3>Email </h3></div>
+        <p class="lead"> {{model.email}}</p>
+        <div class="mt-1"><h3>Номер мобильного </h3></div>
+        <p class="lead"> {{model.phone}}</p>
+        <div class="mt-1"><h3>Событие </h3></div>
+        <p class="lead"> {{model.eventName}}</p>
+        <div class="mt-1"><h3>Ориентировачное время прибытия </h3></div>
+        <p class="lead"> {{model.arrivalTime}}</p>
+        <div class="mt-1"><h3>Гостей </h3></div>
+        <p class="lead"> {{model.people}}</p>
+        <div class="mt-1"><h3>Заказ </h3></div>
+        <p class="lead"> {{model.food}}</p>
+        <div class="mt-1"><h3>Код депозита </h3></div>
+        <p class="lead"> {{model.bcCode}}</p>
+        <div class="mt-1"><h3>Столик </h3></div>
+        <p class="lead"> {{model.tableNumber}}</p>
+        <div class="mt-1"><h3>Коментарий к заказу </h3></div>
+        <p class="lead"> {{model.description}}</p>
+      </div>
+    </div>
+
     <div class="clearfix"></div>
   </div>
 </div>

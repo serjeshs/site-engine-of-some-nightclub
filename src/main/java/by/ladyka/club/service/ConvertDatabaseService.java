@@ -1,9 +1,6 @@
 package by.ladyka.club.service;
 
 import by.ladyka.club.EventStatus;
-import by.ladyka.club.dto.EventDTO;
-import by.ladyka.club.dto.EventGalleryDTO;
-import by.ladyka.club.dto.EventRelevantDTO;
 import by.ladyka.club.entity.Event;
 import by.ladyka.club.entity.EventReportEntity;
 import by.ladyka.club.entity.NewsEntity;
@@ -29,9 +26,9 @@ import static by.ladyka.club.EventStatus.*;
 import static by.ladyka.club.entity.old.ModxSiteTmplVars.*;
 
 @Service
-public class ConverterServiceImpl implements ConverterService {
+public class ConvertDatabaseService {
 
-    private final static Logger logger = LoggerFactory.getLogger(ConverterServiceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(ConvertDatabaseService.class);
     private final ModxSiteContentRepository modxSiteContentRepository;
     private final EventRepository eventRepository;
     private final NewsEntityRepository newsEntityRepository;
@@ -39,52 +36,19 @@ public class ConverterServiceImpl implements ConverterService {
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     private final DateTimeFormatter dateTimeFormatterShort = DateTimeFormatter.ofPattern("dd-MM-yyyy H:mm:ss");
     private final EventReportRepository eventReportRepository;
+    private final MenuService menuService;
 
     @Autowired
-    public ConverterServiceImpl(ModxSiteContentRepository modxSiteContentRepository, EventRepository eventRepository, NewsEntityRepository newsEntityRepository, UserEntityRepository userEntityRepository, EventReportRepository eventReportRepository) {
+    public ConvertDatabaseService(ModxSiteContentRepository modxSiteContentRepository, EventRepository eventRepository, NewsEntityRepository newsEntityRepository, UserEntityRepository userEntityRepository, EventReportRepository eventReportRepository, MenuService menuService) {
         this.modxSiteContentRepository = modxSiteContentRepository;
         this.eventRepository = eventRepository;
         this.newsEntityRepository = newsEntityRepository;
         this.userEntityRepository = userEntityRepository;
         this.eventReportRepository = eventReportRepository;
+        this.menuService = menuService;
     }
 
-    @Override
-    public EventDTO toEventDto(Event entity) {
-        EventDTO eventDTO = new EventDTO();
-        eventDTO.setId(entity.getId());
-        eventDTO.setName(entity.getName());
-        eventDTO.setDescription(entity.getDescription());
-        eventDTO.setStartEvent(entity.getStartEvent());
-        eventDTO.setEndEvent(entity.getEndEvent());
-        eventDTO.setCost(entity.getCostMinimum());
-        eventDTO.setCostText(entity.getCostText());
-        eventDTO.setCoverUri(entity.getCoverUri());
-        eventDTO.setStatus(entity.getStatus());
-        return eventDTO;
-    }
 
-    @Override
-    public EventGalleryDTO toEventGalleryDto(Event event) {
-        EventGalleryDTO dto = new EventGalleryDTO();
-        dto.setId(event.getId());
-        dto.setCoverUri(event.getCoverUri());
-        dto.setName(event.getName());
-        dto.setStartEvent(event.getStartEvent());
-        return dto;
-    }
-
-    @Override
-    public EventRelevantDTO toEventRelevantDto(Event event) {
-        EventRelevantDTO dto = new EventRelevantDTO();
-        dto.setId(event.getId());
-        dto.setCoverUri(event.getCoverUri());
-        dto.setName(event.getName());
-        dto.setStartEvent(event.getStartEvent());
-        return dto;
-    }
-
-    @Override
     public Boolean convertDataBase() {
         try {
             if (userEntityRepository.findAll().size() < 1) {
@@ -123,6 +87,7 @@ public class ConverterServiceImpl implements ConverterService {
                         }
                     }
                 });
+                menuService.init();
             }
             return true;
         } catch (Exception ex) {
@@ -130,6 +95,7 @@ public class ConverterServiceImpl implements ConverterService {
             return false;
         }
     }
+
 
     private void convertAndSaveEventReport(ModxSiteContent modxSiteContent) {
         final List<ModxSiteTmplVarContentValues> contentValues = modxSiteContent.getContentValues();
@@ -189,6 +155,7 @@ public class ConverterServiceImpl implements ConverterService {
             ex.printStackTrace();
         }
     }
+
 
     private EventStatus getStatus(LocalDateTime startEvent) {
         if (startEvent == null) {

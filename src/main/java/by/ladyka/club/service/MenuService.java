@@ -4,6 +4,7 @@ import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MenuService {
@@ -12,4 +13,8 @@ public interface MenuService {
     boolean init();
 
     MenuOrderDto order(MenuOrderDto order);
+
+    List<MenuOrderDto> orders(Long eventId);
+
+    List<Integer> getAvailableTables(Long eventId);
 }

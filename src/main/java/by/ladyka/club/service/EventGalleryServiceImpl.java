@@ -5,7 +5,6 @@ import by.ladyka.club.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,12 +15,12 @@ import static java.time.LocalDateTime.now;
 public class EventGalleryServiceImpl implements EventGalleryService {
 
     private final EventRepository eventRepository;
-    private final ConverterService converterService;
+    private final ConverterEventService converterEventService;
 
     @Autowired
-    public EventGalleryServiceImpl(EventRepository eventRepository, ConverterService converterService) {
+    public EventGalleryServiceImpl(EventRepository eventRepository, ConverterEventService converterEventService) {
         this.eventRepository = eventRepository;
-        this.converterService = converterService;
+        this.converterEventService = converterEventService;
     }
 
     @Override
@@ -30,7 +29,7 @@ public class EventGalleryServiceImpl implements EventGalleryService {
         return eventRepository
                 .findAllByStartEventBetweenAndStatusGreaterThanEqual(now().plusMonths(1L), now().plusMonths(2L), PENDING.getCode())
                 .stream()
-                .map(converterService::toEventGalleryDto)
+                .map(converterEventService::toEventGalleryDto)
                 .collect(Collectors.toList());
     }
 }

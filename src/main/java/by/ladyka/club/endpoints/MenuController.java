@@ -3,7 +3,9 @@ package by.ladyka.club.endpoints;
 import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.service.AppUserService;
 import by.ladyka.club.service.MenuService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,16 +13,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "api/menu/")
 public class MenuController {
+
+    private static final Logger logger = LogManager.getLogger(MenuController.class);
     @Autowired
     private MenuService menuService;
     @Autowired
@@ -32,15 +36,23 @@ public class MenuController {
         return new ResponseEntity<>(menuService.mainPage(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "order")
+    @RequestMapping(value = "order", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     ResponseEntity order(Principal principal, HttpServletRequest httpServletRequest, @RequestBody MenuOrderDto dto) {
         return new ResponseEntity<>(menuService.order(dto), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "init", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "availibletables", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ResponseEntity init(Principal principal, HttpServletRequest httpServletRequest) {
-        return new ResponseEntity<>(menuService.init(), HttpStatus.OK);
+    ResponseEntity tabels(Principal principal, HttpServletRequest httpServletRequest, Long eventId) {
+        return new ResponseEntity<>(menuService.getAvailableTables(eventId), HttpStatus.OK);
+    }
+
+
+
+    @RequestMapping(value = "admin/orders", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    ResponseEntity order(Principal principal, HttpServletRequest httpServletRequest, Long eventId) {
+        return new ResponseEntity<>(menuService.orders(eventId), HttpStatus.OK);
     }
 }

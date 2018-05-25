@@ -6,8 +6,7 @@ import by.ladyka.club.dto.EventRelevantDTO;
 import by.ladyka.club.entity.Event;
 import by.ladyka.club.entity.old.ModxSiteContent;
 
-public interface ConverterService {
-    Boolean convertDataBase();
+public interface ConverterEventService {
     EventDTO toEventDto(Event entity);
     EventGalleryDTO toEventGalleryDto(Event event);
     EventRelevantDTO toEventRelevantDto(Event event);

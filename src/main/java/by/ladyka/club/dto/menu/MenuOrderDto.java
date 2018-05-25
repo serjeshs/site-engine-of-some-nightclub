@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -13,13 +12,15 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MenuOrderDto {
-    private Map<String, String> food;
+    private Long id;
+    private Map<Long, Integer> food;
     private String name;
     private String email;
     private String phone;
-    private Integer event;
+    private Long event;
     private String arrivalTime;
     private Integer people;
     private String bcCode;
     private String description;
+    private Integer tableNumber;
 }

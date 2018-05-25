@@ -1,10 +1,15 @@
-package by.ladyka.club.entity;
+package by.ladyka.club.entity.menu;
 
+import by.ladyka.club.entity.AbstractEntity;
+import by.ladyka.club.entity.Event;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+
+import java.util.List;
+import java.util.Set;
 
 import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 
@@ -13,7 +18,7 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @Setter
 @Table(name = APP_TABLE_PREFIX + "menu_order")
 @EntityListeners(AuditingEntityListener.class)
-public class MenuOrderEntity extends AbstractEntity {
+public class MenuOrder extends AbstractEntity {
     private String name;
     private String email;
     private String phone;
@@ -26,4 +31,9 @@ public class MenuOrderEntity extends AbstractEntity {
     private Integer people;
     private String bcCode;
     private String description;
+    private Integer tableNumber;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    List<MenuItemPricesHasOrders> itemPricesHasOrders;
+
 }
