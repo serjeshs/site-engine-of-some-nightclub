@@ -1,0 +1,86 @@
+<div>
+  <!--main-menu-->
+  <nav>
+    <a routerLink="/admin">Admin главная</a>
+  </nav>
+
+  <div class="content-wrapper">
+    <div class="block menu-page info-page">
+
+      <form #heroForm="ngForm">
+        <div class="form-group">
+          <label for="event">Выберите мероприятие по которому хотите посмореть список заказов</label>
+          <select id="event"
+                  required
+                  [(ngModel)]="wrapper.eventNumber"
+                  name="event"
+                  #event="ngModel"
+                  (change)="changeEvent()"
+                  class="form-control">
+            <option selected="selected" value="0">Выберите...</option>
+            <option *ngFor="let event of events" [value]="event.id">{{event.name}} - {{event.startEvent}}</option>
+          </select>
+        </div>
+      </form>
+
+      <div [hidden]="!eventChoice" id="ordersList">
+        <div class="row">
+          <ul>
+            <li *ngFor="let order of orders">
+              <a (click)="onOrderClick(order)">{{order.id}} - {{order.name}} - {{order.phone}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div [hidden]="!orderChoice" id="orderView">
+        <div class="container">
+          <h1>ЗАКАЗ {{model.id}}</h1>
+          <div class="mt-1"><h3>Имя </h3></div>
+          <p class="lead"> {{model.name}}</p>
+          <div class="mt-1"><h3>Email </h3></div>
+          <p class="lead"> {{model.email}}</p>
+          <div class="mt-1"><h3>Номер мобильного </h3></div>
+          <p class="lead"> {{model.phone}}</p>
+          <div class="mt-1"><h3>Событие </h3></div>
+          <p class="lead"> {{model.eventName}}</p>
+          <div class="mt-1"><h3>Ориентировачное время прибытия </h3></div>
+          <p class="lead"> {{model.arrivalTime}}</p>
+          <div class="mt-1"><h3>Гостей </h3></div>
+          <p class="lead"> {{model.people}}</p>
+          <div class="mt-1"><h3>Заказ </h3></div>
+
+          <div *ngFor="let categoryMain of menuCategories">
+            <h1>
+              {{categoryMain.name}}<i class="h-line"></i><span class="desc">{{categoryMain.description}}</span>
+            </h1>
+            <div *ngFor="let category of categoryMain.categories">
+              <h3>{{category.name}}</h3>
+              <ul class="info-list menu-list">
+                <li *ngFor="let item of category.menuItems">
+                    <span class="title">
+                  <b>{{item.name}}</b><br>
+        <i>{{item.description}}</i><br>
+        {{item.descriptionProportions}}
+      </span> <span class="price"><b>
+                 Кол-во :  {{model.food[item.itemPriceId]}}
+                </b></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="mt-1"><h3>Код депозита </h3></div>
+          <p class="lead"> {{model.bcCode}}</p>
+          <div class="mt-1"><h3>Столик </h3></div>
+          <p class="lead"> {{model.tableNumber}}</p>
+          <div class="mt-1"><h3>Коментарий к заказу </h3></div>
+          <p class="lead"> {{model.description}}</p>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

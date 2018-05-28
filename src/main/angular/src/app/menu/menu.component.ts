@@ -20,6 +20,7 @@ export class MenuComponent implements OnInit {
   private menuCategories: MenuCategoryDto[];
   private events: Event[];
   private tableNumbers: Table[];
+  // private model : MenuOrder;
   model = new MenuOrder();
   private wrapper: MenuWrapper;
 
@@ -35,7 +36,7 @@ export class MenuComponent implements OnInit {
   }
 
   private buildMenuPage() {
-    this.menuService.getMenuItems().subscribe(menuPage => {
+    this.menuService.getMenuPageSummary().subscribe(menuPage => {
       this.menuCategories = menuPage.categories;
       this.menuCategories.forEach(mainCategory => {
         mainCategory.categories.forEach(category => {
@@ -80,13 +81,7 @@ export class MenuComponent implements OnInit {
       // this.toasterService.pop('error', 'Правила', 'Для посещения клуба вы должны принять его правила');
     }
   }
-
-  get diagnostic() {
-    return JSON.stringify(this.model);
-  }
-
   changeEvent() {
-    console.log("changeEvent");
     this.menuService.getAvailableTables(this.model.event).subscribe(responseArray => {
       console.log(responseArray);
       let tableNumberForm = Array<Table>();
@@ -98,10 +93,7 @@ export class MenuComponent implements OnInit {
           tableNumberForm.push(table)
         });
       }
-      console.log("Current", this.tableNumbers);
-      console.log("New", tableNumberForm);
       this.tableNumbers = tableNumberForm;
     });
-
   }
 }

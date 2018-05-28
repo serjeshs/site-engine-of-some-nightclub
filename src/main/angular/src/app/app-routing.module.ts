@@ -8,6 +8,8 @@ import {NewsComponent} from "./news/news.component";
 import {NewsPageComponent} from "./news-page/news-page.component";
 import {EventPageComponent} from "./event-page/event-page.component";
 import {EventReportComponent} from "./event-report/event-report.component";
+import {AdminComponent} from "./admin/admin.component";
+import {AdminOrderListComponent} from "./admin-order-list/admin-order-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/afisha', pathMatch: 'full'},
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path: 'events/:year/:prefix/:path', component: EventPageComponent},
   {path: 'event-reports/:id', component: EventReportComponent},
   {path: 'news/:id', component: NewsPageComponent},
+  {path: 'admin', component: AdminComponent},
+  {path: 'admin-order-list', component: AdminOrderListComponent},
 ];
 
 @NgModule({

@@ -16,11 +16,13 @@ export class MenuService {
   private menuSummaryUrl: string;
   private menuOrderUrl: string;
   private availableTablesUrl: string;
+  private ordersUrl: string;
 
   constructor(private http: HttpClient) {
     this.menuSummaryUrl = '/api/menu/summary';
     this.menuOrderUrl = '/api/menu/order';
     this.availableTablesUrl = '/api/menu/availibletables';
+    this.ordersUrl = '/api/menu/admin/orders';
   }
 
   storeOrder(order: MenuOrder): Observable<MenuOrder> {
@@ -31,11 +33,11 @@ export class MenuService {
       );
   }
 
-  getMenuItems(): Observable<MenuPageSummary> {
+  getMenuPageSummary(): Observable<MenuPageSummary> {
     return this.http.get<MenuPageSummary>(this.menuSummaryUrl)
       .pipe(
         tap(menuItems => this.log(`fetched events to Main Page`)),
-        catchError(this.handleError('getMenuItems', new MenuPageSummary()))
+        catchError(this.handleError('getMenuPageSummary', new MenuPageSummary()))
       );
   }
 
@@ -69,6 +71,24 @@ export class MenuService {
       .pipe(
         tap(menuItems => this.log(`fetched avail tables by eventId` + JSON.stringify(menuItems))),
         catchError(this.handleError('getAvailableTables', []))
+      );
+  }
+
+  getOrders(event: number) {
+    let url = this.ordersUrl + "?eventId=" + event;
+    return this.http.get<MenuOrder>(url)
+      .pipe(
+        tap(menuItems => this.log(`fetched avail tables by eventId` + JSON.stringify(menuItems))),
+        catchError(this.handleError('getAvailableTables', []))
+      );
+  }
+
+  getOrder(orderNumber: number) {
+    let url = this.menuOrderUrl + "?orderId=" + orderNumber;
+    return this.http.get<MenuOrder>(url)
+      .pipe(
+        tap(() => this.log(`get Order`)),
+        catchError(this.handleError('getOrder', new MenuOrder()))
       );
   }
 }

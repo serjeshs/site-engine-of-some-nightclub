@@ -42,6 +42,7 @@ public class MenuServiceImpl implements MenuService {
         );
     }
 
+    @Deprecated
     @Override
     public boolean init() {
         MenuCategory categoryGeneral = new MenuCategory();
@@ -196,5 +197,17 @@ public class MenuServiceImpl implements MenuService {
             }
         }
         return integers;
+    }
+
+    @Override
+    public MenuOrderDto getOrder(Long orderId) {
+        MenuOrderDto orderDto;
+        final Optional<MenuOrder> byId = menuOrderRepository.findById(orderId);
+        if (byId.isPresent()) {
+            orderDto = menuOrderConverter.toDto(byId.get(), true);
+        } else {
+            orderDto = new MenuOrderDto();
+        }
+        return orderDto;
     }
 }

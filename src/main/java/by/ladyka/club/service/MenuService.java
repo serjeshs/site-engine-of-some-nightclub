@@ -17,4 +17,6 @@ public interface MenuService {
     List<MenuOrderDto> orders(Long eventId);
 
     List<Integer> getAvailableTables(Long eventId);
+
+    MenuOrderDto getOrder(Long orderId);
 }

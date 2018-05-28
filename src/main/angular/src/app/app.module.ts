@@ -20,6 +20,7 @@ import {EventReportComponent} from './event-report/event-report.component';
 import {NewsService} from "./news.service";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
+import { AdminOrderListComponent } from './admin-order-list/admin-order-list.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { AdminComponent } from './admin/admin.component';
     NewsPageComponent,
     EventPageComponent,
     EventReportComponent,
-    AdminComponent
+    AdminComponent,
+    AdminOrderListComponent
   ],
   providers: [EventsService, MenuService, NewsService],
   bootstrap: [AppComponent]

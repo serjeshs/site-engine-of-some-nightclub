@@ -42,6 +42,12 @@ public class MenuController {
         return new ResponseEntity<>(menuService.order(dto), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "order", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    ResponseEntity getOrder(Principal principal, HttpServletRequest httpServletRequest, Long orderId) {
+        return new ResponseEntity<>(menuService.getOrder(orderId), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "availibletables", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     ResponseEntity tabels(Principal principal, HttpServletRequest httpServletRequest, Long eventId) {
@@ -52,7 +58,7 @@ public class MenuController {
 
     @RequestMapping(value = "admin/orders", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ResponseEntity order(Principal principal, HttpServletRequest httpServletRequest, Long eventId) {
+        ResponseEntity order(Principal principal, HttpServletRequest httpServletRequest, Long eventId) {
         return new ResponseEntity<>(menuService.orders(eventId), HttpStatus.OK);
     }
 }
