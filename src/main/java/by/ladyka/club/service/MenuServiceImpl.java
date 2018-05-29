@@ -7,6 +7,7 @@ import by.ladyka.club.dto.menu.MenuPageDto;
 import by.ladyka.club.entity.Event;
 import by.ladyka.club.entity.menu.*;
 import by.ladyka.club.repository.menu.*;
+import by.ladyka.club.service.email.EmailService;
 import by.ladyka.club.utils.converters.MenuOrderConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,8 @@ public class MenuServiceImpl implements MenuService {
     private MenuOrderConverter menuOrderConverter;
     @Autowired
     private MenuItemPriceHasOrdersRepository menuItemPriceHasOrdersRepository;
+    @Autowired
+    private EmailService emailService;
 
 
     @Override
@@ -136,7 +139,7 @@ public class MenuServiceImpl implements MenuService {
         return dto;
     }
 
-    private MenuItemPriceDto convertToMenuItemPriceDto(MenuItem menuItem) {
+    public MenuItemPriceDto convertToMenuItemPriceDto(MenuItem menuItem) {
         MenuItemPriceDto dto = new MenuItemPriceDto();
         dto.setName(menuItem.getName());
         dto.setDescription(menuItem.getDescription());
@@ -177,6 +180,10 @@ public class MenuServiceImpl implements MenuService {
         orderEntity.setItemPricesHasOrders(itemPricesHasOrders);
         menuItemPriceHasOrdersRepository.saveAll(itemPricesHasOrders);
         orderEntity = menuOrderRepository.saveAndFlush(orderEntity);
+        //if this new order, send email
+        if (order.getId() == null) {
+          emailService.sendOrderToOwner(orderEntity);
+        }
         return menuOrderConverter.toDto(orderEntity, true);
     }
 
