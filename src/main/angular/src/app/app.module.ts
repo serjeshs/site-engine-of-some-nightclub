@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModlibraries@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -19,8 +19,8 @@ import {EventPageComponent} from './event-page/event-page.component';
 import {EventReportComponent} from './event-report/event-report.component';
 import {NewsService} from "./news.service";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AdminComponent } from './admin/admin.component';
-import { AdminOrderListComponent } from './admin-order-list/admin-order-list.component';
+import { AdminComponent } from './admin/summary/admin.component';
+import { AdminOrderListComponent } from './admin/admin-order-list/admin-order-list.component';
 
 @NgModule({
   imports: [
@@ -43,7 +43,7 @@ import { AdminOrderListComponent } from './admin-order-list/admin-order-list.com
     EventPageComponent,
     EventReportComponent,
     AdminComponent,
-    AdminOrderListComponent
+    AdminOrderListComponent,
   ],
   providers: [EventsService, MenuService, NewsService],
   bootstrap: [AppComponent]

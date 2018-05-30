@@ -1,8 +1,6 @@
-import {Injectable, isDevMode} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-
-import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
+import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {NewsItemDto} from "./dto/newsItemDto";
 
@@ -56,7 +54,7 @@ export class NewsService {
       this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
-      return of(result as T);
+      return observableOf(result as T);
     };
   }
 

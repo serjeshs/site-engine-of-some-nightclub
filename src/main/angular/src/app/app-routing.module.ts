@@ -8,8 +8,8 @@ import {NewsComponent} from "./news/news.component";
 import {NewsPageComponent} from "./news-page/news-page.component";
 import {EventPageComponent} from "./event-page/event-page.component";
 import {EventReportComponent} from "./event-report/event-report.component";
-import {AdminComponent} from "./admin/admin.component";
-import {AdminOrderListComponent} from "./admin-order-list/admin-order-list.component";
+import {AdminComponent} from "./admin/summary/admin.component";
+import {AdminOrderListComponent} from "./admin/admin-order-list/admin-order-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/afisha', pathMatch: 'full'},
