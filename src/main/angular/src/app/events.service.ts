@@ -5,6 +5,7 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {MainEventPage} from "./dto/mainEventPage";
 import {EventReport} from "./dto/eventGallery";
+import {Event} from "./dto/event";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -12,17 +13,14 @@ const httpOptions = {
 
 @Injectable()
 export class EventsService {
-  private eventsMainPageUrl = '';
-  private eventReportsUrl = '';
+  private eventsMainPageUrl = '/api/page/main';
+  private eventReportsUrl = '/api/media/summary';
+  private eventsAdminUrl = '/api/media/admin/events';
 
   constructor(private http: HttpClient) {
-    this.eventsMainPageUrl = '/api/page/main';
-    this.eventReportsUrl = '/api/media/summary';
-
   }
 
-  /** GET heroes from the server */
-  getEvents(): Observable<MainEventPage> {
+  getMainPageEvents(): Observable<MainEventPage> {
     return this.http.get<MainEventPage>(this.eventsMainPageUrl)
       .pipe(
         tap(mainEventsPage => this.log(`fetched events to Main Page`)),
@@ -60,5 +58,13 @@ export class EventsService {
 
   private log(message: string) {
     console.log(message);
+  }
+
+  getEvents(page: number): Observable<Event[]> {
+    let url = this.eventsAdminUrl + '?page=' + page;
+    return this.http.get<Event[]>(url).pipe(
+      tap(events => this.log(`fetched events to Admin Page`)),
+      catchError(this.handleError('getEvents', []))
+    );
   }
 }

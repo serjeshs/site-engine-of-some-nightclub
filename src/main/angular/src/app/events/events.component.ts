@@ -65,7 +65,7 @@ export class EventsComponent implements OnInit {
       event.startEvent = moment(event.startEvent).format('H:mm');
     }
 
-    this.eventsService.getEvents()
+    this.eventsService.getMainPageEvents()
       .subscribe(mainPage => {
 
         this.today = mainPage['today'];

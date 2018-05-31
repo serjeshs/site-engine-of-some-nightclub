@@ -20,6 +20,7 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @Table(name = APP_TABLE_PREFIX + "event")
 @EntityListeners(AuditingEntityListener.class)
 public class Event extends AbstractEntity{
+    public static final String startEventFieldName = "startEvent";
     private BigDecimal costMinimum;
     @Lob
     private String costText;

@@ -21,6 +21,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminComponent} from './admin/summary/admin.component';
 import {AdminOrderListComponent} from './admin/admin-order-list/admin-order-list.component';
 import {NgModule} from "@angular/core";
+import { EventsListComponent } from './admin/events/events-list/events-list.component';
+import {MatButtonModule, MatCheckboxModule , MatTableModule} from '@angular/material';
+import { EventsViewComponent } from './admin/events/events-view/events-view.component';
 
 @NgModule({
   imports: [
@@ -29,7 +32,10 @@ import {NgModule} from "@angular/core";
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTableModule
   ],
   declarations: [
     AppComponent,
@@ -44,6 +50,8 @@ import {NgModule} from "@angular/core";
     EventReportComponent,
     AdminComponent,
     AdminOrderListComponent,
+    EventsListComponent,
+    EventsViewComponent,
   ],
   providers: [EventsService, MenuService, NewsService],
   bootstrap: [AppComponent]
