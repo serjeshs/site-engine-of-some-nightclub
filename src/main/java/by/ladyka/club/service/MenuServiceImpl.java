@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class MenuServiceImpl implements MenuService {
+	private static final int MAX_TABLE_NUMBER = 26;
 	@Autowired
 	private MenuCategoryRepository menuCategoryRepository;
 	@Autowired
@@ -198,7 +199,7 @@ public class MenuServiceImpl implements MenuService {
 		List<Integer> integers = new ArrayList<>();
 		final List<MenuOrderDto> orders = orders(eventId);
 		final List<Integer> busyTables = orders.stream().map(MenuOrderDto::getTableNumber).collect(Collectors.toList());
-		for (int i = 1; i < 20; i++) {
+		for (int i = 1; i < MAX_TABLE_NUMBER; i++) {
 			if (!busyTables.contains(i)) {
 				integers.add(i);
 			}

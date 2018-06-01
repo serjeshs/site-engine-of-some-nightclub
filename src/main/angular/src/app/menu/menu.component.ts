@@ -33,6 +33,7 @@ export class MenuComponent implements OnInit {
     this.wrapper = new MenuWrapper();
     this.wrapper.edited = true;
     this.tableNumbers = Array<Table>();
+    this.model.event = 0;
   }
 
   private buildMenuPage() {
