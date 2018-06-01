@@ -5,5 +5,5 @@ import by.ladyka.club.dto.EventGalleryDTO;
 import java.util.List;
 
 public interface EventGalleryService {
-    List<EventGalleryDTO> getLatestGalleryEvents(int count);
+	List<EventGalleryDTO> getLatestGalleryEvents(int count);
 }

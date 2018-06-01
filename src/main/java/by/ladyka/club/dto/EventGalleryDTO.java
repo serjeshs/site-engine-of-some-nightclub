@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class EventGalleryDTO {
-    private Long id;
-    private LocalDateTime startEvent;
-    private String name;
-    private String coverUri;
+	private Long id;
+	private LocalDateTime startEvent;
+	private String name;
+	private String coverUri;
 }

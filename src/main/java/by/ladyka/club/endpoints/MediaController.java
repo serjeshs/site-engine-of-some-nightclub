@@ -1,6 +1,5 @@
 package by.ladyka.club.endpoints;
 
-import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.service.MediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,24 +11,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "api/media/")
 public class MediaController {
 
-    @Autowired
-    private MediaService mediaService;
+	@Autowired
+	private MediaService mediaService;
 
-    @RequestMapping(value = "summary", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    ResponseEntity summary(Principal principal, HttpServletRequest httpServletRequest) {
-        return new ResponseEntity<>(mediaService.summary(), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "admin/events", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    ResponseEntity summary(Principal principal, HttpServletRequest httpServletRequest, Long page) {
-        return new ResponseEntity<List<EventDTO>>(mediaService.getEvents(page), HttpStatus.OK);
-    }
+	@RequestMapping(value = "summary", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	ResponseEntity summary(Principal principal, HttpServletRequest httpServletRequest) {
+		return new ResponseEntity<>(mediaService.summary(), HttpStatus.OK);
+	}
 }

@@ -19,21 +19,22 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @AllArgsConstructor
 @Table(name = APP_TABLE_PREFIX + "event")
 @EntityListeners(AuditingEntityListener.class)
-public class Event extends AbstractEntity{
-    public static final String startEventFieldName = "startEvent";
-    private BigDecimal costMinimum;
-    @Lob
-    private String costText;
-    @Lob
-    private String description;
-    private LocalDateTime startEvent;
-    private LocalDateTime endEvent;
-    private String name;
-    private String coverUri;
-    private int status;
-    private String alias;
+public class Event extends AbstractEntity {
+	public static final String startEventFieldName = "startEvent";
+	private BigDecimal cost;
+	@Lob
+	private String costText;
+	@Lob
+	private String description;
+	private LocalDateTime startEvent;
+	private LocalDateTime endEvent;
+	private String name;
+	private String coverUri;
+	private int status;
+	private String alias;
+	private String buyTicketUrl;
 
-    public Event(Long eventId) {
-        setId(eventId);
-    }
+	public Event(Long eventId) {
+		setId(eventId);
+	}
 }

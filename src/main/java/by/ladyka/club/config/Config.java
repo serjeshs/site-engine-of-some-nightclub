@@ -15,7 +15,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.util.Map;
 
 import static by.ladyka.club.ClubApplication.PACKAGES_TO_SCAN;
 
@@ -23,35 +22,35 @@ import static by.ladyka.club.ClubApplication.PACKAGES_TO_SCAN;
 @EnableTransactionManagement
 @EnableJpaAuditing
 @EnableJpaRepositories(basePackages = {
-        "by.ladyka.club"
+		"by.ladyka.club"
 })
 @EntityScan(
-        basePackageClasses = {ClubApplication.class, Jsr310JpaConverters.class}
+		basePackageClasses = {ClubApplication.class, Jsr310JpaConverters.class}
 )
 public class Config {
 
-    public static final String DATE_TIME_PATTERN = "yyyy.MM.dd HH:mm:ss";
-    private final DataSource dataSource;
+	public static final String DATE_TIME_PATTERN = "yyyy.MM.dd HH:mm:ss";
+	private final DataSource dataSource;
 
-    @Autowired
-    public Config(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+	@Autowired
+	public Config(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setDatabase(Database.MYSQL);
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setDatabase(Database.MYSQL);
 
-        vendorAdapter.setGenerateDdl(true);
-        vendorAdapter.setShowSql(true);
+		vendorAdapter.setGenerateDdl(true);
+		vendorAdapter.setShowSql(true);
 
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(PACKAGES_TO_SCAN);
-        factory.setDataSource(dataSource);
-        factory.afterPropertiesSet();
-        factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
-        return factory;
-    }
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setPackagesToScan(PACKAGES_TO_SCAN);
+		factory.setDataSource(dataSource);
+		factory.afterPropertiesSet();
+		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
+		return factory;
+	}
 }

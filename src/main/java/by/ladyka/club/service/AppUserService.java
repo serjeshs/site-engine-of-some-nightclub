@@ -6,5 +6,5 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 public interface AppUserService {
-    AppUser build(Principal principal, HttpServletRequest httpServletRequest);
+	AppUser build(Principal principal, HttpServletRequest httpServletRequest);
 }

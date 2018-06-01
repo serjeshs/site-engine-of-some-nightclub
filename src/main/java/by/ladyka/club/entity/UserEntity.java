@@ -19,98 +19,98 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @EntityListeners(AuditingEntityListener.class)
 public class UserEntity extends AbstractEntity implements UserDetails {
 
-    @Getter
-    @Setter
-    private String email;
+	@Getter
+	@Setter
+	private String email;
 
-    @Getter
-    @Setter
-    private String password;
-
-
-    @Getter
-    @Setter
-    private String name;
+	@Getter
+	@Setter
+	private String password;
 
 
-    @Getter
-    @Setter
-    private String surname;
+	@Getter
+	@Setter
+	private String name;
 
 
-    @Getter
-    @Setter
-    @Column(name = "father_name")
-    private String fatherName;
+	@Getter
+	@Setter
+	private String surname;
 
 
-    @Getter
-    @Setter
-    private OffsetDateTime birthday;
+	@Getter
+	@Setter
+	@Column(name = "father_name")
+	private String fatherName;
 
 
-    @Setter
-    @Type(type = "boolean")
-    private Boolean accountNonExpired;
+	@Getter
+	@Setter
+	private OffsetDateTime birthday;
 
-    @Setter
-    @Type(type = "boolean")
-    private Boolean accountNonLocked;
-    @Setter
-    @Type(type = "boolean")
-    private Boolean credentialsNonExpired;
-    @Setter
-    @Type(type = "boolean")
-    private Boolean enabled;
 
-    @Getter
-    @Setter
-    @ManyToMany
-    private List<RoleEntity> authorities;
+	@Setter
+	@Type(type = "boolean")
+	private Boolean accountNonExpired;
 
-    public static UserEntity unconfirmUser() {
-        UserEntity userEntity = new UserEntity();
-        userEntity.email = "email" + System.currentTimeMillis() + "@republic-club.by";
-        userEntity.password = "password" + System.currentTimeMillis();
-        userEntity.name = "name";
-        userEntity.surname = "surname";
-        userEntity.fatherName = "fatherName";
-        userEntity.birthday = OffsetDateTime.now();
-        userEntity.accountNonExpired = true;
-        userEntity.accountNonLocked = true;
-        userEntity.credentialsNonExpired = false;
-        userEntity.enabled = true;
-        userEntity.authorities = Collections.emptyList();
-        return userEntity;
-    }
+	@Setter
+	@Type(type = "boolean")
+	private Boolean accountNonLocked;
+	@Setter
+	@Type(type = "boolean")
+	private Boolean credentialsNonExpired;
+	@Setter
+	@Type(type = "boolean")
+	private Boolean enabled;
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
+	@Getter
+	@Setter
+	@ManyToMany
+	private List<RoleEntity> authorities;
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return accountNonExpired;
-    }
+	public static UserEntity unconfirmUser() {
+		UserEntity userEntity = new UserEntity();
+		userEntity.email = "email" + System.currentTimeMillis() + "@republic-club.by";
+		userEntity.password = "password" + System.currentTimeMillis();
+		userEntity.name = "name";
+		userEntity.surname = "surname";
+		userEntity.fatherName = "fatherName";
+		userEntity.birthday = OffsetDateTime.now();
+		userEntity.accountNonExpired = true;
+		userEntity.accountNonLocked = true;
+		userEntity.credentialsNonExpired = false;
+		userEntity.enabled = true;
+		userEntity.authorities = Collections.emptyList();
+		return userEntity;
+	}
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return accountNonLocked;
-    }
+	@Override
+	public String getUsername() {
+		return email;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
-    }
+	@Override
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
+	@Override
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
 
-    public String getPublishName() {
-        return String.format("%s %s", getSurname(), getName());
-    }
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public String getPublishName() {
+		return String.format("%s %s", getSurname(), getName());
+	}
 
 }

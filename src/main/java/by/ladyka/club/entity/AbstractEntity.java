@@ -12,18 +12,18 @@ import java.time.LocalDateTime;
 @Setter
 @MappedSuperclass
 public class AbstractEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Version
-    private Long version;
+	@Version
+	private Long version;
 
-    @CreatedDate
-    private LocalDateTime createdDate;
+	@CreatedDate
+	private LocalDateTime createdDate;
 
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
+	@LastModifiedDate
+	private LocalDateTime lastModifiedDate;
 
-    private Boolean visible;
+	private Boolean visible;
 }

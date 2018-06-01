@@ -12,15 +12,15 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MenuOrderDto {
-    private Long id;
-    private Map<Long, Integer> food;
-    private String name;
-    private String email;
-    private String phone;
-    private Long event;
-    private String arrivalTime;
-    private Integer people;
-    private String bcCode;
-    private String description;
-    private Integer tableNumber;
+	private Long id;
+	private Map<Long, Integer> food;
+	private String name;
+	private String email;
+	private String phone;
+	private Long event;
+	private String arrivalTime;
+	private Integer people;
+	private String bcCode;
+	private String description;
+	private Integer tableNumber;
 }

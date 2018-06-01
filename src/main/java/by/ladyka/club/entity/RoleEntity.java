@@ -23,6 +23,6 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @EntityListeners(AuditingEntityListener.class)
 public class RoleEntity extends AbstractEntity implements GrantedAuthority {
 
-    private static final long serialVersionUID = 3L;
-    private String authority;
+	private static final long serialVersionUID = 3L;
+	private String authority;
 }

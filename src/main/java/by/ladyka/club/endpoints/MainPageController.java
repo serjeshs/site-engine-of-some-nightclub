@@ -20,16 +20,16 @@ import java.security.Principal;
 @RequestMapping(value = "api/page/")
 public class MainPageController {
 
-    @Autowired
-    private AfishaService afishaService;
-    @Autowired
-    private AppUserService appUserService;
+	@Autowired
+	private AfishaService afishaService;
+	@Autowired
+	private AppUserService appUserService;
 
-    @RequestMapping(value = "main", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    ResponseEntity mainPAge(Principal principal, HttpServletRequest httpServletRequest) {
-        AppUser user = appUserService.build(principal, httpServletRequest);
-        MainPageDTO mainPageDTO = afishaService.mainPage(user);
-        return new ResponseEntity<>(mainPageDTO, HttpStatus.OK);
-    }
+	@RequestMapping(value = "main", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	ResponseEntity mainPAge(Principal principal, HttpServletRequest httpServletRequest) {
+		AppUser user = appUserService.build(principal, httpServletRequest);
+		MainPageDTO mainPageDTO = afishaService.mainPage(user);
+		return new ResponseEntity<>(mainPageDTO, HttpStatus.OK);
+	}
 }

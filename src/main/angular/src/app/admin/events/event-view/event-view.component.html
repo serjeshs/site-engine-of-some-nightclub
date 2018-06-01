@@ -1,0 +1,153 @@
+<div class="content-wrapper">
+  <!--main content-->
+  <div class="main-content">
+
+    <a class="btn order-btn-face" (click)="setViewEvent(false)">
+      Изменение
+    </a>
+
+    <a class="btn order-btn-face" (click)="setViewEvent(true)">
+      Просмор
+    </a>
+
+    <div [hidden]="viewEvent" class="block bill-farther">
+      <div class="block menu-page info-page">
+        <div class="form-group">
+          <label for="name">Название мероприятия</label>
+          <input type="text"
+                 class="form-control"
+                 id="name"
+                 required
+                 [(ngModel)]="event.name"
+                 name="name"
+                 #name="ngModel"
+                 placeholder="Название мероприятия"
+          >
+        </div>
+        <div class="form-group">
+          <label for="description">Описание</label>
+          <textarea class="form-control"
+                    id="description"
+                    required
+                    [(ngModel)]="event.description"
+                    name="description"
+                    #description="ngModel"
+                    placeholder="Описание"> </textarea>
+        </div>
+        <div class="form-group">
+          <label for="startEvent">Начало мероприятия в формате : 2012-12-08T19:00:00 </label>
+          <input type="datetime-local"
+                 class="form-control"
+                 id="startEvent"
+                 required
+                 [(ngModel)]="event.startEvent"
+                 name="startEvent"
+                 #startEvent="ngModel"
+                 placeholder="Начало мероприятия"
+          >
+        </div>
+        <div class="form-group">
+          <label for="endEvent">Окончание мероприятия в формате : 2012-12-08T23:00:00 </label>
+          <input type="datetime-local"
+                 class="form-control"
+                 id="endEvent"
+                 required
+                 [(ngModel)]="event.endEvent"
+                 name="endEvent"
+                 #endEvent="ngModel"
+                 placeholder="Окончание мероприятия"
+          >
+        </div>
+        <div class="form-group">
+          <label for="cost">Стоимость в рублях</label>
+          <input type="number"
+                 class="form-control"
+                 id="cost"
+                 required
+                 [(ngModel)]="event.cost"
+                 name="cost"
+                 #cost="ngModel"
+                 placeholder="Стоимость в рублях"
+          >
+        </div>
+        <div class="form-group">
+          <label for="costText">Описание стоимости</label>
+          <textarea class="form-control"
+                    id="costText"
+                    required
+                    [(ngModel)]="event.costText"
+                    name="costText"
+                    #costText="ngModel"
+                    placeholder="Описание стоимости"> </textarea>
+        </div>
+
+
+        <div class="form-group">
+          <label for="coverUri">Ссылка на обложку</label>
+          <input type="url"
+                 class="form-control"
+                 id="coverUri"
+                 required
+                 [(ngModel)]="event.coverUri"
+                 name="coverUri"
+                 #coverUri="ngModel"
+                 placeholder="Ссылка на обложку"
+          >
+        </div>
+        <div class="form-group">
+          <label for="coverUri">Ссылка на страницу покупки билетов</label>
+          <input type="url"
+                 class="form-control"
+                 id="buyTicketUrl"
+                 required
+                 [(ngModel)]="event.buyTicketUrl"
+                 name="buyTicketUrl"
+                 #buyTicketUrl="ngModel"
+                 placeholder="Ссылка на страницу покупки билетов"
+          >
+        </div>
+        <button type="submit" (click)="saveEvent(event)" class="btn btn-primary">Сохранить</button>
+      </div>
+
+    </div>
+
+
+    <div class="block bill-farther">
+      <h1>
+        Отображение события № {{event.id}}
+        <i class="h-line"></i>
+      </h1>
+      <div class="event">
+        <!--data-words="{{event.name}}"-->
+        <div class="img">
+          <a routerLink="/event/{{event.id}}">
+            <img src="{{event.coverUri}}" alt="">
+          </a>
+        </div>
+        <div class="info">
+          <span class="date">{{event.startEvent}}</span>
+          <h2>
+            <a routerLink="/event/{{event.id}}">
+              {{event.name}}
+              <span class="type"></span>
+            </a>
+          </h2>
+          <p class="e2e-inner-html-bound" [innerHTML]="event.description">
+          </p>
+          <div class="tickets">
+            <h4>БИЛЕТЫ</h4>
+            <a [href]="event.buyTicketUrl" target="_blank" class="btn order-btn-face">
+              Купить билет
+            </a>
+            <div class="tickets-list">
+              <span class="e2e-inner-html-bound" [innerHTML]="event.costText"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!--end sidebar-->
+  <div class="clearfix"></div>
+</div>

@@ -9,8 +9,8 @@ import java.security.Principal;
 
 @Service
 public class AppUserServiceImpl implements AppUserService {
-    @Override
-    public AppUser build(Principal principal, HttpServletRequest httpServletRequest) {
-        return new AppUser(new UserEntity());
-    }
+	@Override
+	public AppUser build(Principal principal, HttpServletRequest httpServletRequest) {
+		return new AppUser(new UserEntity());
+	}
 }

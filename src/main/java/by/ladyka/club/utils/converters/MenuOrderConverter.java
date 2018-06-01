@@ -13,30 +13,30 @@ import java.util.stream.Collectors;
 
 @Service
 public class MenuOrderConverter {
-    public MenuOrder toEntity(MenuOrderDto dto) {
-        MenuOrder entity = new MenuOrder();
-        BeanUtils.copyProperties(dto, entity);
-        return entity;
-    }
+	public MenuOrder toEntity(MenuOrderDto dto) {
+		MenuOrder entity = new MenuOrder();
+		BeanUtils.copyProperties(dto, entity);
+		return entity;
+	}
 
-    public MenuOrderDto toDto(MenuOrder entity, boolean dependencies) {
-        MenuOrderDto dto = new MenuOrderDto();
-        BeanUtils.copyProperties(entity, dto);
-        if (dependencies) {
-            final List<MenuItemPricesHasOrders> itemPricesHasOrders = entity.getItemPricesHasOrders();
-            Map<Long, Integer> food = new LinkedHashMap<>();
-            itemPricesHasOrders.forEach(item -> food.put(item.getItemPrice().getId(), item.getCount()));
-            dto.setFood(food);
-            dto.setEvent(entity.getEvent().getId());
-        }
-        return dto;
-    }
+	public MenuOrderDto toDto(MenuOrder entity, boolean dependencies) {
+		MenuOrderDto dto = new MenuOrderDto();
+		BeanUtils.copyProperties(entity, dto);
+		if (dependencies) {
+			final List<MenuItemPricesHasOrders> itemPricesHasOrders = entity.getItemPricesHasOrders();
+			Map<Long, Integer> food = new LinkedHashMap<>();
+			itemPricesHasOrders.forEach(item -> food.put(item.getItemPrice().getId(), item.getCount()));
+			dto.setFood(food);
+			dto.setEvent(entity.getEvent().getId());
+		}
+		return dto;
+	}
 
-    public List<MenuOrderDto> toDto(List<MenuOrder> entities) {
-        return entities.stream().map(this::toDto).collect(Collectors.toList());
-    }
+	public List<MenuOrderDto> toDto(List<MenuOrder> entities) {
+		return entities.stream().map(this::toDto).collect(Collectors.toList());
+	}
 
-    private MenuOrderDto toDto(MenuOrder menuOrder) {
-        return toDto(menuOrder, false);
-    }
+	private MenuOrderDto toDto(MenuOrder menuOrder) {
+		return toDto(menuOrder, false);
+	}
 }

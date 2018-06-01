@@ -9,22 +9,23 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 public class EventDTO {
-    private Long id;
-    private BigDecimal cost;
-    private String costText;
-    private String description;
+	private Long id;
+	private BigDecimal cost;
+	private String costText;
+	private String description;
 
-    //    @JsonFormat(pattern = Config.DATE_TIME_PATTERN)
+	//    @JsonFormat(pattern = Config.DATE_TIME_PATTERN)
 //    @JsonSerialize(using = LocalDateTimeSerializer.class)
 //    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime startEvent;
+	private LocalDateTime startEvent;
 
-    //    @JsonFormat(pattern = Config.DATE_TIME_PATTERN)
+	//    @JsonFormat(pattern = Config.DATE_TIME_PATTERN)
 //    @JsonSerialize(using = LocalDateTimeSerializer.class)
 //    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime endEvent;
+	private LocalDateTime endEvent;
 
-    private String name;
-    private String coverUri;
-    private int status;
+	private String name;
+	private String coverUri;
+	private int status;
+	private String buyTicketUrl;
 }

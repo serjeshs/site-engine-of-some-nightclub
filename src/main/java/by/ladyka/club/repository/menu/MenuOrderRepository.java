@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface MenuOrderRepository extends JpaRepository<MenuOrder, Long> {
-    List<MenuOrder> findByEvent_Id(Long eventId);
+	List<MenuOrder> findByEvent_Id(Long eventId);
 }

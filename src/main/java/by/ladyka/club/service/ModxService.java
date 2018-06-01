@@ -7,5 +7,5 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ModxService {
-    List<ModxSiteContent> getEventsBetween(LocalDateTime after, LocalDateTime before);
+	List<ModxSiteContent> getEventsBetween(LocalDateTime after, LocalDateTime before);
 }

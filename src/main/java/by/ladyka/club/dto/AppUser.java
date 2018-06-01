@@ -7,9 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AppUser {
-    private final UserEntity userEntity;
+	private final UserEntity userEntity;
 
-    public AppUser(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
+	public AppUser(UserEntity userEntity) {
+		this.userEntity = userEntity;
+	}
 }

@@ -8,17 +8,17 @@ import by.ladyka.club.entity.menu.MenuItem;
 import java.util.List;
 
 public interface MenuService {
-  MenuPageDto mainPage();
+	MenuPageDto mainPage();
 
-  boolean init();
+	boolean init();
 
-  MenuOrderDto order(MenuOrderDto order);
+	MenuOrderDto order(MenuOrderDto order);
 
-  List<MenuOrderDto> orders(Long eventId);
+	List<MenuOrderDto> orders(Long eventId);
 
-  List<Integer> getAvailableTables(Long eventId);
+	List<Integer> getAvailableTables(Long eventId);
 
-  MenuOrderDto getOrder(Long orderId);
+	MenuOrderDto getOrder(Long orderId);
 
-  MenuItemPriceDto convertToMenuItemPriceDto(MenuItem menuItem);
+	MenuItemPriceDto convertToMenuItemPriceDto(MenuItem menuItem);
 }

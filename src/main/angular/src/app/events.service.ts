@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {merge, Observable, of as observableOf} from 'rxjs';
+import {Observable, of as observableOf} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {MainEventPage} from "./dto/mainEventPage";
 import {EventReport} from "./dto/eventGallery";
@@ -15,7 +15,7 @@ const httpOptions = {
 export class EventsService {
   private eventsMainPageUrl = '/api/page/main';
   private eventReportsUrl = '/api/media/summary';
-  private eventsAdminUrl = '/api/media/admin/events';
+  private eventsRestAdminUrl = '/api/admin/events';
 
   constructor(private http: HttpClient) {
   }
@@ -61,10 +61,17 @@ export class EventsService {
   }
 
   getEvents(page: number): Observable<Event[]> {
-    let url = this.eventsAdminUrl + '?page=' + page;
+    let url = this.eventsRestAdminUrl + '?page=' + page;
     return this.http.get<Event[]>(url).pipe(
       tap(events => this.log(`fetched events to Admin Page`)),
       catchError(this.handleError('getEvents', []))
     );
+  }
+
+  save(event: Event): Observable<Event> {
+    return this.http.post<Event>(this.eventsRestAdminUrl, JSON.stringify(event), httpOptions)
+      .pipe(
+        catchError(this.handleError('saveEvent', new Event()))
+      );
   }
 }

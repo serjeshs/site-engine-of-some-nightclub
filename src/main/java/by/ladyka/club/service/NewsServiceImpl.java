@@ -12,32 +12,32 @@ import java.util.stream.Collectors;
 @Service
 public class NewsServiceImpl implements NewsService {
 
-    @Autowired
-    private NewsEntityRepository newsEntityRepository;
+	@Autowired
+	private NewsEntityRepository newsEntityRepository;
 
-    @Override
-    public List<NewsDto> summary() {
-        List<NewsEntity> newsEntities = newsEntityRepository.findAllByVisibleIsTrueOrderByCreatedDateDesc();
-        return newsEntities.stream().map(this::convertToDto).collect(Collectors.toList());
-    }
+	@Override
+	public List<NewsDto> summary() {
+		List<NewsEntity> newsEntities = newsEntityRepository.findAllByVisibleIsTrueOrderByCreatedDateDesc();
+		return newsEntities.stream().map(this::convertToDto).collect(Collectors.toList());
+	}
 
-    @Override
-    public NewsDto byId(Long id) {
-        return convertToDto(newsEntityRepository.getOne(id));
-    }
+	@Override
+	public NewsDto byId(Long id) {
+		return convertToDto(newsEntityRepository.getOne(id));
+	}
 
-    private NewsDto convertToDto(NewsEntity entity) {
-        if (entity == null) {
-            return new NewsDto();
-        }
-        NewsDto dto = new NewsDto();
-        dto.setId(entity.getId());
-        dto.setDescription(entity.getDescription());
-        dto.setDescriptionPreview(entity.getDescriptionPreview());
-        dto.setTitle(entity.getTitle());
-        dto.setOwner(entity.getOwner().getPublishName());
-        dto.setImage(entity.getImage());
-        dto.setCreateDate(entity.getCreatedDate());
-        return dto;
-    }
+	private NewsDto convertToDto(NewsEntity entity) {
+		if (entity == null) {
+			return new NewsDto();
+		}
+		NewsDto dto = new NewsDto();
+		dto.setId(entity.getId());
+		dto.setDescription(entity.getDescription());
+		dto.setDescriptionPreview(entity.getDescriptionPreview());
+		dto.setTitle(entity.getTitle());
+		dto.setOwner(entity.getOwner().getPublishName());
+		dto.setImage(entity.getImage());
+		dto.setCreateDate(entity.getCreatedDate());
+		return dto;
+	}
 }

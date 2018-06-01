@@ -19,14 +19,14 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @Table(name = APP_TABLE_PREFIX + "menu_item_price_has_order")
 @EntityListeners(AuditingEntityListener.class)
 public class MenuItemPricesHasOrders extends AbstractEntity {
-    @Column(nullable = false)
-    private int count;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderId")
-    private MenuOrder order;
+	@Column(nullable = false)
+	private int count;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "orderId")
+	private MenuOrder order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "itemPriceId")
-    private MenuItemPrice itemPrice;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "itemPriceId")
+	private MenuItemPrice itemPrice;
 
 }

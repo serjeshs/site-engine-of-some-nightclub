@@ -1,0 +1,11 @@
+<!--main-menu-->
+<nav>
+  <a routerLink="/admin">Admin главная</a>
+  <a routerLink="/admin-events">Операции над событиями</a>
+  <a routerLink="/admin-order-list">Список заказов</a>
+</nav>
+<a class="btn" [hidden]="!viewEvents" (click)="createNewEvent()">
+  Добавить новое событие
+</a>
+<app-events-list (onRowSelected)="handleRowSelected($event)" [hidden]="!viewEvents"></app-events-list>
+<app-event-view [hidden]="!viewEvent" [event]="event"></app-event-view>

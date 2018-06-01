@@ -20,19 +20,19 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @Table(name = APP_TABLE_PREFIX + "menu_category")
 @EntityListeners(AuditingEntityListener.class)
 public class MenuCategory extends AbstractEntity {
-    private String name;
-    private String description;
-    private Boolean active;
-    private Integer categoryType;
+	private String name;
+	private String description;
+	private Boolean active;
+	private Integer categoryType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parentId")
-    private MenuCategory parent;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parentId")
+	private MenuCategory parent;
 
-    @OneToMany(mappedBy = "parent")
-    private List<MenuCategory> children;
+	@OneToMany(mappedBy = "parent")
+	private List<MenuCategory> children;
 
-    @OneToMany(mappedBy = "category")
-    private List<MenuItem> items;
+	@OneToMany(mappedBy = "category")
+	private List<MenuItem> items;
 
 }

@@ -14,22 +14,22 @@ import static java.time.LocalDateTime.now;
 @Service
 public class EventGalleryServiceImpl implements EventGalleryService {
 
-    private final EventRepository eventRepository;
-    private final ConverterEventService converterEventService;
+	private final EventRepository eventRepository;
+	private final ConverterEventService converterEventService;
 
-    @Autowired
-    public EventGalleryServiceImpl(EventRepository eventRepository, ConverterEventService converterEventService) {
-        this.eventRepository = eventRepository;
-        this.converterEventService = converterEventService;
-    }
+	@Autowired
+	public EventGalleryServiceImpl(EventRepository eventRepository, ConverterEventService converterEventService) {
+		this.eventRepository = eventRepository;
+		this.converterEventService = converterEventService;
+	}
 
-    @Override
-    public List<EventGalleryDTO> getLatestGalleryEvents(int count) {
-        //TDOD WRONG !!!!
-        return eventRepository
-                .findAllByStartEventBetweenAndStatusGreaterThanEqual(now().plusMonths(1L), now().plusMonths(2L), PENDING.getCode())
-                .stream()
-                .map(converterEventService::toEventGalleryDto)
-                .collect(Collectors.toList());
-    }
+	@Override
+	public List<EventGalleryDTO> getLatestGalleryEvents(int count) {
+		//TDOD WRONG !!!!
+		return eventRepository
+				.findAllByStartEventBetweenAndStatusGreaterThanEqual(now().plusMonths(1L), now().plusMonths(2L), PENDING.getCode())
+				.stream()
+				.map(converterEventService::toEventGalleryDto)
+				.collect(Collectors.toList());
+	}
 }

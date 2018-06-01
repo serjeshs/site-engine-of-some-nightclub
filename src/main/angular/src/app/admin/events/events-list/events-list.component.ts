@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EventsService} from "../../../events.service";
 import {Event} from "../../../dto/event";
 
@@ -8,8 +8,9 @@ import {Event} from "../../../dto/event";
   styleUrls: ['./events-list.component.css']
 })
 export class EventsListComponent implements OnInit {
-  private events: Event[];
+  events: Event[];
   displayedColumns = ['id', 'name', 'startEvent', 'status'];
+  @Output() onRowSelected = new EventEmitter();
 
   constructor(private eventsService: EventsService) {
   }
@@ -25,6 +26,8 @@ export class EventsListComponent implements OnInit {
   }
 
   handleRowClick(row: Event) {
-    console.log(row)
+    console.log("handleRowClick", row);
+    console.log(this.onRowSelected);
+    this.onRowSelected.emit(row);
   }
 }
