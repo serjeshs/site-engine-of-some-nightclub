@@ -63,6 +63,7 @@ public class EventsServiceImpl implements EventsService {
 		Event entity;
 		if (dto.getId() == null || dto.getId() < 1) {
 			entity = new Event();
+			entity.setStatus(PENDING.getCode());
 		} else {
 			entity = eventRepository.findById(dto.getId()).orElseGet(Event::new);
 		}

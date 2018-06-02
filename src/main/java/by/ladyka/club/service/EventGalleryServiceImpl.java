@@ -1,6 +1,8 @@
 package by.ladyka.club.service;
 
 import by.ladyka.club.dto.EventGalleryDTO;
+import by.ladyka.club.entity.EventReportEntity;
+import by.ladyka.club.repository.EventReportRepository;
 import by.ladyka.club.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,23 +15,16 @@ import static java.time.LocalDateTime.now;
 
 @Service
 public class EventGalleryServiceImpl implements EventGalleryService {
-
-	private final EventRepository eventRepository;
-	private final ConverterEventService converterEventService;
-
 	@Autowired
-	public EventGalleryServiceImpl(EventRepository eventRepository, ConverterEventService converterEventService) {
-		this.eventRepository = eventRepository;
-		this.converterEventService = converterEventService;
-	}
+	private EventReportRepository eventReportRepository;
+	@Autowired
+	private ConverterEventReportService converterEventReportService;
+
 
 	@Override
 	public List<EventGalleryDTO> getLatestGalleryEvents(int count) {
-		//TDOD WRONG !!!!
-		return eventRepository
-				.findAllByStartEventBetweenAndStatusGreaterThanEqual(now().plusMonths(1L), now().plusMonths(2L), PENDING.getCode())
-				.stream()
-				.map(converterEventService::toEventGalleryDto)
+		final List<EventReportEntity> reports = eventReportRepository.findFirst10ByVisibleIsTrueOrderByStartEventDesc();
+		return reports.stream().map(converterEventReportService::toEventGalleryDto)
 				.collect(Collectors.toList());
 	}
 }

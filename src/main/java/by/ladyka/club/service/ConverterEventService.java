@@ -8,8 +8,6 @@ import by.ladyka.club.entity.Event;
 public interface ConverterEventService {
 	EventDTO toEventDto(Event entity);
 
-	EventGalleryDTO toEventGalleryDto(Event event);
-
 	EventRelevantDTO toEventRelevantDto(Event event);
 
 	Event toEntity(EventDTO event);

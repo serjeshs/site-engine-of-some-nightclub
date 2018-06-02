@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface EventReportRepository extends JpaRepository<EventReportEntity, Long> {
 	List<EventReportEntity> findAllByVisibleIsTrueOrderByStartEventDesc();
+	List<EventReportEntity> findFirst10ByVisibleIsTrueOrderByStartEventDesc();
 }
