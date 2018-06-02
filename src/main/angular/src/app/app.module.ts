@@ -32,7 +32,9 @@ import {
   MatSnackBarModule, MatSortModule, MatStepperModule, MatTableModule, MatTabsModule, MatToolbarModule,
   MatTooltipModule, MatTreeModule,
 } from '@angular/material';
+import {QuillEditorModule} from 'ngx-quill-editor';
 import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-admin-page.component';
+import {QuillEditorComponent} from './components/form/quill-editor/quill-editor.component';
 
 @NgModule({
   imports: [
@@ -77,6 +79,7 @@ import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    QuillEditorModule,
     ReactiveFormsModule,
   ],
   declarations: [
@@ -94,7 +97,8 @@ import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-
     MediaComponent,
     MenuComponent,
     NewsComponent,
-    NewsPageComponent
+    NewsPageComponent,
+    QuillEditorComponent
   ],
   providers: [
     EventsService,
