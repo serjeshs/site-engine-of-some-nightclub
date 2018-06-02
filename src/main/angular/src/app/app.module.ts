@@ -32,11 +32,15 @@ import {
   MatSnackBarModule, MatSortModule, MatStepperModule, MatTableModule, MatTabsModule, MatToolbarModule,
   MatTooltipModule, MatTreeModule,
 } from '@angular/material';
-import { QuillEditorModule } from 'ngx-quill-editor';
-import { EventsAdminPageComponent } from './admin/events/events-admin-page/events-admin-page.component';
+import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-admin-page.component';
 
 @NgModule({
-  exports: [
+  imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -45,7 +49,6 @@ import { EventsAdminPageComponent } from './admin/events/events-admin-page/event
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatStepperModule,
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
@@ -68,45 +71,36 @@ import { EventsAdminPageComponent } from './admin/events/events-admin-page/event
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,
+    MatStepperModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
-  ]
-})
-export class MaterialModule {
-}
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
+    MatTreeModule,
     ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule
-    // QuillEditorModule,
   ],
   declarations: [
-    AppComponent,
-    EventsComponent,
-    MenuComponent,
-    FooterComponent,
-    ClubComponent,
-    MediaComponent,
-    NewsComponent,
-    NewsPageComponent,
-    EventPageComponent,
-    EventReportComponent,
     AdminComponent,
     AdminOrderListComponent,
+    AppComponent,
+    ClubComponent,
+    EventPageComponent,
+    EventReportComponent,
+    EventsAdminPageComponent,
+    EventsComponent,
     EventsListComponent,
     EventViewComponent,
-    EventsAdminPageComponent
+    FooterComponent,
+    MediaComponent,
+    MenuComponent,
+    NewsComponent,
+    NewsPageComponent
   ],
-  providers: [EventsService, MenuService, NewsService],
+  providers: [
+    EventsService,
+    MenuService,
+    NewsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
