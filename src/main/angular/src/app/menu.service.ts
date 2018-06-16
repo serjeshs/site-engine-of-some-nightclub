@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {merge, Observable, of as observableOf} from 'rxjs';
+import {Observable, of as observableOf} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {MenuPageSummary} from "./dto/menuPageSummary";
 import {MenuOrder} from "./dto/menuOrder";
@@ -40,30 +40,6 @@ export class MenuService {
       );
   }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return observableOf(result as T);
-    };
-  }
-
-  private log(message: string) {
-    console.log(message);
-  }
-
   getAvailableTables(event: number) {
     let url = this.availableTablesUrl + "?eventId=" + event;
     return this.http.get<Number>(url)
@@ -89,5 +65,24 @@ export class MenuService {
         tap(() => this.log(`get Order`)),
         catchError(this.handleError('getOrder', new MenuOrder()))
       );
+  }
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
+      this.log(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning an empty result.
+      return observableOf(result as T);
+    };
+  }
+
+  private log(message: string) {
+    console.log(message);
   }
 }

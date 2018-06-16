@@ -25,6 +25,14 @@ export class AdminOrderListComponent implements OnInit {
   constructor(private menuService: MenuService) {
   }
 
+  get eventChoice() {
+    return this.wrapper.eventNumber > 0;
+  }
+
+  get orderChoice() {
+    return this.wrapper.orderNumber > 0;
+  }
+
   ngOnInit() {
     this.wrapper = new AdminOrderListWrapper();
     this.wrapper.eventNumber = 0;
@@ -47,16 +55,6 @@ export class AdminOrderListComponent implements OnInit {
     });
   }
 
-  get eventChoice() {
-    console.log("eventChoice", this.wrapper.eventNumber);
-    return this.wrapper.eventNumber > 0;
-  }
-
-  get orderChoice() {
-    console.log("orderChoice", this.wrapper.orderNumber);
-    return this.wrapper.orderNumber > 0;
-  }
-
   changeEvent() {
     this.menuService.getOrders(this.wrapper.eventNumber).subscribe(responseArray => {
       if (Array.isArray(responseArray)) {
@@ -69,7 +67,6 @@ export class AdminOrderListComponent implements OnInit {
     this.wrapper.orderNumber = order.id;
     this.menuService.getOrder(this.wrapper.orderNumber).subscribe(order => {
       this.model = order;
-      console.log(this.model.food);
     });
   }
 }

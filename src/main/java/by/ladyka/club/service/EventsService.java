@@ -18,4 +18,6 @@ public interface EventsService {
 
 	EventDTO save(EventDTO event);
 	List<EventDTO> getEvents(Long page);
+
+	EventDTO getEvent(Long id);
 }

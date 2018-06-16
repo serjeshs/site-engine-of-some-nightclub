@@ -5,8 +5,8 @@ export class MenuOrder {
   phone: string;
   arrivalTime: string;
   bcCode: string;
-  depositPrice : number;
-  people : number;
+  depositPrice: number;
+  people: number;
   food: any;
   rulesCheck: boolean;
   event: number;

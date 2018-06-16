@@ -23,7 +23,7 @@ function buildAndStartApplication {
     echo "ls /home/appuser/frontbuld/" >> $LOG_FILE;
     ls /home/appuser/frontbuld/  >> $LOG_FILE;
     mkdir /home/appuser/frontbuld;
-    ng build -op /home/appuser/frontbuld --aot=false;
+    ng build --output-path /home/appuser/frontbuld --aot=false;
     echo "ls /home/appuser/frontbuld/"  >> $LOG_FILE;
     ls /home/appuser/frontbuld/  >> $LOG_FILE;
     cd ../../../ ;

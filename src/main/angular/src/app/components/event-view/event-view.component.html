@@ -2,13 +2,15 @@
   <!--main content-->
   <div class="main-content">
 
-    <a class="btn order-btn-face" (click)="setViewEvent(false)">
-      Изменение
-    </a>
+    <div [hidden]="!readOnly">
+      <a class="btn order-btn-face" (click)="setViewEvent(false)">
+        Изменение
+      </a>
 
-    <a class="btn order-btn-face" (click)="setViewEvent(true)">
-      Просмор
-    </a>
+      <a class="btn order-btn-face" (click)="setViewEvent(true)">
+        Просмор
+      </a>
+    </div>
 
     <div [hidden]="viewEvent" class="block bill-farther">
       <div class="block menu-page info-page">

@@ -8,4 +8,5 @@
   Добавить новое событие
 </a>
 <app-events-list (onRowSelected)="handleRowSelected($event)" [hidden]="!viewEvents"></app-events-list>
-<app-event-view [hidden]="!viewEvent" [event]="event"></app-event-view>
+<app-event-view [hidden]="!viewEvent" [event]="event" [readOnly]="false"
+                (onEventSaveButtonClick)="saveEvent($event)"></app-event-view>

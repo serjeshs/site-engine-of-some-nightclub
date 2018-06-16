@@ -22,7 +22,7 @@ export class MediaComponent implements OnInit {
   private buildMediaPage() {
     this.eventService.getReportEvents().subscribe(eventsReport => {
       this.galleryEvents = eventsReport;
-      this.galleryEvents.forEach(eventsReport=> {
+      this.galleryEvents.forEach(eventsReport => {
         eventsReport.startEvent = moment(eventsReport.startEvent).format('D MMM YYYY');
         eventsReport.name = eventsReport.name.substring(0, 12);
       })

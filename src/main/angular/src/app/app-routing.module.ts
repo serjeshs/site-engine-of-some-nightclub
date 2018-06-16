@@ -11,7 +11,7 @@ import {EventReportComponent} from "./event-report/event-report.component";
 import {AdminComponent} from "./admin/summary/admin.component";
 import {AdminOrderListComponent} from "./admin/admin-order-list/admin-order-list.component";
 import {EventsListComponent} from "./admin/events/events-list/events-list.component";
-import {EventViewComponent} from "./admin/events/event-view/event-view.component";
+import {EventViewComponent} from "./components/event-view/event-view.component";
 import {EventsAdminPageComponent} from "./admin/events/events-admin-page/events-admin-page.component";
 
 const routes: Routes = [
@@ -21,6 +21,7 @@ const routes: Routes = [
   {path: 'media', component: MediaComponent},
   {path: 'news', component: NewsComponent},
   {path: 'club', component: ClubComponent},
+  {path: 'event/:id', component: EventPageComponent},
   {path: 'events/:year/:prefix/:path', component: EventPageComponent},
   {path: 'event-reports/:id', component: EventReportComponent},
   {path: 'news/:id', component: NewsPageComponent},

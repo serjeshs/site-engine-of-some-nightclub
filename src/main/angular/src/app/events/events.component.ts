@@ -86,7 +86,6 @@ export class EventsComponent implements OnInit {
         this.nextNextMonth.forEach(processMonthEvents);
 
 
-
         this.gallery = mainPage['gallery'];
         this.gallery.forEach(eventGalery => {
           eventGalery.startEvent = moment(eventGalery.startEvent).format('LL')

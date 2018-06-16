@@ -16,6 +16,7 @@ export class EventsService {
   private eventsMainPageUrl = '/api/page/main';
   private eventReportsUrl = '/api/media/summary';
   private eventsRestAdminUrl = '/api/admin/events';
+  private eventsRestUrl = '/api/events';
 
   constructor(private http: HttpClient) {
   }
@@ -34,6 +35,27 @@ export class EventsService {
         tap(eventsReport => this.log(`fetched eventsReport to Media Page`)),
         catchError(this.handleError('getReportEvents', []))
       );
+  }
+
+  getEvents(page: number): Observable<Event[]> {
+    let url = this.eventsRestAdminUrl + '?page=' + page;
+    return this.http.get<Event[]>(url).pipe(
+      tap(events => this.log(`fetched events to Admin Page`)),
+      catchError(this.handleError('getEvents', []))
+    );
+  }
+
+  save(event: Event): Observable<Event> {
+    return this.http.post<Event>(this.eventsRestAdminUrl, JSON.stringify(event), httpOptions)
+      .pipe(
+        catchError(this.handleError('saveEvent', new Event()))
+      );
+  }
+
+  getEvent(eventId: number): Observable<Event> {
+    let url = this.eventsRestUrl + '?id=' + eventId;
+    return this.http.get<Event>(url)
+      .pipe();
   }
 
   /**
@@ -58,20 +80,5 @@ export class EventsService {
 
   private log(message: string) {
     console.log(message);
-  }
-
-  getEvents(page: number): Observable<Event[]> {
-    let url = this.eventsRestAdminUrl + '?page=' + page;
-    return this.http.get<Event[]>(url).pipe(
-      tap(events => this.log(`fetched events to Admin Page`)),
-      catchError(this.handleError('getEvents', []))
-    );
-  }
-
-  save(event: Event): Observable<Event> {
-    return this.http.post<Event>(this.eventsRestAdminUrl, JSON.stringify(event), httpOptions)
-      .pipe(
-        catchError(this.handleError('saveEvent', new Event()))
-      );
   }
 }

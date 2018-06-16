@@ -53,6 +53,12 @@ public class EventsServiceImpl implements EventsService {
 		Pageable pg = PageRequest.of(page.intValue(), 10, sort);
 		return eventRepository.findAll(pg).stream().map(event -> converterEventService.toEventDto(event)).collect(Collectors.toList());
 	}
+
+	@Override
+	public EventDTO getEvent(Long id) {
+		return converterEventService.toEventDto(eventRepository.findById(id).orElse(new Event()));
+	}
+
 	@Override
 	public Optional<Event> getEventById(Long event) {
 		return eventRepository.findById(event);

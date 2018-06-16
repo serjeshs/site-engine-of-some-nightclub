@@ -22,7 +22,7 @@ import {AdminComponent} from './admin/summary/admin.component';
 import {AdminOrderListComponent} from './admin/admin-order-list/admin-order-list.component';
 import {NgModule} from "@angular/core";
 import {EventsListComponent} from './admin/events/events-list/events-list.component';
-import {EventViewComponent} from './admin/events/event-view/event-view.component';
+import {EventViewComponent} from './components/event-view/event-view.component';
 import {
   MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule, MatButtonModule, MatButtonToggleModule,
   MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatDividerModule,

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Event} from "../../../dto/event";
+import {EventsService} from "../../../events.service";
 
 @Component({
   selector: 'app-events-admin-page',
@@ -11,7 +12,7 @@ export class EventsAdminPageComponent implements OnInit {
   viewEvent: boolean;
   event: Event;
 
-  constructor() {
+  constructor(private eventsService: EventsService) {
   }
 
   ngOnInit() {
@@ -21,7 +22,6 @@ export class EventsAdminPageComponent implements OnInit {
   }
 
   handleRowSelected(row: Event) {
-    console.log("handleRowSelected", row);
     this.event = row;
     this.viewEvent = true;
     this.viewEvents = false;
@@ -31,5 +31,11 @@ export class EventsAdminPageComponent implements OnInit {
     this.event = new Event();
     this.viewEvent = true;
     this.viewEvents = false;
+  }
+
+  saveEvent(event: Event) {
+    this.eventsService.save(event).subscribe(event => {
+      this.event = event;
+    });
   }
 }

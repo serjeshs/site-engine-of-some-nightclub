@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NewsService} from "../news.service";
 import {NewsItemDto} from "../dto/newsItemDto";
 import * as moment from "moment";
@@ -11,7 +11,8 @@ import * as moment from "moment";
 export class NewsComponent implements OnInit {
   news: NewsItemDto[];
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService) {
+  }
 
   ngOnInit() {
     this.buildNewsPage();

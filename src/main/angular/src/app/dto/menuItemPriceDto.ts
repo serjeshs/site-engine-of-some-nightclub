@@ -1,5 +1,5 @@
 export class MenuItemPriceDto {
-  itemPriceId : number;
+  itemPriceId: number;
   name: string;
   description;
   descriptionProportions: string;

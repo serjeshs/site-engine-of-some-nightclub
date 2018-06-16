@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NewsService} from "../news.service";
 import {NewsItemDto} from "../dto/newsItemDto";
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import * as moment from "moment";
 
 
@@ -14,12 +14,12 @@ export class NewsPageComponent implements OnInit {
   private newsItem: NewsItemDto;
   private id: string;
 
-  constructor(private newsService: NewsService, private activatedRoute: ActivatedRoute) { }
+  constructor(private newsService: NewsService, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params['id'];
-      console.log(this.id);
     });
     this.buildNewsItemPage();
   }

@@ -19,15 +19,13 @@ export class EventsListComponent implements OnInit {
     this.loadEvents(0);
   }
 
+  handleRowClick(row: Event) {
+    this.onRowSelected.emit(row);
+  }
+
   private loadEvents(page: number) {
     this.eventsService.getEvents(page).subscribe(eventsResponse => {
       this.events = eventsResponse;
     });
-  }
-
-  handleRowClick(row: Event) {
-    console.log("handleRowClick", row);
-    console.log(this.onRowSelected);
-    this.onRowSelected.emit(row);
   }
 }

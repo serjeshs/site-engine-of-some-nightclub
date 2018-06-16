@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {merge, Observable, of as observableOf} from 'rxjs';
+import {Observable, of as observableOf} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {NewsItemDto} from "./dto/newsItemDto";
 

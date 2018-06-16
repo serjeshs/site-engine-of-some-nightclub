@@ -17,11 +17,11 @@ export class MenuWrapper {
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  // private model : MenuOrder;
+  model = new MenuOrder();
   private menuCategories: MenuCategoryDto[];
   private events: Event[];
   private tableNumbers: Table[];
-  // private model : MenuOrder;
-  model = new MenuOrder();
   private wrapper: MenuWrapper;
 
   constructor(private menuService: MenuService) {
@@ -34,6 +34,46 @@ export class MenuComponent implements OnInit {
     this.wrapper.edited = true;
     this.tableNumbers = Array<Table>();
     this.model.event = 0;
+  }
+
+  increment(item: MenuItemPriceDto) {
+    item.count = item.count + 1;
+    this.storeCountInModel(item);
+  }
+
+  decrement(item: MenuItemPriceDto) {
+    item.count = item.count - 1;
+    if (item.count < 0) {
+      item.count = 0;
+    }
+    this.storeCountInModel(item);
+  }
+
+  order() {
+    if (this.model.rulesCheck) {
+      this.menuService.storeOrder(this.model)
+        .subscribe(response => {
+          this.model = <MenuOrder>response;
+          this.wrapper.edited = false;
+        });
+    } else {
+      // this.toasterService.pop('error', 'Правила', 'Для посещения клуба вы должны принять его правила');
+    }
+  }
+
+  changeEvent() {
+    this.menuService.getAvailableTables(this.model.event).subscribe(responseArray => {
+      let tableNumberForm = Array<Table>();
+      if (Array.isArray(responseArray)) {
+        responseArray.forEach(i => {
+          let table = new Table();
+          table.id = i;
+          table.name = "Стол №" + i;
+          tableNumberForm.push(table)
+        });
+      }
+      this.tableNumbers = tableNumberForm;
+    });
   }
 
   private buildMenuPage() {
@@ -55,46 +95,5 @@ export class MenuComponent implements OnInit {
 
   private storeCountInModel(item: MenuItemPriceDto) {
     this.model.food[item.itemPriceId] = item.count;
-  }
-
-  increment(item: MenuItemPriceDto) {
-    item.count = item.count + 1;
-    this.storeCountInModel(item);
-  }
-
-  decrement(item: MenuItemPriceDto) {
-    item.count = item.count - 1;
-    if (item.count < 0) {
-      item.count = 0;
-    }
-    this.storeCountInModel(item);
-  }
-
-  order() {
-    if (this.model.rulesCheck) {
-      this.menuService.storeOrder(this.model)
-        .subscribe(response => {
-          console.log(response);
-          this.model = <MenuOrder>response;
-          this.wrapper.edited = false;
-        });
-    } else {
-      // this.toasterService.pop('error', 'Правила', 'Для посещения клуба вы должны принять его правила');
-    }
-  }
-  changeEvent() {
-    this.menuService.getAvailableTables(this.model.event).subscribe(responseArray => {
-      console.log(responseArray);
-      let tableNumberForm = Array<Table>();
-      if (Array.isArray(responseArray)) {
-        responseArray.forEach(i => {
-          let table = new Table();
-          table.id = i;
-          table.name = "Стол №" + i;
-          tableNumberForm.push(table)
-        });
-      }
-      this.tableNumbers = tableNumberForm;
-    });
   }
 }
