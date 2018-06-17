@@ -42,7 +42,7 @@ public class MenuServiceImpl implements MenuService {
 	public MenuPageDto mainPage() {
 		return new MenuPageDto(
 				menuCategoryRepository.findAllByParentIsNull().stream().map(this::convertToMenuCategoryDto).collect(Collectors.toList()),
-				eventsService.getEventsBetween(LocalDateTime.now(), LocalDateTime.now().plusMonths(2L))
+				eventsService.getEventsAfter(LocalDateTime.now())
 		);
 	}
 

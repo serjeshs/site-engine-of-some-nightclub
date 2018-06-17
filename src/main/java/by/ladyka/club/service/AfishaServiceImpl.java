@@ -18,7 +18,7 @@ public class AfishaServiceImpl implements AfishaService {
 
 	@Override
 	public MainPageDTO mainPage(AppUser user) {
-		final List<EventDTO> events = eventsService.getEventsBetween(LocalDateTime.now(), LocalDateTime.now().plusMonths(3L));
+		final List<EventDTO> events = eventsService.getEventsAfter(LocalDateTime.now());
 		final List<EventRelevantDTO> relevant = eventsService.getRelevantEvents(user);
 		final List<EventGalleryDTO> gallery = eventGalleryService.getLatestGalleryEvents(GALERY_EVENTS_MAIN_PAGE_MAKE_SETTING);
 		return build(events, relevant, gallery);
@@ -44,7 +44,7 @@ public class AfishaServiceImpl implements AfishaService {
 				mainPageDTO.getCurrentMonth().add(event);
 			} else if (startEvent.getMonthValue() == LocalDateTime.now().plusMonths(1L).getMonthValue()) {
 				mainPageDTO.getNextMonth().add(event);
-			} else if (startEvent.getMonthValue() == LocalDateTime.now().plusMonths(2L).getMonthValue()) {
+			} else {
 				mainPageDTO.getNextNextMonth().add(event);
 			}
 		}

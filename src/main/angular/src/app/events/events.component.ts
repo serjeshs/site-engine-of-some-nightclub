@@ -52,7 +52,7 @@ export class EventsComponent implements OnInit {
     this.nextMonthName = nextMonthDate.toLocaleDateString("ru", {month: 'long'});
     let nextNextMonthDate = new Date();
     nextNextMonthDate.setMonth(nextNextMonthDate.getMonth() + 2);
-    this.nextNextMonthName = nextNextMonthDate.toLocaleDateString("ru", {month: 'long'});
+    this.nextNextMonthName = "Позже";
   }
 
   private getEvents() {

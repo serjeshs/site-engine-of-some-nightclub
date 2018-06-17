@@ -38,6 +38,15 @@ public class EventsServiceImpl implements EventsService {
 	}
 
 	@Override
+	public List<EventDTO> getEventsAfter(LocalDateTime time) {
+		return eventRepository
+				.findAllByStartEventGreaterThanAndStatusGreaterThanEqualOrderByStartEventAsc(time, PENDING.getCode())
+				.stream()
+				.map(converterEventService::toEventDto)
+				.collect(Collectors.toList());
+	}
+
+	@Override
 	public List<EventRelevantDTO> getRelevantEvents(AppUser user) {
 		return eventRepository
 				.findAllByStartEventBetweenAndStatusGreaterThanEqual(now().plusMonths(1L), now().plusMonths(2L), PENDING.getCode())
