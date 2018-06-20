@@ -1,7 +1,7 @@
 package by.ladyka.club.service;
 
 import by.ladyka.club.entity.old.ModxSiteContent;
-import by.ladyka.club.repository.ModxSiteContentRepository;
+import by.ladyka.club.repository.old.ModxSiteContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

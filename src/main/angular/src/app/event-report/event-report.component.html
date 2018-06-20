@@ -1,6 +1,31 @@
-<div class="content-wrapper">
-  <p>
-    event-report works!
-  </p>
+<div class="content-wrapper no-sidebar">
+  <!--main content-->
+  <div class="main-content">
+    <!--block  gallery-page-->
+    <div class="block gallery-page">
+      <div class="back-link">
+        <a routerLink="/media">← Назад к галереям</a>
+      </div>
+      <div class="event-title">
+        <h2>
+          {{eventReport.name}}
+          <span class="desc">{{eventReport.description}}</span>
+          <i class="h-line"></i>
+        </h2>
+        <span class="date">{{eventReport.startEvent}}. {{photos}} фото</span>
+      </div>
+      <ul class="foto-list">
+        <li *ngFor="let image of eventReport.images">
+          <img src="{{image}}" title="{{eventReport.name}}">
+        </li>
+      </ul>
+
+      <div class="clearfix"></div>
+    </div>
+    <!--end block gallery-page-->
+
+  </div>
+  <!--end main content-->
+
   <div class="clearfix"></div>
 </div>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EventReport} from "../dto/eventGallery";
-import {EventsService} from "../events.service";
 import * as moment from "moment";
+import {EventReportService} from "../event-report.service";
 
 @Component({
   selector: 'app-media',
@@ -12,7 +12,7 @@ export class MediaComponent implements OnInit {
 
   private galleryEvents: EventReport[];
 
-  constructor(private eventService: EventsService) {
+  constructor(private eventReportService: EventReportService) {
   }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class MediaComponent implements OnInit {
   }
 
   private buildMediaPage() {
-    this.eventService.getReportEvents().subscribe(eventsReport => {
+    this.eventReportService.getReportEvents().subscribe(eventsReport => {
       this.galleryEvents = eventsReport;
       this.galleryEvents.forEach(eventsReport => {
         eventsReport.startEvent = moment(eventsReport.startEvent).format('D MMM YYYY');

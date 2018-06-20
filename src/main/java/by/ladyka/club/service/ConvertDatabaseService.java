@@ -1,14 +1,12 @@
 package by.ladyka.club.service;
 
 import by.ladyka.club.EventStatus;
-import by.ladyka.club.entity.Event;
-import by.ladyka.club.entity.EventReportEntity;
-import by.ladyka.club.entity.NewsEntity;
-import by.ladyka.club.entity.UserEntity;
-import by.ladyka.club.entity.old.ModxSiteContent;
-import by.ladyka.club.entity.old.ModxSiteTmplVarContentValues;
-import by.ladyka.club.entity.old.ModxSiteTmplVars;
+import by.ladyka.club.entity.*;
+import by.ladyka.club.entity.old.*;
 import by.ladyka.club.repository.*;
+import by.ladyka.club.repository.old.ModxEasy2DirsRepository;
+import by.ladyka.club.repository.old.ModxEasy2FilesRepository;
+import by.ladyka.club.repository.old.ModxSiteContentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +20,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Objects;
 
+import static by.ladyka.club.ClubApplication.DOMAIN_IMPORT;
 import static by.ladyka.club.EventStatus.*;
 import static by.ladyka.club.entity.old.ModxSiteTmplVars.*;
 
@@ -29,6 +28,7 @@ import static by.ladyka.club.entity.old.ModxSiteTmplVars.*;
 public class ConvertDatabaseService {
 
 	private final static Logger logger = LoggerFactory.getLogger(ConvertDatabaseService.class);
+
 	private final ModxSiteContentRepository modxSiteContentRepository;
 	private final EventRepository eventRepository;
 	private final NewsEntityRepository newsEntityRepository;
@@ -39,6 +39,14 @@ public class ConvertDatabaseService {
 	private final MenuService menuService;
 
 	@Autowired
+	EventReportImageRepository eventReportImageRepository;
+	@Autowired
+	ModxEasy2DirsRepository modxEasy2DirsRepository;
+	@Autowired
+	ModxEasy2FilesRepository modxEasy2FilesRepository;
+
+
+	@Autowired
 	public ConvertDatabaseService(ModxSiteContentRepository modxSiteContentRepository, EventRepository eventRepository, NewsEntityRepository newsEntityRepository, UserEntityRepository userEntityRepository, EventReportRepository eventReportRepository, MenuService menuService) {
 		this.modxSiteContentRepository = modxSiteContentRepository;
 		this.eventRepository = eventRepository;
@@ -47,7 +55,6 @@ public class ConvertDatabaseService {
 		this.eventReportRepository = eventReportRepository;
 		this.menuService = menuService;
 	}
-
 
 	public Boolean convertDataBase() {
 		try {
@@ -96,20 +103,42 @@ public class ConvertDatabaseService {
 		}
 	}
 
-
 	private void convertAndSaveEventReport(ModxSiteContent modxSiteContent) {
 		final List<ModxSiteTmplVarContentValues> contentValues = modxSiteContent.getContentValues();
 		EventReportEntity entity = new EventReportEntity();
 		entity.setId(modxSiteContent.getId());
-		entity.setCoverUri("http://republic-club.by/" + get(contentValues, img_));
+		entity.setCoverUri(DOMAIN_IMPORT + get(contentValues, img_));
 		entity.setName(modxSiteContent.getPagetitle());
 		entity.setStartEvent(toLDT(get(contentValues, event_date)));
 		entity.setVisible(Boolean.TRUE);
+		entity.setCreatedDate(new Timestamp(modxSiteContent.getCreatedon()).toLocalDateTime());
+		entity.setLastModifiedDate(new Timestamp(modxSiteContent.getEditedon()).toLocalDateTime());
+		final EventReportEntity reportEntity = eventReportRepository.save(entity);
+		final Integer galleryEasy2DirId = Integer.valueOf(get(contentValues, gallery2));
+
+		ModxEasy2Dirs dir = modxEasy2DirsRepository.getOne(Long.valueOf(galleryEasy2DirId));
 		try {
-			eventReportRepository.save(entity);
+
+
+			for (ModxEasy2Files file : dir.getModxEasy2Files()) {
+				try {
+					EventReportImageEntity image = new EventReportImageEntity();
+					image.setEventReport(reportEntity);
+					image.setImageUrl(DOMAIN_IMPORT + "assets/images/gallery/" + dir.getCat_name() + "/" + file.getFilename());
+					image.setCreatedDate(file.getDate_added().toLocalDateTime());
+					image.setLastModifiedDate(file.getDate_added().toLocalDateTime());
+					image.setHeight(file.getHeight());
+					image.setWidth(file.getWidth());
+					image.setSize(file.getSize());
+					eventReportImageRepository.saveAndFlush(image);
+				} catch (Exception sqlException) {
+					sqlException.printStackTrace();
+				}
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 	}
 
 	private void convertAndSaveNews(ModxSiteContent modxSiteContent) {
@@ -122,7 +151,7 @@ public class ConvertDatabaseService {
 		entity.setAlias(modxSiteContent.getAlias());
 		UserEntity owner = userEntityRepository.getOne(modxSiteContent.getCreatedby());
 		entity.setOwner(owner);
-		entity.setImage("http://republic-club.by/" + get(contentValues, news_img));
+		entity.setImage(DOMAIN_IMPORT + get(contentValues, news_img));
 		entity.setVisible(Boolean.TRUE);
 		try {
 			newsEntityRepository.save(entity);
@@ -142,7 +171,7 @@ public class ConvertDatabaseService {
 		event.setId(modxSiteContent.getId());
 		event.setCost(new BigDecimal(0));
 		event.setCostText(get(contentValues, price));
-		event.setCoverUri("http://republic-club.by/" + get(contentValues, img_));
+		event.setCoverUri(DOMAIN_IMPORT + get(contentValues, img_));
 		event.setName(modxSiteContent.getPagetitle());
 		event.setDescription(modxSiteContent.getContent());
 		event.setStartEvent(toLDT(get(contentValues, event_date)));

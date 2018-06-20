@@ -3,4 +3,5 @@ export class EventReport {
   startEvent: string;
   name: string;
   coverUri: string;
+  images: string[];
 }

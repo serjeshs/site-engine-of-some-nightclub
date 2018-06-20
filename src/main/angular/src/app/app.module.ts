@@ -33,6 +33,7 @@ import {
   MatTooltipModule, MatTreeModule,
 } from '@angular/material';
 import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-admin-page.component';
+import {EventReportService} from "./event-report.service";
 
 @NgModule({
   imports: [
@@ -99,7 +100,8 @@ import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-
   providers: [
     EventsService,
     MenuService,
-    NewsService
+    NewsService,
+    EventReportService
   ],
   bootstrap: [AppComponent]
 })

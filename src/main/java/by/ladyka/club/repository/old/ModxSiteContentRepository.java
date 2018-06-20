@@ -1,4 +1,4 @@
-package by.ladyka.club.repository;
+package by.ladyka.club.repository.old;
 
 import by.ladyka.club.entity.old.ModxSiteContent;
 import org.springframework.data.jpa.repository.JpaRepository;

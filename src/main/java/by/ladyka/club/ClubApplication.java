@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ClubApplication {
 	public static final String PACKAGES_TO_SCAN = ClubApplication.class.getPackage().getName();
 	public static final String APP_TABLE_PREFIX = "ladyka_";
+	public static final String DOMAIN_IMPORT = "http://republic-club.by/";
 
 	public static void main(String[] args) {
 		SpringApplication.run(new Class[]{ClubApplication.class, DataSourceConfig.class, Config.class}, args);

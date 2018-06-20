@@ -211,19 +211,19 @@
 
     <!--block last gallery-->
     <div class="block last-gallery">
-      <h4><a href="https://republic-club.by/photo">ПОСЛЕДНИЕ ГАЛЕРЕИ</a></h4>
+      <h4><a routerLink="/media" >ПОСЛЕДНИЕ ГАЛЕРЕИ</a></h4>
 
       <ul class="list">
         <li *ngFor="let galleryEvent of gallery">
           <div class="img">
-            <a routerLink="/event/{{galleryEvent.id}}">
+            <a routerLink="/event-reports/{{galleryEvent.id}}">
               <img src="{{galleryEvent.coverUri}}" alt="">
             </a>
           </div>
           <div class="info">
             <span class="date">{{galleryEvent.startEvent}}</span>
             <h3>
-              <a routerLink="/event/{{galleryEvent.id}}">{{galleryEvent.name}}</a>
+              <a routerLink="/event-reports/{{galleryEvent.id}}">{{galleryEvent.name}}</a>
             </h3>
           </div>
           <div class="clearfix"></div>

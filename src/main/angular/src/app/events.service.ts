@@ -4,7 +4,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of as observableOf} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {MainEventPage} from "./dto/mainEventPage";
-import {EventReport} from "./dto/eventGallery";
 import {Event} from "./dto/event";
 
 const httpOptions = {
@@ -14,7 +13,6 @@ const httpOptions = {
 @Injectable()
 export class EventsService {
   private eventsMainPageUrl = '/api/page/main';
-  private eventReportsUrl = '/api/media/summary';
   private eventsRestAdminUrl = '/api/admin/events';
   private eventsRestUrl = '/api/events';
 
@@ -26,14 +24,6 @@ export class EventsService {
       .pipe(
         tap(mainEventsPage => this.log(`fetched events to Main Page`)),
         catchError(this.handleError('geEvents', new MainEventPage()))
-      );
-  }
-
-  getReportEvents(): Observable<EventReport[]> {
-    return this.http.get<EventReport[]>(this.eventReportsUrl)
-      .pipe(
-        tap(eventsReport => this.log(`fetched eventsReport to Media Page`)),
-        catchError(this.handleError('getReportEvents', []))
       );
   }
 
