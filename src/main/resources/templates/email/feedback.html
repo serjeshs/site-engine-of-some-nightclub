@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">FeedBack message</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Отзыв №
+    <div class="customer-value" th:text="${feedback.id}"></div>
+</h1>
+<div class="mt-1"><h3>Имя </h3></div>
+<p class="customer-value" th:text="${feedback.name}"/>
+<div class="mt-1"><h3>Email </h3></div>
+<p class="customer-value" th:text="${feedback.email}"/>
+<div class="mt-1"><h3>Номер мобильного </h3></div>
+<p class="customer-value" th:text="${feedback.phone}"/>
+<div class="mt-1"><h3>Текст сообщения </h3></div>
+<p class="customer-value" th:text="${feedback.description}"/>
+
+
+<p>
+    <img src="http://new3.republic-club.by/assets/img/logo2.jpg" th:src="|cid:${imageResourceName}|"/>
+</p>
+<p>
+    Минск ул. Притыцкого 62. ст. м. Кунцевщина. Телефон +375 29 110 35 35.<br>
+    Мы работаем круглосуточно.<br>
+    Юридическая информация:<br>
+    Индивидуальный предприниматель Старцев Андрей Валентинович<br>
+    Свидетельство №190462465 выдано Минским горисполкомом 30 января 2015<br>
+    Адрес:220131 РБ г. г. Минск, ул. Мирошниченко, 3б, кв.44<br>
+    УНП 190462465<br>
+    Р/с 3013239400013 ЗАО «МТБанк», код 117<br>
+    220033, г. Минск, пр. Партизанский, д. 6А<br>
+    тел/факс +375 17 290 86 90<br>
+    Regards, <br/>
+    <em>The RE:PUBLIC Team</em>
+</p>
+<h6><span th:text="${#dates.format(currentDate)}">28-12-2012</span></h6>
+</body>
+</html>

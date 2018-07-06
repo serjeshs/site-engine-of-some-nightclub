@@ -1,11 +1,8 @@
 package by.ladyka.club.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -13,16 +10,14 @@ import javax.persistence.Table;
 
 import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 
-
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = APP_TABLE_PREFIX + "system_role")
+@Table(name = APP_TABLE_PREFIX + "feedback")
 @EntityListeners(AuditingEntityListener.class)
-public class RoleEntity extends AbstractEntity implements GrantedAuthority {
-
-	private static final long serialVersionUID = 3L;
-	private String authority;
+public class FeedBackEntity extends AbstractEntity {
+	private String name;
+	private String email;
+	private String phone;
+	private String description;
 }

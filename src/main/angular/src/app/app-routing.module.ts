@@ -13,6 +13,8 @@ import {AdminOrderListComponent} from "./admin/admin-order-list/admin-order-list
 import {EventsListComponent} from "./admin/events/events-list/events-list.component";
 import {EventViewComponent} from "./components/event-view/event-view.component";
 import {EventsAdminPageComponent} from "./admin/events/events-admin-page/events-admin-page.component";
+import {PageLoginComponent} from "./page-login/page-login.component";
+import {FeedbackComponent} from "./feedback/feedback.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/afisha', pathMatch: 'full'},
@@ -30,6 +32,8 @@ const routes: Routes = [
   {path: 'admin-events-list', component: EventsListComponent},
   {path: 'admin-event-view', component: EventViewComponent},
   {path: 'admin-events', component: EventsAdminPageComponent},
+  {path: 'login', component: PageLoginComponent},
+  {path: 'feedback', component: FeedbackComponent}
 ];
 
 @NgModule({

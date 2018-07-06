@@ -4,7 +4,7 @@ package by.ladyka.club.endpoints;
 import by.ladyka.club.dto.AppUser;
 import by.ladyka.club.dto.MainPageDTO;
 import by.ladyka.club.service.AfishaService;
-import by.ladyka.club.service.AppUserService;
+import by.ladyka.club.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,12 +23,16 @@ public class MainPageController {
 	@Autowired
 	private AfishaService afishaService;
 	@Autowired
-	private AppUserService appUserService;
+	private UserService userService;
 
 	@RequestMapping(value = "main", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	ResponseEntity mainPAge(Principal principal, HttpServletRequest httpServletRequest) {
-		AppUser user = appUserService.build(principal, httpServletRequest);
+		AppUser user = null;
+		if (principal != null) {
+			user = new AppUser(userService.getUser(principal.getName()));
+		}
+
 		MainPageDTO mainPageDTO = afishaService.mainPage(user);
 		return new ResponseEntity<>(mainPageDTO, HttpStatus.OK);
 	}

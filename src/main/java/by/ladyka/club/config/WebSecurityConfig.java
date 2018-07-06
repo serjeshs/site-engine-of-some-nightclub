@@ -6,30 +6,36 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource dataSource;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 				.authorizeRequests()
+				.antMatchers("/api/admin").authenticated()
 				.antMatchers("/", "/**").permitAll()
-				.anyRequest().authenticated()
+				.anyRequest().fullyAuthenticated()
 				.and()
 				.formLogin()
-				.loginPage("/login")
+				.loginProcessingUrl("/api/loginprocessing")
+//				.loginPage("/login")
 				.permitAll()
 				.and()
 				.logout()
 				.permitAll();
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-				.inMemoryAuthentication()
-				.withUser("user").password("password").roles("USER");
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(new BCryptPasswordEncoder());
 	}
 }

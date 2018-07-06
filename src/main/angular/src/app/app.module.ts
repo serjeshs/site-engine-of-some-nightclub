@@ -24,16 +24,49 @@ import {NgModule} from "@angular/core";
 import {EventsListComponent} from './admin/events/events-list/events-list.component';
 import {EventViewComponent} from './components/event-view/event-view.component';
 import {
-  MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule, MatButtonModule, MatButtonToggleModule,
-  MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatDividerModule,
-  MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule,
-  MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
-  MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule,
-  MatSnackBarModule, MatSortModule, MatStepperModule, MatTableModule, MatTabsModule, MatToolbarModule,
-  MatTooltipModule, MatTreeModule,
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatTreeModule,
 } from '@angular/material';
 import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-admin-page.component';
 import {EventReportService} from "./event-report.service";
+import {PageLoginComponent} from './page-login/page-login.component';
+import {AuthService} from "./auth.service";
+import { FeedbackComponent } from './feedback/feedback.component';
+import {FeedbackService} from "./feedback.service";
 
 @NgModule({
   imports: [
@@ -95,13 +128,17 @@ import {EventReportService} from "./event-report.service";
     MediaComponent,
     MenuComponent,
     NewsComponent,
-    NewsPageComponent
+    NewsPageComponent,
+    PageLoginComponent,
+    FeedbackComponent
   ],
   providers: [
     EventsService,
     MenuService,
     NewsService,
-    EventReportService
+    EventReportService,
+    AuthService,
+    FeedbackService
   ],
   bootstrap: [AppComponent]
 })

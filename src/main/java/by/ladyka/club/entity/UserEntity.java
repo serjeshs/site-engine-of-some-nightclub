@@ -11,22 +11,24 @@ import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
-
 
 @Entity
-@Table(name = APP_TABLE_PREFIX + "system_user")
+@Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 public class UserEntity extends AbstractEntity implements UserDetails {
 
 	@Getter
 	@Setter
-	private String email;
+	private String username;
 
 	@Getter
 	@Setter
 	private String password;
 
+	@Getter
+	@Setter
+	@Type(type = "boolean")
+	private Boolean enabled;
 
 	@Getter
 	@Setter
@@ -59,18 +61,16 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 	@Setter
 	@Type(type = "boolean")
 	private Boolean credentialsNonExpired;
-	@Setter
-	@Type(type = "boolean")
-	private Boolean enabled;
+
 
 	@Getter
 	@Setter
-	@ManyToMany
-	private List<RoleEntity> authorities;
+	@OneToMany(mappedBy = "user")
+	private List<AuthorityEntity> authorities;
 
 	public static UserEntity unconfirmUser() {
 		UserEntity userEntity = new UserEntity();
-		userEntity.email = "email" + System.currentTimeMillis() + "@republic-club.by";
+		userEntity.username = "username" + System.currentTimeMillis() + "@republic-club.by";
 		userEntity.password = "password" + System.currentTimeMillis();
 		userEntity.name = "name";
 		userEntity.surname = "surname";
@@ -82,11 +82,6 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 		userEntity.enabled = true;
 		userEntity.authorities = Collections.emptyList();
 		return userEntity;
-	}
-
-	@Override
-	public String getUsername() {
-		return email;
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package by.ladyka.club.endpoints;
 
 import by.ladyka.club.dto.menu.MenuOrderDto;
-import by.ladyka.club.service.AppUserService;
 import by.ladyka.club.service.MenuService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,8 +24,6 @@ public class MenuController {
 	private static final Logger logger = LogManager.getLogger(MenuController.class);
 	@Autowired
 	private MenuService menuService;
-	@Autowired
-	private AppUserService appUserService;
 
 	@RequestMapping(value = "summary", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
