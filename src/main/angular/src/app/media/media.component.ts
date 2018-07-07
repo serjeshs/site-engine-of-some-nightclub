@@ -10,7 +10,7 @@ import {EventReportService} from "../event-report.service";
 })
 export class MediaComponent implements OnInit {
 
-  private galleryEvents: EventReport[];
+  galleryEvents: EventReport[];
 
   constructor(private eventReportService: EventReportService) {
   }

@@ -11,8 +11,8 @@ import * as moment from "moment";
   styleUrls: ['./news-page.component.css']
 })
 export class NewsPageComponent implements OnInit {
-  private newsItem: NewsItemDto;
-  private id: string;
+  newsItem: NewsItemDto;
+  id: string;
 
   constructor(private newsService: NewsService, private activatedRoute: ActivatedRoute) {
   }

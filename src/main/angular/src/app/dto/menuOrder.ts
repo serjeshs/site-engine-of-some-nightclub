@@ -12,5 +12,6 @@ export class MenuOrder {
   event: number;
   tableNumber: number;
   eventName: string;
+  description:string;
 }
 

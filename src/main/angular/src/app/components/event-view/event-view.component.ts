@@ -9,8 +9,8 @@ import {Event} from "../../dto/event";
 export class EventViewComponent implements OnInit {
   viewEvent: boolean;
   @Output() onEventSaveButtonClick = new EventEmitter();
-  @Input() private event: Event = new Event();
-  @Input() private readOnly: boolean;
+  @Input() event: Event = new Event();
+  @Input() readOnly: boolean;
 
   constructor() {
 

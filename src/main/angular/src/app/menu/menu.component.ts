@@ -17,12 +17,11 @@ export class MenuWrapper {
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  // private model : MenuOrder;
   model = new MenuOrder();
-  private menuCategories: MenuCategoryDto[];
-  private events: Event[];
-  private tableNumbers: Table[];
-  private wrapper: MenuWrapper;
+  menuCategories: MenuCategoryDto[];
+  events: Event[];
+  tableNumbers: Table[];
+  wrapper: MenuWrapper;
 
   constructor(private menuService: MenuService) {
   }

@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class EventPageComponent implements OnInit {
   private eventService: EventsService;
-  private event: Event;
+  event: Event;
 
   constructor(private activatedRoute: ActivatedRoute, eventService: EventsService) {
     this.eventService = eventService;

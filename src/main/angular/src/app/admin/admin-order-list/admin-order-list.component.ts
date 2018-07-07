@@ -16,11 +16,11 @@ export class AdminOrderListWrapper {
   styleUrls: ['./admin-order-list.component.css']
 })
 export class AdminOrderListComponent implements OnInit {
-  private wrapper: AdminOrderListWrapper;
-  private menuCategories: MenuCategoryDto[];
-  private events: Event[];
-  private model: MenuOrder;
-  private orders: MenuOrder[];
+  wrapper: AdminOrderListWrapper;
+  menuCategories: MenuCategoryDto[];
+  events: Event[];
+  model: MenuOrder;
+  orders: MenuOrder[];
 
   constructor(private menuService: MenuService) {
   }

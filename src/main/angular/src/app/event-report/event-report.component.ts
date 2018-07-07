@@ -10,9 +10,8 @@ import * as moment from "moment";
   styleUrls: ['./event-report.component.css']
 })
 export class EventReportComponent implements OnInit {
-
-  private eventReport: EventReport;
-  private photos: number;
+  eventReport: EventReport;
+  photos: number;
   constructor(private activatedRoute: ActivatedRoute, private eventReportService: EventReportService) {
   }
 

@@ -10,7 +10,7 @@ import {UserDto} from "../dto/userDto";
   styleUrls: ['./page-login.component.css']
 })
 export class PageLoginComponent implements OnInit {
-  private passwordError: boolean;
+  passwordError: boolean;
   user: UserDto;
 
   constructor(private authService: AuthService, private router:Router) { }
