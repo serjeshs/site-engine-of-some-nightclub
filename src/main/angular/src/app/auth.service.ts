@@ -20,11 +20,8 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<ResponseEntity> {
-    let data = {
-      username: username,
-      password: password
-    };
-    return this.http.post<ResponseEntity>('/api/loginprocessing', data, httpOptions).pipe(
+    let url = '/api/loginprocessing?username=' + username + '&password=' + password;
+    return this.http.post<ResponseEntity>(url, {}, httpOptions).pipe(
       // catchError(this.handleError('authService.login', new ResponseEntity()))
     );
   }
