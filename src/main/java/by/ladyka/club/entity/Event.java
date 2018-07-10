@@ -30,7 +30,6 @@ public class Event extends AbstractEntity {
 	private LocalDateTime endEvent;
 	private String name;
 	private String coverUri;
-	private int status;
 	private String alias;
 	private String buyTicketUrl;
 

@@ -7,7 +7,6 @@ export class Event {
   endEvent: string;
   name: string;
   coverUri: string;
-  status: string;
   buyTicketUrl: string;
 }
 

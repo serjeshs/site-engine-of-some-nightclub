@@ -25,7 +25,6 @@ public class ConverterEventServiceImpl implements ConverterEventService {
 		eventDTO.setCost(entity.getCost());
 		eventDTO.setCostText(entity.getCostText());
 		eventDTO.setCoverUri(entity.getCoverUri());
-		eventDTO.setStatus(entity.getStatus());
 		eventDTO.setBuyTicketUrl(entity.getBuyTicketUrl());
 		return eventDTO;
 	}

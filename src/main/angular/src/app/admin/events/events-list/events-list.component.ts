@@ -9,7 +9,7 @@ import {Event} from "../../../dto/event";
 })
 export class EventsListComponent implements OnInit {
   events: Event[];
-  displayedColumns = ['id', 'name', 'startEvent', 'status'];
+  displayedColumns = ['id', 'name', 'startEvent'];
   @Output() onRowSelected = new EventEmitter();
 
   constructor(private eventsService: EventsService) {

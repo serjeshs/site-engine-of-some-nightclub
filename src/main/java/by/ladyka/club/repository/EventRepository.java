@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-	List<Event> findAllByStartEventBetweenAndStatusGreaterThanEqual(LocalDateTime after, LocalDateTime before, int status);
-	List<Event> findAllByStartEventGreaterThanAndStatusGreaterThanEqualOrderByStartEventAsc(LocalDateTime time, int status);
+	List<Event> findAllByStartEventBetween(LocalDateTime after, LocalDateTime before);
+	List<Event> findAllByStartEventGreaterThanOrderByStartEventAsc(LocalDateTime time);
 }

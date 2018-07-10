@@ -26,6 +26,5 @@ public class EventDTO {
 
 	private String name;
 	private String coverUri;
-	private int status;
 	private String buyTicketUrl;
 }

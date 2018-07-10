@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static by.ladyka.club.EventStatus.PENDING;
 import static java.time.LocalDateTime.now;
 
 @Service
@@ -31,7 +30,7 @@ public class EventsServiceImpl implements EventsService {
 	@Override
 	public List<EventDTO> getEventsBetween(LocalDateTime after, LocalDateTime before) {
 		return eventRepository
-				.findAllByStartEventBetweenAndStatusGreaterThanEqual(after, before, PENDING.getCode())
+				.findAllByStartEventBetween(after, before)
 				.stream()
 				.map(converterEventService::toEventDto)
 				.collect(Collectors.toList());
@@ -40,7 +39,7 @@ public class EventsServiceImpl implements EventsService {
 	@Override
 	public List<EventDTO> getEventsAfter(LocalDateTime time) {
 		return eventRepository
-				.findAllByStartEventGreaterThanAndStatusGreaterThanEqualOrderByStartEventAsc(time, PENDING.getCode())
+				.findAllByStartEventGreaterThanOrderByStartEventAsc(time)
 				.stream()
 				.map(converterEventService::toEventDto)
 				.collect(Collectors.toList());
@@ -49,7 +48,7 @@ public class EventsServiceImpl implements EventsService {
 	@Override
 	public List<EventRelevantDTO> getRelevantEvents(AppUser user) {
 		return eventRepository
-				.findAllByStartEventBetweenAndStatusGreaterThanEqual(now().plusMonths(1L), now().plusMonths(2L), PENDING.getCode())
+				.findAllByStartEventBetween(now().plusMonths(1L), now().plusMonths(2L))
 				.stream()
 				.map(converterEventService::toEventRelevantDto)
 				.collect(Collectors.toList());
@@ -78,7 +77,6 @@ public class EventsServiceImpl implements EventsService {
 		Event entity;
 		if (dto.getId() == null || dto.getId() < 1) {
 			entity = new Event();
-			entity.setStatus(PENDING.getCode());
 		} else {
 			entity = eventRepository.findById(dto.getId()).orElseGet(Event::new);
 		}

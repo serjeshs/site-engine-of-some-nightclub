@@ -1,6 +1,5 @@
 package by.ladyka.club.service;
 
-import by.ladyka.club.EventStatus;
 import by.ladyka.club.entity.*;
 import by.ladyka.club.entity.old.*;
 import by.ladyka.club.repository.*;
@@ -21,10 +20,10 @@ import java.util.List;
 import java.util.Objects;
 
 import static by.ladyka.club.ClubApplication.DOMAIN_IMPORT;
-import static by.ladyka.club.EventStatus.*;
 import static by.ladyka.club.entity.old.ModxSiteTmplVars.*;
 
 @Service
+@Deprecated
 public class ConvertDatabaseService {
 
 	private final static Logger logger = LoggerFactory.getLogger(ConvertDatabaseService.class);
@@ -176,7 +175,6 @@ public class ConvertDatabaseService {
 		event.setDescription(modxSiteContent.getContent());
 		event.setStartEvent(toLDT(get(contentValues, event_date)));
 		event.setEndEvent(toLDT(get(contentValues, event_end_date)));
-		event.setStatus(getStatus(event.getStartEvent()).getCode());
 		event.setAlias(modxSiteContent.getAlias());
 		try {
 			eventRepository.save(event);
@@ -185,14 +183,6 @@ public class ConvertDatabaseService {
 		}
 	}
 
-
-	private EventStatus getStatus(LocalDateTime startEvent) {
-		if (startEvent == null) {
-			return DRAFT;
-		}
-		int c = LocalDateTime.now().compareTo(startEvent);
-		return (c < 0) ? DONE : PENDING;
-	}
 
 	private LocalDateTime toLDT(String s) {
 
