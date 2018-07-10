@@ -138,6 +138,12 @@
           <a routerLink="/club">Клуб</a>
           <a style="color: red" routerLink="/feedback">Бюро находок и информация</a>
         </nav>
+        <nav [hidden]="!isAdmin">
+          <a routerLink="/admin">Admin главная</a>
+          <a routerLink="/admin-events">Операции над событиями</a>
+          <a routerLink="/admin-order-list">Список заказов</a>
+          <a routerLink="/admin-menu-editor">Список заказов</a>
+        </nav>
       </div>
     </div>
   </div>

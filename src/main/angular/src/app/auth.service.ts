@@ -24,7 +24,7 @@ export class AuthService {
       username: username,
       password: password
     };
-    return this.http.post<ResponseEntity>('/api/loginprocessing', JSON.stringify(data), httpOptions).pipe(
+    return this.http.post<ResponseEntity>('/api/loginprocessing', data, httpOptions).pipe(
       // catchError(this.handleError('authService.login', new ResponseEntity()))
     );
   }
