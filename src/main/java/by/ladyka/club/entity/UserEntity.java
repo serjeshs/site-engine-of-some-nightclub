@@ -39,6 +39,10 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 	@Setter
 	private String surname;
 
+	@Getter
+	@Setter
+	private String email;
+
 
 	@Getter
 	@Setter

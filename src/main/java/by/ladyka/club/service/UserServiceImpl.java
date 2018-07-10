@@ -15,7 +15,11 @@ public class UserServiceImpl implements UserService {
 	public UserDto getUser(String username) {
 		final UserEntity user = userEntityRepository.findByUsername(username);
 		UserDto userDto = new UserDto();
+		userDto.setId(user.getId());
 		userDto.setUsername(user.getUsername());
+		userDto.setEmail(user.getEmail());
+		userDto.setName(user.getName());
+		userDto.setRole(user.getAuthorities().get(0).getAuthority());
 		return userDto;
 	}
 }

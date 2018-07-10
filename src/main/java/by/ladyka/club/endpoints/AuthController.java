@@ -27,7 +27,7 @@ public class AuthController {
 	public @ResponseBody
 	ResponseEntity success(Principal principal, HttpServletRequest httpServletRequest) {
 		Map<String, Object> r = new LinkedHashMap<>();
-		r.put("success", (principal != null));
+		r.put("success", true);
 		return new ResponseEntity<>(r, HttpStatus.OK);
 	}
 

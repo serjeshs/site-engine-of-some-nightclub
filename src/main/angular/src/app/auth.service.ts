@@ -30,6 +30,6 @@ export class AuthService {
   }
 
   currentUser(): Observable<UserDto> {
-    return this.http.get<UserDto>('/api/user/current').pipe();
+    return this.http.get<UserDto>('/api/user').pipe();
   }
 }
