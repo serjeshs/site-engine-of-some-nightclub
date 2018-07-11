@@ -4,6 +4,7 @@ import by.ladyka.club.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -26,7 +27,7 @@ public class AfishaServiceImpl implements AfishaService {
 
 	private MainPageDTO build(List<EventDTO> events, List<EventRelevantDTO> relevant, List<EventGalleryDTO> gallery) {
 		MainPageDTO mainPageDTO = new MainPageDTO();
-		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime dateTime = LocalDate.now().atStartOfDay();
 		for (EventDTO event : events) {
 			final LocalDateTime startEvent = event.getStartEvent();
 			System.out.println(startEvent.toString());
