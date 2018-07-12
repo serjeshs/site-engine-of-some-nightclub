@@ -18,7 +18,9 @@ public interface EventsService {
 	Optional<Event> getEventById(Long event);
 
 	EventDTO save(EventDTO event);
-	List<EventDTO> getEvents(Long page);
+	List<EventDTO> getEvents(String sort, String order, Integer page, Integer size, String filter);
 
 	EventDTO getEvent(Long id);
+
+	long getTotalEvents(String filter);
 }

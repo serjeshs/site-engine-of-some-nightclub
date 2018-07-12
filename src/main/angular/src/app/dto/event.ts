@@ -10,4 +10,7 @@ export class Event {
   buyTicketUrl: string;
 }
 
-
+export class EventListResult {
+  items: Event[];
+  total: number
+}

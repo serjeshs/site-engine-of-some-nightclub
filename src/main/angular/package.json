@@ -1,6 +1,6 @@
 {
   "name": "nclub-engine",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "private": true,
   "description": "Night club engine!",
   "scripts": {
@@ -30,8 +30,8 @@
     "@angular/router": "^6.0.3",
     "@angular/upgrade": "^6.0.3",
     "core-js": "^2.5.4",
+    "hammerjs": "^2.0.8",
     "moment": "^2.22.1",
-    "ngx-quill-editor": "^2.2.2",
     "rxjs": "^6.0.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"

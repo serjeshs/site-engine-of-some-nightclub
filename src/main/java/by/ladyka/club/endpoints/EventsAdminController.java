@@ -1,5 +1,6 @@
 package by.ladyka.club.endpoints;
 
+import by.ladyka.club.dto.BaseListResultDto;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,10 @@ public class EventsAdminController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
-	ResponseEntity get(Principal principal, HttpServletRequest httpServletRequest, Long page) {
-		return new ResponseEntity<List<EventDTO>>(eventsService.getEvents(page), HttpStatus.OK);
+	ResponseEntity get(Principal principal, HttpServletRequest httpServletRequest, @RequestParam(required = false) String sort, String order, Integer page, Integer size, @RequestParam(required = false) String filter) {
+		final List<EventDTO> events = eventsService.getEvents(sort, order, page, size, filter);
+		long total = eventsService.getTotalEvents(filter);
+		return new ResponseEntity<BaseListResultDto<EventDTO>>(new BaseListResultDto<>(events, total), HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

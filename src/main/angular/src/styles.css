@@ -1,3 +1,4 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url('https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css'); /**** style 220317 ****/
 
 /*@font-face{font-family:'Humanist';src:url('fonts/Humanist.otf');src:local('Humanist 521 BT'),url('fonts/Humanist.eot?') format('eot'),url('../fonts/Humanist.ttf') format('truetype')}@font-face{font-family:'Humanist-bold';src:url('../fonts/Humanist-bold.otf');src:local('Humanist 521 BT Bold'),url('Humanist-bold.eot?') format('eot'),url('../fonts/Humanist-bold.ttf') format('truetype')}@font-face{font-family:'Baskerville';src:url('../fonts/Baskerville.otf');src:local('Baskerville'),url('Baskerville.eot?') format('eot'),url('../fonts/Baskerville.ttf') format('truetype')}@font-face{font-family:'Baskervilleit';src:url('../fonts/Baskervilleit.otf');src:local('Baskervilleit'),url('../fonts/Baskervilleit.ttf') format('truetype'),url('Baskervilleit.eot?') format('eot')}.f-h{font-family:'Humanist'}.f-h-b{font-family:'Humanist-bold'}.f-b{font-family:'Baskerville'}.f-b-i{font-family:'Baskervilleit'}*/
@@ -1157,10 +1158,6 @@ body {
   color: #cf7a19
 }
 
-.block.order-page .ticket-select .row .quantity-control {
-  float: right
-}
-
 .block.order-page .cart, .block.order-page .success {
   text-align: center;
   padding-right: 40px
@@ -1168,19 +1165,6 @@ body {
 
 .block.order-page .cart h1, .block.order-page .success h1 {
   padding-bottom: 20px
-}
-
-.sidebar-sticky-container {
-  position: relative
-}
-
-.block.sidebar-sticky.no-sticky {
-  position: static !important
-}
-
-.block.sidebar-sticky.fixed {
-  position: fixed;
-  top: 0
 }
 
 .form .row {
@@ -1220,10 +1204,6 @@ body {
 .block.club-map {
   border-bottom: 1px solid #c8c8c8;
   margin-bottom: 40px
-}
-
-.block.club-map.sidebar-sticky {
-  border-bottom: 0
 }
 
 .block.club-map .map {
@@ -1326,63 +1306,6 @@ body {
 
 .block.info-page .img-list li .info h3 {
   color: #cf7a19
-}
-
-.quantity-control {
-  width: 101px;
-  height: 28px;
-  border: 1px solid #d7d7d7;
-  background: #fff;
-  font-family: 'Humanist';
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px
-}
-
-.quantity-control .minus, .quantity-control .pluse {
-  width: 24px;
-  float: left;
-  font-size: 15px;
-  color: #4a90e2;
-  text-align: center;
-  line-height: 28px;
-  cursor: pointer;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none
-}
-
-.quantity-control .minus:hover, .quantity-control .pluse:hover {
-  color: #cf7a19
-}
-
-.quantity-control .minus {
-  border-right: 1px solid #d7d7d7;
-  line-height: 26px
-}
-
-.quantity-control .pluse {
-  border-left: 1px solid #d7d7d7
-}
-
-.quantity-control .value-field {
-  border: 0;
-  display: block;
-  width: 50px;
-  height: 28px;
-  line-height: 28px;
-  float: left;
-  text-align: center;
-  color: #5c5c5c !important;
-  font-size: 15px
-}
-
-.quantity-control .value-field:disabled {
-  background: #fff;
-  color: #5c5c5c;
-  -webkit-appearance: none
 }
 
 .order-btn-face {
@@ -1497,5 +1420,3 @@ body {
   }
 
 }
-
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */

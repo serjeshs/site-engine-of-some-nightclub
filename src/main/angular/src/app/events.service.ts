@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of as observableOf} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {MainEventPage} from "./dto/mainEventPage";
-import {Event} from "./dto/event";
+import {Event, EventListResult} from "./dto/event";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -27,12 +27,9 @@ export class EventsService {
       );
   }
 
-  getEvents(page: number): Observable<Event[]> {
-    let url = this.eventsRestAdminUrl + '?page=' + page;
-    return this.http.get<Event[]>(url).pipe(
-      tap(events => this.log(`fetched events to Admin Page`)),
-      catchError(this.handleError('getEvents', []))
-    );
+  getEvents(sort: string, order: string, page: number, size: number, filter: string): Observable<EventListResult> {
+    const requestUrl = this.eventsRestAdminUrl + `?sort=${sort}&order=${order}&page=${page}&size=${size}&filter=${filter}`;
+    return this.http.get<EventListResult>(requestUrl);
   }
 
   save(event: Event): Observable<Event> {

@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -55,16 +56,25 @@ public class EventsServiceImpl implements EventsService {
 	}
 
 	@Override
-	public List<EventDTO> getEvents(Long page) {
-		Sort.Order orderByStartEvent = new Sort.Order(Sort.Direction.DESC, Event.startEventFieldName);
-		Sort sort = Sort.by(orderByStartEvent);
-		Pageable pg = PageRequest.of(page.intValue(), 10, sort);
-		return eventRepository.findAll(pg).stream().map(event -> converterEventService.toEventDto(event)).collect(Collectors.toList());
+	public List<EventDTO> getEvents(String sort, String order, Integer page, Integer size, String filter) {
+		Sort.Direction direction;
+		if (!StringUtils.isEmpty(order)) {
+			direction = Sort.Direction.valueOf(order.toUpperCase());
+		} else {
+			direction = Sort.Direction.DESC;
+		}
+		Pageable pg = PageRequest.of(page, size, Sort.by(new Sort.Order(direction, sort)));
+		return eventRepository.findByDescriptionContainingOrNameContainingOrCostTextContaining(filter, filter, filter, pg).stream().map(event -> converterEventService.toEventDto(event)).collect(Collectors.toList());
 	}
 
 	@Override
 	public EventDTO getEvent(Long id) {
 		return converterEventService.toEventDto(eventRepository.findById(id).orElse(new Event()));
+	}
+
+	@Override
+	public long getTotalEvents(String filter) {
+		return eventRepository.countByDescriptionContainingOrNameContainingOrCostTextContaining(filter, filter, filter);
 	}
 
 	@Override
