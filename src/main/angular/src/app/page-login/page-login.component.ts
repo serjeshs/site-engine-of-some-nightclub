@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
-import {EventsComponent} from "../events/events.component";
 import {UserDto} from "../dto/userDto";
 
 @Component({
@@ -13,7 +12,8 @@ export class PageLoginComponent implements OnInit {
   passwordError: boolean;
   user: UserDto;
 
-  constructor(private authService: AuthService, private router:Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
     this.passwordError = false;
@@ -25,7 +25,8 @@ export class PageLoginComponent implements OnInit {
     this.authService.login(this.user.username, this.user.password)
       .subscribe(responce => {
         if (responce.success) {
-          this.router.navigate([EventsComponent]);
+          // this.router.navigate(['/']);
+          document.location.href = '/';
         } else {
           this.passwordError = true;
         }
