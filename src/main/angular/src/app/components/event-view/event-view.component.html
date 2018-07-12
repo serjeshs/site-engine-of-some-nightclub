@@ -1,15 +1,21 @@
 <div class="content-wrapper">
-  <!--main content-->
-  <div class="main-content">
-
-    <div [hidden]="readOnly">
-      <a class="btn order-btn-face" (click)="setViewEvent(false)">
-        Изменение
-      </a>
-
-      <a class="btn order-btn-face" (click)="setViewEvent(true)">
-        Просмор
-      </a>
+  <div>
+    <div [hidden]="readOnly" class="event-view-buttons">
+      <div class="event-view-buttons">
+        <div class="event-view-space"></div>
+        <div class="btn" (click)="setViewEvent(true)">
+          Просмор
+        </div>
+        <div class="event-view-space"></div>
+        <div class="btn" (click)="setViewEvent(false)">
+          Изменение
+        </div>
+        <div class="event-view-space"></div>
+        <div class="btn" (click)="setIdZero()">
+          Скопировать, создать новое событие на основе текущего!
+        </div>
+        <div class="event-view-space"></div>
+      </div>
     </div>
 
     <div [hidden]="viewEvent" class="block bill-farther">
@@ -115,34 +121,41 @@
 
 
     <div class="block bill-farther">
-      <h1>
-        Отображение события № {{event.id}}
-        <i class="h-line"></i>
-      </h1>
-      <div class="event">
-        <!--data-words="{{event.name}}"-->
-        <div class="img">
-          <a routerLink="/event/{{event.id}}">
-            <img src="{{event.coverUri}}" alt="">
-          </a>
-        </div>
-        <div class="info">
-          <span class="date">{{event.startEvent}}</span>
-          <h2>
+      <div class="block menu-page info-page">
+
+        <h1 [hidden]="!(event.id>0)" >
+          Отображение события № {{event.id}}
+          <div class="h-line"></div>
+        </h1>
+        <h1 [hidden]="(event.id>0)" >
+          Новое событие
+          <div class="h-line"></div>
+        </h1>
+        <div class="event">
+          <!--data-words="{{event.name}}"-->
+          <div class="img">
             <a routerLink="/event/{{event.id}}">
-              {{event.name}}
-              <span class="type"></span>
+              <img src="{{event.coverUri}}" alt="">
             </a>
-          </h2>
-          <p class="e2e-inner-html-bound" [innerHTML]="event.description">
-          </p>
-          <div class="tickets">
-            <h4>БИЛЕТЫ</h4>
-            <a [href]="event.buyTicketUrl" target="_blank" class="btn order-btn-face">
-              Купить билет
-            </a>
-            <div class="tickets-list">
-              <span class="e2e-inner-html-bound" [innerHTML]="event.costText"></span>
+          </div>
+          <div class="info">
+            <span class="date">{{event.startEvent}}</span>
+            <h2>
+              <a routerLink="/event/{{event.id}}">
+                {{event.name}}
+                <span class="type"></span>
+              </a>
+            </h2>
+            <p class="e2e-inner-html-bound" [innerHTML]="event.description">
+            </p>
+            <div class="tickets">
+              <h4>БИЛЕТЫ</h4>
+              <a [href]="event.buyTicketUrl" target="_blank" class="btn order-btn-face">
+                Купить билет
+              </a>
+              <div class="tickets-list">
+                <span class="e2e-inner-html-bound" [innerHTML]="event.costText"></span>
+              </div>
             </div>
           </div>
         </div>

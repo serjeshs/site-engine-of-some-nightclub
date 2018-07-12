@@ -27,4 +27,8 @@ export class EventViewComponent implements OnInit {
   saveEvent(event: Event) {
     this.onEventSaveButtonClick.emit(event);
   }
+
+  setIdZero() {
+    this.event.id = null;
+  }
 }

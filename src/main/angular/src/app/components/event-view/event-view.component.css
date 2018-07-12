@@ -1,0 +1,10 @@
+.event-view-buttons {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event-view-space {
+  width: 10px;
+
+}
