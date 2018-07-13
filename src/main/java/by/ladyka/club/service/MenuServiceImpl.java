@@ -41,9 +41,13 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public MenuPageDto mainPage() {
 		return new MenuPageDto(
-				menuCategoryRepository.findAllByParentIsNull().stream().map(this::convertToMenuCategoryDto).collect(Collectors.toList()),
+				getFood(),
 				eventsService.getEventsAfter(LocalDateTime.now())
 		);
+	}
+
+	public List<MenuCategoryDto> getFood() {
+		return menuCategoryRepository.findAllByParentIsNull().stream().map(this::convertToMenuCategoryDto).collect(Collectors.toList());
 	}
 
 	@Deprecated

@@ -31,6 +31,12 @@ public class MenuController {
 		return new ResponseEntity<>(menuService.mainPage(), HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "food", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	ResponseEntity food(Principal principal, HttpServletRequest httpServletRequest) {
+		return new ResponseEntity<>(menuService.getFood(), HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "order", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	ResponseEntity order(Principal principal, HttpServletRequest httpServletRequest, @RequestBody MenuOrderDto dto) {

@@ -1,0 +1,21 @@
+<div *ngFor="let categoryMain of categories">
+  <h1>
+    {{categoryMain.name}}<i class="h-line"></i><span class="desc">{{categoryMain.description}}</span>
+  </h1>
+  <div *ngFor="let category of categoryMain.categories">
+    <br>
+    <h3>{{category.name}}</h3>
+    <ul class="info-list menu-list">
+      <li *ngFor="let item of category.menuItems">
+        <span class="title">
+          <b>{{item.name}}</b><br>
+          <i>{{item.description}}</i><br>
+          {{item.descriptionProportions}}
+        </span>
+        <span class="price"><b>
+          {{item.price}} BYN</b>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>

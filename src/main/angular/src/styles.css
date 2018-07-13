@@ -1,5 +1,6 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import url('https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css'); /**** style 220317 ****/
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
 
 /*@font-face{font-family:'Humanist';src:url('fonts/Humanist.otf');src:local('Humanist 521 BT'),url('fonts/Humanist.eot?') format('eot'),url('../fonts/Humanist.ttf') format('truetype')}@font-face{font-family:'Humanist-bold';src:url('../fonts/Humanist-bold.otf');src:local('Humanist 521 BT Bold'),url('Humanist-bold.eot?') format('eot'),url('../fonts/Humanist-bold.ttf') format('truetype')}@font-face{font-family:'Baskerville';src:url('../fonts/Baskerville.otf');src:local('Baskerville'),url('Baskerville.eot?') format('eot'),url('../fonts/Baskerville.ttf') format('truetype')}@font-face{font-family:'Baskervilleit';src:url('../fonts/Baskervilleit.otf');src:local('Baskervilleit'),url('../fonts/Baskervilleit.ttf') format('truetype'),url('Baskervilleit.eot?') format('eot')}.f-h{font-family:'Humanist'}.f-h-b{font-family:'Humanist-bold'}.f-b{font-family:'Baskerville'}.f-b-i{font-family:'Baskervilleit'}*/
 

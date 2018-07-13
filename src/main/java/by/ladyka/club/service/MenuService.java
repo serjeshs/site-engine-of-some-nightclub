@@ -1,5 +1,6 @@
 package by.ladyka.club.service;
 
+import by.ladyka.club.dto.menu.MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuItemPriceDto;
 import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
@@ -21,4 +22,6 @@ public interface MenuService {
 	MenuOrderDto getOrder(Long orderId);
 
 	MenuItemPriceDto convertToMenuItemPriceDto(MenuItem menuItem);
+
+	List<MenuCategoryDto> getFood();
 }

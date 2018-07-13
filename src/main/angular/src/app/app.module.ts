@@ -1,9 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-
 import {AppRoutingModule} from './app-routing.module';
-
 import {AppComponent} from './app.component';
 import {EventsComponent} from './events/events.component';
 import {EventsService} from './events.service';
@@ -65,8 +63,10 @@ import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-
 import {EventReportService} from "./event-report.service";
 import {PageLoginComponent} from './page-login/page-login.component';
 import {AuthService} from "./auth.service";
-import { FeedbackComponent } from './feedback/feedback.component';
+import {FeedbackComponent} from './feedback/feedback.component';
 import {FeedbackService} from "./feedback.service";
+import {MenuEditorComponent} from './admin/menu-editor/menu-editor.component';
+import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
 
 @NgModule({
   imports: [
@@ -112,6 +112,7 @@ import {FeedbackService} from "./feedback.service";
     MatTooltipModule,
     MatTreeModule,
     ReactiveFormsModule,
+    DlDateTimePickerDateModule
   ],
   declarations: [
     AdminComponent,
@@ -130,7 +131,8 @@ import {FeedbackService} from "./feedback.service";
     NewsComponent,
     NewsPageComponent,
     PageLoginComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    MenuEditorComponent
   ],
   providers: [
     EventsService,
