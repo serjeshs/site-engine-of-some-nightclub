@@ -80,9 +80,11 @@ export class MenuComponent implements OnInit {
       this.menuCategories = menuPage.categories;
       this.menuCategories.forEach(mainCategory => {
         mainCategory.categories.forEach(category => {
-          category.menuItems.forEach(item => {
-            item.count = 0;
-          })
+          if (category.menuItems) {
+            category.menuItems.forEach(item => {
+              item.count = 0;
+            })
+          }
         })
       });
       this.events = menuPage.events;
