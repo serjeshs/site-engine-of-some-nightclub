@@ -4,14 +4,11 @@ import {Observable} from "rxjs/index";
 import {UserDto} from "./dto/userDto";
 import {catchError} from "rxjs/operators";
 import {NewsItemDto} from "./dto/newsItemDto";
+import {ResponseEntity} from "./dto/ResponseEntity";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-
-class ResponseEntity {
-  success: boolean;
-}
 
 @Injectable()
 export class AuthService {

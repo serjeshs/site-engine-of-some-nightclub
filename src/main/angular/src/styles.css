@@ -312,8 +312,8 @@ body {
 
 .header {
   padding: 0 0 10px;
-  background: url('/assets/img/logo2.jpg') 50% 0 no-repeat #ffffff;
-  background-size: auto 290px
+  background: url('/assets/img/logo.svg') 50% 0 no-repeat #ffffff;
+  background-size: auto 200px
 }
 
 .header .container {

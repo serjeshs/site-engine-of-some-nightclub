@@ -11,8 +11,6 @@ import java.util.List;
 public interface MenuService {
 	MenuPageDto mainPage();
 
-	boolean init();
-
 	MenuOrderDto order(MenuOrderDto order);
 
 	List<MenuOrderDto> orders(Long eventId);
@@ -24,4 +22,6 @@ public interface MenuService {
 	MenuItemPriceDto convertToMenuItemPriceDto(MenuItem menuItem);
 
 	List<MenuCategoryDto> getFood();
+
+	MenuCategoryDto saveCategory(MenuCategoryDto dto);
 }

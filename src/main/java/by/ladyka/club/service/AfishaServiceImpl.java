@@ -19,7 +19,7 @@ public class AfishaServiceImpl implements AfishaService {
 
 	@Override
 	public MainPageDTO mainPage(AppUser user) {
-		final List<EventDTO> events = eventsService.getEventsAfter(LocalDateTime.now());
+		final List<EventDTO> events = eventsService.getEventsAfter(LocalDateTime.now().minusHours(5L));
 		final List<EventRelevantDTO> relevant = eventsService.getRelevantEvents(user);
 		final List<EventGalleryDTO> gallery = eventGalleryService.getLatestGalleryEvents(GALERY_EVENTS_MAIN_PAGE_MAKE_SETTING);
 		return build(events, relevant, gallery);
@@ -30,11 +30,7 @@ public class AfishaServiceImpl implements AfishaService {
 		LocalDateTime dateTime = LocalDate.now().atStartOfDay();
 		for (EventDTO event : events) {
 			final LocalDateTime startEvent = event.getStartEvent();
-			System.out.println(startEvent.toString());
 			final long between = ChronoUnit.HOURS.between(dateTime, startEvent.toLocalDate().atStartOfDay());
-			if (between < 0) {
-				continue;
-			}
 			if (between < 24) {
 				mainPageDTO.getToday().add(event);
 			} else if (between < 24 * 2) {

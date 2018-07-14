@@ -35,4 +35,7 @@ public class MenuCategory extends AbstractEntity {
 	@OneToMany(mappedBy = "category")
 	private List<MenuItem> items;
 
+	public MenuCategory(Long id) {
+		setId(id);
+	}
 }

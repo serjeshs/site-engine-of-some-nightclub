@@ -69,9 +69,6 @@ public class EmailServiceImpl implements EmailService {
 		final Context ctx = new Context(builder.build());
 		ctx.setVariable("feedback", feedBack);
 		ctx.setVariable("currentDate", new Date());
-		String imageResourceName = "http://new3.republic-club.by/assets/img/logo2.jpg";
-		ctx.setVariable("imageResourceName", imageResourceName); // so that we can reference it from HTML
-
 		return templateEngine.process("email/feedback.html", ctx);
 	}
 
@@ -82,9 +79,6 @@ public class EmailServiceImpl implements EmailService {
 		final List<MenuItemPricesHasOrders> itemPricesHasOrders = order.getItemPricesHasOrders();
 		ctx.setVariable("food", itemPricesHasOrders);
 		ctx.setVariable("currentDate", new Date());
-		String imageResourceName = "http://new3.republic-club.by/assets/img/logo2.jpg";
-		ctx.setVariable("imageResourceName", imageResourceName); // so that we can reference it from HTML
-
 		return templateEngine.process("email/orderCustomer.html", ctx);
 	}
 }

@@ -101,21 +101,6 @@
           </ul>
         </div>
       </div>
-      <a target="_blank" href="https://bezkassira.by/buy/654/"
-         class="btn btn-primary btn-lg active btn-block">Оплатить депозит</a>
-
-      <div class="form-group">
-        <label for="bcCode">Код депозита</label>
-        <input type="text" class="form-control" id="bcCode"
-
-               required
-               [(ngModel)]="model.bcCode"
-               name="bcCode"
-               #bcCode="ngModel"
-
-               placeholder="Введите код полученный на сайте BezKassira.by">
-        <small id="depositRecomend" class="form-text text-muted">Сумма для депозита {{model.depositPrice}}</small>
-      </div>
       <div class="form-group" [hidden]="!(model.event > 0)">
         <img src="../../assets/img/club_plan.png" style="    display: block !important;
     margin-left: auto !important;
@@ -181,9 +166,35 @@
         <div class="mt-1"><h3>Гостей </h3></div>
         <p class="lead"> {{model.people}}</p>
         <div class="mt-1"><h3>Заказ </h3></div>
-        <p class="lead"> {{model.food}}</p>
-        <div class="mt-1"><h3>Код депозита </h3></div>
-        <p class="lead"> {{model.bcCode}}</p>
+        <div *ngFor="let categoryMain of menuCategories" class="lead">
+          <h1>
+            {{categoryMain.name}}
+            <i class="h-line"></i>
+            <span class="desc">{{categoryMain.description}}</span>
+          </h1>
+          <div *ngFor="let category of categoryMain.categories">
+            <h3>{{category.name}}</h3>
+            <ul class="info-list menu-list">
+              <li *ngFor="let item of category.menuItems">
+                <span class="title" [hidden]="!(item.count > 0)">
+                  <b>{{item.name}}</b>
+                  <br>
+                  <i>{{item.description}}</i>
+                  <br>
+                  {{item.descriptionProportions}}
+                </span>
+                <span class="price" [hidden]="!(item.count > 0)">
+                  <b>
+                    {{item.price}} BYN
+                  </b>
+                  /
+                  {{item.count}} штук
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <div class="mt-1"><h3>Столик </h3></div>
         <p class="lead"> {{model.tableNumber}}</p>
         <div class="mt-1"><h3>Коментарий к заказу </h3></div>

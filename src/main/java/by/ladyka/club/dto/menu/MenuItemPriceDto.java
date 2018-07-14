@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 public class MenuItemPriceDto {
+	private Long id;
 	private Long itemPriceId;
 	private String name;
 	private String description;

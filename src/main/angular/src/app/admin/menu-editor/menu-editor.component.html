@@ -1,21 +1,69 @@
 <div *ngFor="let categoryMain of categories">
   <h1>
-    {{categoryMain.name}}<i class="h-line"></i><span class="desc">{{categoryMain.description}}</span>
+    {{categoryMain.name}}
+    <i class="h-line"></i>
+    <span class="desc">{{categoryMain.description}}</span>
   </h1>
   <div *ngFor="let category of categoryMain.categories">
     <br>
-    <h3>{{category.name}}</h3>
+    <form class="form-inline">
+      <div class="form-group mb-2">
+        <label for="categorySame" class="sr-only">Введите имя новой категории</label>
+        <input type="text" class="form-control-plaintext box-shadow-blue"
+               [hidden]="!(editCategoryId==category.id)"
+               id="categorySame"
+               value="{{editWrapper.categoryEditDto.name}}"
+               [(ngModel)]="editWrapper.categoryEditDto.name"
+               name="editCategoryDtoName"
+        >
+        <h3 [hidden]="(editCategoryId==category.id)">
+          {{category.name}}
+        </h3>
+      </div>
+      <button type="submit" class="btn btn-primary mb-2" [hidden]="!(editCategoryId==category.id)"
+              (click)="onClickSaveCategory(editWrapper.categoryEditDto)">Сохранить
+      </button>
+      <button type="submit" class="btn btn-primary mb-2" [hidden]="(editCategoryId==category.id)"
+              (click)="onClickeditCategory(category)">Изменить
+      </button>
+    </form>
+
+
     <ul class="info-list menu-list">
       <li *ngFor="let item of category.menuItems">
         <span class="title">
-          <b>{{item.name}}</b><br>
-          <i>{{item.description}}</i><br>
+          <b>{{item.name}}</b>
+          <br>
+          <i>{{item.description}}</i>
+          <br>
           {{item.descriptionProportions}}
         </span>
-        <span class="price"><b>
-          {{item.price}} BYN</b>
+        <span class="price">
+          <b>
+            {{item.price}} BYN
+          </b>
         </span>
       </li>
     </ul>
   </div>
+
+  <form class="form-inline">
+    <div class="form-group mb-2">
+      <label for="categoryNew" class="sr-only">Введите имя новой категории</label>
+      <input type="text" class="form-control-plaintext box-shadow-blue"
+             [hidden]="(editCategoryId==-1)||!(categoryMain.id==editWrapper.categoryEditDto.parentId)"
+             id="categoryNew"
+             value="{{editWrapper.categoryEditDto.name}}"
+             [(ngModel)]="editWrapper.categoryEditDto.name"
+             name="editCategoryDtoName"
+      >
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" [hidden]="(editCategoryId==-1)||!(categoryMain.id==editWrapper.categoryEditDto.parentId)"
+            (click)="onClickSaveCategory(editWrapper.categoryEditDto)">Сохранить
+    </button>
+    <button type="submit" class="btn btn-primary mb-2" [hidden]="!(editCategoryId==-1)"
+            (click)="onClickNewCategory(categoryMain)">Добавить новую категорию
+    </button>
+  </form>
+
 </div>

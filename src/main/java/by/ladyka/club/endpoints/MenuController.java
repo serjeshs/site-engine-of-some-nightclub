@@ -1,5 +1,6 @@
 package by.ladyka.club.endpoints;
 
+import by.ladyka.club.dto.menu.MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.service.MenuService;
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "api/menu/")
@@ -62,4 +65,22 @@ public class MenuController {
 	ResponseEntity order(Principal principal, HttpServletRequest httpServletRequest, Long eventId) {
 		return new ResponseEntity<>(menuService.orders(eventId), HttpStatus.OK);
 	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "admin/category")
+	public @ResponseBody
+	ResponseEntity get(Principal principal, HttpServletRequest httpServletRequest, @RequestBody MenuCategoryDto dto) {
+		Map<String, Object> r = new LinkedHashMap<>();
+
+		try {
+			r.put("dto", menuService.saveCategory(dto));;
+			r.put("success", true);
+		} catch (Exception ex) {
+			r.put("success", false);
+			r.put("dto", dto);
+			logger.error("Error save" , dto.toString());
+			ex.printStackTrace();
+		}
+		return new ResponseEntity<>(r, HttpStatus.OK);
+	}
+
 }

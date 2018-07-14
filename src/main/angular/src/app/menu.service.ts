@@ -6,6 +6,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {MenuPageSummary} from "./dto/menuPageSummary";
 import {MenuOrder} from "./dto/menuOrder";
 import {MenuCategoryDto} from "./dto/menuCategoryDto";
+import {ResponseEntity} from "./dto/ResponseEntity";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -18,12 +19,14 @@ export class MenuService {
   private availableTablesUrl: string;
   private ordersUrl: string;
   private menuUrl: string;
+  private adminCategoryUrl: string;
 
   constructor(private http: HttpClient) {
     this.menuSummaryUrl = '/api/menu/summary';
     this.menuOrderUrl = '/api/menu/order';
     this.availableTablesUrl = '/api/menu/availibletables';
     this.ordersUrl = '/api/menu/admin/orders';
+    this.adminCategoryUrl = '/api/menu/admin/category';
     this.menuUrl = '/api/menu/food';
   }
 
@@ -95,5 +98,11 @@ export class MenuService {
         tap(menuItems => this.log(`fetched events to Main Page`)),
         catchError(this.handleError('getMenuPageSummary', []))
       );
+  }
+
+  saveCategory(category: MenuCategoryDto): Observable<ResponseEntity> {
+    let url = this.adminCategoryUrl;
+    return this.http.post<ResponseEntity>(url, JSON.stringify(category), httpOptions)
+      .pipe();
   }
 }

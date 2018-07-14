@@ -123,7 +123,7 @@
     <div class="block bill-farther">
       <div class="block menu-page info-page">
 
-        <h1 [hidden]="!(event.id>0)" >
+        <h1 [hidden]="(!(event.id>0)) || readOnly" >
           Отображение события № {{event.id}}
           <div class="h-line"></div>
         </h1>

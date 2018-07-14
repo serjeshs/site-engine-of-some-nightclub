@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Event} from "../../dto/event";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-event-view',
