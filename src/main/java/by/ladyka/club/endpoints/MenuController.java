@@ -1,6 +1,7 @@
 package by.ladyka.club.endpoints;
 
 import by.ladyka.club.dto.menu.MenuCategoryDto;
+import by.ladyka.club.dto.menu.MenuItemPriceDto;
 import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.service.MenuService;
 import org.apache.logging.log4j.LogManager;
@@ -73,6 +74,23 @@ public class MenuController {
 
 		try {
 			r.put("dto", menuService.saveCategory(dto));;
+			r.put("success", true);
+		} catch (Exception ex) {
+			r.put("success", false);
+			r.put("dto", dto);
+			logger.error("Error save" , dto.toString());
+			ex.printStackTrace();
+		}
+		return new ResponseEntity<>(r, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "admin/item")
+	public @ResponseBody
+	ResponseEntity adminItem(Principal principal, HttpServletRequest httpServletRequest, @RequestBody MenuItemPriceDto dto) {
+		Map<String, Object> r = new LinkedHashMap<>();
+
+		try {
+			r.put("dto", menuService.saveMenuItemPrice(dto));;
 			r.put("success", true);
 		} catch (Exception ex) {
 			r.put("success", false);

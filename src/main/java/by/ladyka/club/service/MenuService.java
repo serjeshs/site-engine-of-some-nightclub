@@ -24,4 +24,6 @@ public interface MenuService {
 	List<MenuCategoryDto> getFood();
 
 	MenuCategoryDto saveCategory(MenuCategoryDto dto);
+
+	MenuItemPriceDto saveMenuItemPrice(MenuItemPriceDto dto);
 }

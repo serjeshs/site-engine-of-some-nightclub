@@ -7,6 +7,7 @@ import {MenuPageSummary} from "./dto/menuPageSummary";
 import {MenuOrder} from "./dto/menuOrder";
 import {MenuCategoryDto} from "./dto/menuCategoryDto";
 import {ResponseEntity} from "./dto/ResponseEntity";
+import {MenuItemPriceDto} from "./dto/menuItemPriceDto";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -20,6 +21,7 @@ export class MenuService {
   private ordersUrl: string;
   private menuUrl: string;
   private adminCategoryUrl: string;
+  private adminItemUrl: string;
 
   constructor(private http: HttpClient) {
     this.menuSummaryUrl = '/api/menu/summary';
@@ -28,6 +30,7 @@ export class MenuService {
     this.ordersUrl = '/api/menu/admin/orders';
     this.adminCategoryUrl = '/api/menu/admin/category';
     this.menuUrl = '/api/menu/food';
+    this.adminItemUrl = '/api/menu/admin/item'
   }
 
   storeOrder(order: MenuOrder): Observable<MenuOrder> {
@@ -103,6 +106,12 @@ export class MenuService {
   saveCategory(category: MenuCategoryDto): Observable<ResponseEntity> {
     let url = this.adminCategoryUrl;
     return this.http.post<ResponseEntity>(url, JSON.stringify(category), httpOptions)
+      .pipe();
+  }
+
+  saveItemPosition(itemPosition: MenuItemPriceDto): Observable<ResponseEntity> {
+    let url = this.adminItemUrl;
+    return this.http.post<ResponseEntity>(url, JSON.stringify(itemPosition), httpOptions)
       .pipe();
   }
 }

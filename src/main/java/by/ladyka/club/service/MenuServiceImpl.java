@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -63,6 +64,42 @@ public class MenuServiceImpl implements MenuService {
 		return convertToMenuCategoryDto(menuCategoryRepository.save(mc));
 	}
 
+	@Override
+	public MenuItemPriceDto saveMenuItemPrice(MenuItemPriceDto dto) {
+		final MenuCategory menuCategory = menuCategoryRepository.findById(dto.getCategoryId()).orElseThrow(RuntimeException::new);
+		MenuItem menuItem = menuItemRepository.findById(dto.getId()).orElse(new MenuItem());
+		menuItem.setName(dto.getName());
+		menuItem.setDescription(dto.getDescription());
+		menuItem.setDescriptionProportions(dto.getDescriptionProportions());
+		menuItem.setActive(true);
+		menuItem.setCategory(menuCategory);
+		menuItemRepository.save(menuItem);
+		MenuItemPrice menuItemPrice = getMenuItemPrice(menuItem);
+		if (menuItemPrice == null) {
+			menuItemPrice = updateMenuItemPrice(dto, menuItem, new MenuItemPrice());
+		}
+		if (!menuItemPrice.getValue().setScale(2, BigDecimal.ROUND_CEILING).equals(dto.getPrice().setScale(2, BigDecimal.ROUND_CEILING))) {
+			terminate(menuItemPrice);
+			menuItemPrice = updateMenuItemPrice(dto, menuItem, new MenuItemPrice());
+		}
+		menuItemPriceRepository.save(menuItemPrice);
+		return dto;
+	}
+
+	private void terminate(MenuItemPrice menuItemPrice) {
+		menuItemPrice.setEndTime(LocalDateTime.now());
+		menuItemPrice.setActive(false);
+		menuItemPriceRepository.save(menuItemPrice);
+	}
+
+	private MenuItemPrice updateMenuItemPrice(MenuItemPriceDto dto, MenuItem menuItem, MenuItemPrice menuItemPrice) {
+		menuItemPrice.setActive(true);
+		menuItemPrice.setValue(dto.getPrice());
+		menuItemPrice.setStartTime(LocalDateTime.now());
+		menuItemPrice.setItem(menuItem);
+		return menuItemPrice;
+	}
+
 	private MenuCategoryDto convertToMenuCategoryDto(MenuCategory menuCategory) {
 		MenuCategoryDto dto = new MenuCategoryDto();
 		dto.setId(menuCategory.getId());
@@ -74,30 +111,44 @@ public class MenuServiceImpl implements MenuService {
 			List<MenuItemPriceDto> menuItems = menuCategory.getItems().stream()
 					.map(this::convertToMenuItemPriceDto).filter(Objects::nonNull).collect(Collectors.toList());
 			dto.setMenuItems(menuItems);
+		} else {
+			dto.setMenuItems(Collections.emptyList());
 		}
 		if (!CollectionUtils.isEmpty(menuCategory.getChildren())) {
 			List<MenuCategoryDto> categoryDtos = menuCategory.getChildren().stream()
 					.map(this::convertToMenuCategoryDto).filter(Objects::nonNull).collect(Collectors.toList());
 			dto.setCategories(categoryDtos);
+		} else {
+			dto.setCategories(Collections.emptyList());
 		}
 		return dto;
 	}
 
 	public MenuItemPriceDto convertToMenuItemPriceDto(MenuItem menuItem) {
 		MenuItemPriceDto dto = new MenuItemPriceDto();
+		MenuItemPrice menuItemPrice = getMenuItemPrice(menuItem);
+		if (menuItemPrice == null) {
+			return null;
+		} else {
+			dto.setItemPriceId(menuItemPrice.getId());
+			dto.setPrice(menuItemPrice.getValue());
+		}
 		dto.setId(menuItem.getId());
 		dto.setName(menuItem.getName());
 		dto.setDescription(menuItem.getDescription());
 		dto.setDescriptionProportions(menuItem.getDescriptionProportions());
-		final Optional<MenuItemPrice> first = menuItem.getPrices().stream().filter(this::active).findFirst();
-		if (first.isPresent()) {
-			final MenuItemPrice menuItemPrice = first.get();
-			dto.setItemPriceId(menuItemPrice.getId());
-			dto.setPrice(menuItemPrice.getValue());
+		dto.setCategoryId(menuItem.getCategory().getId());
+		return dto;
+	}
+
+	private MenuItemPrice getMenuItemPrice(MenuItem menuItem) {
+		final List<MenuItemPrice> prices = menuItem.getPrices();
+		if (!CollectionUtils.isEmpty(prices)) {
+			return prices.stream().filter(this::active).findFirst().orElse(null);
 		} else {
 			return null;
 		}
-		return dto;
+
 	}
 
 	private boolean active(MenuItemPrice menuItemPrice) {

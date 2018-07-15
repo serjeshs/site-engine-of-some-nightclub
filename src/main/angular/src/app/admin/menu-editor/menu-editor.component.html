@@ -31,20 +31,129 @@
 
     <ul class="info-list menu-list">
       <li *ngFor="let item of category.menuItems">
-        <span class="title">
+        <span class="title" [hidden]="(editWrapper.editItemPositionId==item.id)">
           <b>{{item.name}}</b>
           <br>
           <i>{{item.description}}</i>
           <br>
           {{item.descriptionProportions}}
         </span>
-        <span class="price">
+        <span class="price" [hidden]="(editWrapper.editItemPositionId==item.id)">
           <b>
             {{item.price}} BYN
           </b>
         </span>
+
+        <form [hidden]="!(editWrapper.editItemPositionId==item.id)">
+          <div class="form-group">
+            <label for="itemPositionName">Имя позиции</label>
+            <input type="text"
+                   class="form-control"
+                   id="itemPositionName"
+                   name="itemPositionName"
+                   value="{{editWrapper.itemPosition.name}}"
+                   [(ngModel)]="editWrapper.itemPosition.name"
+
+            >
+          </div>
+          <div class="form-group">
+            <label for="itemPositionDescription">Описание позиции</label>
+            <input type="text"
+                   class="form-control"
+                   id="itemPositionDescription"
+                   name="itemPositionDescription"
+                   value="{{editWrapper.itemPosition.description}}"
+                   [(ngModel)]="editWrapper.itemPosition.description"
+
+            >
+          </div>
+          <div class="form-group">
+            <label for="itemPositionDescriptionProportions">Пропорции позиции</label>
+            <input type="text"
+                   class="form-control"
+                   id="itemPositionDescriptionProportions"
+                   name="itemPositionDescriptionProportions"
+                   value="{{editWrapper.itemPosition.descriptionProportions}}"
+                   [(ngModel)]="editWrapper.itemPosition.descriptionProportions"
+
+            >
+          </div>
+          <div class="form-group">
+            <label for="itemPrice">Цена</label>
+            <input type="text"
+                   class="form-control"
+                   id="itemPrice"
+                   name="itemPrice"
+                   value="{{editWrapper.itemPosition.price}}"
+                   [(ngModel)]="editWrapper.itemPosition.price"
+
+            >
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="onClickSaveItemPosition(editWrapper.itemPosition)">Сохранить</button>
+        </form>
+        <button type="submit" class="btn btn-primary mb-2"
+                [hidden]="(editWrapper.editItemPositionId==item.id)"
+                (click)="onClickEditMenuItem(item)">Изменить
+        </button>
       </li>
     </ul>
+
+
+
+    <form [hidden]="!(editWrapper.editItemPositionId==-1) || !(editWrapper.itemPosition.categoryId==category.id)">
+      <div class="form-group">
+        <label for="itemPositionNameNew">Имя позиции</label>
+        <input type="text"
+               class="form-control"
+               id="itemPositionNameNew"
+               name="itemPositionNameNew"
+               value="{{editWrapper.itemPosition.name}}"
+               [(ngModel)]="editWrapper.itemPosition.name"
+
+        >
+      </div>
+      <div class="form-group">
+        <label for="itemPositionDescriptionNew">Описание позиции</label>
+        <input type="text"
+               class="form-control"
+               id="itemPositionDescriptionNew"
+               name="itemPositionDescriptionNew"
+               value="{{editWrapper.itemPosition.description}}"
+               [(ngModel)]="editWrapper.itemPosition.description"
+
+        >
+      </div>
+      <div class="form-group">
+        <label for="itemPositionDescriptionProportionsNew">Пропорции позиции</label>
+        <input type="text"
+               class="form-control"
+               id="itemPositionDescriptionProportionsNew"
+               name="itemPositionDescriptionProportionsNew"
+               value="{{editWrapper.itemPosition.descriptionProportions}}"
+               [(ngModel)]="editWrapper.itemPosition.descriptionProportions"
+
+        >
+      </div>
+      <div class="form-group">
+        <label for="itemPriceNew">Цена</label>
+        <input type="text"
+               class="form-control"
+               id="itemPriceNew"
+               name="itemPriceNew"
+               value="{{editWrapper.itemPosition.price}}"
+               [(ngModel)]="editWrapper.itemPosition.price"
+
+        >
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="onClickSaveItemPosition(editWrapper.itemPosition)">Сохранить</button>
+    </form>
+    <button type="submit" class="btn btn-primary mb-2"
+            [hidden]="(editWrapper.editItemPositionId==0) || (editWrapper.itemPosition.id!=0)"
+            (click)="onClickCreateMenuItem(category)">Добавить новую позицию
+    </button>
+
+
+
   </div>
 
   <form class="form-inline">
