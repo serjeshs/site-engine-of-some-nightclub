@@ -1,0 +1,67 @@
+<div class="content-wrapper no-sidebar">
+  <!--main content-->
+  <div class="main-content">
+<h1>{{wrapper.message}}</h1>
+    <button (click)="addNewPhotoReport()"
+            [hidden]="!(wrapper.mode=='tableView')"
+            class="btn"
+    >Добавить новый фотоотчет
+    </button>
+
+    <form [hidden]="!(wrapper.mode=='editReport')">
+      <div class="form-group">
+        <label for="reportName">Имя отчета</label>
+        <input type="text"
+               class="form-control"
+               id="reportName"
+               name="reportName"
+               value="{{wrapper.reportEdit.name}}"
+               [(ngModel)]="wrapper.reportEdit.name"
+
+        >
+      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="reportDescription">Описание</label>-->
+        <!--<input type="text"-->
+               <!--class="form-control"-->
+               <!--id="reportDescription"-->
+               <!--name="reportDescription"-->
+               <!--value="{{wrapper.reportEdit.description}}"-->
+               <!--[(ngModel)]="wrapper.reportEdit.description"-->
+
+        <!--&gt;-->
+      <!--</div>-->
+      <div class="form-group">
+        <label for="reportStartEvent">Время начала события Формат : 2018-11-22T19:00:00</label>
+        <input type="text"
+               class="form-control"
+               id="reportStartEvent"
+               name="reportStartEvent"
+               value="{{wrapper.reportEdit.startEvent}}"
+               [(ngModel)]="wrapper.reportEdit.startEvent"
+        >
+      </div>
+      <div class="form-group" [hidden]="wrapper.reportEdit.id<1">
+        <label for="newPhoto">Загрузить новый файл</label>
+
+        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" id="newPhoto"/>
+
+        <button type="button" class="btn btn-success btn-s"
+                (click)="uploader.uploadAll()"
+                [disabled]="!uploader.getNotUploadedItems().length">
+          Upload an Image
+        </button>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="onClickSaveReport(wrapper.reportEdit)">Сохранить</button>
+    </form>
+
+
+    <ul class="foto-list">
+      <li *ngFor="let image of wrapper.reportEdit.images">
+        <img src="{{image}}" title="{{wrapper.reportEdit.name}}">
+      </li>
+    </ul>
+
+  </div>
+  <div class="clearfix"></div>
+</div>

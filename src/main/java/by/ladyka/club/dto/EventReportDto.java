@@ -11,6 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class EventReportDto {
+	private Long id;
 	private LocalDateTime startEvent;
 	private String name;
 	private String coverUri;

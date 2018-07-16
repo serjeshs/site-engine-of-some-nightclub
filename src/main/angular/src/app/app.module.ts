@@ -67,6 +67,9 @@ import {FeedbackComponent} from './feedback/feedback.component';
 import {FeedbackService} from "./feedback.service";
 import {MenuEditorComponent} from './admin/menu-editor/menu-editor.component';
 import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
+import { PhotoReportComponent } from './admin/photo-report/photo-report.component';
+import {FileSelectDirective} from "ng2-file-upload";
+import {PhotoReportService} from "./services/photo-report/photo-report.service";
 
 @NgModule({
   imports: [
@@ -125,14 +128,16 @@ import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
     EventsComponent,
     EventsListComponent,
     EventViewComponent,
+    FeedbackComponent,
+    FileSelectDirective,
     FooterComponent,
     MediaComponent,
     MenuComponent,
+    MenuEditorComponent,
     NewsComponent,
     NewsPageComponent,
     PageLoginComponent,
-    FeedbackComponent,
-    MenuEditorComponent
+    PhotoReportComponent
   ],
   providers: [
     EventsService,
@@ -140,7 +145,8 @@ import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
     NewsService,
     EventReportService,
     AuthService,
-    FeedbackService
+    FeedbackService,
+    PhotoReportService
   ],
   bootstrap: [AppComponent]
 })

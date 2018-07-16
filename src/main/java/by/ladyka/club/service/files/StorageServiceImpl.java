@@ -32,7 +32,8 @@ public class StorageServiceImpl implements StorageService {
         LocalDateTime date = LocalDateTime.now();
         String directoryOut = date.getYear() + File.separator + date.getMonthValue();
         new File(customSettings.getFilesDirectory() + File.separator + directoryOut).mkdirs();
-        String fileName = (int) (Math.random() * 10000) + file.getOriginalFilename();
+        String fN = file.getOriginalFilename();
+        String fileName = (int) (Math.random() * 10000) + fN.substring(fN.length() - 5);
         File outFile = new File(customSettings.getFilesDirectory() + File.separator + directoryOut + File.separator + fileName);
         OutputStream outStream = new FileOutputStream(outFile);
         IOUtils.copy(file.getInputStream(), outStream);

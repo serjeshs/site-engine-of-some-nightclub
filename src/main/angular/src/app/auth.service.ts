@@ -1,14 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/index";
 import {UserDto} from "./dto/userDto";
-import {catchError} from "rxjs/operators";
-import {NewsItemDto} from "./dto/newsItemDto";
 import {ResponseEntity} from "./dto/ResponseEntity";
-
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+import {httpOptions} from "./dto/httpOptions";
 
 @Injectable()
 export class AuthService {
