@@ -44,7 +44,7 @@
       <div class="form-group" [hidden]="wrapper.reportEdit.id<1">
         <label for="newPhoto">Загрузить новый файл</label>
 
-        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" id="newPhoto"/>
+        <input type="file" name="photo" ng2FileSelect  id="newPhoto"/>
 
         <button type="button" class="btn btn-success btn-s"
                 (click)="uploader.uploadAll()"

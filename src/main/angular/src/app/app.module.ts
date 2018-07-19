@@ -129,7 +129,6 @@ import {PhotoReportService} from "./services/photo-report/photo-report.service";
     EventsListComponent,
     EventViewComponent,
     FeedbackComponent,
-    FileSelectDirective,
     FooterComponent,
     MediaComponent,
     MenuComponent,
@@ -146,7 +145,8 @@ import {PhotoReportService} from "./services/photo-report/photo-report.service";
     EventReportService,
     AuthService,
     FeedbackService,
-    PhotoReportService
+    PhotoReportService,
+    FileSelectDirective
   ],
   bootstrap: [AppComponent]
 })
