@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Event} from '../dto/event';
 import {EventReport} from "../dto/eventGallery";
 import {EventRelevant} from "../dto/eventRelevant";
@@ -25,11 +25,13 @@ export class EventsComponent implements OnInit {
   currentMonthName: string;
   nextNextMonthName: string;
   nextMonthName: string;
+  innerWidth: number;
 
   constructor(private eventsService: EventsService) {
   }
 
   ngOnInit() {
+    this.innerWidth = window.window.innerWidth;
     this.getEvents();
     this.getMonthNames();
   }
@@ -99,5 +101,10 @@ export class EventsComponent implements OnInit {
           event.time = moment(event.startEvent).format('H:mm');
         });
       });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 }
