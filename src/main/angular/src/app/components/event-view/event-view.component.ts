@@ -32,4 +32,8 @@ export class EventViewComponent implements OnInit {
   setIdZero() {
     this.event.id = null;
   }
+
+  get startEventText() {
+    return moment(this.event.startEvent).format('dddd[,] LL[,] LT')
+  }
 }

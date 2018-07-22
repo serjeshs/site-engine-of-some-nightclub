@@ -77,8 +77,8 @@
       Далее в программе
       <i class="h-line"></i>
     </h1>
-    <ul class="block bill-farther">
-      <li *ngFor="let event of currentAndNextWeek"  *ngIf="currentAndNextWeek?.length > 0">
+    <ul class="block bill-farther" *ngIf="currentAndNextWeek?.length > 0">
+      <li *ngFor="let event of currentAndNextWeek">
         <div class="event">
           <!--data-words="{{event.name}}"-->
           <div class="img">
