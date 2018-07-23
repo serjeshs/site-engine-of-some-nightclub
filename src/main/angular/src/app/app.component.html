@@ -1,7 +1,7 @@
 <div class="wrapper">
 
   <!--header-->
-  <div class="header">
+  <div class="header" *ngIf="innerWidth > 1000">
 
     <!--banner-->
     <div class="top-banner top-banner-main-container">
@@ -149,6 +149,19 @@
         </nav>
       </div>
     </div>
+  </div>
+
+  <div class="mobile-header" *ngIf="innerWidth < 1001">
+    <div class="mobile-logo">
+      <a href="/afisha">RE:PUBLIC. Клуб.</a>
+    </div>
+    <div class="mobile-header-phone">
+      <span class="title">Заказ билетов</span>
+      <a href="tel: +375 (29) 110-35-35" class="phone">+375 (29) 110-35-35</a>
+      <span class="title">Резерв столиков</span>
+      <a href="tel: +375 (17) 290 86 90" class="phone">+375 (17) 290 86 90</a>
+    </div>
+    <div class="clearfix"></div>
   </div>
   <!--end header-->
 

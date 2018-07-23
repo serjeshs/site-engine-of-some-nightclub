@@ -31,7 +31,7 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.innerWidth = window.window.innerWidth;
+    this.innerWidth = window.innerWidth;
     this.getEvents();
     this.getMonthNames();
   }

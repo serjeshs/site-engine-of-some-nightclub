@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {AuthService} from "./auth.service";
 
 @Component({
@@ -8,15 +8,22 @@ import {AuthService} from "./auth.service";
 })
 export class AppComponent {
   isAdmin: boolean;
+  innerWidth: number;
 
   constructor(private authService: AuthService) {
 
   }
 
   ngOnInit() {
+    this.onResize(null);
     this.authService.currentUser()
       .subscribe(user => {
         this.isAdmin= ('admin' == user.role);
       });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 }

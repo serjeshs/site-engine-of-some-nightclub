@@ -73,7 +73,7 @@
     <!--end block bill-day-->
 
 
-    <h1>
+    <h1 *ngIf="currentAndNextWeek?.length > 0">
       Далее в программе
       <i class="h-line"></i>
     </h1>
@@ -259,6 +259,13 @@
             </div>
     -->
     <!-- VK Widget -->
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?137"></script>
+
+    <!-- VK Widget -->
+    <div id="vk_groups" class="block"></div>
+    <script type="text/javascript">
+      VK.Widgets.Group("vk_groups", {mode: 3, width: "319"}, 18143442);
+    </script>
   </div>
   <!--end sidebar-->
 
