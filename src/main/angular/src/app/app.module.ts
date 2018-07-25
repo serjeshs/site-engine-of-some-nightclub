@@ -67,9 +67,10 @@ import {FeedbackComponent} from './feedback/feedback.component';
 import {FeedbackService} from "./feedback.service";
 import {MenuEditorComponent} from './admin/menu-editor/menu-editor.component';
 import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
-import { PhotoReportComponent } from './admin/photo-report/photo-report.component';
+import {PhotoReportComponent} from './admin/photo-report/photo-report.component';
 import {FileSelectDirective} from "ng2-file-upload";
 import {PhotoReportService} from "./services/photo-report/photo-report.service";
+import {DiscoComponent} from './disco/disco.component';
 
 @NgModule({
   imports: [
@@ -136,7 +137,8 @@ import {PhotoReportService} from "./services/photo-report/photo-report.service";
     NewsComponent,
     NewsPageComponent,
     PageLoginComponent,
-    PhotoReportComponent
+    PhotoReportComponent,
+    DiscoComponent
   ],
   providers: [
     EventsService,

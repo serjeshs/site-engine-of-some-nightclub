@@ -17,6 +17,7 @@ import {PageLoginComponent} from "./page-login/page-login.component";
 import {FeedbackComponent} from "./feedback/feedback.component";
 import {MenuEditorComponent} from "./admin/menu-editor/menu-editor.component";
 import {PhotoReportComponent} from "./admin/photo-report/photo-report.component";
+import {DiscoComponent} from "./disco/disco.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/afisha', pathMatch: 'full'},
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'news', component: NewsComponent},
   {path: 'club', component: ClubComponent},
   {path: 'event/:id', component: EventPageComponent},
-  {path: 'events/:year/:prefix/:path', component: EventPageComponent},
+  {path: 'events/:sameData', component: DiscoComponent},
+  {path: 'events/:sameData/:anotherData', component: DiscoComponent},
   {path: 'event-reports/:id', component: EventReportComponent},
   {path: 'news/:id', component: NewsPageComponent},
   {path: 'admin', component: AdminComponent},

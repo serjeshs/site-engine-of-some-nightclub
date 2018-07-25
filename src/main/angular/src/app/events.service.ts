@@ -15,6 +15,7 @@ export class EventsService {
   private eventsMainPageUrl = '/api/page/main';
   private eventsRestAdminUrl = '/api/admin/events';
   private eventsRestUrl = '/api/events';
+  private eventsDiscoUrl = '/api/events/disco';
 
   constructor(private http: HttpClient) {
   }
@@ -43,6 +44,11 @@ export class EventsService {
     let url = this.eventsRestUrl + '?id=' + eventId;
     return this.http.get<Event>(url)
       .pipe();
+  }
+
+  getDiscoEvents(): Observable<EventListResult> {
+    const requestUrl = this.eventsDiscoUrl;
+    return this.http.get<EventListResult>(requestUrl);
   }
 
   /**

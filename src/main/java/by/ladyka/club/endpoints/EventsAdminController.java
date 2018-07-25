@@ -22,7 +22,7 @@ public class EventsAdminController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
-	ResponseEntity get(Principal principal, HttpServletRequest httpServletRequest, @RequestParam(required = false) String sort, String order, Integer page, Integer size, @RequestParam(required = false) String filter) {
+	ResponseEntity<BaseListResultDto<EventDTO>> get(Principal principal, HttpServletRequest httpServletRequest, @RequestParam(required = false) String sort, String order, Integer page, Integer size, @RequestParam(required = false) String filter) {
 		final List<EventDTO> events = eventsService.getEvents(sort, order, page, size, filter);
 		long total = eventsService.getTotalEvents(filter);
 		return new ResponseEntity<BaseListResultDto<EventDTO>>(new BaseListResultDto<>(events, total), HttpStatus.OK);

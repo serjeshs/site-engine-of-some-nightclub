@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public interface EventsService {
 	List<EventDTO> getEventsBetween(LocalDateTime after, LocalDateTime before);
+
 	List<EventDTO> getEventsAfter(LocalDateTime time);
 
 	List<EventRelevantDTO> getRelevantEvents(AppUser user);
@@ -18,6 +19,7 @@ public interface EventsService {
 	Optional<Event> getEventById(Long event);
 
 	EventDTO save(EventDTO event);
+
 	List<EventDTO> getEvents(String sort, String order, Integer page, Integer size, String filter);
 
 	EventDTO getEvent(Long id);
