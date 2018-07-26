@@ -1,6 +1,6 @@
 <div class="content-wrapper">
   <!--main content-->
-  <div class="main-content">
+  <div [ngClass]="{'main-content': (innerWidth > 1000)}">
 
     <!--block bill-day-->
     <div class="block bill-day" *ngIf="today?.length > 0">
@@ -73,11 +73,11 @@
     <!--end block bill-day-->
 
 
-    <h1>
+    <h1 *ngIf="currentAndNextWeek?.length > 0">
       Далее в программе
       <i class="h-line"></i>
     </h1>
-    <ul class="block bill-farther">
+    <ul class="block bill-farther" *ngIf="currentAndNextWeek?.length > 0">
       <li *ngFor="let event of currentAndNextWeek">
         <div class="event">
           <!--data-words="{{event.name}}"-->
@@ -112,7 +112,7 @@
 
 
     <!--block bill-month-->
-    <div class="block bill-month">
+    <div class="block bill-month" *ngIf="currentMonth?.length > 0">
       <h1>
         {{currentMonthName}}
         <i class="h-line"></i>
@@ -120,7 +120,7 @@
       <ul class="event-list">
         <li *ngFor="let event of currentMonth"><!--   data-words="{{event.name}}"-->
           <a routerLink="/event/{{event.id}}"
-             class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+             class="btn order-btn-face fix-w-m">Купить билет</a>
           <div class="info">
             <div class="date">
               <span class="time">{{event.startEvent}}</span><br>
@@ -138,7 +138,7 @@
     <!--end block bill-month-->
 
     <!--block bill-month-->
-    <div class="block bill-month">
+    <div class="block bill-month" *ngIf="nextNextMonth?.length > 0">
       <h1>
         {{nextMonthName}}
         <i class="h-line"></i>
@@ -146,7 +146,7 @@
       <ul class="event-list">
         <li *ngFor="let event of nextMonth"><!--   data-words="{{event.name}}"-->
           <a routerLink="/event/{{event.id}}"
-             class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+             class="btn order-btn-face fix-w-m">Купить билет</a>
           <div class="info">
             <div class="date">
               <span class="time">{{event.startEvent}}</span><br>
@@ -164,7 +164,7 @@
     <!--end block bill-month-->
 
     <!--block bill-month-->
-    <div class="block bill-month">
+    <div class="block bill-month" *ngIf="nextNextMonth?.length > 0">
       <h1>
         {{nextNextMonthName}}
         <i class="h-line"></i>
@@ -172,7 +172,7 @@
       <ul class="event-list">
         <li *ngFor="let event of nextNextMonth"><!--   data-words="{{event.name}}"-->
           <a routerLink="/event/{{event.id}}"
-             class="btn order-btn-face fix-w-m">Билеты от {{event.cost}}</a>
+             class="btn order-btn-face fix-w-m">Купить билет</a>
           <div class="info">
             <div class="date">
               <span class="time">{{event.startEvent}}</span><br>
@@ -193,21 +193,7 @@
   <!--end main content-->
 
   <!--sidebar-->
-  <div class="right-sidebar" style="height: 7716px;">
-
-    <!--block find-event-->
-    <!--
-    <div class="block find-event side-info">
-        <h4>НАйТИ КОНЦЕРТ</h4>
-        <p>Начните вводить название группы</p>
-        <input type="text" class="input-medium" placeholder="Найти"/>
-    </div>
-    -->
-    <!--end block find-event-->
-    <!--<div class="block last-gallery">
-                    <h4><a href="https://republic-club.by/photo">ТРАНСЛЯЦИЯ ПРЕМИИ ЗОЛОТАЯ ГОРГУЛИЯ</a></h4>
-        <iframe width="100%" src="https://www.youtube.com/embed/Hh1n_JEmzNQ?rel=0" frameborder="0" allowfullscreen></iframe>
-    </div>-->
+  <div class="right-sidebar" *ngIf="innerWidth > 1000">
 
     <!--block last gallery-->
     <div class="block last-gallery">
@@ -273,6 +259,13 @@
             </div>
     -->
     <!-- VK Widget -->
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?137"></script>
+
+    <!-- VK Widget -->
+    <div id="vk_groups" class="block"></div>
+    <script type="text/javascript">
+      VK.Widgets.Group("vk_groups", {mode: 3, width: "319"}, 18143442);
+    </script>
   </div>
   <!--end sidebar-->
 

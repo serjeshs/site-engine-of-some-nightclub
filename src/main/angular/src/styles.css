@@ -2,8 +2,6 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~open-iconic/font/css/open-iconic-bootstrap.css';
 
-/*@font-face{font-family:'Humanist';src:url('fonts/Humanist.otf');src:local('Humanist 521 BT'),url('fonts/Humanist.eot?') format('eot'),url('../fonts/Humanist.ttf') format('truetype')}@font-face{font-family:'Humanist-bold';src:url('../fonts/Humanist-bold.otf');src:local('Humanist 521 BT Bold'),url('Humanist-bold.eot?') format('eot'),url('../fonts/Humanist-bold.ttf') format('truetype')}@font-face{font-family:'Baskerville';src:url('../fonts/Baskerville.otf');src:local('Baskerville'),url('Baskerville.eot?') format('eot'),url('../fonts/Baskerville.ttf') format('truetype')}@font-face{font-family:'Baskervilleit';src:url('../fonts/Baskervilleit.otf');src:local('Baskervilleit'),url('../fonts/Baskervilleit.ttf') format('truetype'),url('Baskervilleit.eot?') format('eot')}.f-h{font-family:'Humanist'}.f-h-b{font-family:'Humanist-bold'}.f-b{font-family:'Baskerville'}.f-b-i{font-family:'Baskervilleit'}*/
-
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
   margin: 0;
   padding: 0
@@ -179,7 +177,6 @@ body {
   font-family: 'Baskerville';
   font-size: 16px;
   line-height: 20px;
-  min-width: 1160px;
   position: relative
 }
 
@@ -277,7 +274,6 @@ body {
   right: 15px;
   width: 40px;
   height: 54px;
-  /*background: url('http://16tons.ru/images/tons-weight.svg') 50% 50% no-repeat*/
 }
 
 .top-banner-main-container .bx-controls {
@@ -308,102 +304,6 @@ body {
 
 .top-banner-main-container .bx-controls .bx-pager .bx-pager-item a.active, .top-banner-main-container .bx-controls .bx-pager .bx-pager-item a.active:hover {
   background: #db3727
-}
-
-.header {
-  padding: 0 0 10px;
-  background: url('/assets/img/logo.svg') 50% 0 no-repeat #ffffff;
-  background-size: auto 200px
-}
-
-.header .container {
-  text-align: center
-}
-
-.header .logo {
-  width: 36%;
-  float: left;
-  position: relative;
-  top: -13px;
-}
-
-.header .logo a {
-  margin: 0 auto;
-  display: block;
-  width: 400px;
-  height: 140px;
-  /*background: url('http://.ru/images/logo.svg') 50% 50% no-repeat;*/
-  background-size: 400px auto;
-  white-space: nowrap;
-  text-indent: 2000px;
-  overflow: hidden
-}
-
-.header .header-phone {
-  width: 30%;
-  float: left;
-  font-size: 10px;
-  line-height: 25px;
-  color: #b0b0b0;
-  font-family: Humanist;
-  text-align: center;
-  padding-left: 0;
-  padding-right: 2%;
-  padding-top: 38px
-}
-
-.header .header-phone span.title, .header .main-menu-panel ul li a {
-  font-family: Humanist-bold;
-  text-transform: uppercase;
-  letter-spacing: 1.7px
-}
-
-.header .header-phone:first-child {
-  padding-left: 2%;
-  padding-right: 0
-}
-
-.header .header-phone span.title {
-  display: block;
-  line-height: 20px;
-  color: #555555
-}
-
-.header .header-phone a.phone {
-  font-size: 20px;
-  color: #cf7a19
-}
-
-.header .header-phone a.phone:hover {
-  color: #b0b0b0
-}
-
-.header .main-menu-panel {
-  margin-top: -7px;
-  padding: 15px 30px 5px;
-  height: 30px;
-  border-top: 1px solid #545454;
-  display: inline-block
-}
-
-.header .main-menu-panel ul {
-  height: 30px
-}
-
-.header .main-menu-panel ul li {
-  display: inline-block
-}
-
-.header .main-menu-panel ul li a {
-  display: block;
-  padding: 0 12px;
-  font-size: 15px;
-  line-height: 30px;
-  color: #b0b0b0
-}
-
-.header .main-menu-panel ul li a:hover, .header .main-menu-panel ul li.active a {
-  color: #fff
 }
 
 .no-banner {
@@ -865,39 +765,6 @@ body {
   border-top: 1px solid #c8c8c8
 }
 
-.right-sidebar .social-links {
-  background: #f0f0f0;
-}
-
-.right-sidebar .social-links ul {
-  height: 30px
-}
-
-.right-sidebar .social-links ul li {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 0 4px
-}
-
-.right-sidebar .social-links ul li a {
-  display: inline-block;
-  width: 30px;
-  height: 30px
-}
-
-.right-sidebar .social-links ul li a.facebook {
-  background: url("http://16tons.ru/images/fb-2x.png") 0 0
-}
-
-.right-sidebar .social-links ul li a.twitter {
-  background: url("http://16tons.ru/images/social-links.png") -30px 0
-}
-
-.right-sidebar .social-links ul li a.vk {
-  background: url("http://16tons.ru/images/social-links.png") -90px 0
-}
-
 .block.side-info {
   text-align: center
 }
@@ -1323,101 +1190,4 @@ body {
 
 .order-btn-soon:hover {
   color: #c8c8c8
-}
-
-@media (max-width: 1200px) {
-  body {
-    min-width: 980px
-  }
-
-  .header .logo a {
-    margin-left: -24px;
-  }
-
-  .header .header-phone {
-    padding-left: 2%;
-    padding-right: 0;
-  }
-
-  .header .header-phone:first-child {
-    padding-left: 0;
-    padding-right: 2%;
-  }
-
-  .container {
-    max-width: 980px
-  }
-
-  .main-content {
-    width: 59.1%
-  }
-
-  .right-sidebar {
-    width: 40.9%
-  }
-
-  .block.info-page .media-box {
-    padding: 20px 0
-  }
-
-  .block.info-page .media-box img {
-    max-width: 497px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px
-  }
-
-  .block.event-page {
-    padding: 20px 40px
-  }
-
-  .block.gallery-page {
-    padding: 20px 40px
-  }
-
-  .block.gallery-page .foto-list {
-    padding: 20px 69px 0
-  }
-
-  .block.gallery-page .gallery-list ul li {
-    padding: 0 19px 40px 0
-  }
-
-  .block.bill-day .event {
-    width: 498px
-  }
-
-  .block.bill-farther .event .info .tickets .tickets-list {
-    width: 180px
-  }
-
-  .block.bill-month ul.event-list li .info {
-    width: 320px
-  }
-
-  .block.menu-page ul.menu-list span.title {
-    max-width: 400px
-  }
-
-  .block.order-page .order-step {
-    padding: 40px
-  }
-
-  .block.order-page .ticket-select .row .ticket-quantity {
-    padding-left: 220px
-  }
-
-  .media-box iframe {
-    width: 500px;
-    margin-bottom: 20px;
-  }
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-
-  .right-sidebar .social-links ul li a.facebook {
-    background: url("http://16tons.ru/images/fb-2x.png") 0 0
-  }
-
 }
