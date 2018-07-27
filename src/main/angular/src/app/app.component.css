@@ -157,3 +157,8 @@ nav a {
 .mobile-header .mobile-header-phone a.phone:hover {
   color: #b0b0b0
 }
+
+.mobile-menu-navigation a {
+  text-align: center;
+  display: block;
+}
