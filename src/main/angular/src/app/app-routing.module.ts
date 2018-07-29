@@ -20,7 +20,7 @@ import {PhotoReportComponent} from "./admin/photo-report/photo-report.component"
 import {DiscoComponent} from "./disco/disco.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/afisha', pathMatch: 'full'},
+  {path: '', component: EventsComponent},
   {path: 'afisha', component: EventsComponent},
   {path: 'menu', component: MenuComponent},
   {path: 'media', component: MediaComponent},
