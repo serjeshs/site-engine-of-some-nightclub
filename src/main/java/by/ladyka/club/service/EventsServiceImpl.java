@@ -49,7 +49,7 @@ public class EventsServiceImpl implements EventsService {
 	@Override
 	public List<EventRelevantDTO> getRelevantEvents(AppUser user) {
 		return eventRepository
-				.findAllByStartEventBetween(now().plusMonths(1L), now().plusMonths(2L))
+				.findByRecommendationAndStartEventGreaterThanOrderByStartEventAsc(Boolean.TRUE, LocalDateTime.now().minusHours(5L))
 				.stream()
 				.map(converterEventService::toEventRelevantDto)
 				.collect(Collectors.toList());

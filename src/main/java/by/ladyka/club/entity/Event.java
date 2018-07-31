@@ -32,6 +32,7 @@ public class Event extends AbstractEntity {
 	private String coverUri;
 	private String alias;
 	private String buyTicketUrl;
+	private Boolean recommendation;
 
 	public Event(Long eventId) {
 		setId(eventId);

@@ -13,5 +13,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 	List<Event> findAllByStartEventBetween(LocalDateTime after, LocalDateTime before);
 	List<Event> findAllByStartEventGreaterThanOrderByStartEventAsc(LocalDateTime time);
 	List<Event> findByDescriptionContainingOrNameContainingOrCostTextContaining(String description, String name, String costText, Pageable pg);
+	List<Event> findByRecommendationAndStartEventGreaterThanOrderByStartEventAsc(Boolean recommendation, LocalDateTime time);
 	long countByDescriptionContainingOrNameContainingOrCostTextContaining(String description, String name, String costText);
 }

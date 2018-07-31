@@ -27,4 +27,5 @@ public class EventDTO {
 	private String name;
 	private String coverUri;
 	private String buyTicketUrl;
+	private Boolean recommendation;
 }

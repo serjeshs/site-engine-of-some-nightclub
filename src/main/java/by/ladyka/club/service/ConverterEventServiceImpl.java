@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConverterEventServiceImpl implements ConverterEventService {
 
-	private final static Logger logger = LoggerFactory.getLogger(ConverterEventServiceImpl.class);
-
 	@Override
 	public EventDTO toEventDto(Event entity) {
 		EventDTO eventDTO = new EventDTO();
@@ -26,6 +24,7 @@ public class ConverterEventServiceImpl implements ConverterEventService {
 		eventDTO.setCostText(entity.getCostText());
 		eventDTO.setCoverUri(entity.getCoverUri());
 		eventDTO.setBuyTicketUrl(entity.getBuyTicketUrl());
+		eventDTO.setRecommendation(entity.getRecommendation());
 		return eventDTO;
 	}
 

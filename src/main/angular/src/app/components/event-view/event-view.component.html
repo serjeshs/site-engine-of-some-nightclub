@@ -114,6 +114,18 @@
                  placeholder="Ссылка на страницу покупки билетов"
           >
         </div>
+        <div class="form-group">
+          <label for="recommendation">Отображать в рекомендациях</label>
+          <input
+            type="checkbox"
+            class="form-control checkbox"
+            id="recommendation"
+            [(ngModel)]="event.recommendation"
+            name="recommendation"
+            #recommendation="ngModel"
+
+          >
+        </div>
         <button type="submit" (click)="saveEvent(event)" class="btn btn-primary">Сохранить</button>
       </div>
 

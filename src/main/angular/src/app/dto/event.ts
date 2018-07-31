@@ -8,6 +8,7 @@ export class Event {
   name: string;
   coverUri: string;
   buyTicketUrl: string;
+  recommendation: string;
 }
 
 export class EventListResult {
