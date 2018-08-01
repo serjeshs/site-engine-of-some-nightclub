@@ -19,7 +19,7 @@ nav a {
 
 .header .logo {
   width: 36%;
-  float: left;
+  /*float: left;*/
   position: relative;
   top: -13px;
 }
@@ -36,8 +36,6 @@ nav a {
 }
 
 .header .header-phone {
-  width: 30%;
-  float: left;
   font-size: 10px;
   line-height: 25px;
   color: #b0b0b0;
