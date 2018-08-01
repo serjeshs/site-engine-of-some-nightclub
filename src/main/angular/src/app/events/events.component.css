@@ -1,0 +1,21 @@
+.right-sidebar {
+  width: 34.5%;
+  float: right;
+  padding: 20px 0 60px;
+  border-left: 1px solid #666;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -khtml-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+.right-sidebar .block.b-line {
+  border-bottom: 1px solid #c8c8c8;
+  margin-bottom: 20px;
+  padding-bottom: 40px
+}
+
+.right-sidebar .block h4 {
+  color: #cf7a19
+}

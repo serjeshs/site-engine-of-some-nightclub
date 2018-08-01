@@ -1,0 +1,20 @@
+.event-title {
+  text-align: center;
+  font-family: 'Humanist';
+  padding-bottom: 20px
+}
+
+.event-title i.h-line {
+  margin-top: 20px
+}
+
+.event-title h4 {
+  padding-bottom: 30px;
+  text-align: center;
+  color: #cf7a19
+}
+
+.event-title .date {
+  display: block;
+  color: #cf7a19
+}

@@ -28,7 +28,7 @@ nav a {
   margin: 0 auto;
   display: block;
   width: 400px;
-  height: 140px;
+  height: 200px;
   background-size: 400px auto;
   white-space: nowrap;
   text-indent: 2000px;
@@ -100,7 +100,6 @@ nav a {
 .header .main-menu-panel ul li a:hover, .header .main-menu-panel ul li.active a {
   color: #fff
 }
-
 
 /*****************************************************/
 .mobile-header {
