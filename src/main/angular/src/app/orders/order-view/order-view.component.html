@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="mt-1"><h3>Номер заказа </h3></div>
+  <p class="lead"> {{order.id}}</p>
+  <div class="mt-1"><h3>Имя </h3></div>
+  <p class="lead"> {{order.name}}</p>
+  <div class="mt-1"><h3>Email </h3></div>
+  <p class="lead"> {{order.email}}</p>
+  <div class="mt-1"><h3>Номер мобильного </h3></div>
+  <p class="lead"> {{order.phone}}</p>
+  <div class="mt-1"><h3>Событие </h3></div>
+  <p class="lead"> {{order.eventName}}</p>
+  <div class="mt-1"><h3>Ориентировочное время прибытия </h3></div>
+  <p class="lead"> {{order.arrivalTime}}</p>
+  <div class="mt-1"><h3>Гостей </h3></div>
+  <p class="lead"> {{order.people}}</p>
+  <div class="mt-1"><h3>Заказ </h3></div>
+  <div *ngFor="let categoryMain of menuCategories" class="lead">
+    <h1>
+      {{categoryMain.name}}
+      <i class="h-line"></i>
+      <span class="desc">{{categoryMain.description}}</span>
+    </h1>
+    <div *ngFor="let category of categoryMain.categories">
+      <h3>{{category.name}}</h3>
+      <ul class="info-list menu-list">
+        <li *ngFor="let item of category.menuItems">
+                <span class="title" [hidden]="!(item.count > 0)">
+                  <b>{{item.name}}</b>
+                  <br>
+                  <i>{{item.description}}</i>
+                  <br>
+                  {{item.descriptionProportions}}
+                </span>
+          <span class="price" [hidden]="!(item.count > 0)">
+                  <b>
+                    {{item.price}} BYN
+                  </b>
+                  /
+                  {{item.count}} штук
+                </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-1"><h3>Столик </h3></div>
+  <p class="lead"> {{order.tableNumber}}</p>
+  <div class="mt-1"><h3>Коментарий к заказу </h3></div>
+  <p class="lead"> {{order.description}}</p>
+</div>
