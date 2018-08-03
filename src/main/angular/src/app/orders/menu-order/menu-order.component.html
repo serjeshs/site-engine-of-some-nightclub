@@ -1,34 +1,37 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
+  <!--{{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
+<!--</button>-->
+<mat-horizontal-stepper [linear]="isLinear" #stepper *ngIf="!orderComplete">
   <mat-step [stepControl]="menuFormGroup">
     <form [formGroup]="menuFormGroup">
-      <app-order-food></app-order-food>
+      <ng-template matStepLabel>Просмотр меню и выбор позиций</ng-template>
+      <app-order-food [menuCategories]="menuCategories" [order]="order"></app-order-food>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext>Далее</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="orderDetailsFormGroup">
     <form [formGroup]="orderDetailsFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
+      <ng-template matStepLabel>Общая информация о пользователе</ng-template>
+      <app-order-edit [order]="order" [events]="events"></app-order-edit>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext>Далее</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
+    <ng-template matStepLabel>Превью заказа</ng-template>
+    <app-order-view [menuCategories]="menuCategories" [order]="order" ></app-order-view>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button matStepperPrevious>Назад</button>
+      <!--<button mat-button (click)="stepper.reset()">Reset</button>-->
+      <button mat-button (click)="submitOrder()">Заказать</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+
+
+<h1 *ngIf="orderComplete">Спасибо за заказ</h1>

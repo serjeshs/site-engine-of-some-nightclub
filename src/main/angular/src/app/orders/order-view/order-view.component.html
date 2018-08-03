@@ -15,14 +15,14 @@
   <p class="lead"> {{order.people}}</p>
   <div class="mt-1"><h3>Заказ </h3></div>
   <div *ngFor="let categoryMain of menuCategories" class="lead">
-    <h1>
+    <h1 *ngIf="showCategory(categoryMain)">
       {{categoryMain.name}}
       <i class="h-line"></i>
       <span class="desc">{{categoryMain.description}}</span>
     </h1>
     <div *ngFor="let category of categoryMain.categories">
-      <h3>{{category.name}}</h3>
-      <ul class="info-list menu-list">
+      <h3 *ngIf="showCategory(category)">{{category.name}}</h3>
+      <ul *ngIf="showCategory(category)" class="info-list menu-list">
         <li *ngFor="let item of category.menuItems">
                 <span class="title" [hidden]="!(item.count > 0)">
                   <b>{{item.name}}</b>
@@ -31,7 +31,7 @@
                   <br>
                   {{item.descriptionProportions}}
                 </span>
-          <span class="price" [hidden]="!(item.count > 0)">
+                <span class="price" [hidden]="!(item.count > 0)">
                   <b>
                     {{item.price}} BYN
                   </b>

@@ -71,6 +71,10 @@ import {PhotoReportComponent} from './admin/photo-report/photo-report.component'
 import {FileSelectDirective} from "ng2-file-upload";
 import {PhotoReportService} from "./services/photo-report/photo-report.service";
 import {DiscoComponent} from './disco/disco.component';
+import { MenuOrderComponent } from './orders/menu-order/menu-order.component';
+import { OrderViewComponent } from './orders/order-view/order-view.component';
+import { OrderEditComponent } from './orders/order-edit/order-edit.component';
+import { OrderFoodComponent } from './orders/order-food/order-food.component';
 
 @NgModule({
   imports: [
@@ -138,7 +142,11 @@ import {DiscoComponent} from './disco/disco.component';
     NewsPageComponent,
     PageLoginComponent,
     PhotoReportComponent,
-    DiscoComponent
+    DiscoComponent,
+    MenuOrderComponent,
+    OrderViewComponent,
+    OrderEditComponent,
+    OrderFoodComponent
   ],
   providers: [
     EventsService,

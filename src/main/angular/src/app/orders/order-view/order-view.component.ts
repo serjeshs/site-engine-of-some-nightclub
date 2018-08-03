@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {MenuOrder} from "../../dto/menuOrder";
+import {MenuCategoryDto} from "../../dto/menuCategoryDto";
 
 @Component({
   selector: 'app-order-view',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderViewComponent implements OnInit {
 
-  constructor() { }
+  @Input() order: MenuOrder = new MenuOrder();
+  @Input() menuCategories: MenuCategoryDto[] = [];
+
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  showCategory(category: MenuCategoryDto) {
+    let show = false;
+    for (let c of category.categories) {
+      if (this.showCategory(c)) {
+        return true;
+      }
+    }
+    for (let menuItem of category.menuItems) {
+      if (menuItem.count.valueOf() > 0)
+        return true;
+    }
+    return show;
+  }
 }

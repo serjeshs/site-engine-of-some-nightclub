@@ -18,11 +18,14 @@ import {FeedbackComponent} from "./feedback/feedback.component";
 import {MenuEditorComponent} from "./admin/menu-editor/menu-editor.component";
 import {PhotoReportComponent} from "./admin/photo-report/photo-report.component";
 import {DiscoComponent} from "./disco/disco.component";
+import {MenuOrderComponent} from "./orders/menu-order/menu-order.component";
 
 const routes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'afisha', component: EventsComponent},
+  {path: 'null', component: EventsComponent},
   {path: 'menu', component: MenuComponent},
+  {path: 'orders', component: MenuOrderComponent},
   {path: 'media', component: MediaComponent},
   {path: 'news', component: NewsComponent},
   {path: 'club', component: ClubComponent},

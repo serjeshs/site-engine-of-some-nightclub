@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {MenuCategoryDto} from "../../dto/menuCategoryDto";
+import {MenuItemPriceDto} from "../../dto/menuItemPriceDto";
+import {MenuOrder} from "../../dto/menuOrder";
 
 @Component({
   selector: 'app-order-food',
@@ -6,10 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-food.component.css']
 })
 export class OrderFoodComponent implements OnInit {
-
+  @Input() menuCategories: MenuCategoryDto[];
+  @Input() order: MenuOrder;
   constructor() { }
 
   ngOnInit() {
   }
 
+  increment(item: MenuItemPriceDto) {
+    item.count = item.count + 1;
+    this.storeCountInModel(item);
+  }
+
+  decrement(item: MenuItemPriceDto) {
+    item.count = item.count - 1;
+    if (item.count < 0) {
+      item.count = 0;
+    }
+    this.storeCountInModel(item);
+  }
+
+  private storeCountInModel(item: MenuItemPriceDto) {
+    this.order.food[item.itemPriceId] = item.count;
+  }
 }
