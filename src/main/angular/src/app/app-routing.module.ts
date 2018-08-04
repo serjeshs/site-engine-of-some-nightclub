@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MenuComponent} from "./menu/menu.component";
 import {EventsComponent} from "./events/events.component";
 import {ClubComponent} from "./club/club.component";
 import {MediaComponent} from "./media/media.component";
@@ -24,7 +23,6 @@ const routes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'afisha', component: EventsComponent},
   {path: 'null', component: EventsComponent},
-  {path: 'menu', component: MenuComponent},
   {path: 'orders', component: MenuOrderComponent},
   {path: 'media', component: MediaComponent},
   {path: 'news', component: NewsComponent},

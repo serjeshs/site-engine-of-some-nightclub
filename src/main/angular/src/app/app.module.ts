@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {EventsComponent} from './events/events.component';
 import {EventsService} from './events.service';
-import {MenuComponent} from './menu/menu.component';
 import {MenuService} from './menu.service';
 import {FooterComponent} from './footer/footer.component';
 import {ClubComponent} from './club/club.component';
@@ -136,7 +135,6 @@ import { OrderFoodComponent } from './orders/order-food/order-food.component';
     FeedbackComponent,
     FooterComponent,
     MediaComponent,
-    MenuComponent,
     MenuEditorComponent,
     NewsComponent,
     NewsPageComponent,
