@@ -6,18 +6,21 @@
     <h3>{{category.name}}</h3>
     <ul class="info-list menu-list">
       <li *ngFor="let item of category.menuItems">
+
+        <span class="club-order-area">
+          <div class="club-order-btn" title="Увеличить кол-во элементов"
+               (click)="increment(item)">+</div>
+          <div class="club-order-count">
+            {{item.count}}
+          </div>
+          <div class="club-order-btn" title="Уменьшить кол-во элементов"
+               (click)="decrement(item)">-</div>
+        </span>
         <span class="title">
           <b>{{item.name}}</b><br>
           <i>{{item.description}}</i><br>
-          {{item.descriptionProportions}}
-        </span>
-        <span class="price"><b>
-          {{item.price}} BYN</b>
-          <div class="btn" title="Увеличить кол-во элементов"
-               (click)="increment(item)">+</div>
-          {{item.count}}
-          <div class="btn" title="Уменьшить кол-во элементов"
-               (click)="decrement(item)">-</div>
+          {{item.descriptionProportions}}<br>
+          <b>{{item.price}} BYN</b>
         </span>
       </li>
     </ul>

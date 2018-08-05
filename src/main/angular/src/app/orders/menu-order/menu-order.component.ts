@@ -33,6 +33,7 @@ export class MenuOrderComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
     this.order.food = {};
+    this.order.event = 0;
     this.retrieveMenuData()
   }
 
