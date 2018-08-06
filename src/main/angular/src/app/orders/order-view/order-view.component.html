@@ -14,6 +14,7 @@
   <div class="mt-1"><h3>Гостей </h3></div>
   <p class="lead"> {{order.people}}</p>
   <div class="mt-1"><h3>Заказ </h3></div>
+  <p class="lead">Всего {{totalMoney}} рублей</p>
   <div *ngFor="let categoryMain of menuCategories" class="lead">
     <h1 *ngIf="showCategory(categoryMain)">
       {{categoryMain.name}}

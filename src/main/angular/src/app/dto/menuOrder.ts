@@ -13,5 +13,6 @@ export class MenuOrder {
   tableNumber: number;
   eventName: string;
   description:string;
+  foodPrice: any;
 }
 

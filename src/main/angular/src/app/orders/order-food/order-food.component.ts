@@ -31,5 +31,14 @@ export class OrderFoodComponent implements OnInit {
 
   private storeCountInModel(item: MenuItemPriceDto) {
     this.order.food[item.itemPriceId] = item.count;
+    this.order.foodPrice[item.itemPriceId] = item.price;
+  }
+
+  get totalMoney() {
+    let total = 0;
+    for (let foodKey in this.order.food) {
+      total += this.order.foodPrice[foodKey] * this.order.food[foodKey];
+    }
+    return total;
   }
 }
