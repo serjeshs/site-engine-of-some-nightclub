@@ -69,11 +69,12 @@ import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
 import {PhotoReportComponent} from './admin/photo-report/photo-report.component';
 import {FileSelectDirective} from "ng2-file-upload";
 import {PhotoReportService} from "./services/photo-report/photo-report.service";
-import {DiscoComponent} from './disco/disco.component';
+import {DiscoComponent} from './pages/disco/disco.component';
 import { MenuOrderComponent } from './orders/menu-order/menu-order.component';
 import { OrderViewComponent } from './orders/order-view/order-view.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 import { OrderFoodComponent } from './orders/order-food/order-food.component';
+import { CashboxComponent } from './pages/cashbox/cashbox.component';
 
 @NgModule({
   imports: [
@@ -144,7 +145,8 @@ import { OrderFoodComponent } from './orders/order-food/order-food.component';
     MenuOrderComponent,
     OrderViewComponent,
     OrderEditComponent,
-    OrderFoodComponent
+    OrderFoodComponent,
+    CashboxComponent
   ],
   providers: [
     EventsService,

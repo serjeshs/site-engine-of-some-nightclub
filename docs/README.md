@@ -1,3 +1,5 @@
-Versions:
-0.3.1
-* new booking table and food module
+Site engine of the night club. Minsk.
+
+Pages : 
+
+* Change log.

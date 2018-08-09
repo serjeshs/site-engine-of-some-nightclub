@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {EventsService} from "../events.service";
-import {Event} from "../dto/event";
+import {EventsService} from "../../events.service";
+import {Event} from "../../dto/event";
 
 @Component({
   selector: 'app-disco',

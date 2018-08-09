@@ -16,8 +16,9 @@ import {PageLoginComponent} from "./page-login/page-login.component";
 import {FeedbackComponent} from "./feedback/feedback.component";
 import {MenuEditorComponent} from "./admin/menu-editor/menu-editor.component";
 import {PhotoReportComponent} from "./admin/photo-report/photo-report.component";
-import {DiscoComponent} from "./disco/disco.component";
+import {DiscoComponent} from "./pages/disco/disco.component";
 import {MenuOrderComponent} from "./orders/menu-order/menu-order.component";
+import {CashboxComponent} from "./pages/cashbox/cashbox.component";
 
 const routes: Routes = [
   {path: '', component: EventsComponent},
@@ -40,7 +41,8 @@ const routes: Routes = [
   {path: 'login', component: PageLoginComponent},
   {path: 'feedback', component: FeedbackComponent},
   {path: 'admin-menu-editor', component: MenuEditorComponent},
-  {path: 'admin-photo-report', component: PhotoReportComponent}
+  {path: 'admin-photo-report', component: PhotoReportComponent},
+  {path: 'cashbox', component: CashboxComponent},
 ];
 
 @NgModule({
