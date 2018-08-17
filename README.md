@@ -1,4 +1,8 @@
 # site-engine-of-some-nightclub
+
+Info about project :
+https://ladyka.github.io/site-engine-of-some-nightclub/
+
 Fron part 
 
     npm install -g @angular/cli;
