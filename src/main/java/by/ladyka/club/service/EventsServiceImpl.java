@@ -31,7 +31,7 @@ public class EventsServiceImpl implements EventsService {
 	@Override
 	public List<EventDTO> getEventsBetween(LocalDateTime after, LocalDateTime before) {
 		return eventRepository
-				.findAllByStartEventBetween(after, before)
+				.findAllByStartEventBetweenAndVisibleTrue(after, before)
 				.stream()
 				.map(converterEventService::toEventDto)
 				.collect(Collectors.toList());
@@ -40,7 +40,7 @@ public class EventsServiceImpl implements EventsService {
 	@Override
 	public List<EventDTO> getEventsAfter(LocalDateTime time) {
 		return eventRepository
-				.findAllByStartEventGreaterThanOrderByStartEventAsc(time)
+				.findAllByStartEventGreaterThanAndVisibleTrueOrderByStartEventAsc(time)
 				.stream()
 				.map(converterEventService::toEventDto)
 				.collect(Collectors.toList());
@@ -49,7 +49,7 @@ public class EventsServiceImpl implements EventsService {
 	@Override
 	public List<EventRelevantDTO> getRelevantEvents(AppUser user) {
 		return eventRepository
-				.findByRecommendationAndStartEventGreaterThanOrderByStartEventAsc(Boolean.TRUE, LocalDateTime.now().minusHours(5L))
+				.findByRecommendationAndStartEventGreaterThanAndVisibleTrueOrderByStartEventAsc(Boolean.TRUE, LocalDateTime.now().minusHours(5L))
 				.stream()
 				.map(converterEventService::toEventRelevantDto)
 				.collect(Collectors.toList());
@@ -64,7 +64,7 @@ public class EventsServiceImpl implements EventsService {
 			direction = Sort.Direction.DESC;
 		}
 		Pageable pg = PageRequest.of(page, size, Sort.by(new Sort.Order(direction, sort)));
-		return eventRepository.findByDescriptionContainingOrNameContainingOrCostTextContaining(filter, filter, filter, pg).stream().map(event -> converterEventService.toEventDto(event)).collect(Collectors.toList());
+		return eventRepository.findByDescriptionContainingOrNameContainingOrCostTextContainingAndVisibleTrue(filter, filter, filter, pg).stream().map(event -> converterEventService.toEventDto(event)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -74,12 +74,15 @@ public class EventsServiceImpl implements EventsService {
 
 	@Override
 	public long getTotalEvents(String filter) {
-		return eventRepository.countByDescriptionContainingOrNameContainingOrCostTextContaining(filter, filter, filter);
+		return eventRepository.countByDescriptionContainingOrNameContainingOrCostTextContainingAndVisibleTrue(filter, filter, filter);
 	}
 
 	@Override
 	public void delete(Long id) {
-		eventRepository.deleteById(id);
+		eventRepository.findById(id).ifPresent(event -> {
+			event.setVisible(Boolean.FALSE);
+			eventRepository.save(event);
+		});
 	}
 
 	@Override

@@ -58,7 +58,7 @@ public class DiscoEventsService {
 	}
 
 	private List<Event> getAllByStartEventBetween(LocalDateTime startDiscoEvent) {
-		List<Event> days = eventRepository.findAllByStartEventBetween(startDiscoEvent, startDiscoEvent.plusHours(4L));
+		List<Event> days = eventRepository.findAllByStartEventBetweenAndVisibleTrue(startDiscoEvent, startDiscoEvent.plusHours(4L));
 		if (CollectionUtils.isEmpty(days)) {
 			return getAllByStartEventBetween(startDiscoEvent.minusWeeks(1L));
 		} else {

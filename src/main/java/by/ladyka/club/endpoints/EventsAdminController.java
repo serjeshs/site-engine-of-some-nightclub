@@ -3,7 +3,6 @@ package by.ladyka.club.endpoints;
 import by.ladyka.club.dto.BaseListResultDto;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.service.EventsService;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -41,7 +40,6 @@ public class EventsAdminController {
 	public @ResponseBody
 	ResponseEntity delete(Principal principal, HttpServletRequest httpServletRequest, Long id) {
 		Map<String, Object> r = new LinkedHashMap<>();
-
 		try {
 			eventsService.delete(id);
 			r.put("success", true);
