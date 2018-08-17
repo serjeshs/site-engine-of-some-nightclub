@@ -5,6 +5,7 @@ import {Observable, of as observableOf} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {MainEventPage} from "./dto/mainEventPage";
 import {Event, EventListResult} from "./dto/event";
+import {ResponseEntity} from "./dto/ResponseEntity";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -62,7 +63,7 @@ export class EventsService {
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
+      alert(operation + ' fail');
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
@@ -73,5 +74,12 @@ export class EventsService {
 
   private log(message: string) {
     console.log(message);
+  }
+
+  deleteEvent(eventId: number) {
+    const url = this.eventsRestAdminUrl + '?id=' + eventId;
+    return this.http.delete<ResponseEntity>(url, httpOptions).pipe(
+      catchError(this.handleError('deleteEvent', new ResponseEntity()))
+    );
   }
 }

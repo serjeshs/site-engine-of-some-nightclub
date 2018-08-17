@@ -25,4 +25,6 @@ public interface EventsService {
 	EventDTO getEvent(Long id);
 
 	long getTotalEvents(String filter);
+
+	void delete(Long id);
 }

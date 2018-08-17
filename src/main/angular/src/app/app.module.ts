@@ -75,6 +75,7 @@ import { OrderViewComponent } from './orders/order-view/order-view.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 import { OrderFoodComponent } from './orders/order-food/order-food.component';
 import { CashboxComponent } from './pages/cashbox/cashbox.component';
+import {ToastModule} from "ng6-toastr";
 
 @NgModule({
   imports: [
@@ -120,7 +121,8 @@ import { CashboxComponent } from './pages/cashbox/cashbox.component';
     MatTooltipModule,
     MatTreeModule,
     ReactiveFormsModule,
-    DlDateTimePickerDateModule
+    DlDateTimePickerDateModule,
+    ToastModule.forRoot()
   ],
   declarations: [
     AdminComponent,

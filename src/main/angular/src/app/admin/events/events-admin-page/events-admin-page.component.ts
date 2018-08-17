@@ -38,4 +38,13 @@ export class EventsAdminPageComponent implements OnInit {
       this.event = event;
     });
   }
+
+  deleteEvent(eventId: number) {
+    this.eventsService.deleteEvent(eventId)
+      .subscribe(data=> {
+        if (!!data.success) {
+          alert("Удалено!")
+        }
+      });
+  }
 }

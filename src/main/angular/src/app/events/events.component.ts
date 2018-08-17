@@ -59,7 +59,7 @@ export class EventsComponent implements OnInit {
 
   private getEvents() {
     function processMonthEvents(event) {
-      event.startEvent = moment(event.startEvent).format('D MMMM');
+      event.startEvent = moment(event.startEvent).format('D MMMM YYYY');
       event.endEvent = moment(event.endEvent).format('dddd');
     }
 
