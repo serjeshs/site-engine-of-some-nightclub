@@ -36,7 +36,7 @@ public class EventsAdminController {
 		return new ResponseEntity<EventDTO>(eventsService.save(event), HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.DELETE)
 	public @ResponseBody
 	ResponseEntity delete(Principal principal, HttpServletRequest httpServletRequest, Long id) {
 		Map<String, Object> r = new LinkedHashMap<>();
