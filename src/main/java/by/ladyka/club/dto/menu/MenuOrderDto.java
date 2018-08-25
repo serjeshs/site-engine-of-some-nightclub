@@ -15,6 +15,7 @@ import java.util.UUID;
 public class MenuOrderDto {
 	private Long id;
 	private Map<Long, Integer> food;
+	private Map<Long, Double> foodPrice;
 	private String name;
 	private String email;
 	private String phone;

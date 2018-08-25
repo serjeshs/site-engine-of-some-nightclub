@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MenuOrder} from "../../dto/menuOrder";
 import {MenuCategoryDto} from "../../dto/menuCategoryDto";
+import {MenuItemPriceDto} from "../../dto/menuItemPriceDto";
 
 @Component({
   selector: 'app-order-view',
@@ -39,5 +40,9 @@ export class OrderViewComponent implements OnInit {
       total += this.order.foodPrice[foodKey] * this.order.food[foodKey];
     }
     return total;
+  }
+
+  getCount(item: MenuItemPriceDto) {
+    return this.order.food[item.itemPriceId];
   }
 }

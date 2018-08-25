@@ -1,4 +1,4 @@
-<div class="container" [(ngModel)]="myMenuCategories">
+<div class="container">
   <div class="mt-1"><h3>Номер заказа </h3></div>
   <p class="lead"> {{order.id}}</p>
   <div class="mt-1"><h3>Имя </h3></div>
@@ -37,7 +37,8 @@
                     {{item.price}} BYN
                   </b>
                   /
-                  {{item.count}} штук
+                  <!--{{item.count}} штук-->
+                  {{getCount(item)}} штук
                 </span>
         </li>
       </ul>

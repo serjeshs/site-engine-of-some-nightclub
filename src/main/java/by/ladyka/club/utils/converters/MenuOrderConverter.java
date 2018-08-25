@@ -26,8 +26,13 @@ public class MenuOrderConverter {
 		if (dependencies) {
 			final List<MenuItemPricesHasOrders> itemPricesHasOrders = entity.getItemPricesHasOrders();
 			Map<Long, Integer> food = new LinkedHashMap<>();
-			itemPricesHasOrders.forEach(item -> food.put(item.getItemPrice().getId(), item.getCount()));
+			Map<Long, Double> foodPrice = new LinkedHashMap<>();
+			itemPricesHasOrders.forEach(item -> {
+				food.put(item.getItemPrice().getId(), item.getCount());
+				foodPrice.put(item.getItemPrice().getId(), item.getItemPrice().getValue().doubleValue());
+			});
 			dto.setFood(food);
+			dto.setFoodPrice(foodPrice);
 			dto.setEvent(entity.getEvent().getId());
 		}
 		return dto;
