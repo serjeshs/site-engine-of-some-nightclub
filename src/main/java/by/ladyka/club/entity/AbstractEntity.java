@@ -1,5 +1,6 @@
 package by.ladyka.club.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,5 +26,5 @@ public class AbstractEntity {
 	@LastModifiedDate
 	private LocalDateTime lastModifiedDate;
 
-	private Boolean visible;
+	private Boolean visible = Boolean.TRUE;
 }

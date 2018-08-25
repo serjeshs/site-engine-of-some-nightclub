@@ -1,14 +1,17 @@
 package by.ladyka.club.entity.menu;
 
+import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.entity.AbstractEntity;
 import by.ladyka.club.entity.Event;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 
@@ -33,4 +36,11 @@ public class MenuOrder extends AbstractEntity {
 	private String description;
 	private Integer tableNumber;
 
+	@Column(name = "uuid", unique = true, nullable = false)
+	private String uuid = UUID.randomUUID().toString();
+	private String token;
+
+	//	@Type(GatewayStatus.class)
+	private String payStatus;
+	private String uid;
 }

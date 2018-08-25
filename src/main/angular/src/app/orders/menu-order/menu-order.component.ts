@@ -60,8 +60,22 @@ export class MenuOrderComponent implements OnInit {
   private submitOrder(){
     this.menuService.storeOrder(this.order)
       .subscribe(response => {
+        this.order = response;
         this.orderComplete = true;
-
       });
+  }
+
+  payOrder() {
+    this.menuService.storeOrder(this.order)
+      .subscribe(response => {
+        if (response.id > 0) {
+          this.order = response;
+          const url = "/api/order/bepaid/pay/" + this.order.id;
+          window.open(url, '_blank').focus();
+        } else {
+          debugger;
+        }
+      });
+
   }
 }

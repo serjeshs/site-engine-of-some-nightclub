@@ -114,4 +114,9 @@ export class MenuService {
     return this.http.post<ResponseEntity>(url, JSON.stringify(itemPosition), httpOptions)
       .pipe();
   }
+
+  getOrderByUuid(uuid: string) : Observable<MenuOrder> {
+    const url = '/api/private/orders/' + uuid;
+    return this.http.get<MenuOrder>(url).pipe();
+  }
 }

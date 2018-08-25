@@ -1,6 +1,6 @@
 package by.ladyka.club.service;
 
-import by.ladyka.club.dto.menu.MenuCategoryDto;
+import by.ladyka.club.dto.menu  .MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuItemPriceDto;
 import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
@@ -58,7 +58,6 @@ public class MenuServiceImpl implements MenuService {
 		if ((dto.getParentId() != null) && (dto.getParentId() > 0)) {
 			menuCategoryRepository.findById(dto.getParentId()).ifPresent(mc::setParent);
 		}
-		mc.setActive(true);
 		mc.setCategoryType(1);
 		mc.setDescription(dto.getDescription());
 		return convertToMenuCategoryDto(menuCategoryRepository.save(mc));
@@ -71,7 +70,6 @@ public class MenuServiceImpl implements MenuService {
 		menuItem.setName(dto.getName());
 		menuItem.setDescription(dto.getDescription());
 		menuItem.setDescriptionProportions(dto.getDescriptionProportions());
-		menuItem.setActive(true);
 		menuItem.setCategory(menuCategory);
 		menuItemRepository.save(menuItem);
 		MenuItemPrice menuItemPrice = getMenuItemPrice(menuItem);
@@ -86,14 +84,40 @@ public class MenuServiceImpl implements MenuService {
 		return dto;
 	}
 
+	@Override
+	public BigDecimal getAmount(MenuOrderDto menuOrder) {
+		BigDecimal total = new BigDecimal(0);
+//		for (let foodKey in this.order.food) {
+		for (Long itemPriceId : menuOrder.getFood().keySet()) {
+//			total += this.order.foodPrice[foodKey] * this.order.food[foodKey];
+			final Integer countFood = menuOrder.getFood().get(itemPriceId);
+			final MenuItemPrice menuItemPrice = menuItemPriceRepository.findByIdAndVisibleIsTrue(itemPriceId);
+			total = total.add(menuItemPrice.getValue().multiply(new BigDecimal(countFood)));
+		}
+			return total;
+	}
+
+	@Override
+	public void setToken(String token, Long orderId) {
+		MenuOrder order = menuOrderRepository.getOne(orderId);
+		order.setToken(token);
+		menuOrderRepository.save(order);
+	}
+
+	@Override
+	public MenuOrderDto getOrder(String uuid) {
+		final MenuOrder order = menuOrderRepository.findByUuid(uuid).orElseThrow(() -> new RuntimeException("UUID is invalid"));
+		return menuOrderConverter.toDto(order, true);
+	}
+
 	private void terminate(MenuItemPrice menuItemPrice) {
 		menuItemPrice.setEndTime(LocalDateTime.now());
-		menuItemPrice.setActive(false);
+		menuItemPrice.setVisible(false);
 		menuItemPriceRepository.save(menuItemPrice);
 	}
 
 	private MenuItemPrice updateMenuItemPrice(MenuItemPriceDto dto, MenuItem menuItem, MenuItemPrice menuItemPrice) {
-		menuItemPrice.setActive(true);
+		menuItemPrice.setVisible(true);
 		menuItemPrice.setValue(dto.getPrice());
 		menuItemPrice.setStartTime(LocalDateTime.now());
 		menuItemPrice.setItem(menuItem);

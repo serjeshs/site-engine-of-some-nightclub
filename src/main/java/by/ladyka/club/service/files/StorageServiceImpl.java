@@ -3,6 +3,7 @@ package by.ladyka.club.service.files;
 import by.ladyka.club.config.CustomSettings;
 import by.ladyka.club.entity.FileEntity;
 import by.ladyka.club.repository.FilesRepository;
+import lombok.AllArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -17,15 +18,10 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 @Service
+@AllArgsConstructor
 public class StorageServiceImpl implements StorageService {
     private final CustomSettings customSettings;
     private final FilesRepository filesRepository;
-
-    @Autowired
-    public StorageServiceImpl(CustomSettings customSettings, FilesRepository filesRepository) {
-        this.customSettings = customSettings;
-        this.filesRepository = filesRepository;
-    }
 
     @Override
     public String store(MultipartFile file) throws IOException {

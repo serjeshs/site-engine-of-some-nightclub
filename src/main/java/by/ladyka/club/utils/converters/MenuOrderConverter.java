@@ -22,6 +22,7 @@ public class MenuOrderConverter {
 	public MenuOrderDto toDto(MenuOrder entity, boolean dependencies) {
 		MenuOrderDto dto = new MenuOrderDto();
 		BeanUtils.copyProperties(entity, dto);
+		dto.setEventName(entity.getEvent().getName());
 		if (dependencies) {
 			final List<MenuItemPricesHasOrders> itemPricesHasOrders = entity.getItemPricesHasOrders();
 			Map<Long, Integer> food = new LinkedHashMap<>();

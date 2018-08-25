@@ -33,6 +33,10 @@
 			<AppenderRef ref="FileAppender"/>
 		</Logger>
 
+		<Logger name="org.apache.http" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+		</Logger>
+
 		<Root level="info">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="FileAppender"/>

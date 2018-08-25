@@ -21,7 +21,6 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @Table(name = APP_TABLE_PREFIX + "menu_item_price")
 @EntityListeners(AuditingEntityListener.class)
 public class MenuItemPrice extends AbstractEntity {
-	private Boolean active;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private BigDecimal value;

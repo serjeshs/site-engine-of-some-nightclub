@@ -76,6 +76,7 @@ import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 import { OrderFoodComponent } from './orders/order-food/order-food.component';
 import { CashboxComponent } from './pages/cashbox/cashbox.component';
 import {ToastModule} from "ng6-toastr";
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   imports: [
@@ -148,7 +149,8 @@ import {ToastModule} from "ng6-toastr";
     OrderViewComponent,
     OrderEditComponent,
     OrderFoodComponent,
-    CashboxComponent
+    CashboxComponent,
+    OrderComponent
   ],
   providers: [
     EventsService,

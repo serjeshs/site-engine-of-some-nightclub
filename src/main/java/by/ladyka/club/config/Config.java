@@ -1,5 +1,6 @@
 package by.ladyka.club.config;
 
+import by.ladyka.bepaid.BePaidApi;
 import by.ladyka.club.ClubApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -33,6 +34,9 @@ public class Config {
 	private final DataSource dataSource;
 
 	@Autowired
+	CustomSettings settings;
+
+	@Autowired
 	public Config(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
@@ -52,5 +56,10 @@ public class Config {
 		factory.afterPropertiesSet();
 		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
 		return factory;
+	}
+
+	@Bean
+	public BePaidApi bePaidApi() {
+		return BePaidApi.getApi(settings.getBePaidPaymentStoreId(), settings.getBePaidPaymentStoreKey());
 	}
 }

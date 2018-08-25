@@ -6,6 +6,7 @@ import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
 import by.ladyka.club.entity.menu.MenuItem;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface MenuService {
@@ -26,4 +27,10 @@ public interface MenuService {
 	MenuCategoryDto saveCategory(MenuCategoryDto dto);
 
 	MenuItemPriceDto saveMenuItemPrice(MenuItemPriceDto dto);
+
+	BigDecimal getAmount(MenuOrderDto menuOrder);
+
+	void setToken(String token, Long orderId);
+
+	MenuOrderDto getOrder(String uuid);
 }

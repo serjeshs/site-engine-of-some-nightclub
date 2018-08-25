@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static java.time.LocalDateTime.now;
+import static java.lang.Boolean.TRUE;
 
 @Service
 public class EventsServiceImpl implements EventsService {
@@ -49,7 +49,7 @@ public class EventsServiceImpl implements EventsService {
 	@Override
 	public List<EventRelevantDTO> getRelevantEvents(AppUser user) {
 		return eventRepository
-				.findByRecommendationAndStartEventGreaterThanAndVisibleTrueOrderByStartEventAsc(Boolean.TRUE, LocalDateTime.now().minusHours(5L))
+				.findByRecommendationAndStartEventGreaterThanAndVisibleTrueOrderByStartEventAsc(TRUE, LocalDateTime.now().minusHours(5L))
 				.stream()
 				.map(converterEventService::toEventRelevantDto)
 				.collect(Collectors.toList());
@@ -99,6 +99,7 @@ public class EventsServiceImpl implements EventsService {
 			entity = eventRepository.findById(dto.getId()).orElseGet(Event::new);
 		}
 		entity = converterEventService.toEntity(dto, entity);
+		entity.setVisible(TRUE);
 		entity = eventRepository.save(entity);
 		return converterEventService.toEventDto(entity);
 	}

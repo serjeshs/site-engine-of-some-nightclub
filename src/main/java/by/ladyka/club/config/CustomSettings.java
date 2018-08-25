@@ -13,4 +13,14 @@ import org.springframework.stereotype.Service;
 public class CustomSettings {
     @Value("${club.files.directory}")
     private String filesDirectory;
+
+    @Value("${club.site.domain}")
+    private String siteDomain;
+
+    @Value("${bepaid.payment.store.id}")
+    private Long bePaidPaymentStoreId;
+
+    @Value("${bepaid.payment.store.key}")
+    private String bePaidPaymentStoreKey;
+
 }

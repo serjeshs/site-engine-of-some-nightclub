@@ -23,7 +23,6 @@ public class MenuItem extends AbstractEntity {
 	private String name;
 	private String description;
 	private String descriptionProportions;
-	private Boolean active;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoryId")
