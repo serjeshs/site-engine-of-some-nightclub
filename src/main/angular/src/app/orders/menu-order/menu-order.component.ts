@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Table} from "../../dto/table";
 import {MenuCategoryDto} from "../../dto/menuCategoryDto";
 import {Event} from "../../dto/event";
 import {MenuService} from "../../menu.service";
@@ -13,7 +12,6 @@ import {MenuOrder} from "../../dto/menuOrder";
   styleUrls: ['./menu-order.component.css']
 })
 export class MenuOrderComponent implements OnInit {
-  isLinear = false;
   menuFormGroup: FormGroup;
   orderDetailsFormGroup: FormGroup;
 
@@ -22,7 +20,8 @@ export class MenuOrderComponent implements OnInit {
   order = new MenuOrder();
   orderComplete: boolean;
 
-  constructor(private menuService: MenuService, private _formBuilder: FormBuilder) {}
+  constructor(private menuService: MenuService, private _formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
     this.orderComplete = false;
@@ -57,7 +56,7 @@ export class MenuOrderComponent implements OnInit {
     });
   }
 
-  private submitOrder(){
+  submitOrder() {
     this.menuService.storeOrder(this.order)
       .subscribe(response => {
         this.order = response;

@@ -15,11 +15,14 @@
 <body>
 <app-root/>
 <!— VK Widget —>
-<div id="vk_community_messages"></div>
-
 <script type="text/javascript" src="//vk.com/js/api/openapi.js?154"></script>
 <script type="text/javascript">
-  VK.Widgets.CommunityMessages("vk_community_messages", 18143442, {expanded: "0",tooltipButtonText: "Есть вопрос?"});
+  document.addEventListener('DOMContentLoaded', function() { // Аналог $(document).ready(function(){
+    var vk = document.createElement("div")
+    vk.id = "vk_community_messages"
+    document.getElementsByTagName("body")[0].appendChild(vk)
+    VK.Widgets.CommunityMessages(vk.id, 18143442, {expanded: "0", tooltipButtonText: "Есть вопрос?"});
+  });
 </script>
 
 

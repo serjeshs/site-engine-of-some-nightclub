@@ -1,7 +1,4 @@
-<!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
-<!--{{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
-<!--</button>-->
-<mat-horizontal-stepper [linear]="isLinear" #stepper *ngIf="!orderComplete">
+<mat-horizontal-stepper [linear]="false" #stepper *ngIf="!orderComplete">
   <mat-step [stepControl]="menuFormGroup">
     <form [formGroup]="menuFormGroup">
       <ng-template matStepLabel>Просмотр меню и выбор позиций</ng-template>
@@ -27,7 +24,6 @@
     <app-order-view [menuCategories]="menuCategories" [order]="order"></app-order-view>
     <div>
       <button mat-button matStepperPrevious>Назад</button>
-      <!--<button mat-button (click)="stepper.reset()">Reset</button>-->
       <button mat-button (click)="submitOrder()">Заказать. Оплата заказа в клубе.</button>
       <button mat-button (click)="payOrder()">Оплатить заказ онлайн (скидка 10%)</button>
     </div>
