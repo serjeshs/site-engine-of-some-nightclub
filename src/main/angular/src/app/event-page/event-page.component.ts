@@ -22,6 +22,9 @@ export class EventPageComponent implements OnInit {
     this.eventService.getEvent(id)
       .subscribe(responce => {
         this.event = responce;
+        if (!this.event.buyTicketUrl) {
+          this.event.buyTicketUrl = "/cashbox";
+        }
       });
   }
 
