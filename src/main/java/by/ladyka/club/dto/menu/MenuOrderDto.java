@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class MenuOrderDto {
 	private Long id;
 	private Map<Long, Integer> food;
-	private Map<Long, Double> foodPrice;
+	private Map<Long, BigDecimal> foodPrice;
 	private String name;
 	private String email;
 	private String phone;

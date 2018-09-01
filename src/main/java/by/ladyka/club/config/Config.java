@@ -30,7 +30,6 @@ import static by.ladyka.club.ClubApplication.PACKAGES_TO_SCAN;
 )
 public class Config {
 
-	public static final String DATE_TIME_PATTERN = "yyyy.MM.dd HH:mm:ss";
 	private final DataSource dataSource;
 
 	@Autowired
@@ -60,6 +59,7 @@ public class Config {
 
 	@Bean
 	public BePaidApi bePaidApi() {
-		return BePaidApi.getApi(settings.getBePaidPaymentStoreId(), settings.getBePaidPaymentStoreKey());
+		return BePaidApi.getApi(settings.getBePaidPaymentStoreId(), settings.getBePaidPaymentStoreKey(), (requestID, method, url, requestBody, code, resp) -> {
+		});
 	}
 }

@@ -21,7 +21,7 @@ import java.util.Collections;
 
 import static java.lang.Boolean.TRUE;
 
-@Controller
+@RestController
 @RequestMapping(PaymentController.API_ORDER_BEPAID)
 @AllArgsConstructor
 public class PaymentController {
@@ -41,7 +41,7 @@ public class PaymentController {
 		checkout.setAttempts(5L);
 		Settings settings = new Settings();
 		final MenuOrderDto menuOrder = menuService.getOrder(orderId);
-		final String redirectUrl = String.format("%s/" + API_ORDER_BEPAID +"/callback/%s", customSettings.getSiteDomain(), menuOrder.getUuid());
+		final String redirectUrl = String.format("%s" + API_ORDER_BEPAID +"/callback/%s", customSettings.getSiteDomain(), menuOrder.getUuid());
 		settings.setSuccessUrl(redirectUrl + "/success");
 		settings.setDeclineUrl(redirectUrl + "/decline");
 		settings.setFailUrl(redirectUrl + "/fail");
@@ -82,8 +82,18 @@ public class PaymentController {
 		response.sendRedirect("/order/" + uuid);
 	}
 
-	@GetMapping(path = "/callback/{uuid}/{status}")
-	public void orderCallBack(@PathVariable String uuid) {
+	@GetMapping(path = "/callback/{uuid}/ывфы")
+	public void orderCallBack222(@PathVariable String uuid, HttpServletResponse response) throws IOException {
+		response.sendRedirect("/order/" + uuid);
+	}
 
+	@GetMapping(path = "/callback/{uuid}/{status}")
+	public void orderCallBack(@PathVariable String uuid, HttpServletResponse response) throws IOException {
+		response.sendRedirect("/order/" + uuid);
+	}
+
+	@GetMapping(path = "/pay/{orderId}/status")
+	public GatewayStatus checkStatus(@PathVariable Long orderId) {
+		return menuService.getStatus(orderId);
 	}
 }

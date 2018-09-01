@@ -14,5 +14,6 @@ export class MenuOrder {
   eventName: string;
   description:string;
   foodPrice: any;
+  payStatus: string;
 }
 

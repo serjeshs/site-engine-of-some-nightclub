@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -34,7 +33,6 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 	@Setter
 	private String name;
 
-
 	@Getter
 	@Setter
 	private String surname;
@@ -43,17 +41,14 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 	@Setter
 	private String email;
 
-
 	@Getter
 	@Setter
 	@Column(name = "father_name")
 	private String fatherName;
 
-
 	@Getter
 	@Setter
 	private OffsetDateTime birthday;
-
 
 	@Setter
 	@Type(type = "boolean")
@@ -66,27 +61,10 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 	@Type(type = "boolean")
 	private Boolean credentialsNonExpired;
 
-
 	@Getter
 	@Setter
 	@OneToMany(mappedBy = "user")
 	private List<AuthorityEntity> authorities;
-
-	public static UserEntity unconfirmUser() {
-		UserEntity userEntity = new UserEntity();
-		userEntity.username = "username" + System.currentTimeMillis() + "@republic-club.by";
-		userEntity.password = "password" + System.currentTimeMillis();
-		userEntity.name = "name";
-		userEntity.surname = "surname";
-		userEntity.fatherName = "fatherName";
-		userEntity.birthday = OffsetDateTime.now();
-		userEntity.accountNonExpired = true;
-		userEntity.accountNonLocked = true;
-		userEntity.credentialsNonExpired = false;
-		userEntity.enabled = true;
-		userEntity.authorities = Collections.emptyList();
-		return userEntity;
-	}
 
 	@Override
 	public boolean isAccountNonExpired() {

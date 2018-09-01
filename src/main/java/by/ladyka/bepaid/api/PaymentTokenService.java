@@ -27,7 +27,7 @@ import java.util.Base64;
 /**
  * https://docs.bepaid.by/ru/checkout/payment-token
  */
-public class PaymentTokenService {
+public class PaymentTokenService extends BePaidApiRequests{
 	private static final Logger logger = LoggerFactory.getLogger(PaymentTokenService.class);
 	private final String url = "https://checkout.bepaid.by/ctp/api/checkouts";
 
@@ -35,7 +35,7 @@ public class PaymentTokenService {
 		try (CloseableHttpClient httpclient =
 				     HttpClientBuilder.create().useSystemProperties()
 						     .setSSLSocketFactory(new SSLConnectionSocketFactory(
-						     		SSLContext.getDefault(),
+								     SSLContext.getDefault(),
 								     new String[]{"TLSv1.2"},
 								     null,
 								     SSLConnectionSocketFactory.getDefaultHostnameVerifier()
@@ -45,8 +45,8 @@ public class PaymentTokenService {
 
 			final String baseAuth = String.format(
 					"%d:%s",
-					BePaidApi.configuration.getStoreId(),
-					BePaidApi.configuration.getKey()
+					BePaidApi.getConfiguration().getStoreId(),
+					BePaidApi.getConfiguration().getKey()
 			);
 
 			String encoding = Base64.getEncoder().encodeToString(baseAuth.getBytes());
@@ -62,10 +62,7 @@ public class PaymentTokenService {
 			System.out.println("Executing request " + httppost.getMethod() + " " + httppost.getURI());
 
 			try (CloseableHttpResponse response = httpclient.execute(httppost)) {
-				System.out.println("----------------------------------------");
-				System.out.println(response.getStatusLine().getStatusCode() + " " + response.getStatusLine().getReasonPhrase());
 				final String responseEntity = EntityUtils.toString(response.getEntity());
-				System.out.println(responseEntity);
 				return new ObjectMapper().readValue(responseEntity, PaymentTokenDto.class);
 			}
 		}

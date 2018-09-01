@@ -6,6 +6,7 @@ import by.ladyka.club.entity.menu.MenuOrder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +24,16 @@ public class MenuOrderConverter {
 		MenuOrderDto dto = new MenuOrderDto();
 		BeanUtils.copyProperties(entity, dto);
 		dto.setEventName(entity.getEvent().getName());
+		if (entity.getPayStatus() != null) {
+			dto.setPayStatus(entity.getPayStatus().name());
+		}
 		if (dependencies) {
 			final List<MenuItemPricesHasOrders> itemPricesHasOrders = entity.getItemPricesHasOrders();
 			Map<Long, Integer> food = new LinkedHashMap<>();
-			Map<Long, Double> foodPrice = new LinkedHashMap<>();
+			Map<Long, BigDecimal> foodPrice = new LinkedHashMap<>();
 			itemPricesHasOrders.forEach(item -> {
 				food.put(item.getItemPrice().getId(), item.getCount());
-				foodPrice.put(item.getItemPrice().getId(), item.getItemPrice().getValue().doubleValue());
+				foodPrice.put(item.getItemPrice().getId(), item.getItemPrice().getValue());
 			});
 			dto.setFood(food);
 			dto.setFoodPrice(foodPrice);

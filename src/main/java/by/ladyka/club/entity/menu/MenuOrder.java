@@ -40,7 +40,7 @@ public class MenuOrder extends AbstractEntity {
 	private String uuid = UUID.randomUUID().toString();
 	private String token;
 
-	//	@Type(GatewayStatus.class)
-	private String payStatus;
+	@Enumerated(EnumType.STRING)
+	private GatewayStatus payStatus;
 	private String uid;
-}
+ }

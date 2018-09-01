@@ -1,6 +1,8 @@
 package by.ladyka.club.service;
 
-import by.ladyka.club.dto.menu  .MenuCategoryDto;
+import by.ladyka.bepaid.BePaidApi;
+import by.ladyka.bepaid.dto.GatewayStatus;
+import by.ladyka.club.dto.menu.MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuItemPriceDto;
 import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
@@ -12,8 +14,12 @@ import by.ladyka.club.utils.converters.MenuOrderConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,6 +43,9 @@ public class MenuServiceImpl implements MenuService {
 	private MenuItemPriceHasOrdersRepository menuItemPriceHasOrdersRepository;
 	@Autowired
 	private EmailService emailService;
+
+	@Autowired
+	private BePaidApi bePaidApi;
 
 
 	@Override
@@ -87,14 +96,18 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public BigDecimal getAmount(MenuOrderDto menuOrder) {
 		BigDecimal total = new BigDecimal(0);
-//		for (let foodKey in this.order.food) {
-		for (Long itemPriceId : menuOrder.getFood().keySet()) {
+		try {
+			//		for (let foodKey in this.order.food) {
+			for (Long itemPriceId : menuOrder.getFood().keySet()) {
 //			total += this.order.foodPrice[foodKey] * this.order.food[foodKey];
-			final Integer countFood = menuOrder.getFood().get(itemPriceId);
-			final MenuItemPrice menuItemPrice = menuItemPriceRepository.findByIdAndVisibleIsTrue(itemPriceId);
-			total = total.add(menuItemPrice.getValue().multiply(new BigDecimal(countFood)));
+				final Integer countFood = menuOrder.getFood().get(itemPriceId);
+				final BigDecimal priceFood = menuOrder.getFoodPrice().get(itemPriceId);
+				total = total.add(priceFood.multiply(new BigDecimal(countFood)));
+			}
+		} catch (NullPointerException ex) {
+			ex.printStackTrace();
 		}
-			return total;
+		return total;
 	}
 
 	@Override
@@ -108,6 +121,23 @@ public class MenuServiceImpl implements MenuService {
 	public MenuOrderDto getOrder(String uuid) {
 		final MenuOrder order = menuOrderRepository.findByUuid(uuid).orElseThrow(() -> new RuntimeException("UUID is invalid"));
 		return menuOrderConverter.toDto(order, true);
+	}
+
+	@Override
+	public GatewayStatus getStatus(Long orderId) {
+		MenuOrder order = menuOrderRepository.getOne(orderId);
+		if (order.getPayStatus() != GatewayStatus.successful) {
+			try {
+				GatewayStatus status = bePaidApi.getTransactionState(order.getToken(), UUID.randomUUID().toString());
+				if (!order.getPayStatus().equals(status)) {
+					order.setPayStatus(status);
+					order = menuOrderRepository.save(order);
+				}
+			} catch (NoSuchAlgorithmException | IOException | URISyntaxException e) {
+				e.printStackTrace();
+			}
+		}
+		return order.getPayStatus();
 	}
 
 	private void terminate(MenuItemPrice menuItemPrice) {
@@ -231,6 +261,14 @@ public class MenuServiceImpl implements MenuService {
 		MenuOrderDto orderDto;
 		final Optional<MenuOrder> byId = menuOrderRepository.findById(orderId);
 		if (byId.isPresent()) {
+			MenuOrder entity = byId.get();
+			if (entity.getPayStatus() != GatewayStatus.successful && !StringUtils.isEmpty(entity.getToken())) {
+				try {
+					bePaidApi.getTransactionState(entity.getToken(), entity.getId() + "checkstatus" + UUID.randomUUID().toString());
+				} catch (NoSuchAlgorithmException | IOException | URISyntaxException e) {
+					e.printStackTrace();
+				}
+			}
 			orderDto = menuOrderConverter.toDto(byId.get(), true);
 		} else {
 			orderDto = new MenuOrderDto();

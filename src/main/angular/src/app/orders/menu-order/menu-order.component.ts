@@ -66,11 +66,11 @@ export class MenuOrderComponent implements OnInit {
 
   payOrder() {
     this.menuService.storeOrder(this.order)
-      .subscribe(response => {
-        if (response.id > 0) {
-          this.order = response;
+      .subscribe(responseOrder => {
+        if (responseOrder.id > 0) {
+          this.order = responseOrder;
           const url = "/api/order/bepaid/pay/" + this.order.id;
-          window.open(url, '_blank').focus();
+          window.open(url).focus();
         } else {
           debugger;
         }
