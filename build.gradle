@@ -18,7 +18,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'by.ladyka'
-version = '0.3.2r'
+version = '0.3.4r'
 sourceCompatibility = 1.8
 
 repositories {
