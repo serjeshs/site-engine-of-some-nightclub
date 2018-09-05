@@ -46,7 +46,12 @@ export class EventsListComponent implements OnInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.eventsService!.getEvents(this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize, this.dataSource.filter);
+          return this.eventsService!.getEvents(
+            this.sort.active,
+            this.sort.direction,
+            this.paginator.pageIndex,
+            this.paginator.pageSize,
+            this.dataSource.filter);
         }),
         map(data => {
           // Flip flag to show that loading has finished.

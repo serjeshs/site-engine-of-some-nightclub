@@ -43,7 +43,10 @@ export class EventsAdminPageComponent implements OnInit {
     this.eventsService.deleteEvent(eventId)
       .subscribe(data=> {
         if (!!data.success) {
-          alert("Удалено!")
+          alert("Удалено!");
+          this.viewEvents = true;
+          this.viewEvent = false;
+          this.event = new Event();
         }
       });
   }

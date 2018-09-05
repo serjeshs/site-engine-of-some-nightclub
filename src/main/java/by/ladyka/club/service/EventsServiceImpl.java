@@ -3,6 +3,7 @@ package by.ladyka.club.service;
 import by.ladyka.club.dto.AppUser;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.dto.EventRelevantDTO;
+import by.ladyka.club.entity.AbstractEntity;
 import by.ladyka.club.entity.Event;
 import by.ladyka.club.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,8 @@ public class EventsServiceImpl implements EventsService {
 			direction = Sort.Direction.DESC;
 		}
 		Pageable pg = PageRequest.of(page, size, Sort.by(new Sort.Order(direction, sort)));
-		return eventRepository.findByDescriptionContainingOrNameContainingOrCostTextContainingAndVisibleTrue(filter, filter, filter, pg).stream().map(event -> converterEventService.toEventDto(event)).collect(Collectors.toList());
+		//TODO Use Page and visible in query!!!
+		return eventRepository.findByDescriptionContainingOrNameContainingOrCostTextContaining(filter, filter, filter, pg).stream().filter(AbstractEntity::getVisible).map(event -> converterEventService.toEventDto(event)).collect(Collectors.toList());
 	}
 
 	@Override

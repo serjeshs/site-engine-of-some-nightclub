@@ -12,7 +12,7 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Long> {
 	List<Event> findAllByStartEventBetweenAndVisibleTrue(LocalDateTime after, LocalDateTime before);
 	List<Event> findAllByStartEventGreaterThanAndVisibleTrueOrderByStartEventAsc(LocalDateTime time);
-	List<Event> findByDescriptionContainingOrNameContainingOrCostTextContainingAndVisibleTrue(String description, String name, String costText, Pageable pg);
+	List<Event> findByDescriptionContainingOrNameContainingOrCostTextContaining(String description, String name, String costText, Pageable pg);
 	List<Event> findByRecommendationAndStartEventGreaterThanAndVisibleTrueOrderByStartEventAsc(Boolean recommendation, LocalDateTime time);
 	long countByDescriptionContainingOrNameContainingOrCostTextContainingAndVisibleTrue(String description, String name, String costText);
 }
