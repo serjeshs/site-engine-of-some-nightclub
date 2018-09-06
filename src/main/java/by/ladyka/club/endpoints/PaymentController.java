@@ -36,7 +36,7 @@ public class PaymentController {
 	public void payRedirect(Principal principal, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable Long orderId) throws IOException {
 		PaymentTokenDto dto = new PaymentTokenDto();
 		Checkout checkout = new Checkout();
-		checkout.setTest(TRUE);
+		checkout.setTest(customSettings.getBePaidPaymentTest());
 		checkout.setTransactionType(TransactionType.payment);
 		checkout.setAttempts(5L);
 		Settings settings = new Settings();

@@ -23,4 +23,7 @@ public class CustomSettings {
     @Value("${bepaid.payment.store.key}")
     private String bePaidPaymentStoreKey;
 
+    @Value("${bepaid.payment.test}")
+    private Boolean bePaidPaymentTest;
+
 }
