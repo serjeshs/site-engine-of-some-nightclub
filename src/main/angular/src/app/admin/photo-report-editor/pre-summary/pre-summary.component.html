@@ -1,0 +1,14 @@
+<div *ngIf="wait">
+  <h1>Данные загружаются, ожидайте !!!</h1>
+</div>
+<div *ngIf="!wait">
+  <button (click)="addNewPhotoReport()"
+          [hidden]="!galleryView"
+          class="btn">
+    Добавить новый фотоотчет
+  </button>
+  <app-pre-reports-gallery *ngIf="!!galleryView" (onClickEditReport)="onEditReportClick()"
+                           [dataGallery]="dataGallery"></app-pre-reports-gallery>
+  <app-pre-report-editor *ngIf="!galleryView" (onCloseButtonClick)="ngOnInit()"
+                         [dataGallery]="dataGallery"></app-pre-report-editor>
+</div>

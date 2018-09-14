@@ -32,7 +32,8 @@ export class EventsListComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.sort.active = 'startEvent';
     this.sort.direction = 'desc';
-    this.paginator.pageSize = 10;
+    const pageSize = +localStorage.getItem('eventListPaginatorPageSize');
+    this.paginator.pageSize = (pageSize > 0) ? pageSize : 10;
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -46,6 +47,7 @@ export class EventsListComponent implements OnInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
+          localStorage.setItem('eventListPaginatorPageSize', String(this.paginator.pageSize))
           return this.eventsService!.getEvents(
             this.sort.active,
             this.sort.direction,

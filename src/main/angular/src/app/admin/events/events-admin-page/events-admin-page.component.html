@@ -3,4 +3,4 @@
 </a>
 <app-events-list (onRowSelected)="handleRowSelected($event)" [hidden]="!viewEvents"></app-events-list>
 <app-event-view [hidden]="!viewEvent" [event]="event" [readOnly]="false"
-                (onEventSaveButtonClick)="saveEvent($event)" (onEventDeleteButtonClick)="deleteEvent($event)"></app-event-view>
+                (onEventSaveButtonClick)="saveEvent($event)" (onEventDeleteButtonClick)="deleteEvent($event)" (onEventCloseButtonClick)="ngOnInit()"></app-event-view>

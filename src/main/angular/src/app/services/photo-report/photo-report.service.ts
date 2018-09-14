@@ -25,7 +25,6 @@ export class PhotoReportService {
       'filePath': filePath,
       'reportId' : id
     };
-    debugger;
     return this.http.post<ResponseEntity>(url, dto, httpOptions).pipe(
       // catchError(this.handleError('authService.login', new ResponseEntity()))
     );

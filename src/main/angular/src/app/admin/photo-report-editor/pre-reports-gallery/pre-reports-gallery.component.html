@@ -1,0 +1,24 @@
+<div class="gallery-list">
+  <h1></h1>
+  <ul>
+    <li *ngFor="let galeryEventItem of dataGallery.reports">
+      <div class="img">
+        <a (click)="editReport(galeryEventItem)">
+          <!--<img src="{{galeryEventItem.coverUri}}"-->
+               <!--alt="{{galeryEventItem.name}}">-->
+          <img
+               src="/assets/images/background.gif"
+               width="300"
+               alt="{{galeryEventItem.name}}">
+        </a>
+      </div>
+      <div class="info">
+        <span class="date">{{galeryEventItem.startEvent}}</span>
+        <h3>
+          <a (click)="editReport(galeryEventItem)">{{galeryEventItem.name}}</a>
+        </h3>
+      </div>
+    </li>
+  </ul>
+  <div class="clearfix"></div>
+</div>

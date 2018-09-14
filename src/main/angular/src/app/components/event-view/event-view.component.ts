@@ -12,6 +12,7 @@ export class EventViewComponent implements OnInit {
   viewEvent: boolean;
   @Output() onEventSaveButtonClick = new EventEmitter();
   @Output() onEventDeleteButtonClick = new EventEmitter();
+  @Output() onEventCloseButtonClick = new EventEmitter();
   @Input() event: Event = new Event();
   @Input() readOnly: boolean;
 
@@ -48,6 +49,11 @@ export class EventViewComponent implements OnInit {
     } else {
       alert("Событие не сохранено. Удалить не возможно.")
     }
+  }
 
+  closeEvent() {
+    if (confirm("Закрыть редактирование события?")) {
+      this.onEventCloseButtonClick.emit()
+    }
   }
 }

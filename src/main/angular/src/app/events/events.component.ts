@@ -89,8 +89,8 @@ export class EventsComponent implements OnInit {
 
 
         this.gallery = mainPage['gallery'];
-        this.gallery.forEach(eventGalery => {
-          eventGalery.startEvent = moment(eventGalery.startEvent).format('LL')
+        this.gallery.forEach(eventGallery => {
+          eventGallery.startEvent = moment(eventGallery.startEvent).format('LL')
         });
 
         this.relevant = mainPage['relevant'];

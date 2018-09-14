@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class AfishaServiceImpl implements AfishaService {
-	private static final int GALERY_EVENTS_MAIN_PAGE_MAKE_SETTING = 10;
+	private static final int GALLERY_EVENTS_MAIN_PAGE_MAKE_SETTING = 10;
 	@Autowired
 	private EventsService eventsService;
 	@Autowired
@@ -21,7 +21,7 @@ public class AfishaServiceImpl implements AfishaService {
 	public MainPageDTO mainPage(AppUser user) {
 		final List<EventDTO> events = eventsService.getEventsAfter(LocalDateTime.now().minusHours(5L));
 		final List<EventRelevantDTO> relevant = eventsService.getRelevantEvents(user);
-		final List<EventGalleryDTO> gallery = eventGalleryService.getLatestGalleryEvents(GALERY_EVENTS_MAIN_PAGE_MAKE_SETTING);
+		final List<EventGalleryDTO> gallery = eventGalleryService.getLatestGalleryEvents(GALLERY_EVENTS_MAIN_PAGE_MAKE_SETTING);
 		return build(events, relevant, gallery);
 	}
 

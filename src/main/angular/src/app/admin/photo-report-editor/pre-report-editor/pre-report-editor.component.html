@@ -1,0 +1,56 @@
+<div class="btn" (click)="closeReport()">
+  Закрыть без сохранения
+</div>
+<form>
+  <div class="form-group">
+    <label for="reportName">Имя отчета</label>
+    <input type="text"
+           class="form-control"
+           id="reportName"
+           name="reportName"
+           value="{{dataGallery.report.name}}"
+           [(ngModel)]="dataGallery.report.name"
+
+    >
+  </div>
+  <!--<div class="form-group">-->
+  <!--<label for="reportDescription">Описание</label>-->
+  <!--<input type="text"-->
+  <!--class="form-control"-->
+  <!--id="reportDescription"-->
+  <!--name="reportDescription"-->
+  <!--value="{{wrapper.reportEdit.description}}"-->
+  <!--[(ngModel)]="wrapper.reportEdit.description"-->
+
+  <!--&gt;-->
+  <!--</div>-->
+  <div class="form-group">
+    <label for="reportStartEvent">Время начала события Формат : 2018-11-22T19:00:00</label>
+    <input type="text"
+           class="form-control"
+           id="reportStartEvent"
+           name="reportStartEvent"
+           value="{{dataGallery.report.startEvent}}"
+           [(ngModel)]="dataGallery.report.startEvent"
+    >
+  </div>
+  <div class="form-group" [hidden]="dataGallery.report.id<1">
+    <label for="newPhoto">Загрузить новый файл</label>
+
+    <input type="file" name="photo" ng2FileSelect id="newPhoto"/>
+
+    <button type="button" class="btn btn-success btn-s"
+            (click)="uploader.uploadAll()"
+            [disabled]="!uploader.getNotUploadedItems().length">
+      Upload an Image
+    </button>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="onClickSaveReport()">Сохранить</button>
+</form>
+
+<p> фоток : {{dataGallery.report.images.length}}</p>
+<ul class="foto-list">
+  <li *ngFor="let image of dataGallery.report.images">
+    <img src="{{image}}" title="{{dataGallery.report.name}}">
+  </li>
+</ul>
