@@ -151,7 +151,6 @@
           <div class="h-line"></div>
         </h1>
         <div class="event">
-          <!--data-words="{{event.name}}"-->
           <div class="img">
             <a routerLink="/event/{{event.id}}">
               <img src="{{event.coverUri}}" alt="">
@@ -159,6 +158,7 @@
           </div>
           <div class="info">
             <span class="date">{{startEventText}}</span>
+            <button class="btn" (click)="goToGoogleCalendar()">Добавить в календарь Google</button>
             <h2>
               <a routerLink="/event/{{event.id}}">
                 {{event.name}}
