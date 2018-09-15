@@ -4,11 +4,7 @@
     <li *ngFor="let galeryEventItem of dataGallery.reports">
       <div class="img">
         <a (click)="editReport(galeryEventItem)">
-          <!--<img src="{{galeryEventItem.coverUri}}"-->
-               <!--alt="{{galeryEventItem.name}}">-->
-          <img
-               src="/assets/images/background.gif"
-               width="300"
+          <img src="{{galeryEventItem.coverUri}}"
                alt="{{galeryEventItem.name}}">
         </a>
       </div>

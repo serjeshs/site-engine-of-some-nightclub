@@ -21,6 +21,7 @@ import {MenuOrderComponent} from "./orders/menu-order/menu-order.component";
 import {CashboxComponent} from "./pages/cashbox/cashbox.component";
 import {OrderComponent} from "./order/order.component";
 import {PreSummaryComponent} from "./admin/photo-report-editor/pre-summary/pre-summary.component";
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {path: '', component: EventsComponent},
@@ -47,6 +48,9 @@ const routes: Routes = [
   {path: 'cashbox', component: CashboxComponent},
   {path: 'order/:uuid', component: OrderComponent},
   {path: 'admin-photo-report-editor', component: PreSummaryComponent},
+  {
+    path: '**', component: PageNotFoundComponent, data: { breadcrumb: 'page-not-found', roles: [] }
+  }
 ];
 
 @NgModule({

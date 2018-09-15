@@ -80,6 +80,7 @@ import {OrderComponent} from './order/order.component';
 import {PreSummaryComponent} from './admin/photo-report-editor/pre-summary/pre-summary.component';
 import {PreReportsGalleryComponent} from './admin/photo-report-editor/pre-reports-gallery/pre-reports-gallery.component';
 import {PreReportEditorComponent} from './admin/photo-report-editor/pre-report-editor/pre-report-editor.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -156,7 +157,8 @@ import {PreReportEditorComponent} from './admin/photo-report-editor/pre-report-e
     OrderComponent,
     PreSummaryComponent,
     PreReportsGalleryComponent,
-    PreReportEditorComponent
+    PreReportEditorComponent,
+    PageNotFoundComponent
   ],
   providers: [
     EventsService,
