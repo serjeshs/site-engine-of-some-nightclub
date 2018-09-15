@@ -56,4 +56,13 @@ export class EventViewComponent implements OnInit {
       this.onEventCloseButtonClick.emit()
     }
   }
+
+  goToGoogleCalendar() {
+    const location = 'ул.+Притыцкого+62,+Минск,+REPUBLIC';
+    const pattern = 'YYYYMMDDTHHmmSS';
+    const start = moment(this.event.startEvent).format(pattern);
+    const end = moment(this.event.endEvent).format(pattern);
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${start}/${end}&location=${location}&text=${this.event.name}++|++RE:PUBLIC&details=%3Ca%20href=%22https://republic-club.by/event/${this.event.id}`;
+    window.open(url).focus();
+  }
 }
