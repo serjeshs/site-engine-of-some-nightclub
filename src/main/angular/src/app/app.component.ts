@@ -1,5 +1,6 @@
 import {Component, HostListener} from '@angular/core';
 import {AuthService} from "./auth.service";
+import {StatisticService} from "./services/statistic/statistic.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent {
   isAdmin: boolean;
   innerWidth: number;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private statisticService: StatisticService) {
 
   }
 
@@ -18,7 +19,17 @@ export class AppComponent {
     this.onResize(null);
     this.authService.currentUser()
       .subscribe(user => {
-        this.isAdmin= ('admin' == user.role);
+        this.isAdmin = ('admin' == user.role);
+      });
+    const loader = document.getElementsByClassName('lds-roller')[0];
+    loader.parentElement.removeChild(loader);
+    const indexHtmlLoaded = window['indexHtmlLoaded'];
+    const currentDate = new Date();
+    const seconds = (currentDate.getTime() - indexHtmlLoaded.getTime());
+    this.statisticService.storeLoadWebAppData(seconds)
+      .pipe()
+      .subscribe(response => {
+        console.log(response);
       });
   }
 

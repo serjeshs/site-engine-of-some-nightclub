@@ -82,6 +82,7 @@ import {PreReportsGalleryComponent} from './admin/photo-report-editor/pre-report
 import {PreReportEditorComponent} from './admin/photo-report-editor/pre-report-editor/pre-report-editor.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {TopBannerComponent} from './top-banner/top-banner.component';
+import {StatisticService} from "./services/statistic/statistic.service";
 
 @NgModule({
   imports: [
@@ -163,14 +164,15 @@ import {TopBannerComponent} from './top-banner/top-banner.component';
     TopBannerComponent
   ],
   providers: [
+    AuthService,
+    EventReportService,
     EventsService,
+    FeedbackService,
+    FileSelectDirective,
     MenuService,
     NewsService,
-    EventReportService,
-    AuthService,
-    FeedbackService,
     PhotoReportService,
-    FileSelectDirective
+    StatisticService
   ],
   bootstrap: [AppComponent]
 })
