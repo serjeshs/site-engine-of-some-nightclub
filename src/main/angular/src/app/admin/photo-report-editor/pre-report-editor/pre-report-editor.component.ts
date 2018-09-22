@@ -98,7 +98,7 @@ export class PreReportEditorComponent implements OnInit {
               alert('File uploaded fail!');
             }
             this.loadData();
-            document.getElementById('newPhoto').value = null;
+            document.getElementById('newPhoto')['value'] = null;
           });
       }
         break;
