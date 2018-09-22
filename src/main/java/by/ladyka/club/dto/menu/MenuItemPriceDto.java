@@ -14,5 +14,5 @@ public class MenuItemPriceDto {
 	private String name;
 	private String description;
 	private String descriptionProportions;
-	private BigDecimal price;
+	private BigDecimal price = new BigDecimal(0);
 }
