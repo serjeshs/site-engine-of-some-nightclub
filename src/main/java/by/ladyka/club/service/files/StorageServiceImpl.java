@@ -35,7 +35,7 @@ public class StorageServiceImpl implements StorageService {
         IOUtils.copy(file.getInputStream(), outStream);
         outStream.close();
         FileEntity fileEntity = new FileEntity();
-        fileEntity.setFilePath(directoryOut + fileName);
+        fileEntity.setFilePath(directoryOut + File.separator + fileName);
         fileEntity = filesRepository.save(fileEntity);
         return fileEntity.getFilePath();
     }
