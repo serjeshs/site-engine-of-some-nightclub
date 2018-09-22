@@ -66,8 +66,6 @@ import {FeedbackComponent} from './feedback/feedback.component';
 import {FeedbackService} from "./feedback.service";
 import {MenuEditorComponent} from './admin/menu-editor/menu-editor.component';
 import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
-import {PhotoReportComponent} from './admin/photo-report/photo-report.component';
-import {FileSelectDirective} from "ng2-file-upload";
 import {PhotoReportService} from "./services/photo-report/photo-report.service";
 import {DiscoComponent} from './pages/disco/disco.component';
 import {MenuOrderComponent} from './orders/menu-order/menu-order.component';
@@ -83,6 +81,7 @@ import {PreReportEditorComponent} from './admin/photo-report-editor/pre-report-e
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {TopBannerComponent} from './top-banner/top-banner.component';
 import {StatisticService} from "./services/statistic/statistic.service";
+import {NgxUploaderModule} from "ngx-uploader";
 
 @NgModule({
   imports: [
@@ -127,6 +126,7 @@ import {StatisticService} from "./services/statistic/statistic.service";
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgxUploaderModule,
     ReactiveFormsModule,
     DlDateTimePickerDateModule,
     ToastModule.forRoot()
@@ -149,7 +149,6 @@ import {StatisticService} from "./services/statistic/statistic.service";
     NewsComponent,
     NewsPageComponent,
     PageLoginComponent,
-    PhotoReportComponent,
     DiscoComponent,
     MenuOrderComponent,
     OrderViewComponent,
@@ -168,7 +167,6 @@ import {StatisticService} from "./services/statistic/statistic.service";
     EventReportService,
     EventsService,
     FeedbackService,
-    FileSelectDirective,
     MenuService,
     NewsService,
     PhotoReportService,

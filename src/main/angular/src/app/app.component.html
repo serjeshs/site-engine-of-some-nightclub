@@ -29,7 +29,6 @@
           <a routerLink="/admin-events">Операции над событиями</a>
           <a routerLink="/admin-order-list">Список заказов</a>
           <a routerLink="/admin-menu-editor">Редактор меню</a>
-          <a routerLink="/admin-photo-report">Редактор фотоотчетов</a>
           <a routerLink="/admin-photo-report-editor">Редактор фотоотчетов</a>
           <a href="/logout">Выйти</a>
         </nav>
@@ -67,4 +66,47 @@
 
 
   <app-footer></app-footer>
+</div>
+<div *ngIf="isProd">
+
+  <!— VK Widget —>
+  <script type="text/javascript" src="//vk.com/js/api/openapi.js?154"></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() { // Аналог $(document).ready(function(){
+      var vk = document.createElement("div")
+      vk.id = "vk_community_messages"
+      document.getElementsByTagName("body")[0].appendChild(vk)
+      VK.Widgets.CommunityMessages(vk.id, 18143442, {expanded: "0", tooltipButtonText: "Есть вопрос?"});
+    });
+  </script>
+
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (d, w, c) {
+      (w[c] = w[c] || []).push(function() {
+        try {
+          w.yaCounter23663974 = new Ya.Metrika({id:23663974,
+            webvisor:true,
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true});
+        } catch(e) { }
+      });
+
+      var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+      if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+      } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+  </script>
+  <noscript><div><img src="//mc.yandex.ru/watch/23663974" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+
 </div>

@@ -1,6 +1,7 @@
 import {Component, HostListener} from '@angular/core';
 import {AuthService} from "./auth.service";
 import {StatisticService} from "./services/statistic/statistic.service";
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import {StatisticService} from "./services/statistic/statistic.service";
 export class AppComponent {
   isAdmin: boolean;
   innerWidth: number;
-
+  isProd: boolean = false;
   constructor(private authService: AuthService, private statisticService: StatisticService) {
 
   }
@@ -31,6 +32,7 @@ export class AppComponent {
       .subscribe(response => {
         console.log(response);
       });
+    this.isProd = environment.production
   }
 
   @HostListener('window:resize', ['$event'])

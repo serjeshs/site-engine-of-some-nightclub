@@ -34,16 +34,18 @@
            [(ngModel)]="dataGallery.report.startEvent"
     >
   </div>
-  <div class="form-group" [hidden]="dataGallery.report.id<1">
-    <label for="newPhoto">Загрузить новый файл</label>
+  <div class="form-group" [hidden]="!(dataGallery?.report?.id > 2)">
+    <label for="newPhoto">Загрузить новый файл {{dataGallery?.report?.id}}.</label>
 
-    <input type="file" name="photo" ng2FileSelect id="newPhoto"/>
+    <label class="upload-button">
+      <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" id="newPhoto">
+      or choose file(s)
+    </label>
 
-    <button type="button" class="btn btn-success btn-s"
-            (click)="uploader.uploadAll()"
-            [disabled]="!uploader.getNotUploadedItems().length">
-      Upload an Image
+    <button type="button" class="btn btn-info btn-s start-upload-btn " (click)="startUpload()">
+      Start Upload
     </button>
+
   </div>
   <button type="submit" class="btn btn-primary" (click)="onClickSaveReport()">Сохранить</button>
 </form>
