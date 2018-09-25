@@ -39,6 +39,7 @@ export class OrderFoodComponent implements OnInit {
     for (let foodKey in this.order.food) {
       total += this.order.foodPrice[foodKey] * this.order.food[foodKey];
     }
+    this.order.totalMoney = total;
     return total;
   }
 }

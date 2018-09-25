@@ -25,7 +25,7 @@
     <div>
       <button mat-button matStepperPrevious>Назад</button>
       <button mat-button (click)="submitOrder()">Заказать. Оплата заказа в клубе.</button>
-      <button mat-button (click)="payOrder()">Оплатить заказ онлайн (скидка 10%)</button>
+      <button mat-button (click)="payOrder()">Оплатить заказ онлайн {{order.totalMoney * 0.9}} BYN (скидка 10%)</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

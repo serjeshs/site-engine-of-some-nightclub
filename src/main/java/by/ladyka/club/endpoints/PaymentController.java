@@ -27,6 +27,7 @@ import static java.lang.Boolean.TRUE;
 public class PaymentController {
 
 	static final String API_ORDER_BEPAID = "/api/order/bepaid";
+	private static final int DISCOUNT = 10;
 	private final CustomSettings customSettings;
 	private final BePaidApi bePaidApi;
 	private final MenuService menuService;
@@ -55,7 +56,7 @@ public class PaymentController {
 		checkout.setSettings(settings);
 		OrderDto order = new OrderDto();
 		order.setCurrency("BYN");
-		order.setAmount((long) (menuService.getAmount(menuOrder).doubleValue() * 100));
+		order.setAmount((long) (menuService.getAmount(menuOrder).doubleValue() * (100 - DISCOUNT)));
 		order.setDescription("Оплата заказа №" + orderId + " | RE:Public Club");
 		checkout.setOrder(order);
 
