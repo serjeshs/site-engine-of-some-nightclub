@@ -5,11 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>ЗАКАЗ №
-    <div class="customer-value" th:text="${order.id}"></div>
+<h1>
+    <a th:href="@{'https://republic-club.by/order/' + ${order.uuid}}">
+        ЗАКАЗ №
+        <div class="customer-value" th:text="${order.id}"></div>
+    </a>
+
 </h1>
-<div class="mt-1"><h3>Имя </h3></div>
+<div class="mt-1"><h3>Имя и фамилия</h3></div>
 <p class="customer-value" th:text="${order.name}"/>
+<p class="customer-value" th:text="${order.surname}"/>
 <div class="mt-1"><h3>Email </h3></div>
 <p class="customer-value" th:text="${order.email}"/>
 <div class="mt-1"><h3>Номер мобильного </h3></div>
