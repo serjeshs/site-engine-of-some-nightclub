@@ -68,7 +68,7 @@ import {MenuEditorComponent} from './admin/menu-editor/menu-editor.component';
 import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
 import {PhotoReportService} from "./services/photo-report/photo-report.service";
 import {DiscoComponent} from './pages/disco/disco.component';
-import {MenuOrderComponent} from './orders/menu-order/menu-order.component';
+import {BepaidDialog, MenuOrderComponent} from './orders/menu-order/menu-order.component';
 import {OrderViewComponent} from './orders/order-view/order-view.component';
 import {OrderEditComponent} from './orders/order-edit/order-edit.component';
 import {OrderFoodComponent} from './orders/order-food/order-food.component';
@@ -82,6 +82,8 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {TopBannerComponent} from './top-banner/top-banner.component';
 import {StatisticService} from "./services/statistic/statistic.service";
 import {NgxUploaderModule} from "ngx-uploader";
+import { RulesComponent } from './pages/rules/rules.component';
+import { RulesPayComponent } from './pages/rules-pay/rules-pay.component';
 
 @NgModule({
   imports: [
@@ -135,6 +137,7 @@ import {NgxUploaderModule} from "ngx-uploader";
     AdminComponent,
     AdminOrderListComponent,
     AppComponent,
+    BepaidDialog,
     ClubComponent,
     EventPageComponent,
     EventReportComponent,
@@ -160,7 +163,9 @@ import {NgxUploaderModule} from "ngx-uploader";
     PreReportsGalleryComponent,
     PreReportEditorComponent,
     PageNotFoundComponent,
-    TopBannerComponent
+    TopBannerComponent,
+    RulesComponent,
+    RulesPayComponent
   ],
   providers: [
     AuthService,
@@ -172,6 +177,7 @@ import {NgxUploaderModule} from "ngx-uploader";
     PhotoReportService,
     StatisticService
   ],
+  entryComponents: [BepaidDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule {

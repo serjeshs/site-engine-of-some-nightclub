@@ -21,6 +21,8 @@ import {CashboxComponent} from "./pages/cashbox/cashbox.component";
 import {OrderComponent} from "./order/order.component";
 import {PreSummaryComponent} from "./admin/photo-report-editor/pre-summary/pre-summary.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {RulesComponent} from "./pages/rules/rules.component";
+import {RulesPayComponent} from "./pages/rules-pay/rules-pay.component";
 
 const routes: Routes = [
   {path: '', component: EventsComponent},
@@ -46,6 +48,8 @@ const routes: Routes = [
   {path: 'cashbox', component: CashboxComponent},
   {path: 'order/:uuid', component: OrderComponent},
   {path: 'admin-photo-report-editor', component: PreSummaryComponent},
+  {path: 'rules', component: RulesComponent},
+  {path: 'rules-pay', component: RulesPayComponent},
   {
     path: '**', component: PageNotFoundComponent, data: { breadcrumb: 'page-not-found', roles: [] }
   }

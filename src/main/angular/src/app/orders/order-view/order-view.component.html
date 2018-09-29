@@ -32,7 +32,7 @@
                   <br>
                   {{item.descriptionProportions}}
                 </span>
-                <span class="price" [hidden]="!(item.count > 0)">
+          <span class="price" [hidden]="!(item.count > 0)">
                   <b>
                     {{item.price}} BYN
                   </b>
@@ -47,9 +47,10 @@
   <div class="mt-1" *ngIf="order.payStatus"><h3>Статус оплаты</h3></div>
   <p class="lead" *ngIf="order.payStatus"> {{order.payStatus}}</p>
   <div class="mt-1" *ngIf="!order.payStatus"><h3>Оплата онлайн не произведена</h3></div>
-  <p class="lead" *ngIf="!order.payStatus"><a href="/api/order/bepaid/pay/{{order.id}}">вы можете произвести оплату онлайн и получить скидку в 10%</a></p>
+  <p class="lead" *ngIf="!order.payStatus&&(order.id>0)"><a href="/api/order/bepaid/pay/{{order.id}}">вы можете
+    произвести оплату онлайн и получить скидку в 10%</a></p>
   <div class="mt-1"><h3>Столик </h3></div>
   <p class="lead"> {{order.tableNumber}}</p>
-  <div class="mt-1"><h3>комментарий к заказу </h3></div>
+  <div class="mt-1"><h3>Kомментарий к заказу</h3></div>
   <p class="lead"> {{order.description}}</p>
 </div>

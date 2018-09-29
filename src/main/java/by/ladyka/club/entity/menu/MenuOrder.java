@@ -6,7 +6,6 @@ import by.ladyka.club.entity.Event;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -25,6 +24,7 @@ public class MenuOrder extends AbstractEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
 	List<MenuItemPricesHasOrders> itemPricesHasOrders;
 	private String name;
+	private String surname;
 	private String email;
 	private String phone;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -43,4 +43,4 @@ public class MenuOrder extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private GatewayStatus payStatus;
 	private String uid;
- }
+}

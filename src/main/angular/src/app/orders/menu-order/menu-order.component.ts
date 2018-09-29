@@ -1,10 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MenuCategoryDto} from "../../dto/menuCategoryDto";
 import {Event} from "../../dto/event";
 import {MenuService} from "../../menu.service";
 import * as moment from "moment";
 import {MenuOrder} from "../../dto/menuOrder";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
+
+
+export interface OrderModalData {
+  orderId: number;
+}
 
 @Component({
   selector: 'app-menu-order',
@@ -20,7 +26,7 @@ export class MenuOrderComponent implements OnInit {
   order = new MenuOrder();
   orderComplete: boolean;
 
-  constructor(private menuService: MenuService, private _formBuilder: FormBuilder) {
+  constructor(private menuService: MenuService, private _formBuilder: FormBuilder, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -34,7 +40,7 @@ export class MenuOrderComponent implements OnInit {
     this.order.food = {};
     this.order.foodPrice = {};
     this.order.event = 0;
-    this.retrieveMenuData()
+    this.retrieveMenuData();
   }
 
   private retrieveMenuData() {
@@ -69,12 +75,29 @@ export class MenuOrderComponent implements OnInit {
       .subscribe(responseOrder => {
         if (responseOrder.id > 0) {
           this.order = responseOrder;
-          const url = "/api/order/bepaid/pay/" + this.order.id;
-          window.open(url).focus();
+          const dialogRef = this.dialog.open(BepaidDialog, {
+            data: {
+              orderId: this.order.id
+            }
+          });
         } else {
           debugger;
         }
       });
+  }
+}
 
+@Component({
+  selector: 'dialog-bepaid-dialog',
+  templateUrl: 'dialog-bepaid-dialog-template.html'
+})
+export class BepaidDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<BepaidDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: OrderModalData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

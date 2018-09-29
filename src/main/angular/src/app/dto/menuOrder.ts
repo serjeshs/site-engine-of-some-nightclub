@@ -2,6 +2,7 @@ export class MenuOrder {
   id: number;
   email: string;
   name: string;
+  surname: string;
   phone: string;
   arrivalTime: string;
   bcCode: string;

@@ -26,6 +26,8 @@ public class Customer {
     public String email;
     @JsonProperty("last_name")
     public String lastName;
+    @JsonProperty("first_name")
+    public String firstName;
     @JsonProperty("phone")
     public String phone;
 

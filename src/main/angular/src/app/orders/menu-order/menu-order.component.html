@@ -25,11 +25,14 @@
     <div>
       <button mat-button matStepperPrevious>Назад</button>
       <button mat-button (click)="submitOrder()">Заказать. Оплата заказа в клубе.</button>
-      <button mat-button (click)="payOrder()">Оплатить заказ онлайн {{order.totalMoney * 0.9}} BYN (скидка 10%)</button>
+      <button mat-raised-button (click)="payOrder()">Оплатить заказ онлайн {{order.totalMoney * 0.9}} BYN (скидка 10%)</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
-
+<p>Заказ, оплаченный на сайте Вы можете получить в клубе РеПаблик, по адресу г. Минск ул. Притыцкого, д. 62.</p>
+<p>По всем вопросам можете писать в <a routerLink="feedback">службу поддержки клиентов</a></p>
+<p>Для получения заказа Вы заполняете все поля формы, в данном разделе : список позиций меню и информацию о себе</p>
+<p>После этого переходите на страницу оплаты и оплачиваете заказ. Получая скидку в 10%, по сравнению с обычным заказом в клубе.</p>
 <div *ngIf="orderComplete">
   <h1>Спасибо за заказ</h1>
   <app-order-view [menuCategories]="menuCategories" [order]="order"></app-order-view>

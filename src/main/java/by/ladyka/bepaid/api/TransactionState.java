@@ -11,10 +11,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class TransactionState extends BePaidApiRequests {
 
-	private static final String url = "https://checkout.bepaid.by/ctp/api/checkouts/{payment_token}";
+	private static final String url = "https://checkout.bepaid.by/ctp/api/checkouts/%s";
 
 	public GatewayStatus getStatus(String paymentToken, String requestId) throws NoSuchAlgorithmException, IOException, URISyntaxException {
-		String response =  executeGet(url, requestId);
+		String response =  executeGet(String.format(url, paymentToken), requestId);
 		throw new RuntimeException("NOT IMPLEMENTED");
 //		return GatewayStatus.successful;
 	}

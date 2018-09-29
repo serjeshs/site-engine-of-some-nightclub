@@ -18,6 +18,7 @@ public class MenuOrderDto {
 	private Map<Long, Integer> food;
 	private Map<Long, BigDecimal> foodPrice;
 	private String name;
+	private String surname;
 	private String email;
 	private String phone;
 	private Long event;

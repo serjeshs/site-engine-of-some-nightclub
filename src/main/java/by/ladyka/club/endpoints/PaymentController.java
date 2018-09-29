@@ -62,7 +62,8 @@ public class PaymentController {
 
 		Customer customer = new Customer();
 		customer.setEmail(menuOrder.getEmail());
-		customer.setLastName(menuOrder.getName());
+		customer.setLastName(menuOrder.getSurname());
+		customer.setFirstName(menuOrder.getName());
 		customer.setPhone(menuOrder.getPhone());
 		checkout.setCustomer(customer);
 		dto.setCheckout(checkout);
