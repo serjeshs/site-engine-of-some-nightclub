@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="mt-1"><h3>Номер заказа </h3></div>
+  <div class="mt-1" *ngIf="order.id>0"><h3>Номер заказа </h3></div>
   <p class="lead"> {{order.id}}</p>
   <div class="mt-1"><h3>Ваши имя и фамилия</h3></div>
   <p class="lead"> {{order.name}} {{order.surname}}</p>
