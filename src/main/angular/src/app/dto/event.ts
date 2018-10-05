@@ -8,7 +8,8 @@ export class Event {
   name: string;
   coverUri: string;
   buyTicketUrl: string;
-  recommendation: string;
+  recommendation: boolean;
+  republicPay: boolean;
 }
 
 export class EventListResult {

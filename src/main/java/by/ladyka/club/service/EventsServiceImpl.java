@@ -48,6 +48,15 @@ public class EventsServiceImpl implements EventsService {
 	}
 
 	@Override
+	public List<EventDTO> getEventsAfterAndRepublicPayTrue(LocalDateTime time) {
+		return eventRepository
+				.findAllByStartEventGreaterThanAndVisibleTrueAndRepublicPayTrueOrderByStartEventAsc(time)
+				.stream()
+				.map(converterEventService::toEventDto)
+				.collect(Collectors.toList());
+	}
+
+	@Override
 	public List<EventRelevantDTO> getRelevantEvents(AppUser user) {
 		return eventRepository
 				.findByRecommendationAndStartEventGreaterThanAndVisibleTrueOrderByStartEventAsc(TRUE, LocalDateTime.now().minusHours(5L))

@@ -33,6 +33,7 @@ public class Event extends AbstractEntity {
 	private String alias;
 	private String buyTicketUrl;
 	private Boolean recommendation;
+	private Boolean republicPay;
 
 	public Event(Long eventId) {
 		setId(eventId);

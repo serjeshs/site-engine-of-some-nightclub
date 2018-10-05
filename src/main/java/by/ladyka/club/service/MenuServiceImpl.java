@@ -52,7 +52,7 @@ public class MenuServiceImpl implements MenuService {
 	public MenuPageDto mainPage() {
 		return new MenuPageDto(
 				getFood(),
-				eventsService.getEventsAfter(LocalDateTime.now())
+				eventsService.getEventsAfterAndRepublicPayTrue(LocalDateTime.now())
 		);
 	}
 

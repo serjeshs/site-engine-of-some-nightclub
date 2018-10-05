@@ -1,11 +1,8 @@
 package by.ladyka.club.service;
 
 import by.ladyka.club.dto.EventDTO;
-import by.ladyka.club.dto.EventGalleryDTO;
 import by.ladyka.club.dto.EventRelevantDTO;
 import by.ladyka.club.entity.Event;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +12,7 @@ public class ConverterEventServiceImpl implements ConverterEventService {
 	@Override
 	public EventDTO toEventDto(Event entity) {
 		EventDTO eventDTO = new EventDTO();
-		eventDTO.setId(entity.getId());
-		eventDTO.setName(entity.getName());
-		eventDTO.setDescription(entity.getDescription());
-		eventDTO.setStartEvent(entity.getStartEvent());
-		eventDTO.setEndEvent(entity.getEndEvent());
-		eventDTO.setCost(entity.getCost());
-		eventDTO.setCostText(entity.getCostText());
-		eventDTO.setCoverUri(entity.getCoverUri());
-		eventDTO.setBuyTicketUrl(entity.getBuyTicketUrl());
-		eventDTO.setRecommendation(entity.getRecommendation());
+		BeanUtils.copyProperties(entity, eventDTO);
 		return eventDTO;
 	}
 
@@ -36,11 +24,6 @@ public class ConverterEventServiceImpl implements ConverterEventService {
 		dto.setName(event.getName());
 		dto.setStartEvent(event.getStartEvent());
 		return dto;
-	}
-
-	@Override
-	public Event toEntity(EventDTO dto) {
-		return toEntity(dto, new Event());
 	}
 
 	public Event toEntity(EventDTO dto, Event target) {

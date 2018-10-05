@@ -13,6 +13,7 @@ public interface EventsService {
 	List<EventDTO> getEventsBetween(LocalDateTime after, LocalDateTime before);
 
 	List<EventDTO> getEventsAfter(LocalDateTime time);
+	List<EventDTO> getEventsAfterAndRepublicPayTrue(LocalDateTime time);
 
 	List<EventRelevantDTO> getRelevantEvents(AppUser user);
 
