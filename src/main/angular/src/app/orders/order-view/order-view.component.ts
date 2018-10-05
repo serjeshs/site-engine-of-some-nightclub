@@ -28,8 +28,11 @@ export class OrderViewComponent implements OnInit {
       }
     }
     for (let menuItem of category.menuItems) {
-      if (menuItem.count.valueOf() > 0)
+      let count = this.order.food[menuItem.itemPriceId];
+      if ((count) && (count.valueOf() > 0)) {
+        menuItem.count = count;
         return true;
+      }
     }
     return show;
   }

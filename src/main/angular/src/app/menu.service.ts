@@ -103,6 +103,12 @@ export class MenuService {
       );
   }
 
+  readMenu() : Observable<MenuCategoryDto[]> {
+    return this.http.get<MenuCategoryDto[]>(this.menuUrl);
+  }
+
+
+
   saveCategory(category: MenuCategoryDto): Observable<ResponseEntity> {
     let url = this.adminCategoryUrl;
     return this.http.post<ResponseEntity>(url, JSON.stringify(category), httpOptions)
@@ -118,5 +124,9 @@ export class MenuService {
   getOrderByUuid(uuid: string) : Observable<MenuOrder> {
     const url = '/api/private/orders/' + uuid;
     return this.http.get<MenuOrder>(url).pipe();
+  }
+  readOrderByUuid(uuid: string) : Observable<MenuOrder> {
+    const url = '/api/private/orders/' + uuid;
+    return this.http.get<MenuOrder>(url);
   }
 }
