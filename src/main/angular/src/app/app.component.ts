@@ -11,7 +11,6 @@ import {environment} from "../environments/environment";
 export class AppComponent {
   isAdmin: boolean;
   innerWidth: number;
-  isProd: boolean = false;
   constructor(private authService: AuthService, private statisticService: StatisticService) {
 
   }
@@ -32,7 +31,6 @@ export class AppComponent {
       .subscribe(response => {
         console.log(response);
       });
-    this.isProd = environment.production
   }
 
   @HostListener('window:resize', ['$event'])

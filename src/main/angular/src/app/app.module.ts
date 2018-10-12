@@ -84,6 +84,7 @@ import {StatisticService} from "./services/statistic/statistic.service";
 import {NgxUploaderModule} from "ngx-uploader";
 import { RulesComponent } from './pages/rules/rules.component';
 import { RulesPayComponent } from './pages/rules-pay/rules-pay.component';
+import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
 
 @NgModule({
   imports: [
@@ -91,6 +92,8 @@ import { RulesPayComponent } from './pages/rules-pay/rules-pay.component';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     HttpClientModule,
     MatAutocompleteModule,
     MatBadgeModule,

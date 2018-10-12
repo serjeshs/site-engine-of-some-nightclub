@@ -42,13 +42,7 @@
         </div>
         <div class="form-group">
           <label for="description">Описание</label>
-          <textarea class="form-control"
-                    id="description"
-                    required
-                    [(ngModel)]="event.description"
-                    name="description"
-                    #description="ngModel"
-                    placeholder="Описание"> </textarea>
+          <div [froalaEditor] [(froalaModel)]="event.description" id="description" required></div>
         </div>
         <div class="form-group">
           <label for="startEvent">Начало мероприятия в формате : 2012-12-08T19:00:00 </label>
@@ -88,16 +82,8 @@
         </div>
         <div class="form-group">
           <label for="costText">Описание стоимости</label>
-          <textarea class="form-control"
-                    id="costText"
-                    required
-                    [(ngModel)]="event.costText"
-                    name="costText"
-                    #costText="ngModel"
-                    placeholder="Описание стоимости"> </textarea>
+          <div [froalaEditor] [(froalaModel)]="event.costText" id="costText" required></div>
         </div>
-
-
         <div class="form-group">
           <label for="coverUri">Ссылка на обложку</label>
           <input type="url"
