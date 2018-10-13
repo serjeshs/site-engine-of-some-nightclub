@@ -56,6 +56,7 @@ public class EmailServiceImpl implements EmailService {
 			MimeMessageHelper helper;
 			helper = new MimeMessageHelper(message, true, "utf-8");
 			helper.setTo("feedback@republic-club.by");
+			helper.setBcc("kra160462@gmail.com");
 			helper.setCc(feedBack.getEmail());
 			helper.setText(buildOrderText(feedBack), true);
 			new Thread(() -> emailSender.send(message)).start();

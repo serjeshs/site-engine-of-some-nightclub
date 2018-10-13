@@ -1,6 +1,22 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~open-iconic/font/css/open-iconic-bootstrap.css';
+@font-face {
+  font-family: 'Humanist';
+  src: url('/assets/fonts/Humanist.ttf');
+}
+@font-face {
+  font-family: 'Baskervilleit';
+  src: url('/assets/fonts/Baskervilleit.ttf');
+}
+@font-face {
+  font-family: 'Humanist-bold';
+  src: url('/assets/fonts/Humanist-bold.ttf');
+}
+@font-face {
+  font-family: 'Baskerville';
+  src: url('/assets/fonts/Baskerville.ttf');
+}
 
 address, caption, cite, code, dfn, em, strong, th, var {
   font-style: normal;
