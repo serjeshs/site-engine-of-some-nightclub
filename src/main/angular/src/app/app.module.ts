@@ -82,9 +82,10 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {TopBannerComponent} from './top-banner/top-banner.component';
 import {StatisticService} from "./services/statistic/statistic.service";
 import {NgxUploaderModule} from "ngx-uploader";
-import { RulesComponent } from './pages/rules/rules.component';
-import { RulesPayComponent } from './pages/rules-pay/rules-pay.component';
+import {RulesComponent} from './pages/rules/rules.component';
+import {RulesPayComponent} from './pages/rules-pay/rules-pay.component';
 import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
+import {NewsSummaryComponent} from './admin/news/news-summary/news-summary.component';
 
 @NgModule({
   imports: [
@@ -168,7 +169,8 @@ import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
     PageNotFoundComponent,
     TopBannerComponent,
     RulesComponent,
-    RulesPayComponent
+    RulesPayComponent,
+    NewsSummaryComponent
   ],
   providers: [
     AuthService,

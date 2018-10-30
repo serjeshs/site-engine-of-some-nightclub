@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto getUser(String username) {
-		final UserEntity user = userEntityRepository.findByUsername(username);
+		final UserEntity user = getUserEntity(username);
 		UserDto userDto = new UserDto();
 		userDto.setId(user.getId());
 		userDto.setUsername(user.getUsername());
@@ -21,5 +21,9 @@ public class UserServiceImpl implements UserService {
 		userDto.setName(user.getName());
 		userDto.setRole(user.getAuthorities().get(0).getAuthority());
 		return userDto;
+	}
+
+	public UserEntity getUserEntity(String username) {
+		return userEntityRepository.findByUsername(username);
 	}
 }

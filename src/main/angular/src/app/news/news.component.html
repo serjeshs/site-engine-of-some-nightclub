@@ -12,9 +12,7 @@
           <a routerLink="/news/{{newsItem.id}}">
             <h3>{{newsItem.title}}</h3>
           </a>
-          <p>
-            {{newsItem.descriptionPreview}}
-          </p>
+          <p class="e2e-inner-html-bound" [innerHTML]="newsItem.descriptionPreview">
           <p>
             {{newsItem.createDate}}
           </p>

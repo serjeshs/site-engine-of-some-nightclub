@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
@@ -45,7 +44,7 @@ public class EventReportServiceImpl implements EventReportService {
 		entity.setName(dto.getName());
 		entity.setVisible(true);
 		entity.setStartEvent(dto.getStartEvent());
-		entity.setCoverUri("/files/2018/07/06/cover.jpg");
+		entity.setCoverUri(dto.getCoverUri());
 		entity = eventReportRepository.save(entity);
 		return toDto(entity);
 	}

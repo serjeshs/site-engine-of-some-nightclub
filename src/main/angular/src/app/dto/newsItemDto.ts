@@ -1,6 +1,6 @@
 export class NewsItemDto {
   id: number;
-  title: number;
+  title: string;
   description: string;
   descriptionPreview: string;
   image: string;

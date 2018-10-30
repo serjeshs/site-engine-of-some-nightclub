@@ -38,7 +38,7 @@
     <label for="newPhoto">Загрузить новый файл {{dataGallery?.report?.id}}.</label>
 
     <label class="upload-button">
-      <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" id="newPhoto">
+      <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" id="newPhoto" multiple>
       or choose file(s)
     </label>
 
@@ -51,8 +51,11 @@
 </form>
 
 <p> фоток : {{dataGallery.report.images.length}}</p>
-<ul class="foto-list">
-  <li *ngFor="let image of dataGallery.report.images">
-    <img src="{{image}}" title="{{dataGallery.report.name}}">
-  </li>
-</ul>
+<form>
+  <ul class="foto-list">
+    <li *ngFor="let image of dataGallery.report.images">
+      <input type="radio" name="cover" (change)="handleChangeCoverUri($event, image)" [checked]="isChecked(image)">
+      <img src="{{image}}" title="{{dataGallery.report.name}}">
+    </li>
+  </ul>
+</form>

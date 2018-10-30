@@ -61,4 +61,9 @@ export class NewsService {
   private log(message: string) {
     console.log(message);
   }
+
+  saveNews(model: NewsItemDto) {
+    let url = '/api/news/';
+    return this.http.post<NewsItemDto>(url, JSON.stringify(model), httpOptions);
+  }
 }

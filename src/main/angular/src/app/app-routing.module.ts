@@ -23,6 +23,7 @@ import {PreSummaryComponent} from "./admin/photo-report-editor/pre-summary/pre-s
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {RulesComponent} from "./pages/rules/rules.component";
 import {RulesPayComponent} from "./pages/rules-pay/rules-pay.component";
+import {NewsSummaryComponent} from "./admin/news/news-summary/news-summary.component";
 
 const routes: Routes = [
   {path: '', component: EventsComponent},
@@ -42,6 +43,7 @@ const routes: Routes = [
   {path: 'admin-events-list', component: EventsListComponent},
   {path: 'admin-event-view', component: EventViewComponent},
   {path: 'admin-events', component: EventsAdminPageComponent},
+  {path: 'admin-news', component: NewsSummaryComponent},
   {path: 'login', component: PageLoginComponent},
   {path: 'feedback', component: FeedbackComponent},
   {path: 'admin-menu-editor', component: MenuEditorComponent},

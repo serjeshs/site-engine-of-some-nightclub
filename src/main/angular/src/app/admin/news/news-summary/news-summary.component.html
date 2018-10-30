@@ -1,0 +1,49 @@
+<div class="btn btn-info" (click)="addNewsButton()" *ngIf="mode=='view'">Добавить новость</div>
+
+<div class="news-editor" *ngIf="mode=='edit'">
+  <div class="form-group">
+    <label for="title">Заголовок</label>
+    <input class="form-control" id="title" [(ngModel)]="model.title">
+  </div>
+  <div class="form-group">
+    <img [src]="model.image" height="300">
+    <br>
+    <label for="image">Ссылка на картинку</label>
+    <input id="image" [(ngModel)]="model.image" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="modelDescriptionPreview">Превью новости</label>
+    <div [froalaEditor] [(froalaModel)]="model.descriptionPreview" id="modelDescriptionPreview" required></div>
+  </div>
+  <div class="form-group">
+    <label for="modelDescription">Описание</label>
+    <div [froalaEditor] [(froalaModel)]="model.description" id="modelDescription" required></div>
+  </div>
+  <button type="submit" class="btn btn-primary" value="Сохранить" (click)="save()">Захаваць</button>
+</div>
+
+<div class="content-wrapper" *ngIf="mode=='view'">
+  <div class="block about-page info-page">
+    <ul class="img-list">
+      <li *ngFor="let newsItem of news; index as i" class="{{i%2 === 0 ? 'r-list' : ''}}">
+        <div class="img">
+          <a routerLink="/news/{{newsItem.id}}">
+            <img src="{{newsItem.image}}" height="200" alt="">
+          </a>
+        </div>
+        <div class="info">
+          <a routerLink="/news/{{newsItem.id}}">
+            <h3>{{newsItem.title}}</h3>
+          </a>
+          <p class="e2e-inner-html-bound" [innerHTML]="newsItem.descriptionPreview">
+          <p>
+            {{newsItem.createDate}}
+          </p>
+          <button class="btn" (click)="editNews(newsItem)">Редактировать</button>
+        </div>
+        <div class="clearfix"></div>
+      </li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+</div>

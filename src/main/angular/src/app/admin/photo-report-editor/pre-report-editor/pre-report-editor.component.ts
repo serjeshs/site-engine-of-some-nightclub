@@ -19,6 +19,7 @@ export class PreReportEditorComponent implements OnInit {
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
   dragOver: boolean;
+  private coverUri: string;
 
   constructor(private photoReportService: PhotoReportService, private eventReportService: EventReportService) {
     this.options = {concurrency: 1, maxUploads: 3};
@@ -47,7 +48,7 @@ export class PreReportEditorComponent implements OnInit {
   }
 
   onClickSaveReport() {
-
+    this.dataGallery.report.coverUri = this.coverUri;
     this.photoReportService.save(this.dataGallery.report)
       .subscribe(responce => {
         if (responce.success) {
@@ -129,5 +130,16 @@ export class PreReportEditorComponent implements OnInit {
 
   removeAllFiles(): void {
     this.uploadInput.emit({type: 'removeAll'});
+  }
+
+  isChecked(imageUri: string) {
+    return (this.dataGallery.report.coverUri == imageUri);
+  }
+
+
+  handleChangeCoverUri(evt, imageUri) {
+    if (evt.target.checked) {
+      this.coverUri = imageUri;
+    }
   }
 }

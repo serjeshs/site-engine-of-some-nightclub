@@ -8,4 +8,6 @@ public interface NewsService {
 	List<NewsDto> summary();
 
 	NewsDto byId(Long id);
+
+	NewsDto save(NewsDto newsDto, String owner);
 }

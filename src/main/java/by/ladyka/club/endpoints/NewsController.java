@@ -1,24 +1,23 @@
 package by.ladyka.club.endpoints;
 
+import by.ladyka.club.dto.NewsDto;
 import by.ladyka.club.service.NewsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @Controller
 @RequestMapping(value = "api/news/")
+@RequiredArgsConstructor
 public class NewsController {
-	@Autowired
-	private NewsService newsService;
+	private final NewsService newsService;
 
 	@RequestMapping(value = "summary", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
@@ -32,9 +31,14 @@ public class NewsController {
 		return new ResponseEntity<>(newsService.byId(id), HttpStatus.OK);
 	}
 
-	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	ResponseEntity byId(@RequestParam(value = "id") Long id, Principal principal, HttpServletRequest httpServletRequest) {
 		return new ResponseEntity<>(newsService.byId(id), HttpStatus.OK);
+	}
+
+	@PostMapping
+	public @ResponseBody ResponseEntity save(@RequestBody NewsDto newsDto, Principal principal) {
+		return new ResponseEntity<>(newsService.save(newsDto, principal.getName()), HttpStatus.OK);
 	}
 }
