@@ -55,7 +55,7 @@
   <ul class="foto-list">
     <li *ngFor="let image of dataGallery.report.images">
       <input type="radio" name="cover" (change)="handleChangeCoverUri($event, image)" [checked]="isChecked(image)">
-      <img src="{{image}}" title="{{dataGallery.report.name}}">
+      <img src="{{image}}" title="{{dataGallery.report.name}}" height="400">
     </li>
   </ul>
 </form>
