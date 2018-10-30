@@ -22,7 +22,7 @@ export class PreReportEditorComponent implements OnInit {
   private coverUri: string;
 
   constructor(private photoReportService: PhotoReportService, private eventReportService: EventReportService) {
-    this.options = {concurrency: 1, maxUploads: 3};
+    this.options = {concurrency: 1, maxUploads: 300};
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
     this.humanizeBytes = humanizeBytes;
