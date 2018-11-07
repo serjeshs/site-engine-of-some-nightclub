@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "api/login")
+@ApiIgnore
 public class AuthController {
 
 	@RequestMapping("fail")
