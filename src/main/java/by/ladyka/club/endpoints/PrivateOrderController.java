@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/api/private/orders")
 @AllArgsConstructor
-public class OrderController {
+public class PrivateOrderController {
 
 	private MenuService menuService;
 

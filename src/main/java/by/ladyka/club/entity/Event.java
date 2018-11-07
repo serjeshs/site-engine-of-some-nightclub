@@ -21,7 +21,6 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @EntityListeners(AuditingEntityListener.class)
 public class Event extends AbstractEntity {
 	public static final String startEventFieldName = "startEvent";
-	private BigDecimal cost;
 	@Lob
 	private String costText;
 	@Lob
@@ -30,10 +29,13 @@ public class Event extends AbstractEntity {
 	private LocalDateTime endEvent;
 	private String name;
 	private String coverUri;
-	private String alias;
-	private String buyTicketUrl;
 	private Boolean recommendation;
 	private Boolean republicPay;
+
+	//TODO remove me
+	private String alias;
+	private BigDecimal cost;
+	private String buyTicketUrl;
 
 	public Event(Long eventId) {
 		setId(eventId);

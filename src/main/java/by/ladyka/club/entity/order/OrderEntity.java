@@ -1,8 +1,9 @@
-package by.ladyka.club.entity.menu;
+package by.ladyka.club.entity.order;
 
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.entity.AbstractEntity;
 import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,17 +13,14 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
-
 @Entity
 @Getter
 @Setter
-@Table(name = APP_TABLE_PREFIX + "menu_order")
+@Table(name = "ticket_order")
 @EntityListeners(AuditingEntityListener.class)
 @ToString
-@Deprecated
-public class MenuOrder extends AbstractEntity {
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+public class OrderEntity extends AbstractEntity {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
 	List<MenuItemPricesHasOrders> itemPricesHasOrders;
 	private String name;
 	private String surname;
@@ -32,9 +30,7 @@ public class MenuOrder extends AbstractEntity {
 	@JoinColumn(name = "eventId")
 	private Event event;
 	private String arrivalTime;
-	private Integer people;
 	private String description;
-	private Integer tableNumber;
 
 	@Column(name = "uuid", unique = true, nullable = false)
 	private String uuid = UUID.randomUUID().toString();
@@ -43,4 +39,16 @@ public class MenuOrder extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private GatewayStatus payStatus;
 	private String uid;
+
+
+
+	//Paid Values
+	private Long dance;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderEntity")
+	private List<OrderItemEntity> tableNumbers;
+
+
+//	private Integer people;
+//	private Integer tableNumber;
+
 }
