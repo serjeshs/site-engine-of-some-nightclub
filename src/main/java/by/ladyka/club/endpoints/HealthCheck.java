@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -19,7 +21,9 @@ import java.util.Map;
 
 import static java.lang.Boolean.TRUE;
 
-@Controller
+
+@RestController
+@ApiIgnore
 public class HealthCheck {
 
 	public static final String DATE_TIME_PATTERN = "dd.MM.yyyy HH:mm:ss";
@@ -70,4 +74,13 @@ public class HealthCheck {
 			return sb.toString();
 		}
 	}
+
+	@GetMapping(value = "/")
+	public ModelAndView redirect(ModelMap model){
+		model.addAttribute("attribute", "redirectWithRedirectPrefix");
+		return new ModelAndView("redirect:/swagger-ui.html", model);
+	}
+
 }
+
+
