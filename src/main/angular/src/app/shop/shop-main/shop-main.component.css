@@ -1,0 +1,39 @@
+.shop-item-border {
+  border-style: dashed;
+  padding: 30px;
+  height: 500px;
+}
+
+.shop-item-image {
+  float: left; /* Выравнивание по левому краю */
+  margin: 17px 17px 17px 0; /* Отступы вокруг картинки */
+}
+
+.shop-item-name {
+  font-size: 35px;
+  padding: 40px;
+}
+
+.shop-item-description {
+  /*font-size: 24px;*/
+}
+
+.shop-item-cost {
+  /*border-radius: unset;*/
+
+}
+
+.shop-item-count {
+  /*padding: 20px;*/
+}
+
+.shop-item-info-area {
+  height: 400px;
+  width: 400px;
+  background-color: #00d4ff;
+  margin: 17px 0px 0px 400px;
+}
+
+.right {
+  float: right;
+}

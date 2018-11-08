@@ -88,6 +88,7 @@ import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
 import {NewsSummaryComponent} from './admin/news/news-summary/news-summary.component';
 import {OrderTicketsComponent} from './orders/order-tickets/order-tickets.component';
 import {OrderTicketService} from "./services/tickets/order-ticket.service";
+import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 
 @NgModule({
   imports: [
@@ -173,7 +174,8 @@ import {OrderTicketService} from "./services/tickets/order-ticket.service";
     RulesComponent,
     RulesPayComponent,
     NewsSummaryComponent,
-    OrderTicketsComponent
+    OrderTicketsComponent,
+    ShopMainComponent
   ],
   providers: [
     AuthService,
