@@ -98,6 +98,7 @@ export class BepaidDialog {
     @Inject(MAT_DIALOG_DATA) public data: OrderModalData) {}
 
   onNoClick(): void {
+    alert("close")
     this.dialogRef.close();
   }
 }

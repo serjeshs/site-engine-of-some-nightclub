@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewContainerRef} from '
 import {Event} from "../../dto/event";
 import * as moment from "moment";
 import {ToastsManager} from "ng6-toastr";
+import {MatDialog} from "@angular/material";
+import {OrderTicketsComponent} from "../../orders/order-tickets/order-tickets.component";
 
 @Component({
   selector: 'app-event-view',
@@ -16,7 +18,7 @@ export class EventViewComponent implements OnInit {
   @Input() event: Event = new Event();
   @Input() readOnly: boolean;
 
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public dialog: MatDialog) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -64,5 +66,14 @@ export class EventViewComponent implements OnInit {
     const end = moment(this.event.endEvent).format(pattern);
     const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${start}/${end}&location=${location}&text=${this.event.name}++|++RE:PUBLIC&details=%3Ca%20href=%22https://republic-club.by/event/${this.event.id}`;
     window.open(url).focus();
+  }
+
+  openOrderModalWindow() {
+    const dialogRef = this.dialog.open(OrderTicketsComponent, {
+      data: {
+        event: this.event
+      }
+    });
+
   }
 }

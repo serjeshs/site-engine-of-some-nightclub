@@ -86,6 +86,8 @@ import {RulesComponent} from './pages/rules/rules.component';
 import {RulesPayComponent} from './pages/rules-pay/rules-pay.component';
 import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
 import {NewsSummaryComponent} from './admin/news/news-summary/news-summary.component';
+import {OrderTicketsComponent} from './orders/order-tickets/order-tickets.component';
+import {OrderTicketService} from "./services/tickets/order-ticket.service";
 
 @NgModule({
   imports: [
@@ -170,7 +172,8 @@ import {NewsSummaryComponent} from './admin/news/news-summary/news-summary.compo
     TopBannerComponent,
     RulesComponent,
     RulesPayComponent,
-    NewsSummaryComponent
+    NewsSummaryComponent,
+    OrderTicketsComponent
   ],
   providers: [
     AuthService,
@@ -179,10 +182,11 @@ import {NewsSummaryComponent} from './admin/news/news-summary/news-summary.compo
     FeedbackService,
     MenuService,
     NewsService,
+    OrderTicketService,
     PhotoReportService,
     StatisticService
   ],
-  entryComponents: [BepaidDialog],
+  entryComponents: [BepaidDialog, OrderTicketsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

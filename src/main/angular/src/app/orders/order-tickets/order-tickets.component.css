@@ -1,0 +1,192 @@
+.club-order-ticket-area {
+  float: right;
+  border:1px solid black;
+}
+
+.club-order-ticket-btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid black;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  /*border-radius: 0.25rem;*/
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  background-color: #f8f8f8;
+}
+
+.club-order-ticket-count {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid ;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  /*border-radius: 0.25rem;*/
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  background-color: #d5ffd4;
+}
+
+
+
+
+.area-map {
+  background-color: #b0b0b0;
+  width: 600px;
+  height: 600px;
+}
+
+.area-club-scene {
+  background-color: #ff5f00;
+  height: 30px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.area-down-bar {
+  background-color: #adb1a3;
+  height: 50px;
+}
+
+.area-console {
+  background-color: #fffa00;
+  height: 120px;
+}
+
+.area-top-dance {
+  background-color: #00d4ff;
+  height: 40px;
+}
+
+.area-stairs {
+  background-color: #1de200;
+  height: 360px;
+  width: 600px;
+  display:inline-block;
+}
+
+.area-table {
+  background-color: #0000ff;
+  width: 60px;
+  height: 120px;
+  float:left;
+  border: #b0b0b0;
+  border-radius: 10px;
+  display:inline-block;
+}
+
+.area-console-control {
+  background-color: #b9ffd4;
+  width: 120px;
+  height: 120px;
+  float:left;
+  border-radius: 10px;
+}
+
+.area-table-place {
+  width: 20px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.area-table-place-free {
+  background-color: #ededed;
+}
+
+.area-table-place-booking {
+  background-color: #66ed4f;
+}
+
+.area-table-place-busy {
+  background-color: #ed1a20;
+  cursor: not-allowed;
+}
+
+.area-table-place-free:hover {
+  cursor: pointer;
+}
+
+.area-table-place-booking:hover  {
+  cursor: pointer;
+  background-color: yellow;
+}
+
+.table-right {
+  float:right;
+}
+
+.table-left {
+  float:left;
+}
+
+.area-table-line {
+  display: inline-block;
+}
+
+.area-stairs-left {
+  background-color: red; /*fix*/
+  width: 360px;
+  height: 360px;
+  display:inline-block;
+}
+
+.area-stairs-right {
+  background-color: #8cff68;
+  width: 200px;
+  height: 120px;
+  float: right;
+  display:inline-block;
+}
+
+.area-stairs-middle {
+  background-color: #ff5f00;
+  width: 30px;
+  height: 360px;
+  display:inline-block;
+}
+
+.area-stairs-left-row-first {
+  width: 100%;
+  text-align:center;
+}
+
+.area-stairs-right-row-first {
+  width: 200px;
+  float: right;
+}
+
+.area-nothing-third {
+  width: 200px;
+  height: 120px;
+  background-color: gray;
+}
+
+.area-nothing-second {
+  width: 100px;
+  height: 120px;
+  background-color: gray;
+  float: right;
+}
+
+.area-left {
+  float: left;
+}
+
+.area-stairs-right-row-second {
+  width: 200px;
+  float: right;
+}
