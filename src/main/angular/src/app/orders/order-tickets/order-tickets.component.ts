@@ -35,6 +35,7 @@ export class OrderTicketsComponent implements OnInit {
   tablesConsoleLeft: TableDto[];
   tablesEleven: TableDto[];
   tablesSeventeen: TableDto[];
+  orderComplete: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<OrderTicketsComponent>,
@@ -50,6 +51,7 @@ export class OrderTicketsComponent implements OnInit {
       danceFloor: [this.ticketOrder.danceFloor, [Validators.required, Validators.min(0), Validators.max(20)]]
     });
     this.ticketOrder.danceFloor = 0;
+    this.orderComplete = false;
   }
 
   onNoClick(): void {
