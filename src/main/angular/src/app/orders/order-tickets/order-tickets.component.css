@@ -47,7 +47,7 @@
 .area-map {
   background-color: #b0b0b0;
   width: 600px;
-  height: 600px;
+  height: 609px;
 }
 
 .area-club-scene {
@@ -118,6 +118,7 @@
 
 .area-table-place-free:hover {
   cursor: pointer;
+  background-color: #e4ff4a;
 }
 
 .area-table-place-booking:hover  {
@@ -140,7 +141,7 @@
 .area-stairs-left {
   background-color: red; /*fix*/
   width: 360px;
-  height: 360px;
+  height: 369px;
   display:inline-block;
 }
 
@@ -171,7 +172,7 @@
 
 .area-nothing-third {
   width: 200px;
-  height: 120px;
+  height: 129px;
   background-color: gray;
 }
 

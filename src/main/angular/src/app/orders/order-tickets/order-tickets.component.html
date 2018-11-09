@@ -14,34 +14,22 @@
           <div class="club-order-ticket-btn" title="Уменьшить кол-во билетов"
                (click)="decrementDanceFloor()">-</div>
         </span>
-
         <br>
-        столики:
+        Всего мест за столиком : {{ticketOrder.placeSeats}}
         <br>
         <div class="area-map">
           <div class="area-club-scene">RE:PUBLIC</div>
           <div class="area-down-bar"></div>
           <div class="area-console">
             <div class="area-table" *ngFor="let table of tablesConsoleLeft">
-              <div class="area-table-line">
-                <div class="area-table-place area-table-place-booking table-left"></div>
-                <div class="area-table-place area-table-place-free table-right"></div>
-              </div>
-              <div class="area-table-line">
-                <div class="area-table-place area-table-place-free table-left"></div>
-                <div class="area-table-place area-table-place-busy table-right"></div>
+              <div *ngFor="let place of table.places">
+                <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
               </div>
             </div>
             <div class="area-console-control"></div>
-
             <div class="area-table" *ngFor="let table of tablesConsoleRight">
-              <div class="area-table-line">
-                <div class="area-table-place area-table-place-booking table-left"></div>
-                <div class="area-table-place area-table-place-free table-right"></div>
-              </div>
-              <div class="area-table-line">
-                <div class="area-table-place area-table-place-free table-left"></div>
-                <div class="area-table-place area-table-place-busy table-right"></div>
+              <div *ngFor="let place of table.places">
+                <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
               </div>
             </div>
           </div>
@@ -50,54 +38,38 @@
             <div class="area-stairs-left">
               <div class="area-stairs-left-row-first area-table-line">
                 <div class="area-table" *ngFor="let table of tablesBottomStairs">
-                  <div class="area-table-line">
-                    <div class="area-table-place area-table-place-booking table-left"></div>
-                    <div class="area-table-place area-table-place-free table-right"></div>
-                  </div>
-                  <div class="area-table-line">
-                    <div class="area-table-place area-table-place-free table-left"></div>
-                    <div class="area-table-place area-table-place-busy table-right"></div>
+                  <div *ngFor="let place of table.places">
+                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
                   </div>
                 </div>
               </div>
               <div class="area-stairs-left-row-second area-table-line">
                 <div class="area-table" *ngFor="let table of tablesMiddleStairs">
-                  <div class="area-table-line">
-                    <div class="area-table-place area-table-place-booking table-left"></div>
-                    <div class="area-table-place area-table-place-free table-right"></div>
-                  </div>
-                  <div class="area-table-line">
-                    <div class="area-table-place area-table-place-free table-left"></div>
-                    <div class="area-table-place area-table-place-busy table-right"></div>
+                  <div *ngFor="let place of table.places">
+                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
                   </div>
                 </div>
               </div>
               <div class="area-stairs-left-row-third area-table-line">
                 <div class="area-table" *ngFor="let table of tablesTopStairs">
-                  <div class="area-table-line">
-                    <div class="area-table-place area-table-place-booking table-left"></div>
-                    <div class="area-table-place area-table-place-free table-right"></div>
-                  </div>
-                  <div class="area-table-line">
-                    <div class="area-table-place area-table-place-free table-left"></div>
-                    <div class="area-table-place area-table-place-busy table-right"></div>
+                  <div *ngFor="let place of table.places">
+                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="area-stairs-middle">
-
             </div>
             <div class="area-stairs-right">
               <div class="area-stairs-right-row-first area-table-line">
                 <div class="area-left">
                   <div class="area-table" *ngFor="let table of tablesEleven">
                     <div class="area-table-line">
-                      <div class="area-table-place area-table-place-booking table-left"></div>
-                      <div class="area-table-place area-table-place-free table-right"></div>
+                      <div class="area-table-place area-table-place-busy table-left"></div>
+                      <div class="area-table-place area-table-place-busy table-right"></div>
                     </div>
                     <div class="area-table-line">
-                      <div class="area-table-place area-table-place-free table-left"></div>
+                      <div class="area-table-place area-table-place-busy table-left"></div>
                       <div class="area-table-place area-table-place-busy table-right"></div>
                     </div>
                   </div>
@@ -108,13 +80,8 @@
               <div class="area-stairs-right-row-second area-table-line">
                 <div class="area-left">
                   <div class="area-table" *ngFor="let table of tablesSeventeen">
-                    <div class="area-table-line">
-                      <div class="area-table-place area-table-place-booking table-left"></div>
-                      <div class="area-table-place area-table-place-free table-right"></div>
-                    </div>
-                    <div class="area-table-line">
-                      <div class="area-table-place area-table-place-free table-left"></div>
-                      <div class="area-table-place area-table-place-busy table-right"></div>
+                    <div *ngFor="let place of table.places">
+                      <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
                     </div>
                   </div>
                 </div>
@@ -150,7 +117,6 @@
         <a routerLink="/feedback" (click)="onNoClick()"><u>раздел обратной связи</u></a>
         и опишите проблему.
         <br>
-
         <div>
           <button mat-button matStepperPrevious>Назад</button>
           <button mat-button matStepperNext>Далее</button>
@@ -167,7 +133,6 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Превью заказа</ng-template>
-
       <div>
         <button mat-button matStepperPrevious>Назад</button>
         <button mat-raised-button (click)="payTicketOrder()">Оплатить заказ онлайн {{ticketOrder.totalMoney}} BYN

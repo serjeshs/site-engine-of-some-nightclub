@@ -51,6 +51,8 @@ export class OrderTicketsComponent implements OnInit {
       danceFloor: [this.ticketOrder.danceFloor, [Validators.required, Validators.min(0), Validators.max(20)]]
     });
     this.ticketOrder.danceFloor = 0;
+    this.ticketOrder.placeSeats = 0;
+
     this.orderComplete = false;
   }
 
@@ -164,6 +166,29 @@ export class OrderTicketsComponent implements OnInit {
     }
     table.places = places;
     return table;
+  }
+
+  getPlaceStateClass(place: PlaceDto) {
+    let status = 'area-table-line area-table-place area-table-place-' + place.status.toLowerCase();
+    status += (place.placeNumber % 2)?' table-right':' table-left';
+    return status;
+  }
+
+  onPlaceClick(place: PlaceDto) {
+    switch (place.status) {
+      case 'FREE' : {
+        place.status = 'BOOKING';
+        this.ticketOrder.placeSeats++;
+      } break;
+      case 'BOOKING' : {
+        place.status = 'FREE';
+        this.ticketOrder.placeSeats--;
+      } break;
+      case 'BUSY' : {
+
+      } break;
+    }
+
   }
 }
 
