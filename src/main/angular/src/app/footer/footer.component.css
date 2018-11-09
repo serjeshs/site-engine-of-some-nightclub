@@ -12,3 +12,19 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
+.links {
+  display: block;
+}
+
+.image-belcard {
+  max-height: 82px;
+  width: 100%;
+  max-width: 769px;
+}
+
+.image-mtbank {
+  max-height: 72px;
+  width: 100%;
+  max-width: 221px;
+}

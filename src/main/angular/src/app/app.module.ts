@@ -89,6 +89,7 @@ import {NewsSummaryComponent} from './admin/news/news-summary/news-summary.compo
 import {OrderTicketsComponent} from './orders/order-tickets/order-tickets.component';
 import {OrderTicketService} from "./services/tickets/order-ticket.service";
 import { ShopMainComponent } from './shop/shop-main/shop-main.component';
+import { PublicOfferComponent } from './pages/public-offer/public-offer.component';
 
 @NgModule({
   imports: [
@@ -175,7 +176,8 @@ import { ShopMainComponent } from './shop/shop-main/shop-main.component';
     RulesPayComponent,
     NewsSummaryComponent,
     OrderTicketsComponent,
-    ShopMainComponent
+    ShopMainComponent,
+    PublicOfferComponent
   ],
   providers: [
     AuthService,

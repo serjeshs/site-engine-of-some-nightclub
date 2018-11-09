@@ -126,3 +126,9 @@
 .top-banner {
   background-color: #f8f8f8;
 }
+
+.banner-img {
+  max-height: 100px;
+  width: 100%;
+  max-width: 1160px;
+}

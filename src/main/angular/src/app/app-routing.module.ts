@@ -25,6 +25,7 @@ import {RulesComponent} from "./pages/rules/rules.component";
 import {RulesPayComponent} from "./pages/rules-pay/rules-pay.component";
 import {NewsSummaryComponent} from "./admin/news/news-summary/news-summary.component";
 import {ShopMainComponent} from "./shop/shop-main/shop-main.component";
+import {PublicOfferComponent} from "./pages/public-offer/public-offer.component";
 
 const routes: Routes = [
   {path: '', component: EventsComponent},
@@ -53,6 +54,7 @@ const routes: Routes = [
   {path: 'admin-photo-report-editor', component: PreSummaryComponent},
   {path: 'rules', component: RulesComponent},
   {path: 'rules-pay', component: RulesPayComponent},
+  {path: 'public-offer', component: PublicOfferComponent},
   {path: 'shop', component: ShopMainComponent},
   {
     path: '**', component: PageNotFoundComponent, data: { breadcrumb: 'page-not-found', roles: [] }

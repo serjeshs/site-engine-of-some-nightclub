@@ -1,0 +1,19 @@
+@page {
+  margin-left: 3cm;
+  margin-right: 1.5cm;
+  margin-top: 2cm;
+  margin-bottom: 2cm
+}
+
+p {
+  margin-bottom: 0.25cm;
+  direction: ltr;
+  line-height: 120%;
+  text-align: left;
+  orphans: 2;
+  widows: 2
+}
+
+a:link {
+  so-language: zxx
+}

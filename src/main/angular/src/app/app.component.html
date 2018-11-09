@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <app-top-banner class="top-banner"></app-top-banner>
+  <!--<app-top-banner class="top-banner"></app-top-banner>-->
   <!--header-->
   <div class="header" *ngIf="innerWidth > 1000">
     <div class="container">
@@ -22,8 +22,6 @@
           <a routerLink="/news">Новости</a>
           <a routerLink="/club">Клуб</a>
           <a style="color: red" routerLink="/feedback">Бюро находок и информация</a>
-          <a routerLink="/rules">Правила клуба</a>
-          <a routerLink="/rules-pay">Правила оплаты</a>
           <a routerLink="/shop">Магазин</a>
           <a [hidden]="isAdmin" href="/login">L</a>
         </nav>
@@ -56,8 +54,6 @@
         <a routerLink="/media">Фото</a>
         <a routerLink="/news">Новости</a>
         <a routerLink="/club">Клуб</a>
-        <a routerLink="/rules">Правила клуба</a>
-        <a routerLink="/rules-pay">Правила оплаты</a>
       </nav>
     </div>
     <div class="clearfix"></div>
