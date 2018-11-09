@@ -6,13 +6,13 @@
         <ng-template matStepLabel>Выбор билетов</ng-template>
         Одиночные билеты на танцпол
         <span class="club-order-ticket-area">
-          <div class="club-order-ticket-btn" title="Увеличить кол-во билетов"
-               (click)="incrementDanceFloor()">+</div>
+          <div class="club-order-ticket-btn" title="Уменьшить кол-во билетов"
+               (click)="decrementDanceFloor()">-</div>
           <div class="club-order-ticket-count">
             <input type="text" formControlName="danceFloor" [(ngModel)]="ticketOrder.danceFloor">
           </div>
-          <div class="club-order-ticket-btn" title="Уменьшить кол-во билетов"
-               (click)="decrementDanceFloor()">-</div>
+          <div class="club-order-ticket-btn" title="Увеличить кол-во билетов"
+               (click)="incrementDanceFloor()">+</div>
         </span>
         <br>
         Всего мест за столиком : {{ticketOrder.placeSeats}}
@@ -118,8 +118,7 @@
         и опишите проблему.
         <br>
         <div>
-          <button mat-button matStepperPrevious>Назад</button>
-          <button mat-button matStepperNext>Далее</button>
+          <button mat-button matStepperNext color="primary">Далее</button>
         </div>
       </form>
     </mat-step>
@@ -127,16 +126,16 @@
       <ng-template matStepLabel>Общая информация о пользователе</ng-template>
       <!--<app-order-titcket-edit [order]="order" ></app-order-titcket-edit>-->
       <div>
-        <button mat-button matStepperPrevious>Назад</button>
-        <button mat-button matStepperNext>Далее</button>
+        <button mat-button matStepperPrevious color="accent" >Назад</button>
+        <button mat-button matStepperNext color="primary">Далее</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Превью заказа</ng-template>
       <div>
-        <button mat-button matStepperPrevious>Назад</button>
-        <button mat-raised-button (click)="payTicketOrder()">Оплатить заказ онлайн {{ticketOrder.totalMoney}} BYN
-        </button>
+        <button mat-button matStepperPrevious color="accent" >Назад</button>
+        <button mat-raised-button color="primary"
+                (click)="payTicketOrder()">Оплатить заказ онлайн {{ticketOrder.totalMoney}} BYN</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
