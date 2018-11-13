@@ -23,7 +23,7 @@
           <a routerLink="/club">Клуб</a>
           <a style="color: red" routerLink="/feedback">Бюро находок и информация</a>
           <!--<a routerLink="/shop">Магазин</a>-->
-          <a [hidden]="isAdmin" href="/login">L</a>
+          <a [hidden]="isAdmin" routerLink="/login">L</a>
         </nav>
         <nav [hidden]="!isAdmin">
           <a routerLink="/admin">Admin главная</a>

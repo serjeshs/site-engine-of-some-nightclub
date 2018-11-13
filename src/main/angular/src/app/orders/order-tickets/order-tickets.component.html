@@ -124,7 +124,103 @@
     </mat-step>
     <mat-step [stepControl]="orderDetailsFormGroup">
       <ng-template matStepLabel>Общая информация о пользователе</ng-template>
-      <!--<app-order-titcket-edit [order]="order" ></app-order-titcket-edit>-->
+
+
+
+
+
+
+
+
+      <div class="form-group">
+        <label for="name">Имя</label>
+        <input type="text" class="form-control"
+               id="name"
+               required
+               [(ngModel)]="ticketOrder.name"
+               name="name"
+               #name="ngModel"
+               placeholder="Имя?"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="name">Фамилия</label>
+        <input type="text" class="form-control"
+               id="surname"
+               required
+               [(ngModel)]="ticketOrder.surname"
+               name="surname"
+               #surname="ngModel"
+               placeholder="Фамилия?"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Email aдрес</label><br>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" [(ngModel)]="ticketOrder.email"
+               required
+               name="email"
+               #email="ngModel"
+               placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">Мы никому не расскажем ваш емеил.</small>
+      </div>
+
+
+      <div class="form-group">
+        <label for="phone">Номер мобильного телефона</label><br>
+        <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp" [(ngModel)]="ticketOrder.phone"
+               required
+               name="phone"
+               #phone="ngModel"
+               placeholder="Enter phone">
+        <small id="phoneHelp" class="form-text text-muted">Мы свяжемся с вами в ближайшее время, после оформления
+          заказа.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="description">комментарий к заказу</label>
+        <textarea type="text" class="form-control" id="description"
+
+                  required
+                  [(ngModel)]="ticketOrder.description"
+                  name="description"
+                  #description="ngModel"
+                  placeholder="Введите ваши дополнительные пожелания, например время прибытия, если заказываете столик"> </textarea>
+      </div>
+
+      <div class="form-check">
+
+        <input type="checkbox" class="form-check-input" id="rulesCheck"
+               [(ngModel)]="ticketOrder.rulesCheck" name="rulesCheck"
+               #rulesCheck="ngModel"
+               required>
+        <label class="form-check-label" for="rulesCheck">Я обязуюсь не нарушать: <a href="/rules" target="_blank"><u><b>правила клуба RE:PUBLIC</b></u></a></label>
+      </div>
+
+      <div class="form-check">
+
+        <input type="checkbox" class="form-check-input" id="offerCheck"
+               [(ngModel)]="ticketOrder.offerCheck" name="offerCheck"
+               #offerCheck="ngModel"
+               required>
+        <label class="form-check-label" for="rulesCheck">Я принимаю: <a href="/public-offer" target="_blank"><u><b>Договор публичной оферты клуба RE:PUBLIC</b></u></a></label>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!--<app-order-titcket-edit [order]="ticketOrder. ></app-order-titcket-edit>-->
       <div>
         <button mat-button matStepperPrevious color="accent" >Назад</button>
         <button mat-button matStepperNext color="primary">Далее</button>
@@ -132,6 +228,15 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Превью заказа</ng-template>
+       Данные покупателя : <br>
+      {{ticketOrder.name}}<br>
+      {{ticketOrder.surname}}<br>
+      {{ticketOrder.email}}<br>
+      {{ticketOrder.phone}}<br>
+      {{ticketOrder.description}}<br>
+      Билетов на танцпол : {{ticketOrder.danceFloor}}<br>
+      Всего мест за столиками : {{ticketOrder.placeSeats}}<br>
+      Сумма к оплате : {{ticketOrder.totalMoney}}<br>
       <div>
         <button mat-button matStepperPrevious color="accent" >Назад</button>
         <button mat-raised-button color="primary"
