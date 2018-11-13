@@ -1,18 +1,6 @@
-<!--banner-->
-<div class="top-banner top-banner-main-container" routerLink="/event/{{settingsBanner.eventId}}" style="background-color: #f8f8f8;">
-  <div class="bx-wrapper" style="max-width: 100%;">
-    <div class="bx-viewport" style="max-width: 100%; overflow: hidden; position: relative; height: 90px;">
-      <a routerLink="/event/{{settingsBanner.eventId}}">
-        <img src="{{settingsBanner.imageUrl}}" class="banner-img">
-      </a>
-      <div class="banner-text">
-        <h3>
-          <a routerLink="/event/{{settingsBanner.eventId}}" style="color: #fff">{{settingsBanner.eventName}}</a>
-        </h3>
-        <span class="date" style="color: #fff">{{settingsBanner.startTime}}</span>
-      </div>
-      <div class="tons-w"></div>
-    </div>
-  </div>
+<div class="top-banner">
+  <a routerLink="/event/{{settingsBanner.eventId}}">
+    <img src="{{settingsBanner.imageUrl}}" class="banner-img">
+  </a>
 </div>
-<!--end banner-->
+
