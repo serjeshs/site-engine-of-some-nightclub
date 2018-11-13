@@ -85,16 +85,19 @@
           <div [froalaEditor] [(froalaModel)]="event.costText" id="costText" required></div>
         </div>
         <div class="form-group">
-          <label for="coverUri">Ссылка на обложку</label>
-          <input type="url"
-                 class="form-control"
-                 id="coverUri"
-                 required
-                 [(ngModel)]="event.coverUri"
-                 name="coverUri"
-                 #coverUri="ngModel"
-                 placeholder="Ссылка на обложку"
-          >
+          <label for="coverUri">Обложка</label>
+          <br>
+          <img src="{{event.coverUri}}" alt="" style="max-width: 100px ; max-height: 100px">
+          <br>
+          <label class="upload-button">
+            <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" id="coverUri">
+            выбрать новую афишу
+          </label>
+
+          <button type="button" class="btn btn-info btn-s start-upload-btn " (click)="startUpload()">
+            Обновить
+          </button>
+
         </div>
         <div class="form-group">
           <label for="coverUri">Ссылка на страницу покупки билетов</label>
