@@ -1,7 +1,7 @@
 .top-banner-main-container {
   overflow: hidden;
-  width: 880px;
-  height: 90px;
+  max-height: 90px;
+  height: 100%;
   margin: 0 auto 20px;
   position: relative
 }
@@ -30,13 +30,13 @@
 .top-banner-main-container .banners-slider li .banner-img {
   display: block;
   overflow: hidden;
-  width: 880px;
-  height: 90px
+  max-height: 90px;
+  height: 100%;
 }
 
 .top-banner-main-container .banners-slider li .banner-img img {
-  width: 880px;
-  height: 90px;
+  max-height: 90px;
+  height: 100%;
   -moz-border-radius-topright: 0;
   -moz-border-radius-bottomright: 5px;
   -moz-border-radius-bottomleft: 5px;
