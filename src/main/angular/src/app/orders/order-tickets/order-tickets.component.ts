@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TicketOrder} from "../../dto/ticketOrder";
 import {OrderTicketService} from "../../services/tickets/order-ticket.service";
 import {Event} from "../../dto/event";
+import {exitCodeFromResult} from "@angular/compiler-cli";
 
 export interface OrderTicketsModalData {
   event: Event;
@@ -61,7 +62,13 @@ export class OrderTicketsComponent implements OnInit {
 
 
   payTicketOrder() {
-    alert("Not implemented!!!!")
+    this.ticketOrder.tables = this.allTables;
+    this.orderTicketService.payOrder(this.ticketOrder)
+      .pipe()
+      .subscribe(result => {
+        console.log(result);
+        alert("IMPLEMENT ME !!!!!!")
+      });
   }
 
   incrementDanceFloor() {
@@ -191,6 +198,14 @@ export class OrderTicketsComponent implements OnInit {
 
   compareTables(a : TableDto, b: TableDto) {
     return a.tableNumber - b.tableNumber;
+  }
+
+  get totalMoney() {
+    return this.ticketOrder.event.costDance * this.ticketOrder.danceFloor + this.ticketOrder.event.costTablePlace*this.ticketOrder.placeSeats;
+  }
+
+  get allTables() {
+    return this.tablesEleven.concat(this.tablesTopStairs, this.tablesMiddleStairs, this.tablesBottomStairs, this.tablesSeventeen, this.tablesConsoleRight, this.tablesConsoleLeft).sort(this.compareTables);
   }
 }
 

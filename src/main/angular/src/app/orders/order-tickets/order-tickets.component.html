@@ -4,17 +4,16 @@
     <mat-step [stepControl]="orderFormGroup">
       <form [formGroup]="orderFormGroup">
         <ng-template matStepLabel>Выбор билетов</ng-template>
-        Одиночные билеты на танцпол
+        Одиночные билеты на танцпол, {{ticketOrder.event.costDance}} BYN
         <span class="club-order-ticket-area">
-          <div class="club-order-ticket-btn" title="Уменьшить кол-во билетов"
-               (click)="decrementDanceFloor()">-</div>
+          <div class="club-order-ticket-btn" title="Уменьшить кол-во билетов" (click)="decrementDanceFloor()">-</div>
           <div class="club-order-ticket-count">
             <input type="text" formControlName="danceFloor" [(ngModel)]="ticketOrder.danceFloor">
           </div>
-          <div class="club-order-ticket-btn" title="Увеличить кол-во билетов"
-               (click)="incrementDanceFloor()">+</div>
+          <div class="club-order-ticket-btn" title="Увеличить кол-во билетов" (click)="incrementDanceFloor()">+</div>
         </span>
         <br>
+        Места за столиком, {{ticketOrder.event.costTablePlace}} BYN <br>
         Всего мест за столиком : {{ticketOrder.placeSeats}}
         <br>
         <div class="area-map">
@@ -92,7 +91,7 @@
           </div>
         </div>
         <br>
-        Cумма оплаты {{ticketOrder.totalMoney}}
+        Cумма оплаты {{totalMoney}}
         <br>
         На платежной странице будет указан номер заказа и сумма платежа. Для оплаты вам необходимо
         ввести свои карточные данные и подтвердить платеж, нажав кнопку «Оплатить». Если ваша карта поддерживает
@@ -236,18 +235,18 @@
       {{ticketOrder.description}}<br>
       Билетов на танцпол : {{ticketOrder.danceFloor}}<br>
       Всего мест за столиками : {{ticketOrder.placeSeats}}<br>
-      <div *ngFor="let table of this.tablesEleven.concat(this.tablesTopStairs, this.tablesMiddleStairs, this.tablesBottomStairs, this.tablesSeventeen, this.tablesConsoleRight, this.tablesConsoleLeft).sort(compareTables)">
+      <div *ngFor="let table of allTables">
         <div *ngFor="let place of table.places">
           <div *ngIf="place.status=='BOOKING'">
             Стол : {{table.tableNumber}} , меcто : {{place.placeNumber}}
           </div>
         </div>
       </div>
-      Сумма к оплате : {{ticketOrder.totalMoney}}<br>
+      Сумма к оплате : {{totalMoney}}<br>
       <div>
         <button mat-button matStepperPrevious color="accent" >Назад</button>
         <button mat-raised-button color="primary"
-                (click)="payTicketOrder()">Оплатить заказ онлайн {{ticketOrder.totalMoney}} BYN</button>
+                (click)="payTicketOrder()">Оплатить заказ онлайн {{totalMoney}} BYN</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

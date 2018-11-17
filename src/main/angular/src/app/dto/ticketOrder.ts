@@ -1,4 +1,5 @@
 import {Event} from "./event";
+import {TableDto} from "../orders/order-tickets/order-tickets.component";
 
 export class TicketOrder {
   public totalMoney : number;
@@ -12,5 +13,6 @@ export class TicketOrder {
   public phone: string;
   public rulesCheck: boolean;
   public offerCheck: boolean;
+  public tables: TableDto[];
 
 }
