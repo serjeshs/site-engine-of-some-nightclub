@@ -2,7 +2,7 @@ package by.ladyka.club.entity.order;
 
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.entity.AbstractEntity;
-import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +28,7 @@ public class OrderEntity extends AbstractEntity {
 	private String phone;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "eventId")
-	private Event event;
+	private EventEntity eventEntity;
 	private String arrivalTime;
 	private String description;
 

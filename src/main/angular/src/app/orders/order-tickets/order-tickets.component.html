@@ -23,13 +23,13 @@
           <div class="area-console">
             <div class="area-table" *ngFor="let table of tablesConsoleLeft">
               <div *ngFor="let place of table.places">
-                <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
+                <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
               </div>
             </div>
             <div class="area-console-control"></div>
             <div class="area-table" *ngFor="let table of tablesConsoleRight">
               <div *ngFor="let place of table.places">
-                <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
+                <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
               </div>
             </div>
           </div>
@@ -39,21 +39,21 @@
               <div class="area-stairs-left-row-first area-table-line">
                 <div class="area-table" *ngFor="let table of tablesBottomStairs">
                   <div *ngFor="let place of table.places">
-                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
+                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
                   </div>
                 </div>
               </div>
               <div class="area-stairs-left-row-second area-table-line">
                 <div class="area-table" *ngFor="let table of tablesMiddleStairs">
                   <div *ngFor="let place of table.places">
-                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
+                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
                   </div>
                 </div>
               </div>
               <div class="area-stairs-left-row-third area-table-line">
                 <div class="area-table" *ngFor="let table of tablesTopStairs">
                   <div *ngFor="let place of table.places">
-                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
+                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
                   </div>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                 <div class="area-left">
                   <div class="area-table" *ngFor="let table of tablesSeventeen">
                     <div *ngFor="let place of table.places">
-                      <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(place)"></div>
+                      <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
                     </div>
                   </div>
                 </div>
@@ -236,6 +236,13 @@
       {{ticketOrder.description}}<br>
       Билетов на танцпол : {{ticketOrder.danceFloor}}<br>
       Всего мест за столиками : {{ticketOrder.placeSeats}}<br>
+      <div *ngFor="let table of this.tablesEleven.concat(this.tablesTopStairs, this.tablesMiddleStairs, this.tablesBottomStairs, this.tablesSeventeen, this.tablesConsoleRight, this.tablesConsoleLeft).sort(compareTables)">
+        <div *ngFor="let place of table.places">
+          <div *ngIf="place.status=='BOOKING'">
+            Стол : {{table.tableNumber}} , меcто : {{place.placeNumber}}
+          </div>
+        </div>
+      </div>
       Сумма к оплате : {{ticketOrder.totalMoney}}<br>
       <div>
         <button mat-button matStepperPrevious color="accent" >Назад</button>

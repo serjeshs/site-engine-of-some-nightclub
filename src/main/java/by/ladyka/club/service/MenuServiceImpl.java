@@ -6,7 +6,7 @@ import by.ladyka.club.dto.menu.MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuItemPriceDto;
 import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
-import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.entity.menu.*;
 import by.ladyka.club.repository.menu.*;
 import by.ladyka.club.service.email.EmailService;
@@ -212,9 +212,9 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public MenuOrderDto order(MenuOrderDto order) {
 		MenuOrder orderEntity = menuOrderConverter.toEntity(order);
-		final Optional<Event> eventById = eventsService.getEventById(order.getEvent());
+		final Optional<EventEntity> eventById = eventsService.getEventById(order.getEvent());
 		if (eventById.isPresent()) {
-			orderEntity.setEvent(eventById.get());
+			orderEntity.setEventEntity(eventById.get());
 		}
 		orderEntity = menuOrderRepository.saveAndFlush(orderEntity);
 		List<Long> pricesId = new ArrayList<>(order.getFood().keySet());
@@ -239,7 +239,7 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public List<MenuOrderDto> orders(Long eventId) {
-		final List<MenuOrder> byEvent = menuOrderRepository.findByEvent_Id(eventId);
+		final List<MenuOrder> byEvent = menuOrderRepository.findByEventEntity_Id(eventId);
 		return menuOrderConverter.toDto(byEvent);
 	}
 

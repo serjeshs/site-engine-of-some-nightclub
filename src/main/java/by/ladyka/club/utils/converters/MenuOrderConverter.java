@@ -23,7 +23,7 @@ public class MenuOrderConverter {
 	public MenuOrderDto toDto(MenuOrder entity, boolean dependencies) {
 		MenuOrderDto dto = new MenuOrderDto();
 		BeanUtils.copyProperties(entity, dto);
-		dto.setEventName(entity.getEvent().getName());
+		dto.setEventName(entity.getEventEntity().getName());
 		if (entity.getPayStatus() != null) {
 			dto.setPayStatus(entity.getPayStatus().name());
 		}
@@ -37,7 +37,7 @@ public class MenuOrderConverter {
 			});
 			dto.setFood(food);
 			dto.setFoodPrice(foodPrice);
-			dto.setEvent(entity.getEvent().getId());
+			dto.setEvent(entity.getEventEntity().getId());
 		}
 		return dto;
 	}

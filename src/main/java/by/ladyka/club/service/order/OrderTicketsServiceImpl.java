@@ -31,7 +31,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 			ticketTableDto.setPlaces(places);
 			tables.add(ticketTableDto);
 		}
-		repository.findByOrderEntityEventId(eventId).forEach(orderItemEntity -> {
+		repository.findByOrderEntityEventEntityId(eventId).forEach(orderItemEntity -> {
 			for (TicketTableDto table : tables) {
 				if (table.getTableNumber() == orderItemEntity.getTableNumber()) {
 					List<TicketPlaceDto> places = table.getPlaces();

@@ -4,7 +4,7 @@ import by.ladyka.club.dto.AppUser;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.dto.EventRelevantDTO;
 import by.ladyka.club.entity.AbstractEntity;
-import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -80,7 +80,7 @@ public class EventsServiceImpl implements EventsService {
 
 	@Override
 	public EventDTO getEvent(Long id) {
-		return converterEventService.toEventDto(eventRepository.findById(id).orElse(new Event()));
+		return converterEventService.toEventDto(eventRepository.findById(id).orElse(new EventEntity()));
 	}
 
 	@Override
@@ -97,17 +97,17 @@ public class EventsServiceImpl implements EventsService {
 	}
 
 	@Override
-	public Optional<Event> getEventById(Long event) {
+	public Optional<EventEntity> getEventById(Long event) {
 		return eventRepository.findById(event);
 	}
 
 	@Override
 	public EventDTO save(EventDTO dto) {
-		Event entity;
+		EventEntity entity;
 		if (dto.getId() == null || dto.getId() < 1) {
-			entity = new Event();
+			entity = new EventEntity();
 		} else {
-			entity = eventRepository.findById(dto.getId()).orElseGet(Event::new);
+			entity = eventRepository.findById(dto.getId()).orElseGet(EventEntity::new);
 		}
 		entity = converterEventService.toEntity(dto, entity);
 		entity.setVisible(TRUE);

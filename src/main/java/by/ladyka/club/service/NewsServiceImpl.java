@@ -33,7 +33,7 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public NewsDto save(NewsDto dto, String owner) {
 		UserEntity userEntity = userService.getUserEntity(owner);
-		NewsEntity entity = (dto.getId() == null) ? new NewsEntity() : newsEntityRepository.findById(dto.getId()).orElseThrow(() -> new RuntimeException("Event not found!"));
+		NewsEntity entity = (dto.getId() == null) ? new NewsEntity() : newsEntityRepository.findById(dto.getId()).orElseThrow(() -> new RuntimeException("NewsEntity not found!"));
 		entity.setOwner(userEntity);
 		entity.setTitle(dto.getTitle());
 		entity.setDescription(dto.getDescription());

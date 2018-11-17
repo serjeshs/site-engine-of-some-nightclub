@@ -1,4 +1,3 @@
-///<reference path="../../dto/ticketOrder.ts"/>
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -142,7 +141,7 @@ export class OrderTicketsComponent implements OnInit {
               }
                 break;
               default : {
-                alert("ERROR! Table numbers betwen 1 and 25.");
+                alert("ERROR! Table numbers between 1 and 25.");
               }
             }
           })
@@ -174,7 +173,7 @@ export class OrderTicketsComponent implements OnInit {
     return status;
   }
 
-  onPlaceClick(place: PlaceDto) {
+  onPlaceClick(table: TableDto, place: PlaceDto) {
     switch (place.status) {
       case 'FREE' : {
         place.status = 'BOOKING';
@@ -188,7 +187,10 @@ export class OrderTicketsComponent implements OnInit {
 
       } break;
     }
+  }
 
+  compareTables(a : TableDto, b: TableDto) {
+    return a.tableNumber - b.tableNumber;
   }
 }
 
