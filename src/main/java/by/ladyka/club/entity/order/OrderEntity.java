@@ -20,8 +20,6 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 @ToString
 public class OrderEntity extends AbstractEntity {
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-	List<MenuItemPricesHasOrders> itemPricesHasOrders;
 	private String name;
 	private String surname;
 	private String email;
@@ -29,7 +27,6 @@ public class OrderEntity extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "eventId")
 	private EventEntity eventEntity;
-	private String arrivalTime;
 	private String description;
 
 	@Column(name = "uuid", unique = true, nullable = false)
@@ -43,9 +40,11 @@ public class OrderEntity extends AbstractEntity {
 
 
 	//Paid Values
-	private Long dance;
+	private int dance;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderEntity")
 	private List<OrderItemEntity> tableNumbers;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+	List<MenuItemPricesHasOrders> itemPricesHasOrders;
 
 
 //	private Integer people;

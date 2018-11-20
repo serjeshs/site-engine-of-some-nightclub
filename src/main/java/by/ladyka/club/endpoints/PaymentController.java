@@ -7,8 +7,10 @@ import by.ladyka.club.dto.menu.MenuOrderDto;
 import by.ladyka.club.service.MenuService;
 import by.ladyka.club.service.order.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,14 +21,13 @@ import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static java.lang.Boolean.TRUE;
+import static by.ladyka.club.config.Constants.API_ORDER_BEPAID;
 
 @RestController
-@RequestMapping(PaymentController.API_ORDER_BEPAID)
+@RequestMapping(API_ORDER_BEPAID)
 @AllArgsConstructor
 public class PaymentController {
 
-	static final String API_ORDER_BEPAID = "/api/order/bepaid";
 	private static final int DISCOUNT = 10;
 	private final CustomSettings customSettings;
 	private final BePaidApi bePaidApi;
@@ -42,7 +43,7 @@ public class PaymentController {
 		checkout.setAttempts(5L);
 		Settings settings = new Settings();
 		final MenuOrderDto menuOrder = menuService.getOrder(orderId);
-		final String redirectUrl = String.format("%s" + API_ORDER_BEPAID +"/callback/%s", customSettings.getSiteDomain(), menuOrder.getUuid());
+		final String redirectUrl = String.format("%s" + API_ORDER_BEPAID + "/callback/%s", customSettings.getSiteDomain(), menuOrder.getUuid());
 		settings.setSuccessUrl(redirectUrl + "/success");
 		settings.setDeclineUrl(redirectUrl + "/decline");
 		settings.setFailUrl(redirectUrl + "/fail");
@@ -75,7 +76,6 @@ public class PaymentController {
 		} catch (URISyntaxException | NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@GetMapping(path = "/callback/{uuid}/success")

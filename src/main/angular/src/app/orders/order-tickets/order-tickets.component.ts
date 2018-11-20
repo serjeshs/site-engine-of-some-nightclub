@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TicketOrder} from "../../dto/ticketOrder";
 import {OrderTicketService} from "../../services/tickets/order-ticket.service";
 import {Event} from "../../dto/event";
-import {exitCodeFromResult} from "@angular/compiler-cli";
 
 export interface OrderTicketsModalData {
   event: Event;
@@ -63,6 +62,7 @@ export class OrderTicketsComponent implements OnInit {
 
   payTicketOrder() {
     this.ticketOrder.tables = this.allTables;
+    console.log(this.ticketOrder);
     this.orderTicketService.payOrder(this.ticketOrder)
       .pipe()
       .subscribe(result => {
