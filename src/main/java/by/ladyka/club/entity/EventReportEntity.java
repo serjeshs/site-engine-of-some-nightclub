@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
@@ -21,5 +22,5 @@ public class EventReportEntity extends AbstractEntity {
 	private String coverUri;
 
 	@OneToMany(mappedBy = "eventReport")
-	List<EventReportImageEntity> images;
+	private List<EventReportImageEntity> images = new ArrayList<>();
 }

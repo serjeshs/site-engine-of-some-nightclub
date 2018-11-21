@@ -1,7 +1,6 @@
 import {Component, HostListener} from '@angular/core';
 import {AuthService} from "./auth.service";
 import {StatisticService} from "./services/statistic/statistic.service";
-import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,9 @@ import {environment} from "../environments/environment";
 export class AppComponent {
   isAdmin: boolean;
   innerWidth: number;
+  isUser: boolean;
+  isConcert: boolean;
+
   constructor(private authService: AuthService, private statisticService: StatisticService) {
 
   }
@@ -19,6 +21,8 @@ export class AppComponent {
     this.onResize(null);
     this.authService.currentUser()
       .subscribe(user => {
+        this.isUser = (('admin' == user.role) || ('concert' == user.role) || ('user' == user.role))
+        this.isConcert = ('concertManager' == user.role);
         this.isAdmin = ('admin' == user.role);
       });
     const loader = document.getElementsByClassName('lds-roller')[0];

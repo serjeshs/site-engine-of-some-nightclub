@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -64,7 +65,7 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 	@Getter
 	@Setter
 	@OneToMany(mappedBy = "user")
-	private List<AuthorityEntity> authorities;
+	private List<AuthorityEntity> authorities = new ArrayList<>();
 
 	@Override
 	public boolean isAccountNonExpired() {

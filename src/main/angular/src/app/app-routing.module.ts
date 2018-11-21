@@ -12,7 +12,6 @@ import {AdminOrderListComponent} from "./admin/admin-order-list/admin-order-list
 import {EventsListComponent} from "./admin/events/events-list/events-list.component";
 import {EventViewComponent} from "./components/event-view/event-view.component";
 import {EventsAdminPageComponent} from "./admin/events/events-admin-page/events-admin-page.component";
-import {PageLoginComponent} from "./page-login/page-login.component";
 import {FeedbackComponent} from "./feedback/feedback.component";
 import {MenuEditorComponent} from "./admin/menu-editor/menu-editor.component";
 import {DiscoComponent} from "./pages/disco/disco.component";
@@ -26,6 +25,8 @@ import {RulesPayComponent} from "./pages/rules-pay/rules-pay.component";
 import {NewsSummaryComponent} from "./admin/news/news-summary/news-summary.component";
 import {ShopMainComponent} from "./shop/shop-main/shop-main.component";
 import {PublicOfferComponent} from "./pages/public-offer/public-offer.component";
+import {SingInComponent} from "./auth/sing-in/sing-in.component";
+import {SingUpComponent} from "./auth/sing-up/sing-up.component";
 
 const routes: Routes = [
   {path: '', component: EventsComponent},
@@ -46,7 +47,8 @@ const routes: Routes = [
   {path: 'admin-event-view', component: EventViewComponent},
   {path: 'admin-events', component: EventsAdminPageComponent},
   {path: 'admin-news', component: NewsSummaryComponent},
-  {path: 'login', component: PageLoginComponent},
+  {path: 'login', component: SingInComponent},
+  {path: 'singup', component: SingUpComponent},
   {path: 'feedback', component: FeedbackComponent},
   {path: 'admin-menu-editor', component: MenuEditorComponent},
   {path: 'cashbox', component: CashboxComponent},

@@ -60,7 +60,6 @@ import {
 } from '@angular/material';
 import {EventsAdminPageComponent} from './admin/events/events-admin-page/events-admin-page.component';
 import {EventReportService} from "./event-report.service";
-import {PageLoginComponent} from './page-login/page-login.component';
 import {AuthService} from "./auth.service";
 import {FeedbackComponent} from './feedback/feedback.component';
 import {FeedbackService} from "./feedback.service";
@@ -90,6 +89,8 @@ import {OrderTicketsComponent} from './orders/order-tickets/order-tickets.compon
 import {OrderTicketService} from "./services/tickets/order-ticket.service";
 import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 import { PublicOfferComponent } from './pages/public-offer/public-offer.component';
+import { SingUpComponent } from './auth/sing-up/sing-up.component';
+import { SingInComponent } from './auth/sing-in/sing-in.component';
 
 @NgModule({
   imports: [
@@ -159,7 +160,7 @@ import { PublicOfferComponent } from './pages/public-offer/public-offer.componen
     MenuEditorComponent,
     NewsComponent,
     NewsPageComponent,
-    PageLoginComponent,
+    NewsSummaryComponent,
     DiscoComponent,
     MenuOrderComponent,
     OrderViewComponent,
@@ -167,17 +168,18 @@ import { PublicOfferComponent } from './pages/public-offer/public-offer.componen
     OrderFoodComponent,
     CashboxComponent,
     OrderComponent,
+    OrderTicketsComponent,
     PreSummaryComponent,
     PreReportsGalleryComponent,
     PreReportEditorComponent,
+    PublicOfferComponent,
     PageNotFoundComponent,
-    TopBannerComponent,
     RulesComponent,
     RulesPayComponent,
-    NewsSummaryComponent,
-    OrderTicketsComponent,
     ShopMainComponent,
-    PublicOfferComponent
+    SingInComponent,
+    SingUpComponent,
+    TopBannerComponent
   ],
   providers: [
     AuthService,

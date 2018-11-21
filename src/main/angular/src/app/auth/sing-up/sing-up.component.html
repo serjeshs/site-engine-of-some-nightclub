@@ -1,0 +1,46 @@
+<div class="container" [hidden]="regSend">
+  <h2>Зарегистрироваться</h2>
+  <form autocomplete="off" method="POST">
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="username-span">Логин</span>
+      </div>
+      <input type="text" class="form-control" name="username" placeholder="Введите имя пользователя" id="username"
+             [(ngModel)]="user.username" #username="ngModel" aria-label="Username" aria-describedby="username">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="email-span">Электронная почта</span>
+      </div>
+      <input type="text" class="form-control" name="email" placeholder="Введите адрес электорнной почты" id="email"
+             [(ngModel)]="user.email" #email="ngModel" aria-label="email" aria-describedby="email">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="password-span">Пароль</span>
+      </div>
+      <input type="password" class="form-control" name="password" placeholder="Введите пароль!" id="password"
+             [(ngModel)]="user.password" #password="ngModel" aria-label="Password" aria-describedby="Введите пароль">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="passwordAgain-span">Пароль, ещё раз</span>
+      </div>
+      <input type="password" class="form-control" name="passwordAgain" placeholder="Введите пароль снова!" id="passwordAgain"
+             [(ngModel)]="passwordAgain" aria-label="passwordAgain" aria-describedby="Введите пароль снова">
+    </div>
+
+    <span [hidden]="!passwordError">Пароли не совпадают</span>
+    <span [hidden]="passwordError"></span>
+    <span>{{message}}</span>
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="singInClick()">Зарегистрироваться</button>
+  </form>
+
+</div>
+<div class="container" [hidden]="!regSend">
+  <h1>Письмо с дальнейшими инструкциями отправлено на {{user.email}}.</h1>
+</div>

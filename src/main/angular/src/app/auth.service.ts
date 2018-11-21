@@ -21,4 +21,9 @@ export class AuthService {
   currentUser(): Observable<UserDto> {
     return this.http.get<UserDto>('/api/user').pipe();
   }
+
+  singin(user: UserDto) {
+    let url = '/api/user/singin';
+    return this.http.post<ResponseEntity>(url, user, httpOptions);
+  }
 }

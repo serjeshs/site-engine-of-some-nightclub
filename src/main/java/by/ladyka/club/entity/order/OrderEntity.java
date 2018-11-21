@@ -10,6 +10,7 @@ import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,9 +43,9 @@ public class OrderEntity extends AbstractEntity {
 	//Paid Values
 	private int dance;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderEntity")
-	private List<OrderItemEntity> tableNumbers;
+	private List<OrderItemEntity> tableNumbers = new ArrayList<>();
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-	List<MenuItemPricesHasOrders> itemPricesHasOrders;
+	List<MenuItemPricesHasOrders> itemPricesHasOrders = new ArrayList<>();
 
 
 //	private Integer people;
