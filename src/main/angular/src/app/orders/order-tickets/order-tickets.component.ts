@@ -35,6 +35,7 @@ export class OrderTicketsComponent implements OnInit {
   tablesEleven: TableDto[];
   tablesSeventeen: TableDto[];
   orderComplete: boolean;
+  bePaidUrl: string;
 
   constructor(
     public dialogRef: MatDialogRef<OrderTicketsComponent>,
@@ -62,12 +63,16 @@ export class OrderTicketsComponent implements OnInit {
 
   payTicketOrder() {
     this.ticketOrder.tables = this.allTables;
-    console.log(this.ticketOrder);
     this.orderTicketService.payOrder(this.ticketOrder)
       .pipe()
       .subscribe(result => {
         console.log(result);
-        alert("IMPLEMENT ME !!!!!!")
+        if (result.success) {
+          this.orderComplete = true;
+          this.bePaidUrl = result.data;
+        } else {
+          alert(result.message);
+        }
       });
   }
 

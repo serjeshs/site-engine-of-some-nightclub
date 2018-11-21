@@ -250,4 +250,10 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
+
+  <div class="btn-info" *ngIf="orderComplete">
+    <a href="{{bePaidUrl}}">
+      Перейти на сайт платёжной системы для оплаты заказа
+    </a>
+  </div>
 </div>
