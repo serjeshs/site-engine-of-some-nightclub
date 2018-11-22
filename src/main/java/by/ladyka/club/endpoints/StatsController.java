@@ -1,6 +1,5 @@
 package by.ladyka.club.endpoints;
 
-import by.ladyka.club.dto.BaseListResultDto;
 import by.ladyka.club.dto.UserDataDto;
 import by.ladyka.club.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;

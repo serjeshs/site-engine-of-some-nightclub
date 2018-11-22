@@ -1,7 +1,7 @@
 package by.ladyka.club.endpoints;
 
-import by.ladyka.club.dto.TicketTableDto;
-import by.ladyka.club.dto.TicketsOrderDto;
+import by.ladyka.club.dto.tikets.TicketTableDto;
+import by.ladyka.club.dto.tikets.TicketsOrderDto;
 import by.ladyka.club.service.order.OrderTicketsService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;

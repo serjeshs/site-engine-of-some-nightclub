@@ -3,7 +3,7 @@ package by.ladyka.club.endpoints;
 import by.ladyka.bepaid.BePaidApi;
 import by.ladyka.bepaid.dto.*;
 import by.ladyka.club.config.CustomSettings;
-import by.ladyka.club.dto.menu.MenuOrderDto;
+import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.service.MenuService;
 import by.ladyka.club.service.order.OrderService;
 import lombok.AllArgsConstructor;
@@ -42,7 +42,7 @@ public class PaymentController {
 		checkout.setTransactionType(TransactionType.payment);
 		checkout.setAttempts(5L);
 		Settings settings = new Settings();
-		final MenuOrderDto menuOrder = menuService.getOrder(orderId);
+		final TicketOrderDto menuOrder = menuService.getOrder(orderId);
 		final String redirectUrl = String.format("%s" + API_ORDER_BEPAID + "/callback/%s", customSettings.getSiteDomain(), menuOrder.getUuid());
 		settings.setSuccessUrl(redirectUrl + "/success");
 		settings.setDeclineUrl(redirectUrl + "/decline");

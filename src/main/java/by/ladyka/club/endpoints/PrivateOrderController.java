@@ -1,10 +1,9 @@
 package by.ladyka.club.endpoints;
 
-import by.ladyka.club.dto.menu.MenuOrderDto;
-import by.ladyka.club.entity.menu.MenuOrder;
+import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.service.MenuService;
+import by.ladyka.club.service.order.OrderTicketsService;
 import lombok.AllArgsConstructor;
-import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class PrivateOrderController {
 
 	private MenuService menuService;
+	private OrderTicketsService orderTicketsService;
 
 	@GetMapping(value = "/{uuid}")
-	public MenuOrderDto order(@PathVariable String uuid) {
-		return menuService.getOrder(uuid);
+	public TicketOrderDto order(@PathVariable String uuid) {
+		try {
+			return orderTicketsService.getOrder(uuid);
+		} catch (RuntimeException ex) {
+			return menuService.getOrder(uuid);
+		}
 	}
 
 }

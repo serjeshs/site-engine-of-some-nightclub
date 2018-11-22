@@ -1,6 +1,6 @@
 package by.ladyka.club.service;
 
-import by.ladyka.club.dto.BaseListResultDto;
+import by.ladyka.club.dto.shared.BaseListResultDto;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.repository.EventRepository;

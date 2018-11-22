@@ -1,6 +1,6 @@
-package by.ladyka.club.dto;
+package by.ladyka.club.dto.tikets;
 
-import lombok.Data;
+import by.ladyka.club.dto.EventDTO;
 import lombok.Getter;
 import lombok.Setter;
 

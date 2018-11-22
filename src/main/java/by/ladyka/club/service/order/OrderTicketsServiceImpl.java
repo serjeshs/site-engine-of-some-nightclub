@@ -1,12 +1,14 @@
 package by.ladyka.club.service.order;
 
 import by.ladyka.bepaid.BePaidApi;
+import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.bepaid.dto.PaymentTokenDto;
 import by.ladyka.club.config.CustomSettings;
-import by.ladyka.club.dto.TicketPlaceDto;
-import by.ladyka.club.dto.TicketPlaceStatus;
-import by.ladyka.club.dto.TicketTableDto;
-import by.ladyka.club.dto.TicketsOrderDto;
+import by.ladyka.club.dto.tikets.TicketPlaceDto;
+import by.ladyka.club.dto.tikets.TicketPlaceStatus;
+import by.ladyka.club.dto.tikets.TicketTableDto;
+import by.ladyka.club.dto.tikets.TicketsOrderDto;
+import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import by.ladyka.club.entity.order.OrderEntity;
@@ -14,6 +16,7 @@ import by.ladyka.club.entity.order.OrderItemEntity;
 import by.ladyka.club.repository.OrderEntityRepository;
 import by.ladyka.club.repository.OrderItemEntityRepository;
 import by.ladyka.club.service.EventsService;
+import org.apache.commons.codec.binary.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,8 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	private BePaidApi bePaidApi;
 	@Autowired
 	private CustomSettings customSettings;
+	@Autowired
+	private OrderEntityConverter orderEntityConverter;
 
 	@Override
 	public List<TicketTableDto> getTables(Long eventId) {
@@ -87,6 +92,34 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		return bePaidUrl;
 	}
 
+	@Override
+	public boolean updateStatus(String uuid, GatewayStatus gatewayStatus, String uid, String token) {
+		try {
+			orderEntityRepository.findByUuid(uuid).ifPresent(orderEntity -> {
+				if (StringUtils.equals(orderEntity.getToken(), token)) {
+					orderEntity.setPayStatus(gatewayStatus);
+					orderEntity.setUid(uid);
+					orderEntityRepository.save(orderEntity);
+				} else {
+					throw new RuntimeException("Token is invalid");
+				}
+			});
+			return true;
+		} catch (RuntimeException ex) {
+			logger.error("FAIL", ex);
+			return false;
+		}
+
+	}
+
+	@Override
+	public TicketOrderDto getOrder(String uuid) {
+
+		final OrderEntity orderEntity = orderEntityRepository.findByUuid(uuid).orElseThrow(() -> new RuntimeException("UUID is invalid"));
+		return orderEntityConverter.toDto(orderEntity, true);
+
+	}
+
 	private OrderEntity storeOrder(@Valid TicketsOrderDto dto) {
 		OrderEntity orderEntity = new OrderEntity();
 		orderEntity.setName(dto.getName());
@@ -117,6 +150,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		final EventEntity eventEntity = eventService.getEventById(dto.getEvent().getId()).orElseThrow(RuntimeException::new);
 		orderEntity.setEventEntity(eventEntity);
 		orderEntityRepository.saveAndFlush(orderEntity);
+		repository.saveAll(collect);
 		return orderEntity;
 	}
 
