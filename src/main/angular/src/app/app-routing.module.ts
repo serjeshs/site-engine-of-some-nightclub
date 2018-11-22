@@ -19,7 +19,7 @@ import {MenuOrderComponent} from "./orders/menu-order/menu-order.component";
 import {CashboxComponent} from "./pages/cashbox/cashbox.component";
 import {OrderComponent} from "./order/order.component";
 import {PreSummaryComponent} from "./admin/photo-report-editor/pre-summary/pre-summary.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {PageNotFoundComponent} from "./pages/page-not-found/page-not-found.component";
 import {RulesComponent} from "./pages/rules/rules.component";
 import {RulesPayComponent} from "./pages/rules-pay/rules-pay.component";
 import {NewsSummaryComponent} from "./admin/news/news-summary/news-summary.component";
