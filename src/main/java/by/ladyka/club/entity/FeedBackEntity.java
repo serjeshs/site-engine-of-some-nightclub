@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Table;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Entity
 @Getter
 @Setter
-@Table(name = APP_TABLE_PREFIX + "feedback")
+@Table(name = "feedback")
 @EntityListeners(AuditingEntityListener.class)
 public class FeedBackEntity extends AbstractEntity {
 	private String name;

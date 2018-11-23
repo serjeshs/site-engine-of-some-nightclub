@@ -6,13 +6,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 
 @Entity
 @Getter
 @Setter
-@Table(name = APP_TABLE_PREFIX + "news")
+@Table(name = "news")
 @EntityListeners(AuditingEntityListener.class)
 public class NewsEntity extends AbstractEntity {
 

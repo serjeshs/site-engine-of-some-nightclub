@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Entity
 @Getter
 @Setter
-@Table(name = APP_TABLE_PREFIX + "event_report")
+@Table(name = "event_report")
 @EntityListeners(AuditingEntityListener.class)
 public class EventReportEntity extends AbstractEntity {
 	private LocalDateTime startEvent;

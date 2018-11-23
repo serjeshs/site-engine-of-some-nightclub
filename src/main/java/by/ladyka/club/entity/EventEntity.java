@@ -10,14 +10,14 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = APP_TABLE_PREFIX + "event")
+@Table(name = "club_event")
 @EntityListeners(AuditingEntityListener.class)
 public class EventEntity extends AbstractEntity {
 	public static final String startEventFieldName = "startEvent";

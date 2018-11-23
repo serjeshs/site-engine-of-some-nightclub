@@ -10,14 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Table;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = APP_TABLE_PREFIX + "files")
+@Table(name = "files_users")
 @EntityListeners(AuditingEntityListener.class)
 public class FileEntity  extends AbstractEntity {
     private String filePath;

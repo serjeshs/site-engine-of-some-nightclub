@@ -6,12 +6,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Entity
 @Getter
 @Setter
-@Table(name = APP_TABLE_PREFIX + "event_report_image")
+@Table(name = "event_report_image")
 @EntityListeners(AuditingEntityListener.class)
 public class EventReportImageEntity extends AbstractEntity {
 	@ManyToOne

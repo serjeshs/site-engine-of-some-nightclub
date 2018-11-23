@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Entity
 @Getter
 @Setter
-@Table(name = APP_TABLE_PREFIX + "menu_order")
+@Table(name = "menu_order")
 @EntityListeners(AuditingEntityListener.class)
 @ToString
 @Deprecated
