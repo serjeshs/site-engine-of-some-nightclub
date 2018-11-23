@@ -1,0 +1,6 @@
+databaseChangeLog:
+- changeSet:
+    id: 2018-11-23-select-1
+    author: Andrei Ladyka
+    changes:
+      - sql: delete from be_paid_request where 1=1;
