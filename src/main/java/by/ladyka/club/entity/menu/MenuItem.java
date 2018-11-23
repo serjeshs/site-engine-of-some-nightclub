@@ -11,14 +11,14 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = APP_TABLE_PREFIX + "menu_item")
+@Table(name = "menu_item")
 @EntityListeners(AuditingEntityListener.class)
 public class MenuItem extends AbstractEntity {
 	private String name;

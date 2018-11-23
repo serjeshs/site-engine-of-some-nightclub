@@ -9,14 +9,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = APP_TABLE_PREFIX + "menu_item_price_has_order")
+@Table(name = "menu_item_price_has_order")
 @EntityListeners(AuditingEntityListener.class)
 public class MenuItemPricesHasOrders extends AbstractEntity {
 	@Column(nullable = false)

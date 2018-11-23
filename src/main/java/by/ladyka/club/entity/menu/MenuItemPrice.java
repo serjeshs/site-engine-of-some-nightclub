@@ -11,14 +11,14 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
+
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = APP_TABLE_PREFIX + "menu_item_price")
+@Table(name = "menu_item_price")
 @EntityListeners(AuditingEntityListener.class)
 public class MenuItemPrice extends AbstractEntity {
 	private LocalDateTime startTime;

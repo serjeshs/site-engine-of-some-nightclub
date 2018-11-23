@@ -2,7 +2,7 @@ package by.ladyka.club.config;
 
 import by.ladyka.bepaid.BePaidApi;
 import by.ladyka.club.ClubApplication;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Map;
 
 import static by.ladyka.club.ClubApplication.PACKAGES_TO_SCAN;
 
@@ -28,23 +29,16 @@ import static by.ladyka.club.ClubApplication.PACKAGES_TO_SCAN;
 @EntityScan(
 		basePackageClasses = {ClubApplication.class, Jsr310JpaConverters.class}
 )
+@AllArgsConstructor
 public class Config {
 
 	private final DataSource dataSource;
-
-	@Autowired
-	CustomSettings settings;
-
-	@Autowired
-	public Config(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
+	private final CustomSettings settings;
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		vendorAdapter.setDatabase(Database.MYSQL);
-
 		vendorAdapter.setGenerateDdl(true);
 		vendorAdapter.setShowSql(true);
 
@@ -62,4 +56,6 @@ public class Config {
 		return BePaidApi.getApi(settings.getBePaidPaymentStoreId(), settings.getBePaidPaymentStoreKey(), (requestID, method, url, requestBody, code, resp) -> {
 		});
 	}
+
+
 }
