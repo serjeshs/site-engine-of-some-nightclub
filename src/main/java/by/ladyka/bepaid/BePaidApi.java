@@ -2,8 +2,7 @@ package by.ladyka.bepaid;
 
 import by.ladyka.bepaid.api.PaymentTokenService;
 import by.ladyka.bepaid.api.TransactionState;
-import by.ladyka.bepaid.dto.GatewayStatus;
-import by.ladyka.bepaid.dto.PaymentTokenDto;
+import by.ladyka.bepaid.dto.*;
 import by.ladyka.bepaid.logger.LoggerRequests;
 import lombok.*;
 import org.apache.http.ParseException;
@@ -11,6 +10,8 @@ import org.apache.http.ParseException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Collections;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BePaidApi {
@@ -53,5 +54,40 @@ public class BePaidApi {
 	public static class BePaidApiConfiguration {
 		private Long storeId;
 		private String key;
+	}
+
+	public PaymentTokenDto getPaymentTokenDto(long amount, String email, String surname, String name, String phone, String redirectUrl, boolean test, String descriptionOrder) {
+		PaymentTokenDto dto = new PaymentTokenDto();
+		Checkout checkout = new Checkout();
+		checkout.setTest(test);
+		checkout.setTransactionType(TransactionType.payment);
+		checkout.setAttempts(5L);
+		Settings settings = new Settings();
+
+		settings.setSuccessUrl(redirectUrl + "/success");
+		settings.setDeclineUrl(redirectUrl + "/decline");
+		settings.setFailUrl(redirectUrl + "/fail");
+		settings.setCancelUrl(redirectUrl + "/cancel");
+		settings.setNotificationUrl(redirectUrl + "/notification");
+		settings.setLanguage(Language.ru.name());
+		CustomerFields customerFields = new CustomerFields();
+		customerFields.setVisible(Arrays.asList("first_name", "last_name"));
+		customerFields.setReadOnly(Collections.singletonList("email"));
+		settings.setCustomerFields(customerFields);
+		checkout.setSettings(settings);
+		OrderDto order = new OrderDto();
+		order.setCurrency("BYN");
+		order.setAmount(amount);
+		order.setDescription(descriptionOrder);
+		checkout.setOrder(order);
+
+		Customer customer = new Customer();
+		customer.setEmail(email);
+		customer.setLastName(surname);
+		customer.setFirstName(name);
+		customer.setPhone(phone);
+		checkout.setCustomer(customer);
+		dto.setCheckout(checkout);
+		return dto;
 	}
 }

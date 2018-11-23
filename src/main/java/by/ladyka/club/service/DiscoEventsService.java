@@ -1,8 +1,8 @@
 package by.ladyka.club.service;
 
-import by.ladyka.club.dto.BaseListResultDto;
+import by.ladyka.club.dto.shared.BaseListResultDto;
 import by.ladyka.club.dto.EventDTO;
-import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -53,12 +53,12 @@ public class DiscoEventsService {
 
 	private EventDTO getEventDiscoDTO(DayOfWeek day) {
 		final LocalDateTime startDiscoEvent = LocalDate.now().plusDays(day.getValue() - LocalDate.now().atStartOfDay().getDayOfWeek().getValue()).atStartOfDay().plusHours(22L);
-		List<Event> days = getAllByStartEventBetween(startDiscoEvent);
+		List<EventEntity> days = getAllByStartEventBetween(startDiscoEvent);
 		return converterEventService.toEventDto(days.get(0));
 	}
 
-	private List<Event> getAllByStartEventBetween(LocalDateTime startDiscoEvent) {
-		List<Event> days = eventRepository.findAllByStartEventBetweenAndVisibleTrue(startDiscoEvent, startDiscoEvent.plusHours(4L));
+	private List<EventEntity> getAllByStartEventBetween(LocalDateTime startDiscoEvent) {
+		List<EventEntity> days = eventRepository.findAllByStartEventBetweenAndVisibleTrue(startDiscoEvent, startDiscoEvent.plusHours(4L));
 		if (CollectionUtils.isEmpty(days)) {
 			return getAllByStartEventBetween(startDiscoEvent.minusWeeks(1L));
 		} else {

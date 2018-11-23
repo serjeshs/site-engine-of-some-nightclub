@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SettingsBanner} from "../dto/settingsBanner";
+import {SettingsBanner} from "../../dto/settingsBanner";
 
 @Component({
   selector: 'app-top-banner',

@@ -3,7 +3,7 @@ package by.ladyka.club.service;
 import by.ladyka.club.dto.AppUser;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.dto.EventRelevantDTO;
-import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.EventEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,7 +17,7 @@ public interface EventsService {
 
 	List<EventRelevantDTO> getRelevantEvents(AppUser user);
 
-	Optional<Event> getEventById(Long event);
+	Optional<EventEntity> getEventById(Long event);
 
 	EventDTO save(EventDTO event);
 

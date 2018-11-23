@@ -1,4 +1,4 @@
-package by.ladyka.club.dto;
+package by.ladyka.club.dto.shared;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

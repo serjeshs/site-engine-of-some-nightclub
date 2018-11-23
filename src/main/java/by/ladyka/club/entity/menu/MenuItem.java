@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
@@ -29,6 +30,6 @@ public class MenuItem extends AbstractEntity {
 	private MenuCategory category;
 
 	@OneToMany(mappedBy = "item")
-	private List<MenuItemPrice> prices;
+	private List<MenuItemPrice> prices = new ArrayList<>();
 
 }

@@ -2,7 +2,7 @@ package by.ladyka.club.endpoints;
 
 import by.ladyka.club.dto.menu.MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuItemPriceDto;
-import by.ladyka.club.dto.menu.MenuOrderDto;
+import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.service.MenuService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +43,7 @@ public class MenuController {
 
 	@RequestMapping(value = "order", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
-	ResponseEntity order(Principal principal, HttpServletRequest httpServletRequest, @RequestBody MenuOrderDto dto) {
+	ResponseEntity order(Principal principal, HttpServletRequest httpServletRequest, @RequestBody TicketOrderDto dto) {
 		return new ResponseEntity<>(menuService.order(dto), HttpStatus.OK);
 	}
 

@@ -1,6 +1,6 @@
 package by.ladyka.club.endpoints;
 
-import by.ladyka.club.dto.BaseListResultDto;
+import by.ladyka.club.dto.shared.BaseListResultDto;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;

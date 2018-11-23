@@ -4,6 +4,7 @@ import * as moment from "moment";
 import {ToastsManager} from "ng6-toastr";
 import {MatDialog} from "@angular/material";
 import {OrderTicketsComponent} from "../../orders/order-tickets/order-tickets.component";
+import {humanizeBytes, UploaderOptions, UploadFile, UploadInput, UploadOutput} from 'ngx-uploader';
 
 @Component({
   selector: 'app-event-view',
@@ -18,8 +19,18 @@ export class EventViewComponent implements OnInit {
   @Input() event: Event = new Event();
   @Input() readOnly: boolean;
 
+  options: UploaderOptions;
+  files: UploadFile[];
+  uploadInput: EventEmitter<UploadInput>;
+  humanizeBytes: Function;
+  dragOver: boolean;
+
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public dialog: MatDialog) {
     this.toastr.setRootViewContainerRef(vcr);
+    this.options = {concurrency: 1, maxUploads: 300};
+    this.files = []; // local uploading files array
+    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
+    this.humanizeBytes = humanizeBytes;
   }
 
   ngOnInit() {
@@ -74,6 +85,44 @@ export class EventViewComponent implements OnInit {
         event: this.event
       }
     });
-
   }
+
+  onUploadOutput(output: UploadOutput): void {
+    switch (output.type) {
+      case 'addedToQueue' : {
+        if (typeof output.file !== 'undefined') {
+          this.files.push(output.file);
+        }
+      } break;
+      case 'uploading' : {
+        if (typeof output.file !== 'undefined') {
+          const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
+          this.files[index] = output.file;
+        }
+      } break;
+      case 'done' : {
+        const response = output.file.response;
+        if (response.filePath) {
+          this.event.coverUri = '/files/' + response.filePath;
+        }
+        document.getElementById('coverUri')['value'] = null;
+      }
+        break;
+      default : {
+        console.log(output.type);
+      }
+    }
+  }
+
+  startUpload(): void {
+    const event: UploadInput = {
+      type: 'uploadAll',
+      url: '/api/file/upload',
+      method: 'POST',
+      data: {foo: 'bar'}
+    };
+
+    this.uploadInput.emit(event);
+  }
+
 }

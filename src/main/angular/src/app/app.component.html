@@ -23,16 +23,15 @@
           <a routerLink="/club">Клуб</a>
           <a style="color: red" routerLink="/feedback">Бюро находок и информация</a>
           <!--<a routerLink="/shop">Магазин</a>-->
-          <a [hidden]="isAdmin" href="/login">L</a>
-        </nav>
-        <nav [hidden]="!isAdmin">
-          <a routerLink="/admin">Admin главная</a>
-          <a routerLink="/admin-events">Операции над событиями</a>
-          <a routerLink="/admin-order-list">Список заказов</a>
-          <a routerLink="/admin-menu-editor">Редактор меню</a>
-          <a routerLink="/admin-photo-report-editor">Редактор фотоотчетов</a>
-          <a routerLink="/admin-news">Редактор новостей</a>
-          <a href="/logout">Выйти</a>
+          <a [hidden]="!isAdmin" routerLink="/admin">Admin главная</a>
+          <a [hidden]="!isAdmin" routerLink="/admin-events">Операции над событиями</a>
+          <a [hidden]="!isAdmin" routerLink="/admin-order-list">Список заказов</a>
+          <a [hidden]="!isAdmin" routerLink="/admin-menu-editor">Редактор меню</a>
+          <a [hidden]="!isAdmin" routerLink="/admin-photo-report-editor">Редактор фотоотчетов</a>
+          <a [hidden]="!isAdmin" routerLink="/admin-news">Редактор новостей</a>
+          <a [hidden]="isUser" routerLink="/singup">Зарегистрироваться</a>
+          <a [hidden]="isUser" routerLink="/login">Войти</a>
+          <a [hidden]="!isUser" href="/logout">Выйти</a>
         </nav>
       </div>
     </div>

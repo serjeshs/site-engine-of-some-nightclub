@@ -1,4 +1,3 @@
-///<reference path="../../dto/ticketOrder.ts"/>
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -36,6 +35,7 @@ export class OrderTicketsComponent implements OnInit {
   tablesEleven: TableDto[];
   tablesSeventeen: TableDto[];
   orderComplete: boolean;
+  bePaidUrl: string;
 
   constructor(
     public dialogRef: MatDialogRef<OrderTicketsComponent>,
@@ -62,7 +62,18 @@ export class OrderTicketsComponent implements OnInit {
 
 
   payTicketOrder() {
-    alert("Not implemented!!!!")
+    this.ticketOrder.tables = this.allTables;
+    this.orderTicketService.payOrder(this.ticketOrder)
+      .pipe()
+      .subscribe(result => {
+        console.log(result);
+        if (result.success) {
+          this.orderComplete = true;
+          this.bePaidUrl = result.data;
+        } else {
+          alert(result.message);
+        }
+      });
   }
 
   incrementDanceFloor() {
@@ -142,7 +153,7 @@ export class OrderTicketsComponent implements OnInit {
               }
                 break;
               default : {
-                alert("ERROR! Table numbers betwen 1 and 25.");
+                alert("ERROR! Table numbers between 1 and 25.");
               }
             }
           })
@@ -174,7 +185,7 @@ export class OrderTicketsComponent implements OnInit {
     return status;
   }
 
-  onPlaceClick(place: PlaceDto) {
+  onPlaceClick(table: TableDto, place: PlaceDto) {
     switch (place.status) {
       case 'FREE' : {
         place.status = 'BOOKING';
@@ -188,7 +199,18 @@ export class OrderTicketsComponent implements OnInit {
 
       } break;
     }
+  }
 
+  compareTables(a : TableDto, b: TableDto) {
+    return a.tableNumber - b.tableNumber;
+  }
+
+  get totalMoney() {
+    return this.ticketOrder.event.costDance * this.ticketOrder.danceFloor + this.ticketOrder.event.costTablePlace*this.ticketOrder.placeSeats;
+  }
+
+  get allTables() {
+    return this.tablesEleven.concat(this.tablesTopStairs, this.tablesMiddleStairs, this.tablesBottomStairs, this.tablesSeventeen, this.tablesConsoleRight, this.tablesConsoleLeft).sort(this.compareTables);
   }
 }
 

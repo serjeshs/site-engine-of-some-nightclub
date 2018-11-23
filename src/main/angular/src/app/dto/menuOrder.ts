@@ -17,5 +17,7 @@ export class MenuOrder {
   foodPrice: any;
   payStatus: string;
   totalMoney: number;
+  dance: number;
+  tables: any;
 }
 

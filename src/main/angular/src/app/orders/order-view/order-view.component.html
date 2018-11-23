@@ -9,11 +9,11 @@
   <p class="lead"> {{order.phone}}</p>
   <div class="mt-1"><h3>Событие </h3></div>
   <p class="lead"> {{order.eventName}}</p>
-  <div class="mt-1"><h3>Ориентировочное время прибытия</h3></div>
-  <p class="lead"> {{order.arrivalTime}}</p>
-  <div class="mt-1"><h3>Гостей </h3></div>
-  <p class="lead"> {{order.people}}</p>
-  <div class="mt-1"><h3>Заказ </h3></div>
+  <div class="mt-1" *ngIf="order.arrivalTime"><h3>Ориентировочное время прибытия</h3></div>
+  <p class="lead" *ngIf="order.arrivalTime"> {{order.arrivalTime}}</p>
+  <div class="mt-1" *ngIf="order.people"><h3>Гостей </h3></div>
+  <p class="lead" *ngIf="order.people"> {{order.people}}</p>
+  <div class="mt-1"><h3>Заказ за столик:</h3></div>
   <p class="lead">Всего {{totalMoney}} рублей</p>
   <div *ngFor="let categoryMain of menuCategories" class="lead">
     <h1 *ngIf="showCategory(categoryMain)">
@@ -49,8 +49,18 @@
   <div class="mt-1" *ngIf="!order.payStatus"><h3>Оплата онлайн не произведена</h3></div>
   <p class="lead" *ngIf="!order.payStatus&&(order.id>0)"><a href="/api/order/bepaid/pay/{{order.id}}">вы можете
     произвести оплату онлайн и получить скидку в 10%</a></p>
-  <div class="mt-1"><h3>Столик </h3></div>
-  <p class="lead"> {{order.tableNumber}}</p>
+  <div class="mt-1" *ngIf="order.tableNumber"><h3>Столик </h3></div>
+  <p class="lead" *ngIf="order.tableNumber"> {{order.tableNumber}}</p>
   <div class="mt-1"><h3>Kомментарий к заказу</h3></div>
   <p class="lead"> {{order.description}}</p>
+
+  <div class="mt-1" *ngIf="order.dance"><h3>Кол-во мест на танцполе</h3></div>
+  <p class="lead" *ngIf="order.dance">{{order.dance}}</p>
+
+  <div class="mt-1" *ngIf="order.tables && order.tables.length > 0"><h3>Места за столиками</h3></div>
+  <div *ngIf="order.tables &&  order.tables.length > 0">
+    <div *ngFor="let table of order.tables">
+      Номер столика : {{table.table}}. Место : {{table.place}}.
+    </div>
+  </div>
 </div>

@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface MenuOrderRepository extends JpaRepository<MenuOrder, Long> {
-	List<MenuOrder> findByEvent_Id(Long eventId);
+	List<MenuOrder> findByEventEntity_Id(Long eventId);
 	Optional<MenuOrder> findByUuid(String uuid);
 }

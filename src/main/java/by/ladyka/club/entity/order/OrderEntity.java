@@ -2,7 +2,7 @@ package by.ladyka.club.entity.order;
 
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.entity.AbstractEntity;
-import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +10,7 @@ import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,16 +21,13 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 @ToString
 public class OrderEntity extends AbstractEntity {
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-	List<MenuItemPricesHasOrders> itemPricesHasOrders;
 	private String name;
 	private String surname;
 	private String email;
 	private String phone;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "eventId")
-	private Event event;
-	private String arrivalTime;
+	private EventEntity eventEntity;
 	private String description;
 
 	@Column(name = "uuid", unique = true, nullable = false)
@@ -43,9 +41,11 @@ public class OrderEntity extends AbstractEntity {
 
 
 	//Paid Values
-	private Long dance;
+	private int dance;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderEntity")
-	private List<OrderItemEntity> tableNumbers;
+	private List<OrderItemEntity> tableNumbers = new ArrayList<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+	List<MenuItemPricesHasOrders> itemPricesHasOrders = new ArrayList<>();
 
 
 //	private Integer people;

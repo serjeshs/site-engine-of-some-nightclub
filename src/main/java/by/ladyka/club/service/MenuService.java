@@ -3,7 +3,7 @@ package by.ladyka.club.service;
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.dto.menu.MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuItemPriceDto;
-import by.ladyka.club.dto.menu.MenuOrderDto;
+import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
 import by.ladyka.club.entity.menu.MenuItem;
 
@@ -13,13 +13,13 @@ import java.util.List;
 public interface MenuService {
 	MenuPageDto mainPage();
 
-	MenuOrderDto order(MenuOrderDto order);
+	TicketOrderDto order(TicketOrderDto order);
 
-	List<MenuOrderDto> orders(Long eventId);
+	List<TicketOrderDto> orders(Long eventId);
 
 	List<Integer> getAvailableTables(Long eventId);
 
-	MenuOrderDto getOrder(Long orderId);
+	TicketOrderDto getOrder(Long orderId);
 
 	MenuItemPriceDto convertToMenuItemPriceDto(MenuItem menuItem);
 
@@ -29,11 +29,11 @@ public interface MenuService {
 
 	MenuItemPriceDto saveMenuItemPrice(MenuItemPriceDto dto);
 
-	BigDecimal getAmount(MenuOrderDto menuOrder);
+	BigDecimal getAmount(TicketOrderDto menuOrder);
 
 	void setToken(String token, Long orderId);
 
-	MenuOrderDto getOrder(String uuid);
+	TicketOrderDto getOrder(String uuid);
 
 	GatewayStatus getStatus(Long orderId);
 }

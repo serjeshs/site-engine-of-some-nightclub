@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../auth.service";
+import { Component, OnInit } from '@angular/core';
+import {UserDto} from "../../dto/userDto";
+import {AuthService} from "../../auth.service";
 import {Router} from "@angular/router";
-import {UserDto} from "../dto/userDto";
 
 @Component({
-  selector: 'app-page-login',
-  templateUrl: './page-login.component.html',
-  styleUrls: ['./page-login.component.css']
+  selector: 'app-sing-in',
+  templateUrl: './sing-in.component.html',
+  styleUrls: ['./sing-in.component.css']
 })
-export class PageLoginComponent implements OnInit {
+export class SingInComponent implements OnInit {
+
   passwordError: boolean;
   user: UserDto;
 
@@ -32,4 +33,5 @@ export class PageLoginComponent implements OnInit {
         }
       })
   }
+
 }

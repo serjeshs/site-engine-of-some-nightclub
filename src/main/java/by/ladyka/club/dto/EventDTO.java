@@ -29,4 +29,6 @@ public class EventDTO {
 	private String buyTicketUrl;
 	private Boolean recommendation;
 	private Boolean republicPay;
+	private BigDecimal costDance;
+	private BigDecimal costTablePlace;
 }

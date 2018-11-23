@@ -4,9 +4,9 @@ import by.ladyka.bepaid.BePaidApi;
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.dto.menu.MenuCategoryDto;
 import by.ladyka.club.dto.menu.MenuItemPriceDto;
-import by.ladyka.club.dto.menu.MenuOrderDto;
+import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
-import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.entity.menu.*;
 import by.ladyka.club.repository.menu.*;
 import by.ladyka.club.service.email.EmailService;
@@ -94,7 +94,7 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public BigDecimal getAmount(MenuOrderDto menuOrder) {
+	public BigDecimal getAmount(TicketOrderDto menuOrder) {
 		BigDecimal total = new BigDecimal(0);
 		try {
 			//		for (let foodKey in this.order.food) {
@@ -118,7 +118,7 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public MenuOrderDto getOrder(String uuid) {
+	public TicketOrderDto getOrder(String uuid) {
 		final MenuOrder order = menuOrderRepository.findByUuid(uuid).orElseThrow(() -> new RuntimeException("UUID is invalid"));
 		return menuOrderConverter.toDto(order, true);
 	}
@@ -210,11 +210,11 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public MenuOrderDto order(MenuOrderDto order) {
+	public TicketOrderDto order(TicketOrderDto order) {
 		MenuOrder orderEntity = menuOrderConverter.toEntity(order);
-		final Optional<Event> eventById = eventsService.getEventById(order.getEvent());
+		final Optional<EventEntity> eventById = eventsService.getEventById(order.getEvent());
 		if (eventById.isPresent()) {
-			orderEntity.setEvent(eventById.get());
+			orderEntity.setEventEntity(eventById.get());
 		}
 		orderEntity = menuOrderRepository.saveAndFlush(orderEntity);
 		List<Long> pricesId = new ArrayList<>(order.getFood().keySet());
@@ -238,16 +238,16 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<MenuOrderDto> orders(Long eventId) {
-		final List<MenuOrder> byEvent = menuOrderRepository.findByEvent_Id(eventId);
+	public List<TicketOrderDto> orders(Long eventId) {
+		final List<MenuOrder> byEvent = menuOrderRepository.findByEventEntity_Id(eventId);
 		return menuOrderConverter.toDto(byEvent);
 	}
 
 	@Override
 	public List<Integer> getAvailableTables(Long eventId) {
 		List<Integer> integers = new ArrayList<>();
-		final List<MenuOrderDto> orders = orders(eventId);
-		final List<Integer> busyTables = orders.stream().map(MenuOrderDto::getTableNumber).collect(Collectors.toList());
+		final List<TicketOrderDto> orders = orders(eventId);
+		final List<Integer> busyTables = orders.stream().map(TicketOrderDto::getTableNumber).collect(Collectors.toList());
 		for (int i = 1; i < MAX_TABLE_NUMBER; i++) {
 			if (!busyTables.contains(i)) {
 				integers.add(i);
@@ -257,8 +257,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public MenuOrderDto getOrder(Long orderId) {
-		MenuOrderDto orderDto;
+	public TicketOrderDto getOrder(Long orderId) {
+		TicketOrderDto orderDto;
 		final Optional<MenuOrder> byId = menuOrderRepository.findById(orderId);
 		if (byId.isPresent()) {
 			MenuOrder entity = byId.get();
@@ -271,7 +271,7 @@ public class MenuServiceImpl implements MenuService {
 			}
 			orderDto = menuOrderConverter.toDto(byId.get(), true);
 		} else {
-			orderDto = new MenuOrderDto();
+			orderDto = new TicketOrderDto();
 		}
 		return orderDto;
 	}

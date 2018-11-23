@@ -1,8 +1,9 @@
 package by.ladyka.club.service.email;
 
 
-import by.ladyka.club.dto.FeedBackDto;
+import by.ladyka.club.config.CustomSettings;
 import by.ladyka.club.entity.FeedBackEntity;
+import by.ladyka.club.entity.UserEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import by.ladyka.club.entity.menu.MenuOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class EmailServiceImpl implements EmailService {
 
 	@Autowired
 	private TemplateEngine templateEngine;
+	@Autowired
+	private CustomSettings settings;
 
 	@Override
 	public void sendOrderToOwner(MenuOrder order) {
@@ -63,6 +66,32 @@ public class EmailServiceImpl implements EmailService {
 		} catch (MessagingException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	@Override
+	public void sendSingInLetter(UserEntity entity) {
+		String subject = String.format("RE:PUBLIC. Подтверждение регистрации %s.", entity.getUsername());
+		try {
+			MimeMessage message = emailSender.createMimeMessage();
+			message.setSubject(subject);
+			MimeMessageHelper helper;
+			helper = new MimeMessageHelper(message, true, "utf-8");
+			helper.setTo(entity.getEmail());
+			helper.setText(buildOrderText(entity), true);
+			new Thread(() -> emailSender.send(message)).start();
+		} catch (MessagingException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	private String buildOrderText(UserEntity entity) {
+		final Locale.Builder builder = new Locale.Builder();
+		final Context ctx = new Context(builder.build());
+		ctx.setVariable("code", entity.getFatherName());
+		ctx.setVariable("siteUrl", settings.getSiteDomain());
+		ctx.setVariable("username", entity.getUsername());
+		ctx.setVariable("currentDate", new Date());
+		return templateEngine.process("email/singin.html", ctx);
 	}
 
 	private String buildOrderText(FeedBackEntity feedBack) {

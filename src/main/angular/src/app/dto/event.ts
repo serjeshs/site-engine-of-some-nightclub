@@ -10,6 +10,8 @@ export class Event {
   buyTicketUrl: string;
   recommendation: boolean;
   republicPay: boolean;
+  costDance: number;
+  costTablePlace: number;
 }
 
 export class EventListResult {

@@ -2,13 +2,14 @@ package by.ladyka.club.entity.menu;
 
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.entity.AbstractEntity;
-import by.ladyka.club.entity.Event;
+import by.ladyka.club.entity.EventEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,14 +24,14 @@ import static by.ladyka.club.ClubApplication.APP_TABLE_PREFIX;
 @Deprecated
 public class MenuOrder extends AbstractEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
-	List<MenuItemPricesHasOrders> itemPricesHasOrders;
+	List<MenuItemPricesHasOrders> itemPricesHasOrders = new ArrayList<>();
 	private String name;
 	private String surname;
 	private String email;
 	private String phone;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "eventId")
-	private Event event;
+	private EventEntity eventEntity;
 	private String arrivalTime;
 	private Integer people;
 	private String description;
