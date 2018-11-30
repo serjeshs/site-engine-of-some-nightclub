@@ -21,9 +21,9 @@ export class AppComponent {
     this.onResize(null);
     this.authService.currentUser()
       .subscribe(user => {
-        this.isUser = (('admin' == user.role) || ('concert' == user.role) || ('user' == user.role))
-        this.isConcert = ('concertManager' == user.role);
         this.isAdmin = ('admin' == user.role);
+        this.isConcert = (this.isAdmin || ('concert' == user.role));
+        this.isUser = (this.isConcert || ('user' == user.role))
       });
     const loader = document.getElementsByClassName('lds-roller')[0];
     loader.parentElement.removeChild(loader);

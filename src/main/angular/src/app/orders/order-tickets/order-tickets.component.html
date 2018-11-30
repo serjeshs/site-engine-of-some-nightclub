@@ -8,7 +8,7 @@
         <span class="club-order-ticket-area">
           <div class="club-order-ticket-btn" title="Уменьшить кол-во билетов" (click)="decrementDanceFloor()">-</div>
           <div class="club-order-ticket-count">
-            <input type="text" formControlName="danceFloor" [(ngModel)]="ticketOrder.danceFloor">
+            {{ticketOrder.danceFloor}}
           </div>
           <div class="club-order-ticket-btn" title="Увеличить кол-во билетов" (click)="incrementDanceFloor()">+</div>
         </span>
@@ -17,18 +17,38 @@
         Всего мест за столиком : {{ticketOrder.placeSeats}}
         <br>
         <div class="area-map">
-          <div class="area-club-scene">RE:PUBLIC</div>
+          <div class="area-club-scene"></div>
           <div class="area-down-bar"></div>
           <div class="area-console">
             <div class="area-table" *ngFor="let table of tablesConsoleLeft">
-              <div *ngFor="let place of table.places">
-                <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
+              <div class="area-table-line">
+                <div *ngFor="let place of table.places.slice(0,2)"
+                     [ngClass]="getPlaceStateClass(place)"
+                     (click)="onPlaceClick(table, place)">
+                </div>
+              </div>
+              <div class="area-table-line">
+                <div
+                  *ngFor="let place of table.places.slice(2)"
+                  [ngClass]="getPlaceStateClass(place)"
+                  (click)="onPlaceClick(table, place)">
+                </div>
               </div>
             </div>
             <div class="area-console-control"></div>
             <div class="area-table" *ngFor="let table of tablesConsoleRight">
-              <div *ngFor="let place of table.places">
-                <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
+              <div class="area-table-line">
+                <div *ngFor="let place of table.places.slice(0,2)"
+                     [ngClass]="getPlaceStateClass(place)"
+                     (click)="onPlaceClick(table, place)">
+                </div>
+              </div>
+              <div class="area-table-line">
+                <div
+                  *ngFor="let place of table.places.slice(2)"
+                  [ngClass]="getPlaceStateClass(place)"
+                  (click)="onPlaceClick(table, place)">
+                </div>
               </div>
             </div>
           </div>
@@ -37,22 +57,52 @@
             <div class="area-stairs-left">
               <div class="area-stairs-left-row-first area-table-line">
                 <div class="area-table" *ngFor="let table of tablesBottomStairs">
-                  <div *ngFor="let place of table.places">
-                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
+                  <div class="area-table-line">
+                    <div *ngFor="let place of table.places.slice(0,2)"
+                         [ngClass]="getPlaceStateClass(place)"
+                         (click)="onPlaceClick(table, place)">
+                    </div>
+                  </div>
+                  <div class="area-table-line">
+                    <div
+                      *ngFor="let place of table.places.slice(2)"
+                      [ngClass]="getPlaceStateClass(place)"
+                      (click)="onPlaceClick(table, place)">
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="area-stairs-left-row-second area-table-line">
                 <div class="area-table" *ngFor="let table of tablesMiddleStairs">
-                  <div *ngFor="let place of table.places">
-                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
+                  <div class="area-table-line">
+                    <div *ngFor="let place of table.places.slice(0,2)"
+                         [ngClass]="getPlaceStateClass(place)"
+                         (click)="onPlaceClick(table, place)">
+                    </div>
+                  </div>
+                  <div class="area-table-line">
+                    <div
+                      *ngFor="let place of table.places.slice(2)"
+                      [ngClass]="getPlaceStateClass(place)"
+                      (click)="onPlaceClick(table, place)">
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="area-stairs-left-row-third area-table-line">
                 <div class="area-table" *ngFor="let table of tablesTopStairs">
-                  <div *ngFor="let place of table.places">
-                    <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
+                  <div class="area-table-line">
+                    <div *ngFor="let place of table.places.slice(0,2)"
+                         [ngClass]="getPlaceStateClass(place)"
+                         (click)="onPlaceClick(table, place)">
+                    </div>
+                  </div>
+                  <div class="area-table-line">
+                    <div
+                      *ngFor="let place of table.places.slice(2)"
+                      [ngClass]="getPlaceStateClass(place)"
+                      (click)="onPlaceClick(table, place)">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -64,12 +114,17 @@
                 <div class="area-left">
                   <div class="area-table" *ngFor="let table of tablesEleven">
                     <div class="area-table-line">
-                      <div class="area-table-place area-table-place-busy table-left"></div>
-                      <div class="area-table-place area-table-place-busy table-right"></div>
+                      <div *ngFor="let place of table.places.slice(0,2)"
+                           [ngClass]="getPlaceStateClass(place)"
+                           (click)="onPlaceClick(table, place)">
+                      </div>
                     </div>
                     <div class="area-table-line">
-                      <div class="area-table-place area-table-place-busy table-left"></div>
-                      <div class="area-table-place area-table-place-busy table-right"></div>
+                      <div
+                        *ngFor="let place of table.places.slice(2)"
+                        [ngClass]="getPlaceStateClass(place)"
+                        (click)="onPlaceClick(table, place)">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -79,8 +134,18 @@
               <div class="area-stairs-right-row-second area-table-line">
                 <div class="area-left">
                   <div class="area-table" *ngFor="let table of tablesSeventeen">
-                    <div *ngFor="let place of table.places">
-                      <div [ngClass]="getPlaceStateClass(place)" (click)="onPlaceClick(table, place)"></div>
+                    <div class="area-table-line">
+                      <div *ngFor="let place of table.places.slice(0,2)"
+                           [ngClass]="getPlaceStateClass(place)"
+                           (click)="onPlaceClick(table, place)">
+                      </div>
+                    </div>
+                    <div class="area-table-line">
+                      <div
+                        *ngFor="let place of table.places.slice(2)"
+                        [ngClass]="getPlaceStateClass(place)"
+                        (click)="onPlaceClick(table, place)">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -91,7 +156,7 @@
           </div>
         </div>
         <br>
-        Cумма оплаты {{totalMoney}}
+        Cумма оплаты {{totalMoney}} BYN
         <br>
         На платежной странице будет указан номер заказа и сумма платежа. Для оплаты вам необходимо
         ввести свои карточные данные и подтвердить платеж, нажав кнопку «Оплатить». Если ваша карта поддерживает
@@ -123,12 +188,6 @@
     </mat-step>
     <mat-step [stepControl]="orderDetailsFormGroup">
       <ng-template matStepLabel>Общая информация о пользователе</ng-template>
-
-
-
-
-
-
 
 
       <div class="form-group">
@@ -195,7 +254,8 @@
                [(ngModel)]="ticketOrder.rulesCheck" name="rulesCheck"
                #rulesCheck="ngModel"
                required>
-        <label class="form-check-label" for="rulesCheck">Я обязуюсь не нарушать: <a href="/rules" target="_blank"><u><b>правила клуба RE:PUBLIC</b></u></a></label>
+        <label class="form-check-label" for="rulesCheck">Я обязуюсь не нарушать: <a href="/rules" target="_blank"><u><b>правила
+          клуба RE:PUBLIC</b></u></a></label>
       </div>
 
       <div class="form-check">
@@ -204,30 +264,17 @@
                [(ngModel)]="ticketOrder.offerCheck" name="offerCheck"
                #offerCheck="ngModel"
                required>
-        <label class="form-check-label" for="rulesCheck">Я принимаю: <a href="/public-offer" target="_blank"><u><b>Договор публичной оферты клуба RE:PUBLIC</b></u></a></label>
+        <label class="form-check-label" for="rulesCheck">Я принимаю: <a href="/public-offer" target="_blank"><u><b>Договор
+          публичной оферты клуба RE:PUBLIC</b></u></a></label>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!--<app-order-titcket-edit [order]="ticketOrder. ></app-order-titcket-edit>-->
       <div>
-        <button mat-button matStepperPrevious color="accent" >Назад</button>
+        <button mat-button matStepperPrevious color="accent">Назад</button>
         <button mat-button matStepperNext color="primary">Далее</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Превью заказа</ng-template>
-       Данные покупателя : <br>
+      Данные покупателя : <br>
       {{ticketOrder.name}}<br>
       {{ticketOrder.surname}}<br>
       {{ticketOrder.email}}<br>
@@ -244,9 +291,10 @@
       </div>
       Сумма к оплате : {{totalMoney}}<br>
       <div>
-        <button mat-button matStepperPrevious color="accent" >Назад</button>
+        <button mat-button matStepperPrevious color="accent">Назад</button>
         <button mat-raised-button color="primary"
-                (click)="payTicketOrder()">Оплатить заказ онлайн {{totalMoney}} BYN</button>
+                (click)="payTicketOrder()">Оплатить заказ онлайн {{totalMoney}} BYN
+        </button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
