@@ -36,6 +36,9 @@ export class EventViewComponent implements OnInit {
 
   ngOnInit() {
     this.viewEvent = true;
+    if (!this.tickets) {
+      this.tickets = new EventTicketsReportDto();
+    }
   }
 
   setViewEvent(b: boolean) {
