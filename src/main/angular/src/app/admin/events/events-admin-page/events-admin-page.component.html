@@ -2,5 +2,10 @@
   Добавить новое событие
 </a>
 <app-events-list (onRowSelected)="handleRowSelected($event)" [hidden]="!viewEvents"></app-events-list>
-<app-event-view [hidden]="!viewEvent" [event]="event" [readOnly]="false"
-                (onEventSaveButtonClick)="saveEvent($event)" (onEventDeleteButtonClick)="deleteEvent($event)" (onEventCloseButtonClick)="ngOnInit()"></app-event-view>
+<app-event-view [hidden]="!viewEvent"
+                [event]="event"
+                [tickets]="tickets"
+                [readOnly]="false"
+                (onEventSaveButtonClick)="saveEvent($event)"
+                (onEventDeleteButtonClick)="deleteEvent($event)"
+                (onEventCloseButtonClick)="ngOnInit()"></app-event-view>

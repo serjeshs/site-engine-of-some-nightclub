@@ -45,4 +45,20 @@ public class OrderTicketsController {
 		return result;
 	}
 
+	@GetMapping("report/event")
+	public @ResponseBody
+	Map<String, Object> reportEvent(Principal principal, HttpServletRequest httpServletRequest, Long eventId) {
+		Map<String, Object> result = new TreeMap<>();
+		try {
+			principal.getName();
+			result.put("success", true);
+			result.put("data", orderTicketsService.getReport(eventId));
+		} catch (Exception ex) {
+			result.put("message", ex.getLocalizedMessage());
+			result.put("success", false);
+			logger.error("Error", ex);
+		}
+		return result;
+	}
+
 }

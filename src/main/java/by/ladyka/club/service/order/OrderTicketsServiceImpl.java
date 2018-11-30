@@ -4,10 +4,7 @@ import by.ladyka.bepaid.BePaidApi;
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.bepaid.dto.PaymentTokenDto;
 import by.ladyka.club.config.CustomSettings;
-import by.ladyka.club.dto.tikets.TicketPlaceDto;
-import by.ladyka.club.dto.tikets.TicketPlaceStatus;
-import by.ladyka.club.dto.tikets.TicketTableDto;
-import by.ladyka.club.dto.tikets.TicketsOrderDto;
+import by.ladyka.club.dto.tikets.*;
 import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
@@ -30,6 +27,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static by.ladyka.club.config.Constants.API_ORDER_BEPAID;
@@ -118,6 +116,26 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		final OrderEntity orderEntity = orderEntityRepository.findByUuid(uuid).orElseThrow(() -> new RuntimeException("UUID is invalid"));
 		return orderEntityConverter.toDto(orderEntity, true);
 
+	}
+
+	@Override
+	public EventTicketsReportDto getReport(Long eventId) {
+		EventTicketsReportDto reportDto = new EventTicketsReportDto();
+		final List<OrderEntity> orders = orderEntityRepository.findAllByEventEntityId(eventId);
+		int dc = orders
+				.stream()
+				.map(OrderEntity::getDance)
+				.mapToInt(Integer::intValue)
+				.sum();
+		reportDto.setDanceCount(dc);
+		int tpc = orders
+				.stream()
+				.map(OrderEntity::getTableNumbers)
+				.map(List::size)
+				.mapToInt(Integer::intValue)
+				.sum();
+		reportDto.setTablePlacesCount(tpc);
+		return reportDto;
 	}
 
 	private OrderEntity storeOrder(@Valid TicketsOrderDto dto) {

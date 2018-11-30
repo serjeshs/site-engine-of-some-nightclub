@@ -19,4 +19,9 @@ export class OrderTicketService {
     const url = '/api/tickets/bookandpay';
     return this.http.post<ResponseEntity>(url, ticketOrder)
   }
+
+  getTicketsReport(eventId: number) {
+    const url = '/api/tickets/report/event?eventId=' + eventId;
+    return this.http.get<ResponseEntity>(url)
+  }
 }

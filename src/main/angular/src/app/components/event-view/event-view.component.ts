@@ -5,6 +5,7 @@ import {ToastsManager} from "ng6-toastr";
 import {MatDialog} from "@angular/material";
 import {OrderTicketsComponent} from "../../orders/order-tickets/order-tickets.component";
 import {humanizeBytes, UploaderOptions, UploadFile, UploadInput, UploadOutput} from 'ngx-uploader';
+import {EventTicketsReportDto} from "../../dto/tickets/eventTicketsReportDto";
 
 @Component({
   selector: 'app-event-view',
@@ -18,12 +19,12 @@ export class EventViewComponent implements OnInit {
   @Output() onEventCloseButtonClick = new EventEmitter();
   @Input() event: Event = new Event();
   @Input() readOnly: boolean;
+  @Input() tickets: EventTicketsReportDto;
 
   options: UploaderOptions;
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
-  dragOver: boolean;
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public dialog: MatDialog) {
     this.toastr.setRootViewContainerRef(vcr);
