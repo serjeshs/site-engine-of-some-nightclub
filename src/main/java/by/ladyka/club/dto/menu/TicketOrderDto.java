@@ -31,7 +31,6 @@ public class TicketOrderDto {
 	private String eventName;
 	private String arrivalTime;
 	private Integer people;
-	private String bcCode;
 	private String description;
 	private Integer tableNumber;
 	private String uuid = UUID.randomUUID().toString();

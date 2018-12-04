@@ -1,6 +1,8 @@
 databaseChangeLog:
 - changeSet:
-    id: 2018-11-23-select-1
+    id: 2018-12-09-drop-bcCode-column
     author: Andrei Ladyka
     changes:
-      - sql: delete from be_paid_request where 1=1;
+    - dropColumn:
+        columnName: bcCode
+        tableName: menu_order

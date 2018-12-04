@@ -1,5 +1,10 @@
 <div class="container">
   <div class="mt-1" *ngIf="order.id>0"><h3>Номер заказа </h3></div>
+  <div class="mt-1" *ngIf="!order.payStatus"><h3>Оплата онлайн не произведена</h3></div>
+
+  <div class="mt-1" *ngIf="!order.payStatus"><h3>Покажите данный код на входе</h3>
+    <qrcode [qrdata]="order.uuid" [size]="256" [level]="'M'"></qrcode>
+  </div>
   <p class="lead"> {{order.id}}</p>
   <div class="mt-1"><h3>Ваши имя и фамилия</h3></div>
   <p class="lead"> {{order.name}} {{order.surname}}</p>
@@ -46,9 +51,6 @@
 
   <div class="mt-1" *ngIf="order.payStatus"><h3>Статус оплаты</h3></div>
   <p class="lead" *ngIf="order.payStatus"> {{order.payStatus}}</p>
-  <div class="mt-1" *ngIf="!order.payStatus"><h3>Оплата онлайн не произведена</h3></div>
-  <p class="lead" *ngIf="!order.payStatus&&(order.id>0)"><a href="/api/order/bepaid/pay/{{order.id}}">вы можете
-    произвести оплату онлайн и получить скидку в 10%</a></p>
   <div class="mt-1" *ngIf="order.tableNumber"><h3>Столик </h3></div>
   <p class="lead" *ngIf="order.tableNumber"> {{order.tableNumber}}</p>
   <div class="mt-1"><h3>Kомментарий к заказу</h3></div>

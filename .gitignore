@@ -25,7 +25,7 @@ nbdist/
 .nb-gradle/
 
 src/main/resources/static
-src/main/angular/node_modules/
+src/main/angular/node_modules
 out/
 /src/main/angular/package-lock.json
 sh.sh
