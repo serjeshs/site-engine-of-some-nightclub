@@ -3,7 +3,7 @@
   <div class="mt-1" *ngIf="!order.payStatus"><h3>Оплата онлайн не произведена</h3></div>
 
   <div class="mt-1" *ngIf="!order.payStatus"><h3>Покажите данный код на входе</h3>
-    <qrcode [qrdata]="order.uuid" [size]="256" [level]="'M'"></qrcode>
+    <qrcode [qrdata]="uuid" [size]="256" [level]="'M'"></qrcode>
   </div>
   <p class="lead"> {{order.id}}</p>
   <div class="mt-1"><h3>Ваши имя и фамилия</h3></div>

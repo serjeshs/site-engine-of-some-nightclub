@@ -91,12 +91,14 @@ import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 import { PublicOfferComponent } from './pages/public-offer/public-offer.component';
 import { SingUpComponent } from './auth/sing-up/sing-up.component';
 import { SingInComponent } from './auth/sing-in/sing-in.component';
+import {QRCodeModule} from "angularx-qrcode";
 
 @NgModule({
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    DlDateTimePickerDateModule,
     FormsModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
@@ -138,8 +140,8 @@ import { SingInComponent } from './auth/sing-in/sing-in.component';
     MatTooltipModule,
     MatTreeModule,
     NgxUploaderModule,
+    QRCodeModule,
     ReactiveFormsModule,
-    DlDateTimePickerDateModule,
     ToastModule.forRoot()
   ],
   declarations: [

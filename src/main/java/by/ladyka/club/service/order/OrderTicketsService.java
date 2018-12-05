@@ -18,4 +18,6 @@ public interface OrderTicketsService {
 	TicketOrderDto getOrder(String uuid);
 
 	EventTicketsReportDto getReport(Long eventId);
+
+	List<TicketsOrderDto> getTickets(String name, Long eventId, String filter);
 }

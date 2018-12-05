@@ -1,5 +1,6 @@
 package by.ladyka.club.endpoints;
 
+import by.ladyka.club.config.ClubRole;
 import by.ladyka.club.dto.tikets.TicketTableDto;
 import by.ladyka.club.dto.tikets.TicketsOrderDto;
 import by.ladyka.club.service.order.OrderTicketsService;
@@ -7,6 +8,7 @@ import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,6 +61,12 @@ public class OrderTicketsController {
 			logger.error("Error", ex);
 		}
 		return result;
+	}
+
+	@GetMapping("list")
+	@Secured(value = {ClubRole.ROLE_ADMIN, ClubRole.ROLE_CONCERT})
+	public List<TicketsOrderDto> getTicket(Principal principal, Long eventId, String filter){
+		return orderTicketsService.getTickets(principal.getName(), eventId, filter);
 	}
 
 }

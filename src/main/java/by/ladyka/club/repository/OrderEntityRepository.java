@@ -12,4 +12,5 @@ public interface OrderEntityRepository extends JpaRepository<OrderEntity, Long> 
 	Optional<OrderEntity> findByUuid(String uuid);
 
 	List<OrderEntity> findAllByEventEntityId(Long eventId);
+	List<OrderEntity> findTop5ByEventEntityIdAndUuidContains(Long eventId, String uuid);
 }

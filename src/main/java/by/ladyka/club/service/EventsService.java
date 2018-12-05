@@ -4,6 +4,7 @@ import by.ladyka.club.dto.AppUser;
 import by.ladyka.club.dto.EventDTO;
 import by.ladyka.club.dto.EventRelevantDTO;
 import by.ladyka.club.entity.EventEntity;
+import by.ladyka.club.entity.UserEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,4 +21,5 @@ public interface EventsService {
 	EventDTO getEvent(Long id);
 	long getTotalEvents(String filter, String username);
 	void delete(Long id);
+	boolean hasAccess(EventEntity event, UserEntity user);
 }

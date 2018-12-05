@@ -198,7 +198,7 @@
                [(ngModel)]="ticketOrder.name"
                name="name"
                #name="ngModel"
-               placeholder="Имя?"
+               placeholder="Имя"
         >
       </div>
 
@@ -210,7 +210,7 @@
                [(ngModel)]="ticketOrder.surname"
                name="surname"
                #surname="ngModel"
-               placeholder="Фамилия?"
+               placeholder="Фамилия"
         >
       </div>
 
@@ -220,8 +220,8 @@
                required
                name="email"
                #email="ngModel"
-               placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">Мы никому не расскажем ваш емеил.</small>
+               placeholder="Введите электронную почту">
+        <small id="emailHelp" class="form-text text-muted">Мы никому не расскажем Ваш емеил.</small>
       </div>
 
 
@@ -231,21 +231,16 @@
                required
                name="phone"
                #phone="ngModel"
-               placeholder="Enter phone">
-        <small id="phoneHelp" class="form-text text-muted">Мы свяжемся с вами в ближайшее время, после оформления
-          заказа.
-        </small>
+               placeholder="Ваш телефонный номер">
       </div>
 
       <div class="form-group">
-        <label for="description">комментарий к заказу</label>
+        <label for="description">Комментарий к заказу</label>
         <textarea type="text" class="form-control" id="description"
-
-                  required
                   [(ngModel)]="ticketOrder.description"
                   name="description"
                   #description="ngModel"
-                  placeholder="Введите ваши дополнительные пожелания, например время прибытия, если заказываете столик"> </textarea>
+                  placeholder="Введите Ваши дополнительные пожелания. Например, время прибытия, если заказываете столик."> </textarea>
       </div>
 
       <div class="form-check">

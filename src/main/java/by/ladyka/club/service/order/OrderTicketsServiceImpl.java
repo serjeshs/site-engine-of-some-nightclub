@@ -3,31 +3,36 @@ package by.ladyka.club.service.order;
 import by.ladyka.bepaid.BePaidApi;
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.bepaid.dto.PaymentTokenDto;
+import by.ladyka.club.config.ClubRole;
 import by.ladyka.club.config.CustomSettings;
-import by.ladyka.club.dto.tikets.*;
 import by.ladyka.club.dto.menu.TicketOrderDto;
+import by.ladyka.club.dto.tikets.*;
 import by.ladyka.club.entity.EventEntity;
+import by.ladyka.club.entity.UserEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import by.ladyka.club.entity.order.OrderEntity;
 import by.ladyka.club.entity.order.OrderItemEntity;
 import by.ladyka.club.repository.OrderEntityRepository;
 import by.ladyka.club.repository.OrderItemEntityRepository;
 import by.ladyka.club.service.EventsService;
+import by.ladyka.club.service.UserService;
 import org.apache.commons.codec.binary.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
+import java.security.AccessControlException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static by.ladyka.club.config.Constants.API_ORDER_BEPAID;
@@ -35,6 +40,8 @@ import static by.ladyka.club.config.Constants.API_ORDER_BEPAID;
 @Service
 public class OrderTicketsServiceImpl implements OrderTicketsService {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	@Autowired
+	UserService userService;
 	@Autowired
 	private OrderItemEntityRepository repository;
 	@Autowired
@@ -136,6 +143,30 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 				.sum();
 		reportDto.setTablePlacesCount(tpc);
 		return reportDto;
+	}
+
+	@Override
+	public List<TicketsOrderDto> getTickets(String username, Long eventId, String filter) {
+		UserEntity userEntity = userService.getUserEntity(username);
+		EventEntity event = eventService.getEventById(eventId).orElseThrow(EntityNotFoundException::new);
+		List<OrderEntity> tickets = Collections.emptyList();
+		final String role = userService.getRole(userEntity);
+		switch (role) {
+			case ClubRole.ROLE_CONCERT: {
+				if (!eventService.hasAccess(event, userEntity)) {
+					throw new AccessControlException(String.format("User %s hasn't access to this event %d", username, eventId));
+				}
+			}
+			case ClubRole.ROLE_ADMIN: {
+				tickets = orderEntityRepository.findTop5ByEventEntityIdAndUuidContains(eventId, filter);
+			} break;
+			default: {
+
+			}
+
+		}
+
+		return orderEntityConverter.toTicketsOrderDtos(tickets, true);
 	}
 
 	private OrderEntity storeOrder(@Valid TicketsOrderDto dto) {

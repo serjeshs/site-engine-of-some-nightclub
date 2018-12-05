@@ -139,7 +139,7 @@ public class EventsServiceImpl implements EventsService {
 		return converterEventService.toEventDto(entity);
 	}
 
-	private boolean hasAccess(EventEntity event, UserEntity user) {
+	public boolean hasAccess(EventEntity event, UserEntity user) {
 		return event.getAccessEdit().contains(user) || user.getAuthorities().stream().map(AuthorityEntity::getAuthority).collect(Collectors.toList()).contains(ClubRole.ROLE_ADMIN);
 	}
 }
