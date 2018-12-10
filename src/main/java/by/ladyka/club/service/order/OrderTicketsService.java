@@ -20,4 +20,6 @@ public interface OrderTicketsService {
 	EventTicketsReportDto getReport(Long eventId);
 
 	List<TicketsOrderDto> getTickets(String name, Long eventId, String filter);
+
+	Boolean acceptTicket(String username, String uuid);
 }

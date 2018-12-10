@@ -6,3 +6,16 @@ databaseChangeLog:
     - dropColumn:
         columnName: bcCode
         tableName: menu_order
+- changeSet:
+    id: 2018-12-11-add-enterTime-time-and-acceptor
+    author: Andrei Ladyka
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: acceptor_user_id
+            type: BIGINT
+        - column:
+            name: enter_time
+            type: datetime
+        tableName: ticket_order

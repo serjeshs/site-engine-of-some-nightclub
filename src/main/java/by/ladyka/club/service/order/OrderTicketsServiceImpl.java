@@ -29,6 +29,7 @@ import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.security.AccessControlException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -167,6 +168,16 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		}
 
 		return orderEntityConverter.toTicketsOrderDtos(tickets, true);
+	}
+
+	@Override
+	public Boolean acceptTicket(String username, String uuid) {
+		UserEntity userEntity = userService.getUserEntity(username);
+		final OrderEntity orderEntity = orderEntityRepository.findByUuid(uuid).orElseThrow(EntityNotFoundException::new);
+		orderEntity.setEnterTime(LocalDateTime.now());
+		orderEntity.setAcceptor(userEntity);
+		orderEntityRepository.save(orderEntity);
+		return true;
 	}
 
 	private OrderEntity storeOrder(@Valid TicketsOrderDto dto) {

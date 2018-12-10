@@ -65,8 +65,23 @@ public class OrderTicketsController {
 
 	@GetMapping("list")
 	@Secured(value = {ClubRole.ROLE_ADMIN, ClubRole.ROLE_CONCERT})
-	public List<TicketsOrderDto> getTicket(Principal principal, Long eventId, String filter){
+	public List<TicketsOrderDto> getTicket(Principal principal, Long eventId, String filter) {
 		return orderTicketsService.getTickets(principal.getName(), eventId, filter);
 	}
 
+	@PostMapping("accept")
+	@Secured(value = {ClubRole.ROLE_ADMIN, ClubRole.ROLE_CONCERT})
+	public Map<String, Object> accept(Principal principal, String uuid) {
+		Map<String, Object> result = new TreeMap<>();
+		try {
+			principal.getName();
+			result.put("success", true);
+			result.put("data", orderTicketsService.acceptTicket(principal.getName(), uuid));
+		} catch (Exception ex) {
+			result.put("message", ex.getLocalizedMessage());
+			result.put("success", false);
+			logger.error("Error", ex);
+		}
+		return result;
+	}
 }

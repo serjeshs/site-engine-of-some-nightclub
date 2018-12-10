@@ -3,6 +3,7 @@ package by.ladyka.club.entity.order;
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.entity.AbstractEntity;
 import by.ladyka.club.entity.EventEntity;
+import by.ladyka.club.entity.UserEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -50,5 +52,12 @@ public class OrderEntity extends AbstractEntity {
 
 //	private Integer people;
 //	private Integer tableNumber;
+
+	@Column(name = "enter_time")
+	private LocalDateTime enterTime;
+
+	@ManyToOne
+	@JoinColumn(name = "acceptor_user_id")
+	private UserEntity acceptor;
 
 }
