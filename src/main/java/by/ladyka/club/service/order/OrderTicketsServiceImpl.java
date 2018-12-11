@@ -174,6 +174,9 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	public Boolean acceptTicket(String username, String uuid) {
 		UserEntity userEntity = userService.getUserEntity(username);
 		final OrderEntity orderEntity = orderEntityRepository.findByUuid(uuid).orElseThrow(EntityNotFoundException::new);
+		if (orderEntity.getEnterTime() != null) {
+			throw new RuntimeException("Билет уже активирован!");
+		}
 		orderEntity.setEnterTime(LocalDateTime.now());
 		orderEntity.setAcceptor(userEntity);
 		orderEntityRepository.save(orderEntity);

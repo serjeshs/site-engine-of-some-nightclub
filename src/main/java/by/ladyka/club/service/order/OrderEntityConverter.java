@@ -16,6 +16,10 @@ public class OrderEntityConverter {
 	public TicketOrderDto toDto(OrderEntity entity, boolean deps) {
 		TicketOrderDto dto = new TicketOrderDto();
 		BeanUtils.copyProperties(entity, dto);
+		if (entity.getEnterTime() != null) {
+			dto.setAcceptor(entity.getAcceptor().getPublishName());
+			dto.setEnterTime(entity.getEnterTime());
+		}
 		if (deps) {
 			dto.setTables(entity.getTableNumbers()
 					.stream()
