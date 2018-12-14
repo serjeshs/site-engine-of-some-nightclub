@@ -12,6 +12,7 @@ export class OrderViewComponent implements OnInit {
 
   @Input() order: MenuOrder = new MenuOrder();
   @Input() menuCategories: MenuCategoryDto[] = [];
+  @Input() uuid: string = '';
 
 
   constructor() {

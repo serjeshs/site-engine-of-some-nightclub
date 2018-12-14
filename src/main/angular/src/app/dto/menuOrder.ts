@@ -5,7 +5,6 @@ export class MenuOrder {
   surname: string;
   phone: string;
   arrivalTime: string;
-  bcCode: string;
   depositPrice: number;
   people: number;
   food: any;

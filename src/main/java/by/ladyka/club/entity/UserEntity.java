@@ -66,6 +66,15 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 	@Setter
 	@OneToMany(mappedBy = "user")
 	private List<AuthorityEntity> authorities = new ArrayList<>();
+	@Getter
+	@Setter
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			},
+			mappedBy = "accessEdit")
+	private List<EventEntity> accessEdit = new ArrayList<>();
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -90,5 +99,4 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 	public String getPublishName() {
 		return String.format("%s %s", getSurname(), getName());
 	}
-
 }

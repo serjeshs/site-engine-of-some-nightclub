@@ -1,17 +1,13 @@
 package by.ladyka.club.dto.menu;
 
-import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.club.dto.tikets.TablePlaceDto;
-import by.ladyka.club.entity.EventEntity;
-import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
-import by.ladyka.club.entity.order.OrderItemEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Getter
@@ -31,7 +27,6 @@ public class TicketOrderDto {
 	private String eventName;
 	private String arrivalTime;
 	private Integer people;
-	private String bcCode;
 	private String description;
 	private Integer tableNumber;
 	private String uuid = UUID.randomUUID().toString();
@@ -39,4 +34,6 @@ public class TicketOrderDto {
 
 	private int dance;
 	private List<TablePlaceDto> tables = new ArrayList<>();
+	private LocalDateTime enterTime;
+	private String acceptor;
 }

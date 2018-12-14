@@ -9,6 +9,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -33,6 +35,16 @@ public class EventEntity extends AbstractEntity {
 	private Boolean republicPay;
 	private BigDecimal costDance;
 	private BigDecimal costTablePlace;
+
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			})
+	@JoinTable(name = "event_concert_access",
+			joinColumns = {@JoinColumn(name = "event_id")},
+			inverseJoinColumns = {@JoinColumn(name = "user_id")})
+	private List<UserEntity> accessEdit = new ArrayList<>();
 
 	//TODO remove me
 	private String alias;

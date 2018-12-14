@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 
@@ -21,6 +19,9 @@ import javax.persistence.Table;
 @EntityListeners(AuditingEntityListener.class)
 public class FileEntity  extends AbstractEntity {
     private String filePath;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
 }

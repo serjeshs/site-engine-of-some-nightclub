@@ -1,6 +1,6 @@
 .club-order-ticket-area {
   float: right;
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 .club-order-ticket-btn {
@@ -32,7 +32,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  border: 1px solid ;
+  border: 1px solid;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
@@ -42,127 +42,314 @@
 }
 
 
-
+.aimg {
+  position: absolute;
+  opacity: .5;
+  z-index: 999
+}
 
 .area-map {
-  background-color: #b0b0b0;
+  background-color: #dde0e7;
+  background-repeat: no-repeat;
+  background-image: url('/assets/img/club_plan_clear.png');
+  position: relative;
   width: 600px;
-  height: 609px;
+  height: 420px;
 }
 
 .area-club-scene {
-  background-color: #ff5f00;
-  height: 30px;
+  height: 60px;
   text-align: center;
   font-size: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 170px;
+  z-index: 2
 }
 
 .area-down-bar {
-  background-color: #adb1a3;
-  height: 50px;
+  position: absolute;
+  height: 60px;
+  width: 50px;
+  left: 473px;
+  top: 27px;
+  transform: rotate(-4deg);
 }
 
 .area-console {
-  background-color: #fffa00;
-  height: 120px;
+  height: 30px;
+  position: absolute;
+  top: 119px;
+  left: 123px;
+  width: 353px;
+  display: flex;
+  justify-content: center;
 }
 
 .area-top-dance {
-  background-color: #00d4ff;
-  height: 40px;
+  height: 120px;
+  position: absolute;
+  width: 456px;
+  left: 78px;
 }
 
 .area-stairs {
-  background-color: #1de200;
-  height: 360px;
+  height: 223px;
   width: 600px;
-  display:inline-block;
+  display: inline-block;
+  position: absolute;
+  top: 201px
+}
+
+.area-console .area-table:nth-child(1) {
+  margin-left: 11px;
+}
+
+.area-console .area-table:nth-child(2) {
+  margin-left: 9px;
+}
+
+.area-console .area-table:nth-child(3) {
+  margin-left: 9px;
+}
+
+.area-console .area-table:nth-child(4) {
+  margin-left: 5px;
+}
+
+.area-console .area-table:nth-child(5) {
+  margin-left: 9px;
+}
+
+.area-console .area-table:nth-child(6) {
+  margin-left: 5px;
+}
+
+.area-console .area-table:nth-child(7) {
+  margin-left: 3px;
+}
+
+.area-console .area-table:nth-child(9) {
+  margin-left: 2px;
+  margin-right: 5px;
 }
 
 .area-table {
-  background-color: #0000ff;
-  width: 60px;
-  height: 120px;
-  float:left;
+  position: relative;
+}
+
+.area-table::after {
+  position: absolute;
+  left: 5px;
+  width: 12px;
+  height: 12px;
+  bottom: -17px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+}
+
+.area-console .area-table:nth-child(1)::after {
+  content: '18'
+}
+
+.area-console .area-table:nth-child(2)::after {
+  content: '19'
+}
+
+.area-console .area-table:nth-child(3)::after {
+  content: '20'
+}
+
+.area-console .area-table:nth-child(4)::after {
+  content: '21'
+}
+
+.area-console .area-table:nth-child(6)::after {
+  content: '22'
+}
+
+.area-console .area-table:nth-child(7)::after {
+  content: '23'
+}
+
+.area-console .area-table:nth-child(8)::after {
+  content: '24'
+}
+
+.area-console .area-table:nth-child(9)::after {
+  content: '25'
+}
+
+.area-console .area-table {
+  margin-top: 8px;
+}
+
+.area-table {
+  width: 26px;
+  height: 26px;
+  margin: 0 auto;
   border: #b0b0b0;
-  border-radius: 10px;
-  display:inline-block;
+  display: flex;
 }
 
 .area-console-control {
-  background-color: #b9ffd4;
-  width: 120px;
-  height: 120px;
-  float:left;
-  border-radius: 10px;
+  width: 55px;
+  height: 50px;
+  float: left;
 }
 
 .area-table-place {
-  width: 20px;
-  height: 40px;
-  border-radius: 12px;
+  background-image: url('/assets/img/club_plan_place.png');
+  background-position: 13px 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 0;
+  margin: 0
 }
 
 .area-table-place-free {
-  background-color: #ededed;
+
 }
 
 .area-table-place-booking {
-  background-color: #66ed4f;
+  background-position: 0 0px;
 }
 
 .area-table-place-busy {
-  background-color: #ed1a20;
+  background-position: 0 0;
   cursor: not-allowed;
 }
 
 .area-table-place-free:hover {
   cursor: pointer;
-  background-color: #e4ff4a;
 }
 
-.area-table-place-booking:hover  {
+.area-table-place-booking:hover {
   cursor: pointer;
-  background-color: yellow;
+  background-position: 0 13px;
 }
 
 .table-right {
-  float:right;
+  float: right;
+}
+
+.area-table-line:nth-child(1) .area-table-place:nth-child(2) {
+  transform: rotate(270deg)
+}
+
+.area-table-line:nth-child(2) .area-table-place:nth-child(1) {
+  transform: rotate(90deg)
+}
+
+.area-table-line:nth-child(2) .area-table-place:nth-child(2) {
+  transform: rotate(180deg)
 }
 
 .table-left {
-  float:left;
+  float: left;
 }
 
 .area-table-line {
   display: inline-block;
+  height: 13px;
 }
 
 .area-stairs-left {
-  background-color: red; /*fix*/
   width: 360px;
-  height: 369px;
-  display:inline-block;
+  height: 223px;
+  display: inline-block;
 }
 
 .area-stairs-right {
-  background-color: #8cff68;
   width: 200px;
   height: 120px;
   float: right;
-  display:inline-block;
+  display: inline-block;
+}
+
+.area-left {
+  position: relative;
+}
+
+.area-stairs-right-row-first .area-left .area-table {
+  position: absolute;
+  left: -12px;
+  top: 10px;
+}
+
+.area-stairs-right-row-first .area-left .area-table::after {
+  content: '17'
+}
+
+.area-stairs-right-row-second .area-left .area-table {
+  position: absolute;
+  left: -12px;
+  top: 75px;
+}
+
+.area-stairs-right-row-second .area-left .area-table::after {
+  content: '11'
 }
 
 .area-stairs-middle {
-  background-color: #ff5f00;
-  width: 30px;
-  height: 360px;
-  display:inline-block;
+  width: 45px;
+  height: 223px;
+  margin-left: -35px;
+  display: inline-block;
 }
 
 .area-stairs-left-row-first {
-  width: 100%;
-  text-align:center;
+  position: absolute;
+  width: 210px;
+  top: -20px;
+  left: 120px;
+  text-align: center;
+  display: flex;
+}
+
+.area-stairs-left-row-first .area-table:nth-child(1) {
+  margin-top: 18px;
+}
+
+.area-stairs-left-row-first .area-table:nth-child(2) {
+  margin-top: 25px;
+}
+
+.area-stairs-left-row-first .area-table:nth-child(3) {
+  margin-top: 28px;
+}
+
+.area-stairs-left-row-first .area-table:nth-child(4) {
+  margin-top: 29px;
+}
+
+.area-stairs-left-row-first .area-table:nth-child(5) {
+  margin-top: 30px;
+}
+
+.area-stairs-left-row-first .area-table:nth-child(1)::after {
+  content: '12'
+}
+
+.area-stairs-left-row-first .area-table:nth-child(2)::after {
+  content: '13'
+}
+
+.area-stairs-left-row-first .area-table:nth-child(3)::after {
+  content: '14'
+}
+
+.area-stairs-left-row-first .area-table:nth-child(4)::after {
+  content: '15'
+}
+
+.area-stairs-left-row-first .area-table:nth-child(5)::after {
+  content: '16'
 }
 
 .area-stairs-right-row-first {
@@ -170,16 +357,133 @@
   float: right;
 }
 
+.area-stairs-left-row-third {
+  left: 76px;
+  top: 152px;
+  width: 195px;
+}
+
+.area-stairs-left-row-third .area-table:nth-child(1)::after {
+  content: '1'
+}
+
+.area-stairs-left-row-third .area-table:nth-child(2)::after {
+  content: '2'
+}
+
+.area-stairs-left-row-third .area-table:nth-child(3)::after {
+  content: '3'
+}
+
+.area-stairs-left-row-third .area-table:nth-child(4)::after {
+  content: '4'
+}
+
+.area-stairs-left-row-third .area-table:nth-child(1) {
+  margin-top: 0px;
+}
+
+.area-stairs-left-row-third .area-table:nth-child(2) {
+  margin-top: 6px;
+}
+
+.area-stairs-left-row-third .area-table:nth-child(3) {
+  margin-top: 12px;
+}
+
+.area-stairs-left-row-third .area-table:nth-child(4) {
+  margin-top: 12px;
+}
+
+.area-stairs-left-row-second .area-table .area-table-line:nth-child(1) .table-left {
+  transform: rotate(0deg)
+}
+
+.area-stairs-left-row-second .area-table .area-table-line:nth-child(1) .table-right {
+  transform: rotate(270deg)
+}
+
+.area-stairs-right-row-second .area-table .area-table-line:nth-child(1) .table-left {
+  transform: rotate(0deg)
+}
+
+.area-stairs-right-row-second .area-table .area-table-line:nth-child(1) .table-right {
+  transform: rotate(270deg)
+}
+
+.area-stairs-left-row-second .area-table:nth-child(1) {
+  margin-top: -7px;
+}
+
+.area-stairs-left-row-second .area-table:nth-child(2) {
+  margin-top: 1px;
+}
+
+.area-stairs-left-row-second .area-table:nth-child(3) {
+  margin-top: 5px;
+}
+
+.area-stairs-left-row-second .area-table:nth-child(4) {
+  margin-top: 7px;
+}
+
+.area-stairs-left-row-second .area-table:nth-child(5) {
+  margin-top: 8px;
+}
+
+.area-stairs-left-row-second .area-table:nth-child(6) {
+  margin-top: 10px;
+}
+
+.area-stairs-left-row-second .area-table:nth-child(1)::after {
+  content: '5'
+}
+
+.area-stairs-left-row-second .area-table:nth-child(2)::after {
+  content: '6'
+}
+
+.area-stairs-left-row-second .area-table:nth-child(3)::after {
+  content: '7'
+}
+
+.area-stairs-left-row-second .area-table:nth-child(4)::after {
+  content: '8'
+}
+
+.area-stairs-left-row-second .area-table:nth-child(5)::after {
+  content: '9'
+}
+
+.area-stairs-left-row-second .area-table:nth-child(6)::after {
+  content: '10'
+}
+
+.area-stairs-left-row-second .area-table::nth-child(1) {
+  transform: rotate(180deg)
+}
+
+.area-stairs-left-row-second {
+  left: 95px;
+  top: 80px;
+  width: 235px;
+}
+
+.area-stairs-left-row-third, .area-stairs-left-row-second {
+
+  display: flex;
+  position: absolute;
+
+}
+
 .area-nothing-third {
   width: 200px;
-  height: 129px;
-  background-color: gray;
+  height: 120px;
 }
 
 .area-nothing-second {
   width: 100px;
   height: 120px;
-  background-color: gray;
   float: right;
 }
 

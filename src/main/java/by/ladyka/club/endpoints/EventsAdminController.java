@@ -1,12 +1,14 @@
 package by.ladyka.club.endpoints;
 
-import by.ladyka.club.dto.shared.BaseListResultDto;
+import by.ladyka.club.config.ClubRole;
 import by.ladyka.club.dto.EventDTO;
+import by.ladyka.club.dto.shared.BaseListResultDto;
 import by.ladyka.club.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,20 +25,23 @@ public class EventsAdminController {
 	EventsService eventsService;
 
 	@RequestMapping(method = RequestMethod.GET)
+	@Secured(value = {ClubRole.ROLE_ADMIN, ClubRole.ROLE_CONCERT})
 	public @ResponseBody
 	ResponseEntity<BaseListResultDto<EventDTO>> get(Principal principal, HttpServletRequest httpServletRequest, @RequestParam(required = false) String sort, String order, Integer page, Integer size, @RequestParam(required = false) String filter) {
-		final List<EventDTO> events = eventsService.getEvents(sort, order, page, size, filter);
-		long total = eventsService.getTotalEvents(filter);
+		final List<EventDTO> events = eventsService.getEvents(sort, order, page, size, filter, principal.getName());
+		long total = eventsService.getTotalEvents(filter, principal.getName());
 		return new ResponseEntity<BaseListResultDto<EventDTO>>(new BaseListResultDto<>(events, total), HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@Secured(value = {ClubRole.ROLE_ADMIN, ClubRole.ROLE_CONCERT})
 	public @ResponseBody
 	ResponseEntity save(Principal principal, HttpServletRequest httpServletRequest, @RequestBody EventDTO event) {
-		return new ResponseEntity<EventDTO>(eventsService.save(event), HttpStatus.OK);
+		return new ResponseEntity<EventDTO>(eventsService.save(event, principal.getName()), HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE)
+	@Secured(value = {ClubRole.ROLE_ADMIN, ClubRole.ROLE_CONCERT})
 	public @ResponseBody
 	ResponseEntity delete(Principal principal, HttpServletRequest httpServletRequest, Long id) {
 		Map<String, Object> r = new LinkedHashMap<>();

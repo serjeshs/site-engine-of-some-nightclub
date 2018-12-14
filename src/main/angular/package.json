@@ -31,6 +31,7 @@
     "@angular/upgrade": "^6.1.9",
     "angular-bootstrap-datetimepicker": "^2.2.1",
     "angular-froala-wysiwyg": "^2.8.5",
+    "angularx-qrcode": "^1.2.4",
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",

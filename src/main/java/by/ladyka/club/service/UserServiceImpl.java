@@ -10,8 +10,7 @@ import by.ladyka.club.service.email.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public UserEntity getUserEntity(String username) {
-		return userEntityRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found!"));
+		return userEntityRepository.findByUsername(username).orElseThrow(EntityNotFoundException::new);
 	}
 
 	@Override
@@ -64,7 +63,7 @@ public class UserServiceImpl implements UserService {
 		entity.setEnabled(Boolean.FALSE);
 		entity = userEntityRepository.save(entity);
 		AuthorityEntity authorityEntity = new AuthorityEntity();
-		authorityEntity.setAuthority(ClubRole.USER.name().toLowerCase());
+		authorityEntity.setAuthority(ClubRole.ROLE_USER);
 		authorityEntity.setUser(entity);
 		authorityEntity.setUsername(user.getUsername());
 		authorityRepository.save(authorityEntity);
@@ -74,9 +73,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void confirm(String code) {
-		final UserEntity userEntity = userEntityRepository.findByFatherName(code).orElseThrow(RuntimeException::new);
+		final UserEntity userEntity = userEntityRepository.findByFatherName(code).orElseThrow(EntityNotFoundException::new);
 		userEntity.setFatherName("");
 		userEntity.setEnabled(Boolean.TRUE);
 		userEntityRepository.save(userEntity);
+	}
+
+	@Override
+	public String getRole(UserEntity userEntity) {
+		return userEntity.getAuthorities()
+				.stream()
+				.map(AuthorityEntity::getAuthority)
+				.findFirst().orElseThrow(RuntimeException::new);
 	}
 }
