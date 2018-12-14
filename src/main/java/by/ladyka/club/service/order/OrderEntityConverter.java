@@ -2,10 +2,11 @@ package by.ladyka.club.service.order;
 
 import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.dto.tikets.TablePlaceDto;
-import by.ladyka.club.dto.tikets.TicketTableDto;
 import by.ladyka.club.dto.tikets.TicketsOrderDto;
 import by.ladyka.club.entity.order.OrderEntity;
+import by.ladyka.club.service.ConverterEventService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class OrderEntityConverter {
+
+	@Autowired
+	ConverterEventService converterEventService;
+
 	public TicketOrderDto toDto(OrderEntity entity, boolean deps) {
 		TicketOrderDto dto = new TicketOrderDto();
 		BeanUtils.copyProperties(entity, dto);
@@ -32,7 +37,18 @@ public class OrderEntityConverter {
 	public TicketsOrderDto toTicketsOrderDto(OrderEntity entity, boolean deps) {
 		TicketsOrderDto dto = new TicketsOrderDto();
 		BeanUtils.copyProperties(entity, dto);
+
+		dto.setId(entity.getId());
+		dto.setUuid(entity.getUuid());
+		dto.setPayStatus(entity.getPayStatus().name());
+		dto.setDanceFloor(entity.getDance());
+		if (entity.getEnterTime() != null) {
+			dto.setEnterTime(entity.getEnterTime());
+			dto.setAcceptor(entity.getAcceptor().getPublishName());
+		}
+
 		if (deps) {
+			dto.setEvent(converterEventService.toEventDto(entity.getEventEntity()));
 //			dto.setTables(entity.getTableNumbers()
 //					.stream()
 //					.map(ent -> new TicketTableDto(ent.getTableNumber(), ent.getPlace()))

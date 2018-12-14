@@ -28,18 +28,16 @@ repositories {
 }
 
 dependencies {
-	def $liquibaseVersion = '3.6.2'
-
 	runtime('org.springframework.boot:spring-boot-devtools')
-
 	compile('org.springframework.boot:spring-boot-starter-web') 
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	runtime('mysql:mysql-connector-java')
 
-	compile 'org.apache.httpcomponents:httpclient:4.5.6'
-
+	compile "org.apache.httpcomponents:httpclient:$httpclientVersion"
+	compile group: 'com.lowagie', name: 'itext', version: '2.1.7'
+	compile "net.sf.jasperreports:jasperreports:$jasperreportsVersion"
 	compileOnly('org.projectlombok:lombok')
 	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
 	compile group: 'org.thymeleaf', name: 'thymeleaf'
@@ -47,7 +45,7 @@ dependencies {
 
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-	compile group: 'org.liquibase', name: 'liquibase-core', version: $liquibaseVersion
+	compile "org.liquibase:liquibase-core:$liquibaseVersion"
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

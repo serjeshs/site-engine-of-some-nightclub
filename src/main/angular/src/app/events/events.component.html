@@ -98,9 +98,7 @@
             </p>
             <div class="tickets">
               <h4>БИЛЕТЫ</h4>
-              <a routerLink="/event/{{event.id}}" class="btn order-btn-face">
-                Купить билет
-              </a>
+              <a routerLink="/event/{{event.id}}" class="btn order-btn-face">Купить билет (подробнее)</a>
               <div class="tickets-list">
                 <span class="e2e-inner-html-bound" [innerHTML]="event.costText"></span>
               </div>
@@ -120,7 +118,7 @@
       <ul class="event-list">
         <li *ngFor="let event of currentMonth"><!--   data-words="{{event.name}}"-->
           <a routerLink="/event/{{event.id}}"
-             class="btn order-btn-face fix-w-m">Купить билет</a>
+             class="btn order-btn-face fix-w-m">Купить билет (подробнее)</a>
           <div class="info">
             <div class="date">
               <span class="time">{{event.startEvent}}</span><br>
@@ -146,7 +144,7 @@
       <ul class="event-list">
         <li *ngFor="let event of nextMonth"><!--   data-words="{{event.name}}"-->
           <a routerLink="/event/{{event.id}}"
-             class="btn order-btn-face fix-w-m">Купить билет</a>
+             class="btn order-btn-face fix-w-m">Купить билет (подробнее)</a>
           <div class="info">
             <div class="date">
               <span class="time">{{event.startEvent}}</span><br>
@@ -172,7 +170,7 @@
       <ul class="event-list">
         <li *ngFor="let event of nextNextMonth"><!--   data-words="{{event.name}}"-->
           <a routerLink="/event/{{event.id}}"
-             class="btn order-btn-face fix-w-m">Купить билет</a>
+             class="btn order-btn-face fix-w-m">Купить билет (подробнее)</a>
           <div class="info">
             <div class="date">
               <span class="time">{{event.startEvent}}</span><br>

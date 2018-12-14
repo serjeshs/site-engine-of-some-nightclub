@@ -77,8 +77,10 @@ public class OrderTicketsController {
 			principal.getName();
 			result.put("success", true);
 			result.put("data", orderTicketsService.acceptTicket(principal.getName(), uuid));
+			result.put("message", "Проходите!");
 		} catch (Exception ex) {
 			result.put("message", ex.getLocalizedMessage());
+			result.put("data", orderTicketsService.acceptTicket(principal.getName(), uuid));
 			result.put("success", false);
 			logger.error("Error", ex);
 		}
