@@ -1,10 +1,12 @@
 <div class="container">
   <div class="mt-1" *ngIf="order.id>0"><h3>Номер заказа </h3></div>
+  <a href="/api/private/orders/{{uuid}}/pdf" target="_blank"><span class="glyphicon glyphicon-print"></span>Распечатать</a>
   <div class="mt-1" *ngIf="!order.payStatus"><h3>Оплата онлайн не произведена</h3></div>
 
   <div class="mt-1" *ngIf="!order.payStatus"><h3>Покажите данный код на входе</h3>
     <qrcode [qrdata]="uuid" [size]="256" [level]="'M'"></qrcode>
   </div>
+  <div class="mt-1"><h3>Номер заказа</h3></div>
   <p class="lead"> {{order.id}}</p>
   <div class="mt-1"><h3>Ваши имя и фамилия</h3></div>
   <p class="lead"> {{order.name}} {{order.surname}}</p>
