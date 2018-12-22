@@ -92,6 +92,7 @@ import { PublicOfferComponent } from './pages/public-offer/public-offer.componen
 import { SingUpComponent } from './auth/sing-up/sing-up.component';
 import { SingInComponent } from './auth/sing-in/sing-in.component';
 import {QRCodeModule} from "angularx-qrcode";
+import {UserCabinetModule} from "./user-cabinet/user-cabinet.module";
 
 @NgModule({
   imports: [
@@ -142,7 +143,8 @@ import {QRCodeModule} from "angularx-qrcode";
     NgxUploaderModule,
     QRCodeModule,
     ReactiveFormsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    UserCabinetModule
   ],
   declarations: [
     AdminComponent,

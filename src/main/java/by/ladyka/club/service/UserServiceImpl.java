@@ -2,17 +2,20 @@ package by.ladyka.club.service;
 
 import by.ladyka.club.config.ClubRole;
 import by.ladyka.club.dto.UserDto;
+import by.ladyka.club.dto.UserPersonalDto;
 import by.ladyka.club.entity.AuthorityEntity;
 import by.ladyka.club.entity.UserEntity;
 import by.ladyka.club.repository.AuthorityRepository;
 import by.ladyka.club.repository.UserEntityRepository;
 import by.ladyka.club.service.email.EmailService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -85,5 +88,30 @@ public class UserServiceImpl implements UserService {
 				.stream()
 				.map(AuthorityEntity::getAuthority)
 				.findFirst().orElseThrow(RuntimeException::new);
+	}
+
+	@Override
+	public UserPersonalDto getUserFull(String username) {
+		final UserEntity user = userEntityRepository.findByUsername(username).orElseThrow(EntityNotFoundException::new);
+		UserPersonalDto dto = new UserPersonalDto();
+		BeanUtils.copyProperties(user, dto);
+		dto.setAuthorities(user.getAuthorities().stream().map(AuthorityEntity::getAuthority).collect(Collectors.toList()));
+		return dto;
+	}
+
+	@Override
+	public UserPersonalDto saveUserFull(UserPersonalDto dto, String username) {
+		final UserEntity user = userEntityRepository.findByUsername(username).orElseThrow(EntityNotFoundException::new);
+		user.setBirthday(dto.getBirthday());
+		user.setName(dto.getName());
+		user.setSurname(dto.getSurname());
+		user.setFatherName(dto.getFatherName());
+		user.setPhone(dto.getPhone());
+		user.setEmail(dto.getEmail());
+		userEntityRepository.save(user);
+		dto = new UserPersonalDto();
+		BeanUtils.copyProperties(user, dto);
+		dto.setAuthorities(user.getAuthorities().stream().map(AuthorityEntity::getAuthority).collect(Collectors.toList()));
+		return dto;
 	}
 }

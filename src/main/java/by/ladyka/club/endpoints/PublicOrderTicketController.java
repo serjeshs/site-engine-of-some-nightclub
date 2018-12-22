@@ -4,6 +4,7 @@ import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.service.MenuService;
 import by.ladyka.club.service.order.OrderTicketsService;
 import by.ladyka.club.service.order.report.ReportTicketService;
+import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-@RequestMapping(value = "/api/private/orders")
+@RequestMapping(value = "/api/public/orders")
 @AllArgsConstructor
-public class PrivateOrderController {
+public class PublicOrderTicketController {
 
 	private MenuService menuService;
 	private OrderTicketsService orderTicketsService;

@@ -44,6 +44,10 @@ public class UserEntity extends AbstractEntity implements UserDetails {
 
 	@Getter
 	@Setter
+	private String phone;
+
+	@Getter
+	@Setter
 	@Column(name = "father_name")
 	private String fatherName;
 
