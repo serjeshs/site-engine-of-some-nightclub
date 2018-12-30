@@ -212,6 +212,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		orderEntity.setItemPricesHasOrders(items);
 		final EventEntity eventEntity = eventService.getEventById(dto.getEvent().getId()).orElseThrow(RuntimeException::new);
 		orderEntity.setEventEntity(eventEntity);
+		orderEntity.setTotalOrder(amount(dto.getDanceFloor(), collect.size(), eventEntity.getCostDance(), eventEntity.getCostTablePlace()));
 		orderEntityRepository.saveAndFlush(orderEntity);
 		repository.saveAll(collect);
 		return orderEntity;
@@ -221,7 +222,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		final String requestId = OrderEntity.class.getName() + orderEntity.getUuid();
 		final String redirectUrl = String.format("%s" + API_ORDER_BEPAID + "/callback/%s", customSettings.getSiteDomain(), orderEntity.getUuid());
 		PaymentTokenDto paymentTokenDto = bePaidApi.getPaymentTokenDto(
-				getAmount(orderEntity),
+				amount(orderEntity),
 				orderEntity.getEmail(),
 				orderEntity.getSurname(),
 				orderEntity.getName(),
@@ -239,12 +240,15 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		return paymentTokenDto;
 	}
 
-	private long getAmount(OrderEntity orderEntity) {
-		long total = 0;
-		final BigDecimal costDance = orderEntity.getEventEntity().getCostDance();
-		final BigDecimal costTablePlace = orderEntity.getEventEntity().getCostTablePlace();
-		total += costDance.longValue() * orderEntity.getDance();
-		total += costTablePlace.longValue() * orderEntity.getTableNumbers().size();
-		return total * 100;
+	private long amount(OrderEntity orderEntity) {
+		final EventEntity eventEntity = orderEntity.getEventEntity();
+		final BigDecimal costDance = eventEntity.getCostDance();
+		final BigDecimal costTablePlace = eventEntity.getCostTablePlace();
+		return amount(orderEntity.getDance(), orderEntity.getTableNumbers().size(), costDance, costTablePlace).longValue();
+	}
+
+
+	private BigDecimal amount(int dance, int table, final BigDecimal costDance, final BigDecimal costTablePlace) {
+		return costDance.multiply(new BigDecimal(dance)).add(costTablePlace.multiply(new BigDecimal(table)));
 	}
 }

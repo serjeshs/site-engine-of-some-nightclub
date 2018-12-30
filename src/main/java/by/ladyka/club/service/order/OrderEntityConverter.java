@@ -23,6 +23,7 @@ public class OrderEntityConverter {
 		BeanUtils.copyProperties(entity, dto);
 		dto.setEventName(entity.getEventEntity().getName());
 		dto.setPayStatus(entity.getPayStatus().name());
+		dto.setTotalMoney(entity.getTotalOrder());
 		if (entity.getEnterTime() != null) {
 			dto.setAcceptor(entity.getAcceptor().getPublishName());
 			dto.setEnterTime(entity.getEnterTime());

@@ -31,6 +31,7 @@ public class TicketOrderDto {
 	private Integer tableNumber;
 	private String uuid = UUID.randomUUID().toString();
 	private String payStatus;
+	private BigDecimal totalMoney = new BigDecimal(0);
 
 	private int dance;
 	private List<TablePlaceDto> tables = new ArrayList<>();

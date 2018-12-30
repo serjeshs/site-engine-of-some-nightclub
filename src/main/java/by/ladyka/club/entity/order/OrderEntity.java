@@ -11,6 +11,7 @@ import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,8 @@ public class OrderEntity extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private GatewayStatus payStatus;
 	private String uid;
+	@Column(name = "order_sum")
+	private BigDecimal totalOrder;
 
 
 
