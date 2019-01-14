@@ -1,0 +1,12 @@
+club:
+  files:
+    directory: /home/site/filesqa
+  site:
+    domain: http://qa.republic-club.by
+server:
+  port: 28011
+datasource:
+  database: afishaqa
+spring:
+  liquibase:
+    contexts: qa
