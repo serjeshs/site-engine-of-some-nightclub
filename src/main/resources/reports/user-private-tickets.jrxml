@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="user-private-ticket" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="270a6510-3414-4656-9342-36f6b9e7f696">
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
@@ -15,17 +16,17 @@
 		<band height="70" splitType="Stretch">
 			<image>
 				<reportElement x="275" y="0" width="300" height="64" uuid="88796d59-cd8c-43c1-853f-dd6acfa88258"/>
-				<!--<imageExpression><![CDATA["/reports/leaf_banner_violet.png"]]></imageExpression>-->
+				<imageExpression><![CDATA["reports/ticket-logo.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="bcf29663-c4b8-483e-a197-e5f6920fd2a2"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[RE:PUBLIC Club Ticket]]></text>
+				<text><![CDATA[RE:PUBLIC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="63" y="46" width="200" height="22" uuid="c089ef81-84c2-4243-a7e9-0e0a8992e71a"/>
-				<textElement textAlignment="Right"/>
-				<text><![CDATA[Билет на мероприятие клуба RE:PUblic]]></text>
+				<reportElement style="SubTitle" x="0" y="0" width="200" height="22" uuid="c089ef81-84c2-4243-a7e9-0e0a8992e71a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Билет на мероприятие клуба RE:Public]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -43,56 +44,86 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="31" splitType="Stretch">
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Имя]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<reportElement x="101" y="0" width="403" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getName()]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="31" splitType="Stretch">
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Фамилия]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<reportElement x="101" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getSurname()]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="31" splitType="Stretch">
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Почта]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<reportElement x="101" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getEmail()]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="31" splitType="Stretch">
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Телефон]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<reportElement x="101" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getPhone()]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="31" splitType="Stretch">
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Название мероприятия]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<reportElement x="101" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getEventName()]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="31" splitType="Stretch">
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Уникальный номер билета]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<reportElement x="101" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getUuid()]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="31" splitType="Stretch">
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Статус оплаты]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<reportElement x="101" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getPayStatus()]]></textFieldExpression>
 			</textField>
 		</band>
-
-		<band height="31" splitType="Stretch">
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Места на танцполе]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<reportElement x="101" y="0" width="600" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getDance()]]></textFieldExpression>
 			</textField>
 		</band>
-		<!--private List<TablePlaceDto> tables = new ArrayList<>();-->
 		<band height="16" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="e333df44-9887-45d8-a569-1c4607976a27"/>

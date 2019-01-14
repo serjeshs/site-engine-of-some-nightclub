@@ -31,11 +31,11 @@ public abstract class BePaidApiRequests {
 		return execute(request, requestID);
 	}
 
-	protected String executeGet(String url, final String requestID) throws IOException, ParseException, URISyntaxException, NoSuchAlgorithmException {
+	protected String executeGet(String url, final String requestID) throws IOException, ParseException, NoSuchAlgorithmException {
 		return execute(new HttpGet(url), requestID);
 	}
 
-	private String execute(HttpRequestBase request, final String requestID) throws IOException, ParseException, URISyntaxException, NoSuchAlgorithmException {
+	private String execute(HttpRequestBase request, final String requestID) throws IOException, ParseException, NoSuchAlgorithmException {
 		String resp;
 		int code;
 		String requestBody = "no body";
