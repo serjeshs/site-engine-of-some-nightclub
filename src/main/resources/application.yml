@@ -63,3 +63,16 @@ bepaid:
 #logging.level.org.hibernate.SQL=DEBUG
 #logging.level.org.hibernate.type=TRACE
 
+
+net:
+  sf:
+    jasperreports:
+      default:
+        font:
+          name: Serif
+          size: 12
+        pdf:
+          font:
+            name: Serif
+            encoding: utf8
+            embedded: false
