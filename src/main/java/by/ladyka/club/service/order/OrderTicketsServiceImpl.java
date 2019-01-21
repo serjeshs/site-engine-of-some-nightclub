@@ -160,7 +160,8 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 			}
 			case ClubRole.ROLE_ADMIN: {
 				tickets = orderEntityRepository.findTop5ByEventEntityIdAndUuidContains(eventId, filter);
-			} break;
+			}
+			break;
 			default: {
 
 			}
@@ -244,7 +245,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		final EventEntity eventEntity = orderEntity.getEventEntity();
 		final BigDecimal costDance = eventEntity.getCostDance();
 		final BigDecimal costTablePlace = eventEntity.getCostTablePlace();
-		return amount(orderEntity.getDance(), orderEntity.getTableNumbers().size(), costDance, costTablePlace).longValue();
+		return amount(orderEntity.getDance(), orderEntity.getTableNumbers().size(), costDance, costTablePlace).longValue() * 100;
 	}
 
 
