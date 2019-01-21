@@ -98,4 +98,8 @@ public class PaymentController {
 	public GatewayStatus checkStatus(@PathVariable Long orderId) {
 		return menuService.getStatus(orderId);
 	}
+	@GetMapping(path = "/pay/{uId}/status/private")
+	public GatewayStatus checkStatusHidden(@PathVariable String uId) throws NoSuchAlgorithmException, IOException, URISyntaxException {
+		return menuService.getStatus(uId);
+	}
 }

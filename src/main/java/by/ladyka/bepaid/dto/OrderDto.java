@@ -21,5 +21,13 @@ public class OrderDto {
     private long amount;
     @JsonProperty("description")
     private String description;
+    @JsonProperty("tracking_id")
+    private Long trackingId;
+    @JsonProperty("additional_data")
+    private AdditionalData additionalData;
+    @JsonProperty("expired_at")
+    private Object expiredAt;
+
+
 
 }

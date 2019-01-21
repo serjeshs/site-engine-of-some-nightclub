@@ -140,6 +140,11 @@ public class MenuServiceImpl implements MenuService {
 		return order.getPayStatus();
 	}
 
+	@Override
+	public GatewayStatus getStatus(String uId) throws NoSuchAlgorithmException, IOException, URISyntaxException {
+		return bePaidApi.getTransactionState(uId, "checkstatus" + UUID.randomUUID().toString());
+	}
+
 	private void terminate(MenuItemPrice menuItemPrice) {
 		menuItemPrice.setEndTime(LocalDateTime.now());
 		menuItemPrice.setVisible(false);

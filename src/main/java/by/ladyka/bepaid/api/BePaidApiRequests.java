@@ -57,7 +57,6 @@ public abstract class BePaidApiRequests {
 			logger.log(requestID, request.getMethod(), request.getURI().toASCIIString(), requestBody, code, resp);
 		}
 		return resp;
-
 	}
 
 	private class ResponseData {
