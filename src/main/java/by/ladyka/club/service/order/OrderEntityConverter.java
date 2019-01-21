@@ -25,7 +25,7 @@ public class OrderEntityConverter {
 		if (entity.getPayStatus() != null) {
 			dto.setPayStatus(entity.getPayStatus().name());
 		} else {
-			dto.setPayStatus("Не оплачено, завершити оплату!");
+			dto.setPayStatus("Не оплачено, завершите оплату!");
 		}
 		dto.setTotalMoney(entity.getTotalOrder());
 		if (entity.getEnterTime() != null) {
