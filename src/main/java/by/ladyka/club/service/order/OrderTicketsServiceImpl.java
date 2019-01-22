@@ -6,6 +6,7 @@ import by.ladyka.bepaid.dto.PaymentTokenDto;
 import by.ladyka.club.config.ClubRole;
 import by.ladyka.club.config.CustomSettings;
 import by.ladyka.club.dto.menu.TicketOrderDto;
+import by.ladyka.club.dto.report.TicketOrderReportDto;
 import by.ladyka.club.dto.tikets.*;
 import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.entity.UserEntity;
@@ -182,6 +183,19 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		orderEntity.setAcceptor(userEntity);
 		orderEntityRepository.save(orderEntity);
 		return true;
+	}
+
+	@Override
+	public TicketOrderReportDto getOrderReport(String uuid) {
+		final OrderEntity orderEntity = orderEntityRepository.findByUuid(uuid).orElseThrow(() -> new RuntimeException("UUID is invalid"));
+		final TicketOrderDto ticketOrderDto = orderEntityConverter.toDto(orderEntity, true);
+		TicketOrderReportDto order = new TicketOrderReportDto(ticketOrderDto);
+		String coverUri = orderEntity.getEventEntity().getCoverUri();
+		if (coverUri.indexOf("/file") == 0) {
+			coverUri = customSettings.getSiteDomain() + coverUri;
+		}
+		order.setEventImageUrl(coverUri);
+		return order;
 	}
 
 	private OrderEntity storeOrder(@Valid TicketsOrderDto dto) {

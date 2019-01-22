@@ -1,6 +1,7 @@
 package by.ladyka.club.service.order;
 
 import by.ladyka.bepaid.dto.GatewayStatus;
+import by.ladyka.club.dto.report.TicketOrderReportDto;
 import by.ladyka.club.dto.tikets.EventTicketsReportDto;
 import by.ladyka.club.dto.tikets.TicketTableDto;
 import by.ladyka.club.dto.tikets.TicketsOrderDto;
@@ -22,4 +23,6 @@ public interface OrderTicketsService {
 	List<TicketsOrderDto> getTickets(String name, Long eventId, String filter);
 
 	Boolean acceptTicket(String username, String uuid);
+
+	TicketOrderReportDto getOrderReport(String uuid);
 }

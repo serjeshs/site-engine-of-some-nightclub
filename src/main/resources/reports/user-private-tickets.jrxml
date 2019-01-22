@@ -5,7 +5,7 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Serif" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Serif" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Serif" fontSize="12"/>
-	<parameter name="order" class="by.ladyka.club.dto.menu.TicketOrderDto"/>
+    <parameter name="order" class="by.ladyka.club.dto.report.TicketOrderReportDto"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -44,6 +44,14 @@
 		</band>
 	</columnHeader>
 	<detail>
+		<band height="300" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="300" height="300" uuid="3cb4fd30-15fa-44c9-99b1-0ad3164f8770"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$P{order}.getUuid()]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+		</band>
 		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
@@ -124,13 +132,11 @@
 				<textFieldExpression><![CDATA[$P{order}.getDance()]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="16" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="e333df44-9887-45d8-a569-1c4607976a27"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
+		<band splitType="Immediate" height="100">
+			<image>
+				<reportElement x="0" y="0" width="100" height="100" uuid="a70ec8d8-666f-4cff-b5cc-5a0b72341143"/>
+				<imageExpression><![CDATA[$P{order}.getEventImageUrl()]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<columnFooter>
