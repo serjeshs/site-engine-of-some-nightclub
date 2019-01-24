@@ -17,6 +17,7 @@ import by.ladyka.club.repository.OrderEntityRepository;
 import by.ladyka.club.repository.OrderItemEntityRepository;
 import by.ladyka.club.service.EventsService;
 import by.ladyka.club.service.UserService;
+import by.ladyka.club.service.email.EmailService;
 import org.apache.commons.codec.binary.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +57,8 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	private CustomSettings customSettings;
 	@Autowired
 	private OrderEntityConverter orderEntityConverter;
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	public List<TicketTableDto> getTables(Long eventId) {
@@ -92,11 +95,11 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	public String bookAndPay(@Valid TicketsOrderDto dto) {
 		OrderEntity orderEntity = storeOrder(dto);
 		PaymentTokenDto paymentTokenDto = getPaymentTokenDto(orderEntity);
-		final String bePaidUrl = paymentTokenDto.getCheckout().getRedirectUrl();
 		final String token = paymentTokenDto.getCheckout().getToken();
 		orderEntity.setToken(token);
 		orderEntityRepository.save(orderEntity);
-		return bePaidUrl;
+		emailService.sendOrderToOwner(orderEntity);
+		return paymentTokenDto.getCheckout().getRedirectUrl();
 	}
 
 	@Override

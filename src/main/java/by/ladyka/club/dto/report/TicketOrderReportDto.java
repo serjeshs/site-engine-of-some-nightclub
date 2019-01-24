@@ -2,8 +2,10 @@ package by.ladyka.club.dto.report;
 
 import by.ladyka.club.dto.menu.TicketOrderDto;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper=true)
 public class TicketOrderReportDto extends TicketOrderDto {
 
 	private String eventImageUrl;

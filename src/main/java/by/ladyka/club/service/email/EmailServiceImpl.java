@@ -6,6 +6,7 @@ import by.ladyka.club.entity.FeedBackEntity;
 import by.ladyka.club.entity.UserEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import by.ladyka.club.entity.menu.MenuOrder;
+import by.ladyka.club.entity.order.OrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -23,6 +24,7 @@ import java.util.Locale;
 @Service
 public class EmailServiceImpl implements EmailService {
 
+	public static final String ORDER_EMAIL = "orders@republic-club.by";
 	@Qualifier("republic")
 	@Autowired
 	private JavaMailSender emailSender;
@@ -35,18 +37,7 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public void sendOrderToOwner(MenuOrder order) {
 		String subject = "RE:PUBLIC Заказ № " + order.getId();
-		try {
-			MimeMessage message = emailSender.createMimeMessage();
-			message.setSubject(subject);
-			MimeMessageHelper helper;
-			helper = new MimeMessageHelper(message, true, "utf-8");
-			helper.setTo(order.getEmail());
-			helper.setCc("orders@republic-club.by");
-			helper.setText(buildOrderText(order), true);
-			new Thread(() -> emailSender.send(message)).start();
-		} catch (MessagingException ex) {
-			ex.printStackTrace();
-		}
+		sendMessage(subject, order.getEmail(), "orders@republic-club.by", buildOrderText(order));
 
 	}
 
@@ -61,7 +52,7 @@ public class EmailServiceImpl implements EmailService {
 			helper.setTo("feedback@republic-club.by");
 			helper.setBcc("kra160462@gmail.com");
 			helper.setCc(feedBack.getEmail());
-			helper.setText(buildOrderText(feedBack), true);
+			helper.setText(buildFeedbackText(feedBack), true);
 			new Thread(() -> emailSender.send(message)).start();
 		} catch (MessagingException ex) {
 			ex.printStackTrace();
@@ -77,14 +68,47 @@ public class EmailServiceImpl implements EmailService {
 			MimeMessageHelper helper;
 			helper = new MimeMessageHelper(message, true, "utf-8");
 			helper.setTo(entity.getEmail());
-			helper.setText(buildOrderText(entity), true);
+			helper.setText(buildSingInText(entity), true);
 			new Thread(() -> emailSender.send(message)).start();
 		} catch (MessagingException ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	private String buildOrderText(UserEntity entity) {
+	@Override
+	public void sendOrderToOwner(OrderEntity order) {
+		String subject = "RE:PUBLIC Заказ № " + order.getId();
+		String to = order.getEmail();
+		String cc = ORDER_EMAIL;
+		String text = buildOrderText(order);
+		sendMessage(subject, to, cc, text);
+	}
+
+	private void sendMessage(String subject, String to, String cc, String text) {
+		try {
+			MimeMessage message = emailSender.createMimeMessage();
+			message.setSubject(subject);
+			MimeMessageHelper helper;
+			helper = new MimeMessageHelper(message, true, "utf-8");
+			helper.setTo(to);
+			helper.setCc(cc);
+			helper.setText(text, true);
+			new Thread(() -> emailSender.send(message)).start();
+		} catch (MessagingException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	private String buildOrderText(OrderEntity order) {
+		final Context ctx = new Context(new Locale.Builder().build());
+		ctx.setVariable("order", order);
+		final List<MenuItemPricesHasOrders> itemPricesHasOrders = order.getItemPricesHasOrders();
+		ctx.setVariable("food", itemPricesHasOrders);
+		ctx.setVariable("domain", settings.getSiteDomain());
+		return templateEngine.process("email/ticket_order_customer.html", ctx);
+	}
+
+	private String buildSingInText(UserEntity entity) {
 		final Locale.Builder builder = new Locale.Builder();
 		final Context ctx = new Context(builder.build());
 		ctx.setVariable("code", entity.getFatherName());
@@ -94,7 +118,7 @@ public class EmailServiceImpl implements EmailService {
 		return templateEngine.process("email/singin.html", ctx);
 	}
 
-	private String buildOrderText(FeedBackEntity feedBack) {
+	private String buildFeedbackText(FeedBackEntity feedBack) {
 		final Locale.Builder builder = new Locale.Builder();
 		final Context ctx = new Context(builder.build());
 		ctx.setVariable("feedback", feedBack);

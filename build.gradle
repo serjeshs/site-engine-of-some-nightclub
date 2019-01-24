@@ -38,6 +38,7 @@ dependencies {
 	compile "org.apache.httpcomponents:httpclient:$httpclientVersion"
 	compile group: 'com.lowagie', name: 'itext', version: '2.1.7'
 	compile "net.sf.jasperreports:jasperreports:$jasperreportsVersion"
+	compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13'
 	compileOnly('org.projectlombok:lombok')
 	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
 	compile group: 'org.thymeleaf', name: 'thymeleaf'
