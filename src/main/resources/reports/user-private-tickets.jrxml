@@ -5,6 +5,7 @@
 	<style name="Column header" forecolor="#666666"  fontSize="12" isBold="true"/>
 	<style name="Detail"  fontSize="12"/>
     <parameter name="order" class="by.ladyka.club.dto.report.TicketOrderReportDto"/>
+    <parameter name="tablePlaces" class="String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -134,6 +135,16 @@
 			<textField>
 				<reportElement x="149" y="-430" width="230" height="20" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
 				<textFieldExpression><![CDATA[$P{order}.getDance()]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="200" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="-430" width="140" height="20" uuid="ae9d8e38-db39-4a2d-88fc-e57b9ee0497d"/>
+				<text><![CDATA[Места на за столиком]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="149" y="-430" width="230" height="200" uuid="d0dc3f7b-18ad-47e4-8c64-de8f694b59b7"/>
+				<textFieldExpression><![CDATA[$P{tablePlaces}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
