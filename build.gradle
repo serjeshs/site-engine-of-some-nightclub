@@ -50,6 +50,8 @@ dependencies {
 	compile group: 'org.apache.xmlgraphics', name: 'batik-bridge', version: '1.10'
 	//TODO END CHECK !!!
 
+	compile group: 'net.glxn', name: 'qrgen', version: '1.4'
+
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	compile "org.liquibase:liquibase-core:$liquibaseVersion"

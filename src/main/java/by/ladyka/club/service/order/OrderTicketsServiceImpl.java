@@ -32,10 +32,7 @@ import java.net.URISyntaxException;
 import java.security.AccessControlException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static by.ladyka.club.config.Constants.API_ORDER_BEPAID;
@@ -46,7 +43,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	@Autowired
 	UserService userService;
 	@Autowired
-	private OrderItemEntityRepository repository;
+	private OrderItemEntityRepository orderItemEntityRepository;
 	@Autowired
 	private EventsService eventService;
 	@Autowired
@@ -76,7 +73,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 			ticketTableDto.setPlaces(places);
 			tables.add(ticketTableDto);
 		}
-		repository.findByOrderEntityEventEntityId(eventId).forEach(orderItemEntity -> {
+		orderItemEntityRepository.findByOrderEntityEventEntityId(eventId).forEach(orderItemEntity -> {
 			for (TicketTableDto table : tables) {
 				if (table.getTableNumber() == orderItemEntity.getTableNumber()) {
 					List<TicketPlaceDto> places = table.getPlaces();
@@ -98,7 +95,6 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		final String token = paymentTokenDto.getCheckout().getToken();
 		orderEntity.setToken(token);
 		orderEntityRepository.save(orderEntity);
-		emailService.sendOrderToOwner(orderEntity);
 		return paymentTokenDto.getCheckout().getRedirectUrl();
 	}
 
@@ -110,6 +106,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 					orderEntity.setPayStatus(gatewayStatus);
 					orderEntity.setUid(uid);
 					orderEntityRepository.save(orderEntity);
+					splitOrderSendEmails(orderEntity);
 				} else {
 					throw new RuntimeException("Token is invalid");
 				}
@@ -120,6 +117,39 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 			return false;
 		}
 
+	}
+
+	private void splitOrderSendEmails(OrderEntity orderEntity) {
+		final int dance = orderEntity.getDance();
+		for (int i = 0; i < dance; i++) {
+			OrderEntity danceTicket = new OrderEntity(orderEntity);
+			danceTicket.setNewUuid();
+			danceTicket.setDance(1);
+			danceTicket.setTableNumbers(Collections.emptyList());
+			danceTicket.setItemPricesHasOrders(Collections.emptyList());
+			danceTicket = orderEntityRepository.save(danceTicket);
+			emailService.sendOrderToOwner(danceTicket);
+		}
+
+		final List<OrderItemEntity> tableNumbers = orderEntity.getTableNumbers();
+		tableNumbers.forEach(tablePlace -> {
+			OrderEntity tableTicket = new OrderEntity(orderEntity);
+			tableTicket.setNewUuid();
+			tableTicket.setDance(0);
+			tableTicket.setTableNumbers(Collections.emptyList());
+			tableTicket.setItemPricesHasOrders(Collections.emptyList());
+			tableTicket = orderEntityRepository.save(tableTicket);
+
+			OrderItemEntity orderItemEntity = new OrderItemEntity();
+			orderItemEntity.setOrderEntity(tableTicket);
+			orderItemEntity.setPlace(tablePlace.getPlace());
+			orderItemEntity.setTableNumber(tablePlace.getTableNumber());
+			orderItemEntityRepository.save(orderItemEntity);
+
+			tableTicket.setTableNumbers(Collections.singletonList(orderItemEntity));
+
+			emailService.sendOrderToOwner(tableTicket);
+		});
 	}
 
 	@Override
@@ -232,7 +262,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		orderEntity.setEventEntity(eventEntity);
 		orderEntity.setTotalOrder(amount(dto.getDanceFloor(), collect.size(), eventEntity.getCostDance(), eventEntity.getCostTablePlace()));
 		orderEntityRepository.saveAndFlush(orderEntity);
-		repository.saveAll(collect);
+		orderItemEntityRepository.saveAll(collect);
 		return orderEntity;
 	}
 
