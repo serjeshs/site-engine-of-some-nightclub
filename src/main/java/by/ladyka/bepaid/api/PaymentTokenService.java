@@ -13,7 +13,6 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,7 @@ import java.util.Base64;
 /**
  * https://docs.bepaid.by/ru/checkout/payment-token
  */
-public class PaymentTokenService extends BePaidApiRequests{
+public class PaymentTokenService extends BePaidApiRequests {
 	private static final Logger logger = LoggerFactory.getLogger(PaymentTokenService.class);
 	private final String url = "https://checkout.bepaid.by/ctp/api/checkouts";
 

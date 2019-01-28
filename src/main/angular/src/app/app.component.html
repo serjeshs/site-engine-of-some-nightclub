@@ -31,6 +31,7 @@
           <a [hidden]="!isAdmin" routerLink="/admin-news">Редактор новостей</a>
           <a [hidden]="isUser" routerLink="/singup">Зарегистрироваться</a>
           <a [hidden]="isUser" routerLink="/login">Войти</a>
+          <a [hidden]="!isUser" routerLink="/private/person">Профиль</a>
           <a [hidden]="!isUser" href="/logout">Выйти</a>
         </nav>
       </div>

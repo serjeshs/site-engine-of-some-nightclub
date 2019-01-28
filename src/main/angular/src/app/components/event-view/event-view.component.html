@@ -69,18 +69,6 @@
           >
         </div>
         <div class="form-group">
-          <label for="cost">Стоимость в рублях</label>
-          <input type="number"
-                 class="form-control"
-                 id="cost"
-                 required
-                 [(ngModel)]="event.cost"
-                 name="cost"
-                 #cost="ngModel"
-                 placeholder="Стоимость в рублях"
-          >
-        </div>
-        <div class="form-group">
           <label for="costText">Описание стоимости</label>
           <div [froalaEditor] [(froalaModel)]="event.costText" id="costText" required></div>
         </div>

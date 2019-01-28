@@ -16,7 +16,6 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
-@PropertySource("classpath:emailconfig.properties")
 public class SpringMailConfig implements ApplicationContextAware, EnvironmentAware {
 
 	private String EMAIL_TEMPLATE_ENCODING = "UTF-8";

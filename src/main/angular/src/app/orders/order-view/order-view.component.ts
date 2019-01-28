@@ -40,8 +40,12 @@ export class OrderViewComponent implements OnInit {
 
   get totalMoney() {
     let total = 0;
-    for (let foodKey in this.order.food) {
-      total += this.order.foodPrice[foodKey] * this.order.food[foodKey];
+    if (this.order.totalMoney > 1) {
+      total =  this.order.totalMoney
+    } else {
+      for (let foodKey in this.order.food) {
+        total += this.order.foodPrice[foodKey] * this.order.food[foodKey];
+      }
     }
     return total;
   }

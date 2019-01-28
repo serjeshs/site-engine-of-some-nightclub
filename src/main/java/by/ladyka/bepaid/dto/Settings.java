@@ -29,6 +29,8 @@ public class Settings {
     public String cancelUrl;
     @JsonProperty("notification_url")
     public String notificationUrl;
+    @JsonProperty("return_url")
+    public String returnUrl;
     @JsonProperty("language")
     public String language;
     @JsonProperty("customer_fields")

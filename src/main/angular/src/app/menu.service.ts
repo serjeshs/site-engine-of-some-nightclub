@@ -121,12 +121,8 @@ export class MenuService {
       .pipe();
   }
 
-  getOrderByUuid(uuid: string) : Observable<MenuOrder> {
-    const url = '/api/private/orders/' + uuid;
-    return this.http.get<MenuOrder>(url).pipe();
-  }
   readOrderByUuid(uuid: string) : Observable<MenuOrder> {
-    const url = '/api/private/orders/' + uuid;
+    const url = '/api/public/orders/' + uuid;
     return this.http.get<MenuOrder>(url);
   }
 }

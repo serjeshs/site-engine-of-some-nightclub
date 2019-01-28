@@ -6,11 +6,13 @@ import by.ladyka.club.entity.EventEntity;
 import by.ladyka.club.entity.UserEntity;
 import by.ladyka.club.entity.menu.MenuItemPricesHasOrders;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.UUID;
 @Table(name = "ticket_order")
 @EntityListeners(AuditingEntityListener.class)
 @ToString
+@NoArgsConstructor
 public class OrderEntity extends AbstractEntity {
 	private String name;
 	private String surname;
@@ -39,6 +42,8 @@ public class OrderEntity extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private GatewayStatus payStatus;
 	private String uid;
+	@Column(name = "order_sum")
+	private BigDecimal totalOrder;
 
 
 
@@ -49,10 +54,6 @@ public class OrderEntity extends AbstractEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
 	List<MenuItemPricesHasOrders> itemPricesHasOrders = new ArrayList<>();
 
-
-//	private Integer people;
-//	private Integer tableNumber;
-
 	@Column(name = "enter_time")
 	private LocalDateTime enterTime;
 
@@ -60,4 +61,26 @@ public class OrderEntity extends AbstractEntity {
 	@JoinColumn(name = "acceptor_user_id")
 	private UserEntity acceptor;
 
+	public OrderEntity(OrderEntity entity) {
+		this.name = entity.getName();
+		this.surname = entity.getSurname();
+		this.email = entity.getEmail();
+		this.phone = entity.getPhone();
+		this.eventEntity = entity.getEventEntity();
+		this.description = entity.getDescription();
+		this.uuid = entity.getUuid();
+		this.token = entity.getToken();
+		this.payStatus = entity.getPayStatus();
+		this.uid = entity.getUid();
+		this.totalOrder = entity.getTotalOrder();
+		this.dance = entity.getDance();
+		this.tableNumbers = entity.getTableNumbers();
+		this.itemPricesHasOrders = entity.getItemPricesHasOrders();
+		this.enterTime = entity.getEnterTime();
+		this.acceptor = entity.getAcceptor();
+	}
+
+	public void setNewUuid() {
+		setUuid(UUID.randomUUID().toString());
+	}
 }

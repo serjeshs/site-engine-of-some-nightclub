@@ -7,28 +7,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "address",
-    "country",
-    "city",
-    "email"
-})
 @Data
 public class Customer {
-
-    @JsonProperty("address")
-    public String address;
-    @JsonProperty("country")
-    public String country;
-    @JsonProperty("city")
-    public String city;
-    @JsonProperty("email")
-    public String email;
-    @JsonProperty("last_name")
-    public String lastName;
     @JsonProperty("first_name")
     public String firstName;
+    @JsonProperty("last_name")
+    public String lastName;
+    @JsonProperty("address")
+    public String address;
+    @JsonProperty("city")
+    public String city;
+    @JsonProperty("country")
+    public String country;
+    @JsonProperty("state")
+    public String state;
     @JsonProperty("phone")
     public String phone;
-
+    @JsonProperty("zip")
+    public String zip;
+    @JsonProperty("email")
+    public String email;
+    @JsonProperty("birth_date")
+    public String birthDate;
 }

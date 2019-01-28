@@ -6,9 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BePaidConfiguration {
-	private final String bePaidPaymentDomainPage = "checkout.bepaid.by";
-	private final String bePaidPaymentGatewayPortal = "gateway.bepaid.by";
-	private final String bePaidPaymentApi = "api.bepaid.by";
-	private String bePaidPaymentStoreId;
-	private String bePaidPaymentStoreKey;
+	public final String bePaidPaymentDomainPage = "checkout.bepaid.by";
+	public final String bePaidPaymentGatewayPortal = "gateway.bepaid.by";
+	public final String bePaidPaymentApi = "api.bepaid.by";
+	public static final double BE_PAID_VERSION = 2.1D;
 }

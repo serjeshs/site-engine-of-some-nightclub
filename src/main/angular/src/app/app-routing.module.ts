@@ -27,6 +27,7 @@ import {ShopMainComponent} from "./shop/shop-main/shop-main.component";
 import {PublicOfferComponent} from "./pages/public-offer/public-offer.component";
 import {SingInComponent} from "./auth/sing-in/sing-in.component";
 import {SingUpComponent} from "./auth/sing-up/sing-up.component";
+import {PersonalInfoComponent} from "./user-cabinet/personal-info/personal-info.component";
 
 const routes: Routes = [
   {path: '', component: EventsComponent},
@@ -58,6 +59,7 @@ const routes: Routes = [
   {path: 'rules-pay', component: RulesPayComponent},
   {path: 'public-offer', component: PublicOfferComponent},
   {path: 'shop', component: ShopMainComponent},
+  {path: 'private/person', component: PersonalInfoComponent},
   {
     path: '**', component: PageNotFoundComponent, data: { breadcrumb: 'page-not-found', roles: [] }
   }

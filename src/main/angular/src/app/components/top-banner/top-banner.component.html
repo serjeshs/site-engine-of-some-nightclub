@@ -1,4 +1,4 @@
-<div class="top-banner">
+<div class="top-banner" *ngIf="settingsBanner.active">
   <a routerLink="/event/{{settingsBanner.eventId}}">
     <img src="{{settingsBanner.imageUrl}}" class="banner-img">
   </a>

@@ -38,10 +38,19 @@ dependencies {
 	compile "org.apache.httpcomponents:httpclient:$httpclientVersion"
 	compile group: 'com.lowagie', name: 'itext', version: '2.1.7'
 	compile "net.sf.jasperreports:jasperreports:$jasperreportsVersion"
+	compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13'
 	compileOnly('org.projectlombok:lombok')
 	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
 	compile group: 'org.thymeleaf', name: 'thymeleaf'
 	compile group: 'org.thymeleaf', name: 'thymeleaf-spring5'
+
+	//TODO check this qr code in pdf !!!!
+	compile group: 'com.google.zxing', name: 'core', version: '3.3.3'
+	compile group: 'net.sf.barcode4j', name: 'barcode4j', version: '2.1'
+	compile group: 'org.apache.xmlgraphics', name: 'batik-bridge', version: '1.10'
+	//TODO END CHECK !!!
+
+	compile group: 'net.glxn', name: 'qrgen', version: '1.4'
 
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'

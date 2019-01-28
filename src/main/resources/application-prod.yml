@@ -1,0 +1,18 @@
+debug: false
+club:
+  files:
+    directory: /home/site/files/files
+  site:
+    domain: https://republic-club.by
+spring:
+  liquibase:
+  contexts: prod
+log4j:
+  logger:
+    org:
+      hibernate:
+        SQL: info
+        type: info
+hibernate:
+  show_sql: false
+spring.liquibase.contexts: prod

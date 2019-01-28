@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
+import static by.ladyka.bepaid.config.BePaidConfiguration.BE_PAID_VERSION;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "version",
@@ -19,8 +21,9 @@ import lombok.Data;
 @Data
 public class Checkout {
 
+
     @JsonProperty("version")
-    private final double version = 2.1D;
+    private double version = BE_PAID_VERSION;
     @JsonProperty("test")
     private boolean test;
     @JsonProperty("transaction_type")

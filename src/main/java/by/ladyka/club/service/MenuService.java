@@ -7,7 +7,10 @@ import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.dto.menu.MenuPageDto;
 import by.ladyka.club.entity.menu.MenuItem;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public interface MenuService {
@@ -36,4 +39,6 @@ public interface MenuService {
 	TicketOrderDto getOrder(String uuid);
 
 	GatewayStatus getStatus(Long orderId);
+
+	GatewayStatus getStatus(String uId) throws NoSuchAlgorithmException, IOException, URISyntaxException;
 }

@@ -1,0 +1,59 @@
+<form>
+  <div class="form-group">
+    <label for="name">Имя</label>
+    <input type="text" class="form-control"
+           id="name"
+           required
+           [(ngModel)]="userData.name"
+           name="name"
+           #name="ngModel"
+           placeholder="Имя"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="name">Фамилия</label>
+    <input type="text" class="form-control"
+           id="surname"
+           required
+           [(ngModel)]="userData.surname"
+           name="surname"
+           #surname="ngModel"
+           placeholder="Фамилия"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="fatherName">Отчество</label>
+    <input type="text" class="form-control"
+           id="fatherName"
+           required
+           [(ngModel)]="userData.fatherName"
+           name="fatherName"
+           #fatherName="ngModel"
+           placeholder=" Отчество"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email aдрес</label><br>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+           [(ngModel)]="userData.email"
+           required
+           name="email"
+           #email="ngModel"
+           placeholder="Введите электронную почту">
+  </div>
+
+
+  <div class="form-group">
+    <label for="phone">Номер мобильного телефона</label><br>
+    <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp"
+           [(ngModel)]="userData.phone"
+           required
+           name="phone"
+           #phone="ngModel"
+           placeholder="Ваш телефонный номер">
+  </div>
+  <button type="submit" (click)="save()" class="btn btn-primary">Сохранить</button>
+</form>

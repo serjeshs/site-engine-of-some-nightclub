@@ -15,6 +15,7 @@ export class TopBannerComponent implements OnInit {
     this.settingsBanner = new SettingsBanner();
     this.settingsBanner.eventId = 1113;
     this.settingsBanner.imageUrl = 'https://republic-club.by/files/2018/11/banner.jpg';
+    this.settingsBanner.active = false;
   }
 
 }

@@ -108,5 +108,40 @@
 <app-root/>
 
 
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?159"></script>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() { // Аналог $(document).ready(function(){
+    var vk = document.createElement("div")
+    vk.id = "vk_community_messages"
+    document.getElementsByTagName("body")[0].appendChild(vk)
+    VK.Widgets.CommunityMessages(vk.id, 18143442, {expanded: "0", tooltipButtonText: "Есть вопрос?"});
+
+
+    (function (d, w, c) {
+      (w[c] = w[c] || []).push(function() {
+        try {
+          w.yaCounter23663974 = new Ya.Metrika({id:23663974,
+            webvisor:true,
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true});
+        } catch(e) { }
+      });
+
+      var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+      if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+      } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+  });
+  </script>
+
 </body>
 </html>

@@ -21,6 +21,13 @@ public class OrderEntityConverter {
 	public TicketOrderDto toDto(OrderEntity entity, boolean deps) {
 		TicketOrderDto dto = new TicketOrderDto();
 		BeanUtils.copyProperties(entity, dto);
+		dto.setEventName(entity.getEventEntity().getName());
+		if (entity.getPayStatus() != null) {
+			dto.setPayStatus(entity.getPayStatus().name());
+		} else {
+			dto.setPayStatus("Не оплачено, завершите оплату!");
+		}
+		dto.setTotalMoney(entity.getTotalOrder());
 		if (entity.getEnterTime() != null) {
 			dto.setAcceptor(entity.getAcceptor().getPublishName());
 			dto.setEnterTime(entity.getEnterTime());

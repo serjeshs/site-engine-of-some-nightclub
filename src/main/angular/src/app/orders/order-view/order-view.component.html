@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="mt-1" *ngIf="order.id>0"><h3>Номер заказа </h3></div>
+  <a href="/api/public/orders/{{uuid}}/pdf" target="_blank"><span class="glyphicon glyphicon-print"></span>Распечатать</a>
   <div class="mt-1" *ngIf="!order.payStatus"><h3>Оплата онлайн не произведена</h3></div>
-
-  <div class="mt-1" *ngIf="!order.payStatus"><h3>Покажите данный код на входе</h3>
+  <div class="mt-1" *ngIf="(order.payStatus=='successful')"><h3>Покажите данный код на входе</h3>
     <qrcode [qrdata]="uuid" [size]="256" [level]="'M'"></qrcode>
   </div>
+  <div class="mt-1"><h3>Номер заказа</h3></div>
   <p class="lead"> {{order.id}}</p>
   <div class="mt-1"><h3>Ваши имя и фамилия</h3></div>
   <p class="lead"> {{order.name}} {{order.surname}}</p>
@@ -18,7 +18,7 @@
   <p class="lead" *ngIf="order.arrivalTime"> {{order.arrivalTime}}</p>
   <div class="mt-1" *ngIf="order.people"><h3>Гостей </h3></div>
   <p class="lead" *ngIf="order.people"> {{order.people}}</p>
-  <div class="mt-1"><h3>Заказ за столик:</h3></div>
+  <div class="mt-1"><h3>Стоимость оплаты:</h3></div>
   <p class="lead">Всего {{totalMoney}} рублей</p>
   <div *ngFor="let categoryMain of menuCategories" class="lead">
     <h1 *ngIf="showCategory(categoryMain)">
