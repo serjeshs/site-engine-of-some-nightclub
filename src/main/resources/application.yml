@@ -1,6 +1,7 @@
 datasource:
   database: afisha
-  url: jdbc:mysql://127.0.0.1:3306/${datasource.database}?characterEncoding=UTF-8&autoReconnect=true&useSSL=false&useUnicode=true
+#  url: jdbc:mysql://127.0.0.1:3306/${datasource.database}?characterEncoding=UTF-8&autoReconnect=true&useSSL=false&useUnicode=true
+  url: jdbc:mysql://188.227.18.141:3306/${datasource.database}?characterEncoding=UTF-8&autoReconnect=true&useSSL=false&useUnicode=true
   username: afisha
   password: afishapass
   driver-class-name: com.mysql.jdbc.Driver

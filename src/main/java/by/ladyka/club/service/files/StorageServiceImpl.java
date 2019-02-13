@@ -10,10 +10,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
@@ -23,16 +20,40 @@ public class StorageServiceImpl implements StorageService {
     private final CustomSettings customSettings;
     private final FilesRepository filesRepository;
 
+//    @Override
+//    public String store(MultipartFile file) throws IOException {
+//        LocalDateTime date = LocalDateTime.now();
+//        String directoryOut = date.getYear() + File.separator + date.getMonthValue();
+//        new File(customSettings.getFilesDirectory() + File.separator + directoryOut).mkdirs();
+//        String fN = file.getOriginalFilename();
+//        String fileName = (int) (Math.random() * 10000) + fN.substring(fN.length() - 5);
+//        File outFile = new File(customSettings.getFilesDirectory() + File.separator + directoryOut + File.separator + fileName);
+//        OutputStream outStream = new FileOutputStream(outFile);
+//        IOUtils.copy(file.getInputStream(), outStream);
+//        outStream.close();
+//        FileEntity fileEntity = new FileEntity();
+//        fileEntity.setFilePath(directoryOut + File.separator + fileName);
+//        fileEntity = filesRepository.save(fileEntity);
+//        return fileEntity.getFilePath();
+//    }
+
     @Override
-    public String store(MultipartFile file) throws IOException {
+    public String store(MultipartFile multipartFile) throws IOException {
+        String originalFilename = multipartFile.getOriginalFilename();
+        originalFilename = (originalFilename != null)? originalFilename : "null";
+        InputStream inputStream = multipartFile.getInputStream();
+        return store(originalFilename, inputStream);
+    }
+
+    @Override
+    public String store(String originalFilename, InputStream inputStream) throws IOException {
         LocalDateTime date = LocalDateTime.now();
         String directoryOut = date.getYear() + File.separator + date.getMonthValue();
         new File(customSettings.getFilesDirectory() + File.separator + directoryOut).mkdirs();
-        String fN = file.getOriginalFilename();
-        String fileName = (int) (Math.random() * 10000) + fN.substring(fN.length() - 5);
+        String fileName = (int) (Math.random() * 10000) + originalFilename.substring(originalFilename.length() - 5);
         File outFile = new File(customSettings.getFilesDirectory() + File.separator + directoryOut + File.separator + fileName);
         OutputStream outStream = new FileOutputStream(outFile);
-        IOUtils.copy(file.getInputStream(), outStream);
+        IOUtils.copy(inputStream, outStream);
         outStream.close();
         FileEntity fileEntity = new FileEntity();
         fileEntity.setFilePath(directoryOut + File.separator + fileName);
