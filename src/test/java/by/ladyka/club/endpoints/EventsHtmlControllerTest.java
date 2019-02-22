@@ -50,7 +50,7 @@ public class EventsHtmlControllerTest {
         event.setId(3L);
         event.setName("Event #1");
         event.setDescription("Text about event #1");
-        event.setCoverUri("Some reference");
+        event.setCoverUri("image.jpg");
 
         given(eventsService.getEventById(3L)).willReturn(Optional.of(event));
 
@@ -69,7 +69,7 @@ public class EventsHtmlControllerTest {
                         .select("meta[property=og:description]")
                         .attr("content"));
         assertEquals(
-                event.getCoverUri(),
+                "http://localhost:80/files/" + event.getCoverUri(),
                 documentResponseHtml
                         .select("meta[property=og:image]")
                         .attr("content"));

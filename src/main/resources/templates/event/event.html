@@ -6,7 +6,7 @@
     <meta property="og:url" th:content="${#httpServletRequest.requestURL}">
     <meta property="og:title" th:content="${event.name}">
     <meta property="og:description" th:content="${event.description}">
-    <meta property="og:image" th:content="${event.coverUri}">
+    <meta property="og:image" th:content="${#httpServletRequest.scheme} + '://' + ${#httpServletRequest.serverName} + ':' + ${#httpServletRequest.serverPort} + '/files/' + ${event.coverUri}">
 </head>
 <body>
 
