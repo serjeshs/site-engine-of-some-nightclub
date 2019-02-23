@@ -38,7 +38,7 @@ public class OrderTicketsController {
 		result.put("input", dto);
 		try {
 			result.put("success", true);
-			result.put("data", orderTicketsService.bookAndPay(dto));
+			result.put("data", orderTicketsService.bookAndPay(dto, (principal != null) ? principal.getName() : null));
 		} catch (Exception ex) {
 			result.put("message", ex.getLocalizedMessage());
 			result.put("success", false);

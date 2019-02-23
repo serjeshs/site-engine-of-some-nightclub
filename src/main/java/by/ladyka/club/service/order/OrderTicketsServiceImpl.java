@@ -89,8 +89,8 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	}
 
 	@Override
-	public String bookAndPay(@Valid TicketsOrderDto dto) {
-		OrderEntity orderEntity = storeOrder(dto);
+	public String bookAndPay(@Valid TicketsOrderDto dto, String username) {
+		OrderEntity orderEntity = storeOrder(dto, username);
 		PaymentTokenDto paymentTokenDto = getPaymentTokenDto(orderEntity);
 		final String token = paymentTokenDto.getCheckout().getToken();
 		orderEntity.setToken(token);
@@ -231,7 +231,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		return order;
 	}
 
-	private OrderEntity storeOrder(@Valid TicketsOrderDto dto) {
+	private OrderEntity storeOrder(@Valid TicketsOrderDto dto, String username) {
 		OrderEntity orderEntity = new OrderEntity();
 		orderEntity.setName(dto.getName());
 		orderEntity.setSurname(dto.getSurname());
@@ -261,6 +261,12 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		final EventEntity eventEntity = eventService.getEventById(dto.getEvent().getId()).orElseThrow(RuntimeException::new);
 		orderEntity.setEventEntity(eventEntity);
 		orderEntity.setTotalOrder(amount(dto.getDanceFloor(), collect.size(), eventEntity.getCostDance(), eventEntity.getCostTablePlace()));
+
+		if (username != null) {
+			UserEntity bookUser = userService.getUserEntity(username);
+			orderEntity.setBookUser(bookUser);
+		}
+
 		orderEntityRepository.saveAndFlush(orderEntity);
 		orderItemEntityRepository.saveAll(collect);
 		return orderEntity;

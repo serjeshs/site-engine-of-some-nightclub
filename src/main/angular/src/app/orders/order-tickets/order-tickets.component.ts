@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TicketOrder} from "../../dto/ticketOrder";
 import {OrderTicketService} from "../../services/tickets/order-ticket.service";
 import {Event} from "../../dto/event";
+import {UserPersonDataService} from "../../user-cabinet/user-person-data.service";
+import {UserPersonDataDto} from "../../user-cabinet/dto/userPersonDataDto";
 
 export interface OrderTicketsModalData {
   event: Event;
@@ -36,12 +38,14 @@ export class OrderTicketsComponent implements OnInit {
   tablesSeventeen: TableDto[];
   orderComplete: boolean;
   bePaidUrl: string;
+  userAuth: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<OrderTicketsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: OrderTicketsModalData,
     private _formBuilder: FormBuilder,
-    private orderTicketService: OrderTicketService
+    private orderTicketService: OrderTicketService,
+    private userPersonDataService :UserPersonDataService
   ) {
     this.ticketOrder = new TicketOrder();
     console.log(data);
@@ -54,6 +58,18 @@ export class OrderTicketsComponent implements OnInit {
     this.ticketOrder.placeSeats = 0;
 
     this.orderComplete = false;
+    this.userAuth = false;
+    this.userPersonDataService.retrieveUser()
+      .pipe()
+      .subscribe(responce => {
+        let user = <UserPersonDataDto>responce;
+        this.ticketOrder.name = user.name;
+        this.ticketOrder.email = user.email;
+        this.ticketOrder.surname = user.surname;
+        this.ticketOrder.phone = user.phone
+        this.userAuth = true;
+      })
+
   }
 
   onNoClick(): void {
