@@ -6,7 +6,7 @@
     <meta property="og:url" th:content="${@environment.getProperty('club.site.domain')} + '/event/' + ${event.id}">
     <meta property="og:title" th:content="${event.name}">
     <meta property="og:description" th:content="${event.description}">
-    <meta property="og:image" th:content="${@environment.getProperty('club.site.domain')} + ${@environment.getProperty('club.site.filesPath')} + '/' + ${event.coverUri}">
+    <meta property="og:image" th:content="${@environment.getProperty('club.site.domain')} + ${event.coverUri}">
 </head>
 <body>
 
