@@ -1,0 +1,4 @@
+club:
+  site:
+    domain: http://localhost
+    filesPath: /files

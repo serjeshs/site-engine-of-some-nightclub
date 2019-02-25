@@ -32,6 +32,7 @@ club:
     directory: /tmp
   site:
     domain: http://dev.republic-club.by
+    filesPath: /files
 mail:
   host: smtp.yandex.ru
   port: 587

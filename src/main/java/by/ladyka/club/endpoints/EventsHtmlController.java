@@ -27,16 +27,12 @@ public class EventsHtmlController {
     @GetMapping("/{eventId}")
     public ModelAndView get(@PathVariable long eventId) {
 
+        EventEntity event = eventService.getEventById(eventId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        Optional<EventEntity> eventOptional = eventService.getEventById(eventId);
-
-        if(eventOptional.isPresent()){
-            ModelAndView modelAndView = new ModelAndView("/event/event");
-            modelAndView.addObject("event", converterEventService.toEventDto(eventOptional.get()));
-            return modelAndView;
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        ModelAndView modelAndView = new ModelAndView("/event/event");
+        modelAndView.addObject("event", converterEventService.toEventDto(event));
+        return modelAndView;
 
     }
 }

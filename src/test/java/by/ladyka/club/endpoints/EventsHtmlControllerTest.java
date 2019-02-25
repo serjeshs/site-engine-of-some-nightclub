@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -27,6 +28,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebMvcTest(EventsHtmlController.class)
 @AutoConfigureMockMvc(secure = false)
 public class EventsHtmlControllerTest {
+
+    @Value("${club.site.domain}")
+    private String domainName;
 
     @TestConfiguration
     static class EmployeeServiceImplTestContextConfiguration {
@@ -59,6 +63,12 @@ public class EventsHtmlControllerTest {
         Document documentResponseHtml = Jsoup.parse(responseHtml);
 
         assertEquals(
+                domainName + "/event/" + event.getId(),
+                documentResponseHtml
+                        .select("meta[property=og:url]")
+                        .attr("content"));
+
+        assertEquals(
                 event.getName(),
                 documentResponseHtml
                         .select("meta[property=og:title]")
@@ -69,7 +79,7 @@ public class EventsHtmlControllerTest {
                         .select("meta[property=og:description]")
                         .attr("content"));
         assertEquals(
-                "http://localhost:80/files/" + event.getCoverUri(),
+                "http://localhost/files/" + event.getCoverUri(),
                 documentResponseHtml
                         .select("meta[property=og:image]")
                         .attr("content"));
