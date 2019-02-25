@@ -50,3 +50,24 @@ databaseChangeLog:
                   name: settings_value
                   type: VARCHAR(1023)
             tableName: site_settings
+  - changeSet:
+      id: 2019-02-23-ticket-user-book
+      author: Andrei Ladyka
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: book_user_id
+                  type: BIGINT
+            tableName: ticket_order
+
+  - changeSet:
+      id: 2019-02-25-ticket-type
+      author: Andrei Ladyka
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: ticket_type
+                  type: int(11)
+            tableName: ticket_order

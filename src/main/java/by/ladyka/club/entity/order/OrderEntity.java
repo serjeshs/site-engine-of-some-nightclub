@@ -65,6 +65,9 @@ public class OrderEntity extends AbstractEntity {
 	@JoinColumn(name = "book_user_id")
 	private UserEntity bookUser;
 
+	@Column(name = "ticket_type")
+	private TicketType ticketType;
+
 	public OrderEntity(OrderEntity entity) {
 		this.name = entity.getName();
 		this.surname = entity.getSurname();
@@ -83,6 +86,7 @@ public class OrderEntity extends AbstractEntity {
 		this.enterTime = entity.getEnterTime();
 		this.acceptor = entity.getAcceptor();
 		this.bookUser = entity.getBookUser();
+		this.ticketType = entity.getTicketType();
 	}
 
 	public void setNewUuid() {
