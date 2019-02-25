@@ -18,7 +18,6 @@ spring:
     enabled: true
 server:
   port: 28010
-  debug: true
 log4j:
   logger:
     org:
@@ -31,7 +30,6 @@ club:
   files:
     directory: /tmp
   site:
-    domain: http://dev.republic-club.by
     filesPath: /files
 mail:
   host: smtp.yandex.ru
