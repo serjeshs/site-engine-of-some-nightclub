@@ -29,8 +29,6 @@ hibernate:
 club:
   files:
     directory: /tmp
-  site:
-    filesPath: /files
 mail:
   host: smtp.yandex.ru
   port: 587

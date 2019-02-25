@@ -4,7 +4,6 @@ club:
     directory: /home/site/files/files
   site:
     domain: https://republic-club.by
-    filesPath: /files
 spring:
   liquibase:
   contexts: prod
