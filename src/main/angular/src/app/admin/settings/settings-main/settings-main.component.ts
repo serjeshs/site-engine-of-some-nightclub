@@ -17,13 +17,9 @@ export class SettingsMainComponent implements OnInit {
 
   async ngOnInit() {
     this.settingsSiteDto = await this.settingsService.getSettingsDto();
-    console.log("SettingsScreen ngOnInit");
-    console.log(this.settingsSiteDto);
   }
 
   submitted = true;
-  bannerActives = ['true' , 'false'];
-
   onSubmit() {
     this.settingsService.save(this.settingsSiteDto)
       .pipe()
@@ -31,10 +27,5 @@ export class SettingsMainComponent implements OnInit {
         this.ngOnInit();
         this.submitted = true;
       });
-  }
-
-  printError(heroForm) {
-    debugger;
-    console.log(heroForm.form);
   }
 }

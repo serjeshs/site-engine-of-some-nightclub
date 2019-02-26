@@ -18,6 +18,9 @@ export class SettingsService {
       let settingDto = settings[settingKey];
       if (!!settingKey) {
         this.settingsSiteDto[settingDto.key] = settingDto.value;
+        if (settingDto.value == "false") {
+          this.settingsSiteDto[settingDto.key] = false;
+        }
       }
     }
     return this.settingsSiteDto;
@@ -31,7 +34,6 @@ export class SettingsService {
     } else {
       dto = this.settingsSiteDto;
     }
-    console.log(this.settingsSiteDto);
     return dto
   }
 

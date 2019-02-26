@@ -48,9 +48,7 @@ export class OrderTicketsComponent implements OnInit {
     private userPersonDataService :UserPersonDataService
   ) {
     this.ticketOrder = new TicketOrder();
-    console.log(data);
     this.ticketOrder.event = this.data.event;
-    console.log(this.ticketOrder.event);
     this.orderFormGroup = this._formBuilder.group({
       danceFloor: [this.ticketOrder.danceFloor, [Validators.required, Validators.min(0), Validators.max(20)]]
     });
@@ -82,7 +80,6 @@ export class OrderTicketsComponent implements OnInit {
     this.orderTicketService.payOrder(this.ticketOrder)
       .pipe()
       .subscribe(result => {
-        console.log(result);
         if (result.success) {
           this.orderComplete = true;
           this.bePaidUrl = result.data;
