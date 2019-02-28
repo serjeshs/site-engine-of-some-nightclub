@@ -33,7 +33,12 @@ public class EventEntity extends AbstractEntity {
 	private String coverUri;
 	private Boolean recommendation;
 	private Boolean republicPay;
+
+	@OneToMany(mappedBy = "event")
+	private List<EventTicketPriceEntity> ticketPrices = new ArrayList<>();
+	@Deprecated
 	private BigDecimal costDance;
+	@Deprecated
 	private BigDecimal costTablePlace;
 
 	@ManyToMany(fetch = FetchType.LAZY,
