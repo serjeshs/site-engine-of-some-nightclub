@@ -19,13 +19,15 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class EventTicketPriceEntity  extends AbstractEntity {
     private BigDecimal cost;
-    private BigDecimal quantity;
+    private Integer quantity;
     @Enumerated(EnumType.STRING)
     private EventTicketPriceType type;
     @ManyToOne
     @JoinColumn(name = "event_id")
     private EventEntity event;
+    @Column(name = "start_active_time")
     private LocalDateTime startActiveTime;
+    @Column(name = "end_active_time")
     private LocalDateTime endActiveTime;
     @ManyToOne
     @JoinColumn(name = "user_id")
