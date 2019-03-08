@@ -48,7 +48,7 @@ public class OrderEntity extends AbstractEntity {
 
 
 	//Paid Values
-	private int dance;
+	private Long dance;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderEntity")
 	private List<OrderItemEntity> tableNumbers = new ArrayList<>();
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")

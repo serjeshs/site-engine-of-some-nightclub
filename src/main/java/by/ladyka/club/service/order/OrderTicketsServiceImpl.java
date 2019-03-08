@@ -124,11 +124,11 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	}
 
 	private void splitOrderSendEmails(OrderEntity orderEntity) {
-		final int dance = orderEntity.getDance();
+		final Long dance = orderEntity.getDance();
 		for (int i = 0; i < dance; i++) {
 			OrderEntity danceTicket = new OrderEntity(orderEntity);
 			danceTicket.setNewUuid();
-			danceTicket.setDance(1);
+			danceTicket.setDance(1L);
 			danceTicket.setTableNumbers(Collections.emptyList());
 			danceTicket.setItemPricesHasOrders(Collections.emptyList());
 			danceTicket.setTicketType(TicketType.TICKET);
@@ -140,7 +140,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 		tableNumbers.forEach(tablePlace -> {
 			OrderEntity tableTicket = new OrderEntity(orderEntity);
 			tableTicket.setNewUuid();
-			tableTicket.setDance(0);
+			tableTicket.setDance(0L);
 			tableTicket.setTableNumbers(Collections.emptyList());
 			tableTicket.setItemPricesHasOrders(Collections.emptyList());
 			tableTicket.setTicketType(TicketType.TICKET);
@@ -170,10 +170,10 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	public EventTicketsReportDto getReport(Long eventId) {
 		EventTicketsReportDto reportDto = new EventTicketsReportDto();
 		final List<OrderEntity> orders = orderEntityRepository.findAllByEventEntityIdAndTicketType(eventId, TicketType.TICKET);
-		int dc = orders
+		Long dc = orders
 				.stream()
 				.map(OrderEntity::getDance)
-				.mapToInt(Integer::intValue)
+				.mapToLong(Long::longValue)
 				.sum();
 		reportDto.setDanceCount(dc);
 		int tpc = orders
@@ -308,7 +308,7 @@ public class OrderTicketsServiceImpl implements OrderTicketsService {
 	}
 
 
-	private BigDecimal amount(int dance, int table, final BigDecimal costDance, final BigDecimal costTablePlace) {
+	private BigDecimal amount(Long dance, int table, final BigDecimal costDance, final BigDecimal costTablePlace) {
 		return costDance.multiply(new BigDecimal(dance)).add(costTablePlace.multiply(new BigDecimal(table)));
 	}
 }
