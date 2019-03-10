@@ -24,3 +24,4 @@ Fron part
 * Never modify old liquibase scripts
 * Database under_score
 * Java camelCase
+* Use tabs instead spaces
