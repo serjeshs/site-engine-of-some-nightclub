@@ -19,3 +19,8 @@ Fron part
   *Solution*
   
     npm i -D @angular-devkit/core
+
+#Rules
+* Never modify old liquibase scripts
+* Database under_score
+* Java camelCase
