@@ -28,13 +28,15 @@ log4j:
 club:
   files:
     directory: /tmp
+    email:
+      admin: spam@republic-club.by
 mail:
   host: smtp.yandex.ru
   port: 587
   protocol: smtp
   default-encoding: UTF-8
-  username: info-dev@republic-club.by
-  password: 1qaz@#WESDXC
+  username: spam@republic-club.by
+  password: secretpassword
 
 bepaid:
   payment:
