@@ -32,10 +32,10 @@ databaseChangeLog:
                   name: id
                   type: BIGINT
               - column:
-                  name: createdDate
+                  name: created_date
                   type: datetime
               - column:
-                  name: lastModifiedDate
+                  name: last_modified_date
                   type: datetime
               - column:
                   name: version
@@ -84,6 +84,18 @@ databaseChangeLog:
                   name: id
                   type: BIGINT
               - column:
+                  name: created_date
+                  type: timestamp
+              - column:
+                  name: last_modified_date
+                  type: datetime
+              - column:
+                  name: version
+                  type: BIGINT
+              - column:
+                  name: visible
+                  type: BIT(1)
+              - column:
                   name: cost
                   type: DECIMAL(19, 2)
               - column:
@@ -98,7 +110,7 @@ databaseChangeLog:
                   constraints:
                     foreignKey:
                       referencedColumnNames: id
-                      referencedTableName: club_event
+                      referencedTableName: club_event,k
               - column:
                   name: start_active_time
                   type: datetime

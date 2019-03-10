@@ -3,7 +3,7 @@ package by.ladyka.club.service.order;
 import by.ladyka.bepaid.BePaidApi;
 import by.ladyka.bepaid.dto.GatewayStatus;
 import by.ladyka.bepaid.dto.PaymentTokenDto;
-import by.ladyka.club.config.ClubRole;
+import by.ladyka.club.config.constant.ClubRole;
 import by.ladyka.club.config.CustomSettings;
 import by.ladyka.club.dto.menu.TicketOrderDto;
 import by.ladyka.club.dto.report.TicketOrderReportDto;
@@ -37,7 +37,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static by.ladyka.club.config.Constants.API_ORDER_BEPAID;
+import static by.ladyka.club.config.constant.Constants.API_ORDER_BEPAID;
 
 @Service
 public class OrderTicketsServiceImpl implements OrderTicketsService {

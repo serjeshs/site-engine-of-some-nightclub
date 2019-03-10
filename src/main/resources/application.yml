@@ -2,8 +2,8 @@ spring:
   datasource:
     database: afisha
     url: jdbc:mysql://127.0.0.1:3306/${spring.datasource.database}?characterEncoding=UTF-8&autoReconnect=true&useSSL=false&useUnicode=true
-    username: root
-    password: root
+    username: afisha
+    password: afishapass
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:

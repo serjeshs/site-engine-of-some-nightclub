@@ -33,6 +33,7 @@ public class OrderEntity extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "eventId")
 	private EventEntity eventEntity;
+	@Lob
 	private String description;
 
 	@Column(name = "uuid", unique = true, nullable = false)
